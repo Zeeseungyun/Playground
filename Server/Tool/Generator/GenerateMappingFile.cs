@@ -16,6 +16,7 @@ namespace Zee.Generator
             FileStream fileStream = File.OpenWrite(fileName);
             using (StreamWriter streamWriter = new StreamWriter(fileStream))
             {
+                StringBuilder stringBuilder = new();
                 var lineBegin =
 @"
 namespace Zee.Message
