@@ -3,5 +3,10 @@ package Authentication;
 
 message Login {
     string Id = 1;
-    int64 UID = 0;
+    int64 UID = 2;
+}
+
+message Logout {
+    string Id = 1;
+    int64 UID = 2;
 }

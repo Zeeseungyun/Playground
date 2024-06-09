@@ -86,14 +86,14 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "[Test] Tool/Generator",
+            "label": "[Generate] Proto Files",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/Generator.dll",
                 "-protoc",      "${workspaceFolder}/../env/protoc-27.0-win64/bin/protoc.exe",
                 "-src",         "${workspaceFolder}/Server/GameServer/Message/Source/",
-                "-csharpdst",       "${workspaceFolder}/Server/GameServer/Message/CSharp/",
+                "-csharpdst",   "${workspaceFolder}/Server/GameServer/Message/CSharp/",
             ],
             "problemMatcher": "$msCompile"
         },
