@@ -30,7 +30,7 @@ namespace Zee.Common
             this.keys = keys;
         }
         public bool IsEmpty => !parsedArgs.Keys.Any((k)=>keys.Contains(k));
-        public bool TryGetValue(out string value)
+        public bool TryGetValue(out string? value)
         {
             value = string.Empty;
             foreach(var key in keys)

@@ -35,19 +35,18 @@ CommandLineArg destDirArg   = new (new []{"-destdir", "-destd"});
 string host = hostArg.Value;
 string username = usernameArg.Value;
 string pemFilePath = pemArg.Value;
-string srcDirPath = srcDirArg.Value;
-string destDirPath = destDirArg.Value;
 string process = processArg.Value;
 
-var privateKeyFile = new PrivateKeyFile(pemFilePath);
-var privateKeyFileArray = new[] { privateKeyFile };
+var privateKeyFileArray = new[] { new PrivateKeyFile(pemFilePath) };
 var connectionInfo = new ConnectionInfo(host, username, new PrivateKeyAuthenticationMethod(username, privateKeyFileArray));
 
 try
 {
     switch(process)
-    {
+    {   
         case "ftp":
+            string srcDirPath = srcDirArg.Value;
+            string destDirPath = destDirArg.Value;
             using (var client = new SshClient(connectionInfo))
             {
                 client.Connect();
