@@ -1,10 +1,8 @@
 
 using Google.Protobuf;
-using MyPack;
-using Zee.Net;
-
 namespace Zee.Message
 {
+
     static public partial class PacketMapping
     {
         private static void startMapping()
@@ -14,22 +12,27 @@ namespace Zee.Message
                 return;
             }
 
-			mapping(1, typeof(MyPack.Person));
-			mapping(2, typeof(Person2));
+			mapping(0x1001, typeof(Playground.Authentication.Login));
+			mapping(0x1002, typeof(Playground.Authentication.Logout));
+
         }
+
         static public void HandleMessage(IHandler h, PacketBase p)
         {
             switch(p.Point)
             {
-                case 1: h.OnMessage(p as Packet<Person>); return;
-                case 2: h.OnMessage(p as Packet<Person2>); return;
+				case 0x1001: h.OnMessage(p as Packet<Playground.Authentication.Login>); return;
+				case 0x1002: h.OnMessage(p as Packet<Playground.Authentication.Logout>); return;
+              
+                default: throw new Exception("invalid message point"); return;
             }
         }
-    }
-    
+                
     public interface IHandler 
     {
-        void OnMessage(Packet<Person> p) { Logger.LogWarning("not impl packet person."); }
-        void OnMessage(Packet<Person2> p) { Logger.LogWarning("not impl packet person2."); }
+		void OnMessage(Packet<Playground.Authentication.Login> p) { Logger.LogWarning("not impl packet: Playground.Authentication.Login."); }
+		void OnMessage(Packet<Playground.Authentication.Logout> p) { Logger.LogWarning("not impl packet: Playground.Authentication.Logout."); }
+
     }
+
 }

@@ -13,7 +13,13 @@ namespace Zee
         {
             ProcessStartInfo startInfo = new();
             startInfo.FileName = ProtoExeFilePath;
-            startInfo.Arguments = $"--cpp_out={CSharpDst} --csharp_out={CSharpDst} --proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
+            //--cpp_out={CSharpDst} 
+            if(Directory.Exists(CSharpDst))
+            {
+                Directory.Delete(CSharpDst, true);
+            }
+            Directory.CreateDirectory(CSharpDst);
+            startInfo.Arguments = $"--csharp_out={CSharpDst} --proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
             using (Process? exeProcess = Process.Start(startInfo))
             {
                 if(exeProcess == null)

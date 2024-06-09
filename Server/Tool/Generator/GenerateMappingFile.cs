@@ -27,9 +27,9 @@ namespace Zee.Message
 {
 ");
 
-                StringBuilder classPacketMapping = new();
-                stringBuilders.Add(classPacketMapping);
-                classPacketMapping.Append(
+                StringBuilder beginClassPacketMapping = new();
+                stringBuilders.Add(beginClassPacketMapping);
+                beginClassPacketMapping.Append(
                     
 @"
     static public partial class PacketMapping
@@ -96,10 +96,19 @@ namespace Zee.Message
                 }
                 funcHandleMessage.Append(
 @"              
-                default: throw new Exception(""invalid message point""); return;
+                default: throw new Exception(""invalid message point""); break;
             }
         }
 ");
+
+                StringBuilder endClassPacketMapping = new();
+                stringBuilders.Add(beginClassPacketMapping);
+                beginClassPacketMapping.Append(
+                    
+@"
+    }"
+                );
+                
                 StringBuilder classIHandler = new();
                 stringBuilders.Add(classIHandler);
                 classIHandler.Append(
