@@ -19,15 +19,6 @@ Zee.Framework.Start();
 
 Zee.Net.Client client = new Zee.Net.Client("127.0.0.1", 20500);
 client.Start();
-client.MessageReceived += (sender, e) =>   
-{
-    Console.WriteLine(e);
-};
-
-client.PacketReceived += (sender, e) =>   
-{
-    Console.WriteLine(e.Message.ToString());
-};
 
 int tick = 0;
 while(true)

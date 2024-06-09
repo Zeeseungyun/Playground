@@ -1,9 +1,9 @@
 
 using System.Text;
 
-namespace Zee.Generator
+namespace Zee
 {
-    static public partial class Program
+    static public partial class Generator
     {
         public static void GenerateMappingFile(ParseResult parseResult)
         {
@@ -16,13 +16,30 @@ namespace Zee.Generator
             FileStream fileStream = File.OpenWrite(fileName);
             using (StreamWriter streamWriter = new StreamWriter(fileStream))
             {
-                StringBuilder stringBuilder = new();
-                var lineBegin =
+                List<StringBuilder> stringBuilders = new();
+                StringBuilder beginNamespaceScope = new();
+                stringBuilders.Add(beginNamespaceScope);
+                beginNamespaceScope.Append(
+                    
 @"
+using Google.Protobuf;
 namespace Zee.Message
 {
+");
+
+                StringBuilder classPacketMapping = new();
+                stringBuilders.Add(classPacketMapping);
+                classPacketMapping.Append(
+                    
+@"
     static public partial class PacketMapping
-    {
+    {"
+                );
+
+                StringBuilder funcStartMapping = new();
+                stringBuilders.Add(funcStartMapping);
+                funcStartMapping.Append(
+@"
         private static void startMapping()
         {
             if(pointToType.Count > 0)
@@ -30,41 +47,99 @@ namespace Zee.Message
                 return;
             }
 
-";
-                streamWriter.Write(lineBegin);
-                int id = 1;
+"
+                );
+
                 foreach(var protoFile in parseResult.ProtoFiles)
                 {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    foreach(var elem in protoFile.Scope)
-                    {
-                        stringBuilder.Append(elem);
-                        stringBuilder.Append('.');
-                    }
-
-                    var scope = stringBuilder.ToString();
                     foreach(var message in protoFile.Messages)
                     {
-                        if(scope.Length > 0)
+                        if(protoFile.ScopeString.Length > 0)
                         {
-                            streamWriter.Write($"\t\t\tmapping({id}, typeof({scope}{message.Name}));\n");
+                            funcStartMapping.Append($"\t\t\tmapping(0x{message.Point.ToString("X")}, typeof({protoFile.ScopeString}.{message.Name}));\n");
                         }
                         else
                         {
-                            streamWriter.Write($"\t\t\tmapping({id}, typeof({message.Name}));\n");
+                            funcStartMapping.Append($"\t\t\tmapping(0x{message.Point.ToString("X")}, typeof({message.Name}));\n");
                         }
-                        ++id;
+                    }
+                }
+
+                funcStartMapping.Append(
+@"
+        }
+");
+                
+                StringBuilder funcHandleMessage = new();
+                stringBuilders.Add(funcHandleMessage);
+                funcHandleMessage.Append(
+@"
+        static public void HandleMessage(IHandler h, PacketBase p)
+        {
+            switch(p.Point)
+            {
+");
+
+                foreach(var protoFile in parseResult.ProtoFiles)
+                {
+                    foreach(var message in protoFile.Messages)
+                    {
+                        if(protoFile.ScopeString.Length > 0)
+                        {
+                            funcHandleMessage.Append($"\t\t\t\tcase 0x{message.Point.ToString("X")}: h.OnMessage(p as Packet<{protoFile.ScopeString}.{message.Name}>); return;\n");
+                        }
+                        else
+                        {
+                            funcHandleMessage.Append($"\t\t\t\tcase 0x{message.Point.ToString("X")}: h.OnMessage(p as Packet<{message.Name}>); return;\n");
+                        }
+                    }
+                }
+                funcHandleMessage.Append(
+@"              
+                default: throw new Exception(""invalid message point""); return;
+            }
+        }
+");
+                StringBuilder classIHandler = new();
+                stringBuilders.Add(classIHandler);
+                classIHandler.Append(
+@"                
+    public interface IHandler 
+    {
+");
+                string warningMessage = "not impl packet: ";
+                foreach(var protoFile in parseResult.ProtoFiles)
+                {
+                    foreach(var message in protoFile.Messages)
+                    {
+                        if(protoFile.ScopeString.Length > 0)
+                        {
+                            classIHandler.Append($"\t\tvoid OnMessage(Packet<{protoFile.ScopeString}.{message.Name}> p) {{ Logger.LogWarning(\"{warningMessage}{protoFile.ScopeString}.{message.Name}.\"); }}\n");
+                        }
+                        else
+                        {
+                            classIHandler.Append($"\t\tvoid OnMessage(Packet<{message.Name}> p) {{ Logger.LogWarning(\"{warningMessage}{message.Name}.\"); }}\n");
+                        }
                     }
                 }
                 
-                var lineEnd =
+                classIHandler.Append(
 @"
-        }
     }
+");
+                
+                StringBuilder endNamespaceScope = new();
+                stringBuilders.Add(endNamespaceScope);
+                endNamespaceScope.Append(
+                    
+@"
 }
-";
-                streamWriter.Write(lineEnd);
-            }
+");
+                foreach(var str in stringBuilders)
+                {
+                    streamWriter.Write(str);
+                }
+            }//end using(StreamWriter streamWriter = new StreamWriter(fileStream)))
 
             fileStream.Close();
         }

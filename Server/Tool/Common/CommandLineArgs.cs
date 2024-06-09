@@ -17,11 +17,12 @@ namespace Zee.Common
                 }
             }
 
-            Console.WriteLine("Parsing result.");
+            Console.WriteLine("command line parsing..");
             foreach (var kvp in parsedArgs)
             {
                 Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
             }
+            Console.WriteLine("command line parsing finished.");
         }
         private string[] keys;
         public CommandLineArg(string[] keys)

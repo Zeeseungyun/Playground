@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Client/Client.csproj"
+                "${workspaceFolder}/Server/Client/Client.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/GameServer/GameServer.csproj"
+                "${workspaceFolder}/Server/GameServer/GameServer.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -41,7 +41,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Tool/Generator/Generator.csproj"
+                "${workspaceFolder}/Server/Tool/Generator/Generator.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -51,7 +51,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Tool/Publish/Publish.csproj"
+                "${workspaceFolder}/Server/Tool/Publish/Publish.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -60,11 +60,11 @@
             "command": "dotnet",
             "type": "process",
             "args": [
-                "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/Publish.dll",
+                "${workspaceFolder}/Server/Tool/Publish/bin/Debug/net8.0/Publish.dll",
                 "-host",            "54.180.163.183",
                 "-username",        "ubuntu",
-                "-pem",             "C:/Users/zee/source/repos/Playground/aws/ec2/MyInst6.pem",
-                "-srcdir",          "${workspaceFolder}/Tool/Publish/",
+                "-pem",             "${workspaceFolder}/Server/aws/ec2/MyInst6.pem",
+                "-srcdir",          "${workspaceFolder}/Server/Tool/Publish/",
                 "-destdir",         "Test1",
                 "-process",         "ftp"
             ],
@@ -78,8 +78,8 @@
                 "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/Publish.dll",
                 "-host",            "54.180.163.183",
                 "-username",        "ubuntu",
-                "-pem",             "C:/Users/zee/source/repos/Playground/aws/ec2/MyInst6.pem",
-                "-srcdir",          "${workspaceFolder}/Tool/Publish/",
+                "-pem",             "${workspaceFolder}/Server/aws/ec2/MyInst6.pem",
+                "-srcdir",          "${workspaceFolder}/Server/Tool/Publish/",
                 "-destdir",         "Test1",
                 "-process",         "install_sdk"
             ],
@@ -91,9 +91,9 @@
             "type": "process",
             "args": [
                 "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/Generator.dll",
-                "-protoc",      "${workspaceFolder}/env/protoc-27.0-win64/bin/protoc.exe",
-                "-src",         "${workspaceFolder}/Framework/Message/Source/",
-                "-csdst",       "${workspaceFolder}/Framework/Message/CSharp/",
+                "-protoc",      "${workspaceFolder}/../env/protoc-27.0-win64/bin/protoc.exe",
+                "-src",         "${workspaceFolder}/Server/GameServer/Message/Source/",
+                "-csharpdst",       "${workspaceFolder}/Server/GameServer/Message/CSharp/",
             ],
             "problemMatcher": "$msCompile"
         },
@@ -102,10 +102,10 @@
             "command": "dotnet",
             "type": "process",
             "args": [
-                "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/Generator.dll",
+                "${workspaceFolder}/Server/Tool/Generator/bin/Debug/net8.0/Generator.dll",
                 "-protoc",      "${workspaceFolder}/env/protoc-27.0-win64/bin/protoc.exe",
-                "-src",         "${workspaceFolder}/Tool/Generator/Test/Source/",
-                "-csdst",       "${workspaceFolder}/Tool/Generator/Test/Dest/",
+                "-src",         "${workspaceFolder}/Server/Tool/Generator/Test/Source/",
+                "-csharpdst",       "${workspaceFolder}/Server/Tool/Generator/Test/Dest/",
             ],
             "problemMatcher": "$msCompile",
             "dependsOn" :[

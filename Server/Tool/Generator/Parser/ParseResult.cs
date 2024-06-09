@@ -2,7 +2,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Zee.Generator
+namespace Zee
 {
     public class MessageProperty
     {
@@ -14,6 +14,7 @@ namespace Zee.Generator
     }
     public class Message
     {
+        public int Point = 0;
         public readonly string Name = string.Empty;
         public readonly List<MessageProperty> Properties = new();
         private Message(string name) { Name = name; }
@@ -57,6 +58,7 @@ namespace Zee.Generator
         public readonly string FileFullPath;
         public readonly string FileName;
         public readonly List<string> Scope = new();
+        public readonly string ScopeString = string.Empty;
         public readonly List<ProtoFileDependency> ProtoFileDependencies = new();
         public readonly List<Message> Messages = new();
         private readonly ParseResult parseResult;
@@ -67,6 +69,13 @@ namespace Zee.Generator
                 dependency.TargetPage = parseResult.ProtoFiles.Find((e)=>{
                     return e.FileName == dependency.FileName;
                 });
+            }
+        }
+        public void Update(int point)
+        {
+            foreach(var msg in Messages)
+            {
+                msg.Point = ++point;
             }
         }
         public ProtoFile(ParseResult parseResult, string filePath)
@@ -115,6 +124,21 @@ namespace Zee.Generator
                     continue;
                 }
             }
+
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach(var elem in Scope)
+                {
+                    stringBuilder.Append(elem);
+                    stringBuilder.Append('.');
+                }
+
+                if(stringBuilder.Length > 0)
+                {
+                    stringBuilder.Remove(stringBuilder.Length - 1, 1);
+                    ScopeString = stringBuilder.ToString();
+                }
+            }
         }
     }
     public class ParseResult
@@ -135,9 +159,12 @@ namespace Zee.Generator
                 ProtoFiles.Add(new ProtoFile(this, file));
             }
 
+            int point = 0x1000;
             foreach(var file in ProtoFiles)
             {
                 file.BindDependcy();
+                file.Update(point);
+                point += 0x1000;
             }
         }
     }

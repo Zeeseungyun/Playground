@@ -1,16 +1,26 @@
 using System.Diagnostics;
 
-namespace Zee.Generator
+namespace Zee
 {
-    static public partial class Program
+    static public partial class Generator
     {
-        public static void CompileProto(string protoc, string csDst, string protoSrc, string[] filePaths)
+        public static string ProtoExeFilePath = string.Empty;
+        public static string CSharpDst = string.Empty;
+        public static string CppDst = string.Empty;
+        public static readonly List<string> ProtoSrcFilePaths = new();
+        public static string ProtoSrcFilePath = string.Empty;
+        public static void CompileProto()
         {
             ProcessStartInfo startInfo = new();
-            startInfo.FileName = protoc;
-            startInfo.Arguments = $"--csharp_out={csDst} --proto_path={protoSrc} {string.Join(" ", filePaths)}";
-            using (Process exeProcess = Process.Start(startInfo))
+            startInfo.FileName = ProtoExeFilePath;
+            startInfo.Arguments = $"--cpp_out={CSharpDst} --csharp_out={CSharpDst} --proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
+            using (Process? exeProcess = Process.Start(startInfo))
             {
+                if(exeProcess == null)
+                {
+                    throw new Exception("if(exeProcess == null)");
+                }
+
                 exeProcess.WaitForExit();
                 if(exeProcess.ExitCode != 0)
                 {
@@ -18,9 +28,9 @@ namespace Zee.Generator
                 }
             }
         }
-        public static ParseResult Parse(string rootDir, string[] filePaths)
+        public static ParseResult Parse()
         {
-            return new(rootDir, filePaths);
+            return new(ProtoSrcFilePath, ProtoSrcFilePaths.ToArray());
         }
     }
 }
