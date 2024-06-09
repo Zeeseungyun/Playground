@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\zee\\source\\repos\\Playground\\Unreal\\ProjectZee\\Source\\ProjectZee\\ProjectZee.Build.cs",
+		"C:\\Users\\zee\\source\\repos\\Playground\\Unreal\\ProjectZee\\Source\\ProjectZee.Target.cs",
+		"C:\\Users\\zee\\source\\repos\\Playground\\Unreal\\ProjectZee\\Source\\ProjectZeeEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.2"
+}

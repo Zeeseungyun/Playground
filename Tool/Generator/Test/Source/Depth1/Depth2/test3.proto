@@ -1,0 +1,6 @@
+syntax = "proto3";
+package P1;
+message Depth2Test3
+{
+    string SSS = 1;
+}

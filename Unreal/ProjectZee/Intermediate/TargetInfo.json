@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "ProjectZee",
+			"Path": "..\\Source\\ProjectZee.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ProjectZeeEditor",
+			"Path": "..\\Source\\ProjectZeeEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package Temp1.T2.Tt4.Tt1.T12;
+message Person 
+{
+    string Name = 1;
+    int32 Id = 2;
+    string Email = 3;
+    string Email2 = 4;
+    repeated string Email3 = 6;
+}
+
+message Person2
+{
+    string Name = 1;
+    int32 Id = 2;
+    string Email = 3;
+    string Email2 = 4;
+    repeated string Email3 = 6;
+    Person Person = 7;
+}

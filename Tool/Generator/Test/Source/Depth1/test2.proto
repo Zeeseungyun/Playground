@@ -1,0 +1,10 @@
+syntax = "proto3";
+import "test1.proto";
+import "Depth1/Depth2/test3.proto";
+
+message Depth1Test2
+{
+    string a = 1;
+    Temp1.T2.Tt4.Tt1.T12.Person p =2;
+    P1.Depth2Test3 DT3 = 3;
+}

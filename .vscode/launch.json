@@ -1,0 +1,101 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "[Debug] Client",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "[Build] Client",
+            "program": "${workspaceFolder}/Client/bin/Debug/net8.0/Client.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Client/bin/Debug/net8.0/",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "[Debug] GameServer",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "[Build] GameServer",
+            "program": "${workspaceFolder}/GameServer/bin/Debug/net8.0/GameServer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/GameServer/bin/Debug/net8.0/",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "[Debug] Tool/Generator",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "[Build] Tool/Generator",
+            "program": "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/Generator.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "[Debug] Tool/Publish",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "[Build] Tool/Publish",
+            "program": "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/Publish.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "[Debug] Test Tool/Publish",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "[Build] Tool/Publish",
+            "program": "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/Publish.dll",
+            "args": [
+                "-host",            "3.38.166.227",
+                "-username",        "ubuntu",
+                "-pem",             "C:/Users/zee/source/repos/Playground/aws/ec2/MyInst6.pem",
+                "-srcdir",          "${workspaceFolder}/Tool/Publish/",
+                "-destdir",         "Test1",
+                "-process",         "install_sdk"
+            ],
+            "cwd": "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "[Debug] Test Tool/Generator",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "[Build] Tool/Generator",
+            "program": "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/Generator.dll",
+            "args": [
+                "-protoc",      "${workspaceFolder}/env/protoc-27.0-win64/bin/protoc.exe",
+                "-src",         "${workspaceFolder}/Framework/Message/Source/",
+                "-csdst",       "${workspaceFolder}/Framework/Message/CSharp/",
+            ],
+            "cwd": "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "[Debug] Test Tool/Generator 2",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "[Build] Tool/Generator",
+            "program": "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/Generator.dll",
+            "args": [
+                "-protoc",      "${workspaceFolder}/env/protoc-27.0-win64/bin/protoc.exe",
+                "-src",         "${workspaceFolder}/Tool/Generator/Test/Source/",
+                "-csdst",       "${workspaceFolder}/Tool/Generator/Test/Dest/",
+                "-single",      "true"
+            ],
+            "cwd": "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        }
+    ]
+}

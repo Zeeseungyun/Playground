@@ -1,0 +1,116 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "[Build] Client",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Client/Client.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "[Build] GameServer",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/GameServer/GameServer.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "[Release] Client",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "--configuration",
+                "Release",
+                "-o",
+                "${workspaceFolder}/Output/Release/Client",
+                "${workspaceFolder}/Client/Client.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "[Build] Tool/Generator",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Tool/Generator/Generator.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "[Build] Tool/Publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Tool/Publish/Publish.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "[Publish] GameServer",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/Publish.dll",
+                "-host",            "54.180.163.183",
+                "-username",        "ubuntu",
+                "-pem",             "C:/Users/zee/source/repos/Playground/aws/ec2/MyInst6.pem",
+                "-srcdir",          "${workspaceFolder}/Tool/Publish/",
+                "-destdir",         "Test1",
+                "-process",         "ftp"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "[Publish] .Net SDK",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/Publish.dll",
+                "-host",            "54.180.163.183",
+                "-username",        "ubuntu",
+                "-pem",             "C:/Users/zee/source/repos/Playground/aws/ec2/MyInst6.pem",
+                "-srcdir",          "${workspaceFolder}/Tool/Publish/",
+                "-destdir",         "Test1",
+                "-process",         "install_sdk"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "[Test] Tool/Generator",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/Generator.dll",
+                "-protoc",      "${workspaceFolder}/env/protoc-27.0-win64/bin/protoc.exe",
+                "-src",         "${workspaceFolder}/Framework/Message/Source/",
+                "-csdst",       "${workspaceFolder}/Framework/Message/CSharp/",
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "[Test] Tool/Generator 2",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/Tool/Generator/bin/Debug/net8.0/Generator.dll",
+                "-protoc",      "${workspaceFolder}/env/protoc-27.0-win64/bin/protoc.exe",
+                "-src",         "${workspaceFolder}/Tool/Generator/Test/Source/",
+                "-csdst",       "${workspaceFolder}/Tool/Generator/Test/Dest/",
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn" :[
+                "[Build] Tool/Generator"
+            ]
+        }
+	]
+}

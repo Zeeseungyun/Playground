@@ -1,0 +1,8 @@
+syntax = "proto3";
+package Temp1.T2.Tt4.Tt1.T12.swe1;
+import "test1.proto";
+
+message Test444
+{
+    string A = 1;
+}
