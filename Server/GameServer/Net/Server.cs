@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading;
 using Google.Protobuf;
-using Zee.Message;
 namespace Zee.Net
 {
     public class Server : TcpBase
     {
         private readonly TcpListener tcpListener;
         private readonly int port;
-        private readonly List<ClientHandler> _clients = new List<ClientHandler>();
+        private readonly List<ClientHandler> clients = new List<ClientHandler>();
         public Server(int port)
         {
             this.port = port;
@@ -24,7 +19,7 @@ namespace Zee.Net
         }
         override public void Stop()
         {
-            foreach(var client in _clients)
+            foreach(var client in clients)
             {
                 client.Stop();
             }
@@ -38,33 +33,25 @@ namespace Zee.Net
                 while (true)
                 {
                     var tcpClient = tcpListener.AcceptTcpClient();
-                    ClientHandler client = new ClientHandler(tcpClient);
-                    _clients.Add(client);
+                    ClientHandler client = new ClientHandler(tcpClient, this);
+                    clients.Add(client);
+                    client.ExecuteConnected();
                     client.Disconnected += HandleDisconnected;
-                    client.Name = "client" + _clients.Count; // todo
                     client.Start();
                 }
             }
             catch (Exception ex)
             {
-
+                Logger.LogWarning($"except occured: {ex.Message}");
             }
 
             Stop();
         }
-
-        public void BroadcastMessage(string message)
-        {
-            foreach (var client in _clients)
-            {
-                //client.SendMessage(message);
-            }
-        }
         public void BroadcastPacket(IMessage message)
         {
-            foreach (var client in _clients)
+            foreach (var client in clients)
             {
-                client.SendMessage(message);
+                client.NotifyMessage(message);
             }
         }
         override protected void HandleDisconnected(object? sender, TcpBase obj)
@@ -77,7 +64,7 @@ namespace Zee.Net
             }
 
             client.Disconnected -= HandleDisconnected;
-            _ = _clients.Remove(client);
+            _ = clients.Remove(client);
             Logger.LogInformation("client disconnected.");
         }
     }

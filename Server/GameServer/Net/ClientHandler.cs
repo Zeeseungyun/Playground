@@ -7,19 +7,21 @@ namespace Zee.Net
 {
     public partial class ClientHandler : ClientBase, IHandler
     {
-        public ClientHandler(TcpClient client)
+        private readonly Server server;
+        public Int64 UID = 0;
+        public ClientHandler(TcpClient client, Server server)
             :base(client)
         {
+            this.server = server;
         }
         override protected void ReceiveMessages()
         {
             try
             {
-                var stream = client.GetStream();
+                var stream = client!.GetStream();
                 while (client.Connected)
                 {
-                    PacketBase packet = new();
-                    PacketMerge(packet, stream);
+                    PacketBase packet = PacketMerge(stream);
                     PacketMapping.HandleMessage(this, packet);
                 }
             }

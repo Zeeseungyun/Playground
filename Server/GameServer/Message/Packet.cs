@@ -5,8 +5,9 @@ namespace Zee.Message
 {
     public class PacketBase
     {
-        public int Size;
-        public int Point;
+        public int Size = -1;
+        public int Point = -1;
+        public int Seq = -1;
         public int CalculateSize => Message!.CalculateSize() + sizeof(int) + sizeof(int);
         public IMessage? Message;
     }

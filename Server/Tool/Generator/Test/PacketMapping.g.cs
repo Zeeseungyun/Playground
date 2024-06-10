@@ -30,10 +30,11 @@ namespace Zee.Message
 				case 0x3001: h.OnMessage(p as Packet<Depth1Test2>); return;
 				case 0x4001: h.OnMessage(p as Packet<P1.Depth2Test3>); return;
               
-                default: throw new Exception("invalid message point"); return;
+                default: throw new Exception("invalid message point");
             }
         }
-                
+
+    }                
     public interface IHandler 
     {
 		void OnMessage(Packet<Temp1.T2.Tt4.Tt1.T12.Person> p) { Logger.LogWarning("not impl packet: Temp1.T2.Tt4.Tt1.T12.Person."); }

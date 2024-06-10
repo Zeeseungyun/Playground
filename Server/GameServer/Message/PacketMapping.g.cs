@@ -7,13 +7,14 @@ namespace Zee.Message
     {
         private static void startMapping()
         {
-            if(pointToType.Count > 0)
+            if(pointToMessageType.Count > 0)
             {
                 return;
             }
 
-			mapping(0x1001, typeof(Playground.Authentication.Login));
-			mapping(0x1002, typeof(Playground.Authentication.Logout));
+			mapping<Zee.Proto.Authentication.Login>(0x1002);
+			mapping<Zee.Proto.Authentication.Logout>(0x1003);
+			mapping<Zee.Proto.Chat.Speak>(0x2002);
 
         }
 
@@ -21,17 +22,20 @@ namespace Zee.Message
         {
             switch(p.Point)
             {
-				case 0x1001: h.OnMessage(p as Packet<Playground.Authentication.Login>); return;
-				case 0x1002: h.OnMessage(p as Packet<Playground.Authentication.Logout>); return;
+				case 0x1002: h.OnMessage(p as Packet<Zee.Proto.Authentication.Login>); return;
+				case 0x1003: h.OnMessage(p as Packet<Zee.Proto.Authentication.Logout>); return;
+				case 0x2002: h.OnMessage(p as Packet<Zee.Proto.Chat.Speak>); return;
               
-                default: throw new Exception("invalid message point"); return;
+                default: throw new Exception("invalid message point");
             }
         }
-                
+
+    }                
     public interface IHandler 
     {
-		void OnMessage(Packet<Playground.Authentication.Login> p) { Logger.LogWarning("not impl packet: Playground.Authentication.Login."); }
-		void OnMessage(Packet<Playground.Authentication.Logout> p) { Logger.LogWarning("not impl packet: Playground.Authentication.Logout."); }
+		void OnMessage(Packet<Zee.Proto.Authentication.Login> p) { Logger.LogWarning("not impl packet: Zee.Proto.Authentication.Login."); }
+		void OnMessage(Packet<Zee.Proto.Authentication.Logout> p) { Logger.LogWarning("not impl packet: Zee.Proto.Authentication.Logout."); }
+		void OnMessage(Packet<Zee.Proto.Chat.Speak> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak."); }
 
     }
 

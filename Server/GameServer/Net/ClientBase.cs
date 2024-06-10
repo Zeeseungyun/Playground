@@ -6,8 +6,14 @@ namespace Zee.Net
 {
     public abstract class ClientBase : TcpBase
     {
-        protected readonly TcpClient client;
-        protected ClientBase(TcpClient client)
+        protected TcpClient? client;        
+        public event EventHandler? OnConnected;
+        virtual public void ExecuteConnected()
+        {
+            OnConnected?.Invoke(this, EventArgs.Empty);
+        }
+        private int Seq = 0;
+        protected ClientBase(TcpClient? client)
         {
             this.client = client;
         }
@@ -15,11 +21,23 @@ namespace Zee.Net
         {
             new Thread(ReceiveMessages).Start();
         }
+        public bool IsConnected 
+        { 
+            get 
+            { 
+                if(client == null)
+                {
+                    return false;
+                }
+                return client!.Connected;
+            }
+        }
         public override void Stop()
         {
-            if(client.Connected)
+            if(client!.Connected)
             {
                 client.Close();
+                client = null;
             }
             HandleDisconnected(this, this);
             Logger.LogInformation($"[{Name}] disconnected.");
@@ -29,33 +47,19 @@ namespace Zee.Net
         }
         virtual protected void ReceiveMessages()
         {
-            try
-            {
-                var stream = client.GetStream();
-                while (client.Connected)
-                {
-                    PacketBase packet = new();
-                    PacketMerge(packet, stream);
-                    // TODO:: Client 클래스 동작안함.
-                    // HandleMessageReceived(this, packet.Message!);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogInformation($"exception occured: [{Name}] {ex.Message}.");
-            }
-            finally
-            {
-                ReceiveMessagesFinished();
-            }
         }
-        virtual public void SendMessage(IMessage message)
+        virtual public void NotifyMessage(IMessage msg)
         {
             var packet = new PacketBase();
-            packet.Message = message;
-            var stream = client.GetStream();
-            PacketWrite(packet, stream);
-            stream.Flush();
+            packet.Message = msg;
+            PacketWrite(packet, client!.GetStream());
+        }
+        virtual public void SendMessage(IMessage msg)
+        {
+            var packet = new PacketBase();
+            packet.Message = msg;
+            packet.Seq = Seq++;
+            PacketWrite(packet, client!.GetStream());
         }
     }
 }

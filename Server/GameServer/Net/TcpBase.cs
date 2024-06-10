@@ -11,7 +11,7 @@ namespace Zee.Net
         public string Name = "Noname";
         public TcpBase()
         {
-            
+            PacketMapping.Start();
         }
         virtual protected void HandleDisconnected(object? sender, TcpBase obj)
         {
@@ -32,16 +32,20 @@ namespace Zee.Net
             packet.Point = PacketMapping.GetPacketPoint(packet.Message!.GetType());
             stream.Write(BitConverter.GetBytes(packet.Point));
             packet.Message.WriteTo(stream);
+            stream.Flush();
         }
-        protected void PacketMerge(PacketBase packet, Stream stream)
+        protected PacketBase PacketMerge(Stream stream)
         {
             int readBytes = stream.Read(buffer, 0, sizeof(int));
-            packet.Size = BitConverter.ToInt32(buffer);
+            int Size = BitConverter.ToInt32(buffer);
             readBytes = stream.Read(buffer, 0, sizeof(int));
-            packet.Point = BitConverter.ToInt32(buffer);
-            packet.Message = PacketMapping.MakeMessage(packet.Point);
-            readBytes = stream.Read(buffer, 0, packet.Size - sizeof(int) * 2);
-            packet.Message.MergeFrom(buffer, 0, packet.Size - sizeof(int) * 2);
+            int Point = BitConverter.ToInt32(buffer);
+            PacketBase ret = PacketMapping.MakePacket(Point)!;
+            ret.Size = Size;
+            ret.Point = Point;
+            readBytes = stream.Read(buffer, 0, Size - sizeof(int) * 2);
+            ret.Message!.MergeFrom(buffer, 0, Size - sizeof(int) * 2);
+            return ret!;
         }
     }
 }

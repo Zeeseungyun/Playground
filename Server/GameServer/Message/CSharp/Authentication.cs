@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Playground.Authentication {
+namespace Zee.Proto.Authentication {
 
   /// <summary>Holder for reflection information generated from Authentication.proto</summary>
   public static partial class AuthenticationReflection {
@@ -24,19 +24,32 @@ namespace Playground.Authentication {
     static AuthenticationReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChRBdXRoZW50aWNhdGlvbi5wcm90bxIZUGxheWdyb3VuZC5BdXRoZW50aWNh",
-            "dGlvbiIgCgVMb2dpbhIKCgJJZBgBIAEoCRILCgNVSUQYAiABKAMiIQoGTG9n",
-            "b3V0EgoKAklkGAEgASgJEgsKA1VJRBgCIAEoA2IGcHJvdG8z"));
+            "ChRBdXRoZW50aWNhdGlvbi5wcm90bxIYWmVlLlByb3RvLkF1dGhlbnRpY2F0",
+            "aW9uIlIKBUxvZ2luEjAKAlJDGAEgASgOMiQuWmVlLlByb3RvLkF1dGhlbnRp",
+            "Y2F0aW9uLlJldHVybkNvZGUSCgoCSWQYAiABKAkSCwoDVUlEGAMgASgDIlMK",
+            "BkxvZ291dBIwCgJSQxgBIAEoDjIkLlplZS5Qcm90by5BdXRoZW50aWNhdGlv",
+            "bi5SZXR1cm5Db2RlEgoKAklkGAIgASgJEgsKA1VJRBgDIAEoAypYCgpSZXR1",
+            "cm5Db2RlEg8KC1JDX1NVQ0NFU1NTEAASGwoXUkNfRkFJTEVEX0FMUkVBRFlf",
+            "TE9HSU4QARIcChhSQ19GQUlMRURfQUxSRUFEWV9MT0dPVVQQAmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Playground.Authentication.Login), global::Playground.Authentication.Login.Parser, new[]{ "Id", "UID" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Playground.Authentication.Logout), global::Playground.Authentication.Logout.Parser, new[]{ "Id", "UID" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Authentication.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Id", "UID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Logout), global::Zee.Proto.Authentication.Logout.Parser, new[]{ "RC", "Id", "UID" }, null, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum ReturnCode {
+    [pbr::OriginalName("RC_SUCCESSS")] RcSuccesss = 0,
+    [pbr::OriginalName("RC_FAILED_ALREADY_LOGIN")] RcFailedAlreadyLogin = 1,
+    [pbr::OriginalName("RC_FAILED_ALREADY_LOGOUT")] RcFailedAlreadyLogout = 2,
+  }
+
+  #endregion
+
   #region Messages
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Login : pb::IMessage<Login>
@@ -53,7 +66,7 @@ namespace Playground.Authentication {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Playground.Authentication.AuthenticationReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Zee.Proto.Authentication.AuthenticationReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -73,6 +86,7 @@ namespace Playground.Authentication {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Login(Login other) : this() {
+      rC_ = other.rC_;
       id_ = other.id_;
       uID_ = other.uID_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -84,8 +98,20 @@ namespace Playground.Authentication {
       return new Login(this);
     }
 
+    /// <summary>Field number for the "RC" field.</summary>
+    public const int RCFieldNumber = 1;
+    private global::Zee.Proto.Authentication.ReturnCode rC_ = global::Zee.Proto.Authentication.ReturnCode.RcSuccesss;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Zee.Proto.Authentication.ReturnCode RC {
+      get { return rC_; }
+      set {
+        rC_ = value;
+      }
+    }
+
     /// <summary>Field number for the "Id" field.</summary>
-    public const int IdFieldNumber = 1;
+    public const int IdFieldNumber = 2;
     private string id_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -97,7 +123,7 @@ namespace Playground.Authentication {
     }
 
     /// <summary>Field number for the "UID" field.</summary>
-    public const int UIDFieldNumber = 2;
+    public const int UIDFieldNumber = 3;
     private long uID_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -123,6 +149,7 @@ namespace Playground.Authentication {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (RC != other.RC) return false;
       if (Id != other.Id) return false;
       if (UID != other.UID) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -132,6 +159,7 @@ namespace Playground.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) hash ^= RC.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (UID != 0L) hash ^= UID.GetHashCode();
       if (_unknownFields != null) {
@@ -152,12 +180,16 @@ namespace Playground.Authentication {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) RC);
+      }
       if (Id.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Id);
       }
       if (UID != 0L) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(24);
         output.WriteInt64(UID);
       }
       if (_unknownFields != null) {
@@ -170,12 +202,16 @@ namespace Playground.Authentication {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) RC);
+      }
       if (Id.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Id);
       }
       if (UID != 0L) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(24);
         output.WriteInt64(UID);
       }
       if (_unknownFields != null) {
@@ -188,6 +224,9 @@ namespace Playground.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RC);
+      }
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
@@ -205,6 +244,9 @@ namespace Playground.Authentication {
     public void MergeFrom(Login other) {
       if (other == null) {
         return;
+      }
+      if (other.RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+        RC = other.RC;
       }
       if (other.Id.Length != 0) {
         Id = other.Id;
@@ -231,11 +273,15 @@ namespace Playground.Authentication {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
+          case 8: {
+            RC = (global::Zee.Proto.Authentication.ReturnCode) input.ReadEnum();
+            break;
+          }
+          case 18: {
             Id = input.ReadString();
             break;
           }
-          case 16: {
+          case 24: {
             UID = input.ReadInt64();
             break;
           }
@@ -258,11 +304,15 @@ namespace Playground.Authentication {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
+          case 8: {
+            RC = (global::Zee.Proto.Authentication.ReturnCode) input.ReadEnum();
+            break;
+          }
+          case 18: {
             Id = input.ReadString();
             break;
           }
-          case 16: {
+          case 24: {
             UID = input.ReadInt64();
             break;
           }
@@ -288,7 +338,7 @@ namespace Playground.Authentication {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Playground.Authentication.AuthenticationReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Zee.Proto.Authentication.AuthenticationReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -308,6 +358,7 @@ namespace Playground.Authentication {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Logout(Logout other) : this() {
+      rC_ = other.rC_;
       id_ = other.id_;
       uID_ = other.uID_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -319,8 +370,20 @@ namespace Playground.Authentication {
       return new Logout(this);
     }
 
+    /// <summary>Field number for the "RC" field.</summary>
+    public const int RCFieldNumber = 1;
+    private global::Zee.Proto.Authentication.ReturnCode rC_ = global::Zee.Proto.Authentication.ReturnCode.RcSuccesss;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Zee.Proto.Authentication.ReturnCode RC {
+      get { return rC_; }
+      set {
+        rC_ = value;
+      }
+    }
+
     /// <summary>Field number for the "Id" field.</summary>
-    public const int IdFieldNumber = 1;
+    public const int IdFieldNumber = 2;
     private string id_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -332,7 +395,7 @@ namespace Playground.Authentication {
     }
 
     /// <summary>Field number for the "UID" field.</summary>
-    public const int UIDFieldNumber = 2;
+    public const int UIDFieldNumber = 3;
     private long uID_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -358,6 +421,7 @@ namespace Playground.Authentication {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (RC != other.RC) return false;
       if (Id != other.Id) return false;
       if (UID != other.UID) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -367,6 +431,7 @@ namespace Playground.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) hash ^= RC.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (UID != 0L) hash ^= UID.GetHashCode();
       if (_unknownFields != null) {
@@ -387,12 +452,16 @@ namespace Playground.Authentication {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) RC);
+      }
       if (Id.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Id);
       }
       if (UID != 0L) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(24);
         output.WriteInt64(UID);
       }
       if (_unknownFields != null) {
@@ -405,12 +474,16 @@ namespace Playground.Authentication {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) RC);
+      }
       if (Id.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Id);
       }
       if (UID != 0L) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(24);
         output.WriteInt64(UID);
       }
       if (_unknownFields != null) {
@@ -423,6 +496,9 @@ namespace Playground.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RC);
+      }
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
@@ -440,6 +516,9 @@ namespace Playground.Authentication {
     public void MergeFrom(Logout other) {
       if (other == null) {
         return;
+      }
+      if (other.RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+        RC = other.RC;
       }
       if (other.Id.Length != 0) {
         Id = other.Id;
@@ -466,11 +545,15 @@ namespace Playground.Authentication {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
+          case 8: {
+            RC = (global::Zee.Proto.Authentication.ReturnCode) input.ReadEnum();
+            break;
+          }
+          case 18: {
             Id = input.ReadString();
             break;
           }
-          case 16: {
+          case 24: {
             UID = input.ReadInt64();
             break;
           }
@@ -493,11 +576,15 @@ namespace Playground.Authentication {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
+          case 8: {
+            RC = (global::Zee.Proto.Authentication.ReturnCode) input.ReadEnum();
+            break;
+          }
+          case 18: {
             Id = input.ReadString();
             break;
           }
-          case 16: {
+          case 24: {
             UID = input.ReadInt64();
             break;
           }

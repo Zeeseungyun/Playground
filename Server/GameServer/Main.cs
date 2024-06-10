@@ -1,13 +1,21 @@
 using Zee.Message;
+using Zee.Net;
 
-namespace Zee
+Zee.Net.Server server = new(port: 20500);
+server.Start();
+
+while(true)
 {
-    static public class Program
+    var tmp = Console.ReadLine();
+    switch(tmp)
     {
-        public static void Start()
-        {
-            PacketMapping.Start();
-            Logger.LogInformation("Framework Started.");
-        }
+        case "quit":
+        Console.WriteLine("program exit.");
+        return;
+
+        default:
+
+        break;
     }
 }
+ 

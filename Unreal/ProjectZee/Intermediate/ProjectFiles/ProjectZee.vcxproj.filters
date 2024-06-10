@@ -11,6 +11,7 @@
     <None Include="..\..\Source\ProjectZeeEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -29,6 +30,210 @@
     <None Include="..\..\Config\DefaultInput.ini">
       <Filter>Config</Filter>
     </None>
+    <Filter Include="Plugins">
+      <UniqueIdentifier>{BB38096A-B391-30DC-A0D4-4F3EA6B44507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet">
+      <UniqueIdentifier>{86A5E526-37C2-39CF-91E6-4C7A87243AD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source">
+      <UniqueIdentifier>{CDCCFDA5-3526-3727-AFF7-7B4485C5B011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty">
+      <UniqueIdentifier>{92180D94-DF79-3871-9E33-B13B155FF2BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary">
+      <UniqueIdentifier>{110D6447-0D8C-3B47-92C7-208FEA8B8883}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary.cpp">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary</Filter>
+    </ClCompile>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ZeeNetLibrary.Build.cs">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ZeeNetLibrary.tps">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs">
+      <UniqueIdentifier>{CA068783-B11D-3A83-9DC5-09D929EE17AA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary">
+      <UniqueIdentifier>{11BED6B7-A4CA-3D24-BBC1-BD67C0553014}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\FileContentIndex">
+      <UniqueIdentifier>{736930B0-E70B-3F5A-A404-6D5D62FEF087}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\FileContentIndex\8b7dd0ef-cbbd-430e-9ca7-ff1e8f4a398d.vsidx">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\FileContentIndex</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v16">
+      <UniqueIdentifier>{8E5DC13E-F56B-3D12-B50D-A95D2CFA0562}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v16\Browse.VC.db">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v16</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v17">
+      <UniqueIdentifier>{1456C528-771A-3C9F-A919-D196434DC4F8}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v17\Browse.VC.db">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v17</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v17\DocumentLayout.json">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v17</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v17\Solution.VC.db">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\.vs\ExampleLibrary\v17</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary">
+      <UniqueIdentifier>{3AF78DC8-A19C-3042-BC1E-0AE4F45A9656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\ExampleLibrary.xcodeproj">
+      <UniqueIdentifier>{8FA02586-0FB6-34F6-9A5C-D14FD8EB4AB1}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\ExampleLibrary.xcodeproj\project.pbxproj">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\ExampleLibrary.xcodeproj</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64">
+      <UniqueIdentifier>{EFEB944A-33FE-3106-8BFD-44FFAF779C4A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug">
+      <UniqueIdentifier>{979670D4-D91B-377B-9949-1763EE711C82}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.dll.recipe">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.ilk">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.log">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.obj">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\vc143.idb">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\vc143.pdb">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog">
+      <UniqueIdentifier>{18BD4EE6-8800-3146-B9CF-37457FA9FB05}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\CL.command.1.tlog">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\Cl.items.tlog">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\CL.read.1.tlog">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\CL.write.1.tlog">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\ExampleLibrary.lastbuildstate">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\link.command.1.tlog">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\link.read.1.tlog">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\link.secondary.1.tlog">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog\link.write.1.tlog">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary\x64\Debug\ExampleLibrary.tlog</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary.xcworkspace">
+      <UniqueIdentifier>{2C1DF081-F7F7-3EA6-857D-7564F68129A0}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary.xcworkspace\contents.xcworkspacedata">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\ExampleLibrary.xcworkspace</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\Mac">
+      <UniqueIdentifier>{BEFB41D7-838E-303D-BDE6-23ED15B76098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\Mac\Release">
+      <UniqueIdentifier>{84AD2A7F-1E71-37F4-BE0C-7CE0B6140FAC}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\Mac\Release\libExampleLibrary.dylib">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\Mac\Release</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\Public">
+      <UniqueIdentifier>{5A3348F4-8BBB-31DB-A99B-9DA0E50BF633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\Public\ZeeNetLibrary">
+      <UniqueIdentifier>{50C80AE3-5643-3DB2-9379-DDE8DDCEE617}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\Public\ZeeNetLibrary\ExampleLibrary.h">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\Public\ZeeNetLibrary</Filter>
+    </ClInclude>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64">
+      <UniqueIdentifier>{C652879E-7F32-3AE8-8046-CC434A14564A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug">
+      <UniqueIdentifier>{2BDAE761-B7A1-37F8-9C31-7CBC6ABCCFCC}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug\ExampleLibrary.dll">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug\ExampleLibrary.exp">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug\ExampleLibrary.lib">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug\ExampleLibrary.log">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug\ExampleLibrary.pdb">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Debug</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Release">
+      <UniqueIdentifier>{9A4C8F3F-FC13-347B-BEB7-4904D5069D96}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Release\ExampleLibrary.dll">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Release</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Release\ExampleLibrary.lib">
+      <Filter>Plugins\ZeeNet\Source\ThirdParty\ZeeNetLibrary\x64\Release</Filter>
+    </None>
+    <None Include="..\..\Plugins\ZeeNet\ZeeNet.uplugin">
+      <Filter>Plugins\ZeeNet</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Resources">
+      <UniqueIdentifier>{6DF4993B-E958-3578-A6AF-436C67A13412}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Resources\Icon128.png">
+      <Filter>Plugins\ZeeNet\Resources</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ZeeNet">
+      <UniqueIdentifier>{22E775B4-4F54-35FF-A47A-5711DD25F4DE}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\ZeeNet.Build.cs">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private">
+      <UniqueIdentifier>{CA753494-BE5E-3865-AE36-3A75A17AD987}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ClientHandler.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNet.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
+    </ClCompile>
+    <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public">
+      <UniqueIdentifier>{62B842B7-CD58-3C9B-921F-EE9BD1674500}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ClientHandler.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNet.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
+    </ClInclude>
     <Filter Include="Source\ProjectZee">
       <UniqueIdentifier>{BAFBEA16-D1C4-3BE6-8CC5-E5EC944BE7DC}</UniqueIdentifier>
     </Filter>

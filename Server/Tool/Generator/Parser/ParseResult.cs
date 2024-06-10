@@ -17,10 +17,11 @@ namespace Zee
         public int Point = 0;
         public readonly string Name = string.Empty;
         public readonly List<MessageProperty> Properties = new();
-        private Message(string name) { Name = name; }
+        public readonly bool IsEnum = false;
+        private Message(string name, bool isEnum) { Name = name;  IsEnum = isEnum;}
         static public Message Parse(string name, string[] lines, bool isEnum, ref int index)
         {
-            Message ret = new(name);
+            Message ret = new(name, isEnum);
             string ptnField = @"\s*(\w+\s+)*([\w.]+)\s+(\w+)\s+=\s*(\d)\s*;";
             for(; index < lines.Length; ++index)
             {

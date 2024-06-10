@@ -1,16 +1,22 @@
 using Google.Protobuf;
-using MyPack;
 using Zee.Message;
 
 namespace Zee.Net
 {
     public partial class ClientHandler
     {
-        public void OnMessage(Packet<Person> packet)
+        public void OnMessage(Packet<Proto.Authentication.Login> packet)
         {
-            
+            var msg = packet.ExactMessage!;
+            Name = msg.Id;
+            var rnd = new Random();
+            UID = rnd.NextInt64();
+            msg.UID = UID;
+            msg.RC = Proto.Authentication.ReturnCode.RcSuccesss;
+            NotifyMessage(msg);
         }
-        public void OnMessage(Packet<Person2> packet)
+
+        public void OnMessage(Packet<Proto.Authentication.Logout> packet)
         {
 
         }

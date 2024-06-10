@@ -1,12 +1,20 @@
 syntax = "proto3";
-package Playground.Authentication;
+package Zee.Proto.Authentication;
+
+enum ReturnCode {
+    RC_SUCCESSS = 0;
+    RC_FAILED_ALREADY_LOGIN = 1;
+    RC_FAILED_ALREADY_LOGOUT = 2;
+}
 
 message Login {
-    string Id = 1;
-    int64 UID = 2;
+    ReturnCode RC = 1;
+    string Id = 2;
+    int64 UID = 3;
 }
 
 message Logout {
-    string Id = 1;
-    int64 UID = 2;
+    ReturnCode RC = 1;
+    string Id = 2;
+    int64 UID = 3;
 }

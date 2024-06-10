@@ -1,0 +1,13 @@
+syntax = "proto3";
+package Zee.Proto.Chat;
+
+enum ReturnCode {
+    RC_SUCCESSS = 0;
+}
+
+message Speak {
+    ReturnCode RC = 1;
+    int64 UID = 2;
+    string Id = 3;
+    string Content = 4;
+}

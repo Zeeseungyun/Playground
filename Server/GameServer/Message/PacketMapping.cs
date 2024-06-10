@@ -5,20 +5,28 @@ namespace Zee.Message
 {
     static public partial class PacketMapping
     {
-        private static readonly Dictionary<int, Type> pointToType = new();
+        private static bool isStarted =false;
+        private static readonly Dictionary<int, Type> pointToMessageType = new();
+        private static readonly Dictionary<int, Type> pointToPacketType = new();
         private static readonly Dictionary<Type, int> typeToPoint = new();
         private static readonly Dictionary<Type, MethodInfo> clientTypeToMethodInfos = new();
         public static void Start()
         {
-            startMapping();
+            if(isStarted == false)
+            {
+                isStarted = true;
+                startMapping();
+            }
         }
-        private static void mapping(int point, Type type)
+        private static void mapping<T>(int point) where T : class, IMessage
         {
-            pointToType.Add(point, type); typeToPoint.Add(type, point);
+            pointToMessageType.Add(point, typeof(T)); 
+            pointToPacketType.Add(point, typeof(Packet<T>));
+            typeToPoint.Add(typeof(T), point);
         }
         public static IMessage? MakeMessage(int point)
         {
-            var type = GetPacketType(point);
+            var type = GetMessageType(point);
             if(type == null)
             {
                 throw new ArgumentException("invalid point");
@@ -26,10 +34,28 @@ namespace Zee.Message
 
             return Activator.CreateInstance(type) as IMessage;
         }
+        public static PacketBase? MakePacket(int point)
+        {
+            var type = GetPacketType(point);
+            if(type == null)
+            {
+                throw new ArgumentException("invalid point");
+            }
+
+            PacketBase? ret = Activator.CreateInstance(type) as PacketBase;
+            ret!.Message = MakeMessage(point);
+            return ret;
+        }
+        public static Type? GetMessageType(int point)
+        {
+            Type? ret = null;
+            pointToMessageType.TryGetValue(point, out ret);
+            return ret;
+        }
         public static Type? GetPacketType(int point)
         {
             Type? ret = null;
-            pointToType.TryGetValue(point, out ret);
+            pointToPacketType.TryGetValue(point, out ret);
             return ret;
         }
         public static int GetPacketPoint(Type type)

@@ -78,14 +78,14 @@ AProjectZeeGameMode::~AProjectZeeGameMode() {}
 // End Class AProjectZeeGameMode
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Playground_Unreal_ProjectZee_Source_ProjectZee_ProjectZeeGameMode_h_Statics
+struct Z_CompiledInDeferFile_FID_ProjectZee_Source_ProjectZee_ProjectZeeGameMode_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_AProjectZeeGameMode, AProjectZeeGameMode::StaticClass, TEXT("AProjectZeeGameMode"), &Z_Registration_Info_UClass_AProjectZeeGameMode, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AProjectZeeGameMode), 2598980562U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Playground_Unreal_ProjectZee_Source_ProjectZee_ProjectZeeGameMode_h_1817785516(TEXT("/Script/ProjectZee"),
-	Z_CompiledInDeferFile_FID_Playground_Unreal_ProjectZee_Source_ProjectZee_ProjectZeeGameMode_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Playground_Unreal_ProjectZee_Source_ProjectZee_ProjectZeeGameMode_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectZee_Source_ProjectZee_ProjectZeeGameMode_h_1817785516(TEXT("/Script/ProjectZee"),
+	Z_CompiledInDeferFile_FID_ProjectZee_Source_ProjectZee_ProjectZeeGameMode_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectZee_Source_ProjectZee_ProjectZeeGameMode_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration
