@@ -1,3 +1,4 @@
 {
-    "dotnet.defaultSolution": "Server.sln"
+    "dotnet.defaultSolution": "Server.sln",
+    "protoc-path" : "${workspaceFolder}/env/"
 }
