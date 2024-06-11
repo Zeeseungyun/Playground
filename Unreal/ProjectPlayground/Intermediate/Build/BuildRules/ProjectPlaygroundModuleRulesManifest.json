@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Source\\ProjectPlayground\\ProjectPlayground.Build.cs",
+		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Source\\ProjectPlayground.Target.cs",
+		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Source\\ProjectPlaygroundEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.2"
+}
