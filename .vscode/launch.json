@@ -73,9 +73,10 @@
             "preLaunchTask": "[Build] Tool/Generator",
             "program": "${workspaceFolder}/Server/Tool/Generator/bin/Debug/net8.0/Generator.dll",
             "args": [
-                "-protoc",      "${workspaceFolder}/Server/env/protoc-27.0-win64/bin/protoc.exe",
-                "-src",         "${workspaceFolder}/Server/Framework/Message/Source/",
-                "-csharpdst",       "${workspaceFolder}/Server/Framework/Message/CSharp/",
+                "-protoc",      "${config:protoc-path}",
+                "-src",         "${config:protoc.source-path}",
+                "-csharpdst",    "${config:protoc.csharp-output-path}",
+                "-cppdst",       "${config:protoc.cpp-output-path}",
             ],
             "cwd": "${workspaceFolder}/Server/Tool/Publish/bin/Debug/net8.0/",
             "console": "integratedTerminal",
@@ -88,7 +89,7 @@
             "preLaunchTask": "[Build] Tool/Generator",
             "program": "${workspaceFolder}/Server/Tool/Generator/bin/Debug/net8.0/Generator.dll",
             "args": [
-                "-protoc",      "${workspaceFolder}/Server/env/protoc-27.0-win64/bin/protoc.exe",
+                "-protoc",      "${config:protoc-path}",
                 "-src",         "${workspaceFolder}/Server/Tool/Generator/Test/Source/",
                 "-csharpdst",       "${workspaceFolder}/Server/Tool/Generator/Test/Dest/",
             ],

@@ -5,12 +5,15 @@ namespace Zee.Message
 
     static public partial class PacketMapping
     {
+        static private bool isMappingStarted = false;
         private static void startMapping()
         {
-            if(pointToMessageType.Count > 0)
+            if(isMappingStarted)
             {
                 return;
             }
+
+            isMappingStarted = true;
 
 			mapping<Zee.Proto.Authentication.Login>(0x1002);
 			mapping<Zee.Proto.Authentication.Logout>(0x1003);

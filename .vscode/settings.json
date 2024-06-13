@@ -1,4 +1,7 @@
 {
     "dotnet.defaultSolution": "Server.sln",
-    "protoc-path" : "${workspaceFolder}/env/"
+    "protoc-path" : "${workspaceFolder}/env/protoc.exe",
+    "protoc.cpp-output-path" : "${workspaceFolder}/Unreal/ProjectPlayground/Plugins/ZeeNet/Source/ZeeNet/Private/Messages",
+    "protoc.csharp-output-path" : "${workspaceFolder}/Server/GameServer/Message/CSharp/",
+    "protoc.source-path" : "${workspaceFolder}/Server/GameServer/Message/Source/",
 }

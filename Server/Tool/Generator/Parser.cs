@@ -19,7 +19,7 @@ namespace Zee
                 Directory.Delete(CSharpDst, true);
             }
             Directory.CreateDirectory(CSharpDst);
-            startInfo.Arguments = $"--csharp_out={CSharpDst} --proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
+            startInfo.Arguments = $"--csharp_out={CSharpDst} --cpp_out={CppDst} --proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
             using (Process? exeProcess = Process.Start(startInfo))
             {
                 if(exeProcess == null)

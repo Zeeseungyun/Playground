@@ -5,15 +5,15 @@ namespace Zee
 {
     static public partial class Generator
     {
+        static private string packetMappingFile => Path.GetFullPath(Path.Combine(ProtoSrcFilePath, "../","PacketMapping.g.cs"));
         public static void GenerateMappingFile(ParseResult parseResult)
         {
-            var fileName = Path.Combine(parseResult.RootDir, "../","PacketMapping.g.cs");
-            if(File.Exists(fileName))
+            if(File.Exists(packetMappingFile))
             {
-                File.Delete(fileName);
+                File.Delete(packetMappingFile);
             }
-
-            FileStream fileStream = File.OpenWrite(fileName);
+            
+            FileStream fileStream = File.OpenWrite(packetMappingFile);
             using (StreamWriter streamWriter = new StreamWriter(fileStream))
             {
                 List<StringBuilder> stringBuilders = new();
@@ -40,12 +40,15 @@ namespace Zee.Message
                 stringBuilders.Add(funcStartMapping);
                 funcStartMapping.Append(
 @"
+        static private bool isMappingStarted = false;
         private static void startMapping()
         {
-            if(pointToType.Count > 0)
+            if(isMappingStarted)
             {
                 return;
             }
+
+            isMappingStarted = true;
 
 "
                 );
@@ -61,11 +64,11 @@ namespace Zee.Message
                         
                         if(protoFile.ScopeString.Length > 0)
                         {
-                            funcStartMapping.Append($"\t\t\tmapping<{protoFile.ScopeString}.{message.Name}>(0x{message.Point.ToString("X")});\n");
+                            funcStartMapping.Append($"\t\t\tmapping<{protoFile.ScopeString}.{message.Name}>(0x{message.Point.ToString("X")});\r\n");
                         }
                         else
                         {
-                            funcStartMapping.Append($"\t\t\tmapping<{message.Name}>(0x{message.Point.ToString("X")});\n");
+                            funcStartMapping.Append($"\t\t\tmapping<{message.Name}>(0x{message.Point.ToString("X")});\r\n");
                         }
                     }
                 }
@@ -96,11 +99,11 @@ namespace Zee.Message
                         
                         if(protoFile.ScopeString.Length > 0)
                         {
-                            funcHandleMessage.Append($"\t\t\t\tcase 0x{message.Point.ToString("X")}: h.OnMessage(p as Packet<{protoFile.ScopeString}.{message.Name}>); return;\n");
+                            funcHandleMessage.Append($"\t\t\t\tcase 0x{message.Point.ToString("X")}: h.OnMessage(p as Packet<{protoFile.ScopeString}.{message.Name}>); return;\r\n");
                         }
                         else
                         {
-                            funcHandleMessage.Append($"\t\t\t\tcase 0x{message.Point.ToString("X")}: h.OnMessage(p as Packet<{message.Name}>); return;\n");
+                            funcHandleMessage.Append($"\t\t\t\tcase 0x{message.Point.ToString("X")}: h.OnMessage(p as Packet<{message.Name}>); return;\r\n");
                         }
                     }
                 }
@@ -138,11 +141,11 @@ namespace Zee.Message
 
                         if(protoFile.ScopeString.Length > 0)
                         {
-                            classIHandler.Append($"\t\tvoid OnMessage(Packet<{protoFile.ScopeString}.{message.Name}> p) {{ Logger.LogWarning(\"{warningMessage}{protoFile.ScopeString}.{message.Name}.\"); }}\n");
+                            classIHandler.Append($"\t\tvoid OnMessage(Packet<{protoFile.ScopeString}.{message.Name}> p) {{ Logger.LogWarning(\"{warningMessage}{protoFile.ScopeString}.{message.Name}.\"); }}\r\n");
                         }
                         else
                         {
-                            classIHandler.Append($"\t\tvoid OnMessage(Packet<{message.Name}> p) {{ Logger.LogWarning(\"{warningMessage}{message.Name}.\"); }}\n");
+                            classIHandler.Append($"\t\tvoid OnMessage(Packet<{message.Name}> p) {{ Logger.LogWarning(\"{warningMessage}{message.Name}.\"); }}\r\n");
                         }
                     }
                 }
