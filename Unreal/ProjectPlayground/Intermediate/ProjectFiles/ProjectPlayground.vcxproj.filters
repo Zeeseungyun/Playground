@@ -12,6 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <None Include="..\..\.vsconfig" />
+    <None Include="..\..\GenerateProjectFiles.bat" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -57,21 +58,48 @@
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetClient.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConverter.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConvert.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConverter.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConvert.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConverter_Chat.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageSerializer.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConverter_Chat.g.h">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageSerializer.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetPacketMapping.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
     </ClCompile>
+    <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Convert">
+      <UniqueIdentifier>{D6BE0496-8976-3C1E-B645-0E32C59022F0}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Authentication.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Authentication.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Chat.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Chat.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test2.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test2.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClInclude>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Messages">
       <UniqueIdentifier>{5C67FD0B-6922-30DD-8A05-3F8491D2144D}</UniqueIdentifier>
     </Filter>
@@ -87,6 +115,18 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
     </ClInclude>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.cc">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
+    </None>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
+    </ClInclude>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test2.pb.cc">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
+    </None>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test2.pb.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
+    </ClInclude>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public">
       <UniqueIdentifier>{62B842B7-CD58-3C9B-921F-EE9BD1674500}</UniqueIdentifier>
     </Filter>
@@ -99,7 +139,13 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetClient.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetMessageSerializer.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetPacketMapping.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetReceivable.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
     </ClInclude>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public\Messages">
@@ -109,6 +155,12 @@
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Chat.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test2.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
     <None Include="..\..\Plugins\ZeeNet\ZeeNet.uplugin">

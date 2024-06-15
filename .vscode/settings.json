@@ -1,7 +1,13 @@
 {
     "dotnet.defaultSolution": "Server.sln",
     "protoc-path" : "${workspaceFolder}/env/protoc.exe",
+    "protoc.unreal-zee-net-path" : "${workspaceFolder}/Unreal/ProjectPlayground/Plugins/ZeeNet/Source/ZeeNet/",
     "protoc.cpp-output-path" : "${workspaceFolder}/Unreal/ProjectPlayground/Plugins/ZeeNet/Source/ZeeNet/Private/Messages",
     "protoc.csharp-output-path" : "${workspaceFolder}/Server/GameServer/Message/CSharp/",
-    "protoc.source-path" : "${workspaceFolder}/Server/GameServer/Message/Source/",
+    "protoc.source-path": "${workspaceFolder}/Server/GameServer/Message/Source/",
+    "files.associations": {
+        "*.txt": "aspnetcorerazor",
+        "thread": "cpp",
+        "xlocale": "cpp"
+    },
 }

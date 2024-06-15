@@ -10,7 +10,8 @@
 }
 
 FZeeNetClient::FZeeNetClient()
-	: Buffer{}
+	: InBuffer{}
+	, OutBuffer {}
 {
 	Thread = TUniquePtr<FRunnableThread>(FRunnableThread::Create(this, *ClientName));
 }
@@ -34,6 +35,13 @@ void FZeeNetClient::TryConnect(const FString& InEndPoint)
 	Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateUniqueSocket(NAME_Stream, *ClientName);
 }
 
+void FZeeNetClient::Response(const TSharedPtr<FZeeNetPacketBase>& InPacket)
+{
+	TSharedPtr<FZeeNetPacketBase> Clone = InPacket->Clone();
+	Clone->bIsRespond = false;
+	Send_Impl(Clone);
+}
+
 void FZeeNetClient::ExecuteConnectEvent(const FString& InMessage)
 {
 	AsyncTask(ENamedThreads::Type::GameThread, [=, StrongThis = AsShared()]()
@@ -49,6 +57,28 @@ bool FZeeNetClient::Init()
 {	
 	return true;
 }
+// 
+// std::string error_to_str(
+// 	int error_code,
+// 	int languageid = MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT))
+// {
+// 	std::string ret = "";
+// 	HLOCAL hLocal = NULL;
+// 	FormatMessageA(
+// 		FORMAT_MESSAGE_FROM_SYSTEM
+// 		| FORMAT_MESSAGE_ALLOCATE_BUFFER,   // flags
+// 		nullptr,
+// 		error_code,
+// 		languageid,
+// 		reinterpret_cast<LPSTR>(&hLocal),
+// 		0,
+// 		NULL
+// 	);
+// 
+// 	ret = reinterpret_cast<const LPSTR>(hLocal);
+// 	LocalFree(hLocal);
+// 	return ret;
+// }
 
 uint32 FZeeNetClient::Run()
 {
@@ -106,18 +136,60 @@ void FZeeNetClient::Exit()
 void FZeeNetClient::Recv()
 {
 	int32 BytesRead = 0;
-	if (Socket->Recv(Buffer, BufferSize, BytesRead))
+	
 	{
-		//Packet 처리.
+		int32 Offset = 0;
+		if (!Socket->Recv(InBuffer + Offset, sizeof(int32), BytesRead))
+		{
+			check(0);
+			return;
+		}
+
+		check(BytesRead == sizeof(int32));
+		const int32 TotalSize = *(int32*)InBuffer;
+		Offset += sizeof(int32);
+		if (!Socket->Recv(InBuffer + Offset, sizeof(int32), BytesRead))
+		{
+			check(0);
+			return;
+		}
+
+		check(BytesRead == sizeof(int32));
+		const int32 Point = *(int32*)InBuffer;
+		Offset += sizeof(int32);
+		//나머지 전부다 읽어들임.
+		if (!Socket->Recv(InBuffer + Offset, TotalSize - Offset, BytesRead))
+		{
+			check(0);
+			return;
+		}
+
+		TSharedPtr<FZeeNetPacketBase> Packet = FZeeNetPacketSerializer::CreatePacketFromBuffer(Point, InBuffer, TotalSize);
+		//응답을 바라는 메시지가 왔음.
+		if (Packet->bIsRespond)
+		{
+
+		}
+		else if(Packet->Sequence != 0) //응답 메시지가옴.
+		{
+			TFunction<void(const void*)>* Found = CallbackMaps.Find(Packet->Sequence);
+			check(Found != nullptr);
+			(*Found)(Packet->GetMessage());
+			CallbackMaps.Remove(Packet->Sequence);
+		}
 	}
 }
 
-void FZeeNetClient::Send_Impl()
+void FZeeNetClient::Send_Impl(const TSharedPtr<FZeeNetPacketBase>& InPacket)
 {
-	uint8 buffer[BufferSize];
-	int32 SentsByte;
-	if (Socket->Send(buffer, 100, SentsByte))
+	const int32 BytesWrote = InPacket->Serialize(OutBuffer, BufferSize);
+	int32 BytesSent = 0;
+	if (!Socket->Send(OutBuffer, BytesWrote, BytesSent))
 	{
-
+		//접속 끊김?
+	}
+	else
+	{
+		check(BytesSent == BytesWrote);
 	}
 }

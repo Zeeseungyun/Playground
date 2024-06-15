@@ -5,9 +5,18 @@ enum ReturnCode {
     RC_SUCCESSS = 0;
 }
 
-message Speak {
-    ReturnCode RC = 1;
+message Speak1 {
+    ReturnCode RC = 1; //Comment2 
     int64 UID = 2;
     string Id = 3;
     string Content = 4;
+    Speak Speak1 = 5;
+}
+
+message Speak {
+    ReturnCode RC = 1; //Comment2 
+    int64 UID = 2;
+    string Id = 3;
+    string Content = 4;
+    repeated string Contents = 5;
 }

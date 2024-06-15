@@ -31,20 +31,28 @@ namespace Zee.Net
             stream.Write(BitConverter.GetBytes(packet.CalculateSize));
             packet.Point = PacketMapping.GetPacketPoint(packet.Message!.GetType());
             stream.Write(BitConverter.GetBytes(packet.Point));
+            stream.Write(BitConverter.GetBytes(packet.Sequence));
+            stream.Write(BitConverter.GetBytes(packet.IsRespond));
             packet.Message.WriteTo(stream);
             stream.Flush();
         }
         protected PacketBase PacketMerge(Stream stream)
         {
             int readBytes = stream.Read(buffer, 0, sizeof(int));
-            int Size = BitConverter.ToInt32(buffer);
+            int size = BitConverter.ToInt32(buffer);
             readBytes = stream.Read(buffer, 0, sizeof(int));
-            int Point = BitConverter.ToInt32(buffer);
-            PacketBase ret = PacketMapping.MakePacket(Point)!;
-            ret.Size = Size;
-            ret.Point = Point;
-            readBytes = stream.Read(buffer, 0, Size - sizeof(int) * 2);
-            ret.Message!.MergeFrom(buffer, 0, Size - sizeof(int) * 2);
+            int point = BitConverter.ToInt32(buffer);
+            readBytes = stream.Read(buffer, 0, sizeof(int));
+            int sequence = BitConverter.ToInt32(buffer);
+            readBytes = stream.Read(buffer, 0, 1 /*sizeof(bool)*/);
+            bool isRespond = BitConverter.ToBoolean(buffer);
+            PacketBase ret = PacketMapping.MakePacket(point)!;
+            ret.Size = size;
+            ret.Point = point;
+            ret.Sequence = sequence;
+            ret.IsRespond = isRespond;
+            readBytes = stream.Read(buffer, 0, size - sizeof(int) * 2);
+            ret.Message!.MergeFrom(buffer, 0, size - sizeof(int) * 2);
             return ret!;
         }
     }

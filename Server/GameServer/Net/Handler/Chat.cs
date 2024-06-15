@@ -13,7 +13,7 @@ namespace Zee.Net
             msg.Id = Name;
             msg.UID = UID;
             Console.WriteLine($"{Name}: {msg.Content}");
-            server.BroadcastPacket(msg);
+            // server.BroadcastPacket(msg);
         }
     }
 }

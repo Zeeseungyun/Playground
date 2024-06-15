@@ -94,7 +94,7 @@
                 "-protoc",      "${config:protoc-path}",
                 "-src",         "${config:protoc.source-path}",
                 "-csharpdst",    "${config:protoc.csharp-output-path}",
-                "-cppdst",       "${config:protoc.cpp-output-path}",
+                "-cppdst",       "${config:protoc.unreal-zee-net-path}",
             ],
             "problemMatcher": "$msCompile",
             "dependsOn" :[
@@ -110,7 +110,7 @@
                 "-protoc",      "${config:protoc-path}",
                 "-src",         "${workspaceFolder}/Server/Tool/Generator/Test/Source/",
                 "-csharpdst",    "${workspaceFolder}/Server/Tool/Generator/Test/Dest/",
-                "-cppdst",       "${config:protoc.cpp-output-path}",
+                "-cppdst",       "${config:protoc.unreal-zee-net-path}",
             ],
             "problemMatcher": "$msCompile",
             "dependsOn" :[

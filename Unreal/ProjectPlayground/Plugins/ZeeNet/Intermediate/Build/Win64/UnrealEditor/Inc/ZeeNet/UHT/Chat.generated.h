@@ -14,19 +14,26 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ZEENET_Chat_generated_h
 
-#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_14_GENERATED_BODY \
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_18_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics; \
 	ZEENET_API static class UScriptStruct* StaticStruct();
 
 
 template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetChatSpeak>();
 
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_43_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics; \
+	ZEENET_API static class UScriptStruct* StaticStruct();
+
+
+template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetChatSpeak1>();
+
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h
 
 
 #define FOREACH_ENUM_EZEENETCHATRETURNCODE(op) \
-	op(EZeeNetChatReturnCode::SUCCESS) 
+	op(EZeeNetChatReturnCode::RC_SUCCESSS) 
 
 enum class EZeeNetChatReturnCode : uint8;
 template<> struct TIsUEnumClass<EZeeNetChatReturnCode> { enum { Value = true }; };

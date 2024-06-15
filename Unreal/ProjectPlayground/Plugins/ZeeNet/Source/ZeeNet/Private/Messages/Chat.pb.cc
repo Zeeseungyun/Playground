@@ -20,9 +20,27 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace Zee {
 namespace Proto {
 namespace Chat {
-constexpr Speak::Speak(
+constexpr Speak1::Speak1(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , content_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , speak1_(nullptr)
+  , uid_(int64_t{0})
+  , rc_(0)
+{}
+struct Speak1DefaultTypeInternal {
+  constexpr Speak1DefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~Speak1DefaultTypeInternal() {}
+  union {
+    Speak1 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Speak1DefaultTypeInternal _Speak1_default_instance_;
+constexpr Speak::Speak(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : contents_()
+  , id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , content_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , uid_(int64_t{0})
   , rc_(0)
@@ -39,11 +57,22 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SpeakDefaultTypeInternal _Speak
 }  // namespace Chat
 }  // namespace Proto
 }  // namespace Zee
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_Chat_2eproto[1];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_Chat_2eproto[2];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_Chat_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_Chat_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Chat_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak1, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak1, rc_),
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak1, uid_),
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak1, id_),
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak1, content_),
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak1, speak1_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -54,25 +83,32 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Chat_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak, uid_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak, id_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak, content_),
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Chat::Speak, contents_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::Zee::Proto::Chat::Speak)},
+  { 0, -1, -1, sizeof(::Zee::Proto::Chat::Speak1)},
+  { 11, -1, -1, sizeof(::Zee::Proto::Chat::Speak)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Zee::Proto::Chat::_Speak1_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Zee::Proto::Chat::_Speak_default_instance_),
 };
 
 const char descriptor_table_protodef_Chat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nChat.proto\022\016Zee.Proto.Chat\"Y\n\005Speak\022&\n"
-  "\002RC\030\001 \001(\0162\032.Zee.Proto.Chat.ReturnCode\022\013\n"
-  "\003UID\030\002 \001(\003\022\n\n\002Id\030\003 \001(\t\022\017\n\007Content\030\004 \001(\t*"
-  "\035\n\nReturnCode\022\017\n\013RC_SUCCESSS\020\000b\006proto3"
+  "\n\nChat.proto\022\016Zee.Proto.Chat\"\201\001\n\006Speak1\022"
+  "&\n\002RC\030\001 \001(\0162\032.Zee.Proto.Chat.ReturnCode\022"
+  "\013\n\003UID\030\002 \001(\003\022\n\n\002Id\030\003 \001(\t\022\017\n\007Content\030\004 \001("
+  "\t\022%\n\006Speak1\030\005 \001(\0132\025.Zee.Proto.Chat.Speak"
+  "\"k\n\005Speak\022&\n\002RC\030\001 \001(\0162\032.Zee.Proto.Chat.R"
+  "eturnCode\022\013\n\003UID\030\002 \001(\003\022\n\n\002Id\030\003 \001(\t\022\017\n\007Co"
+  "ntent\030\004 \001(\t\022\020\n\010Contents\030\005 \003(\t*\035\n\nReturnC"
+  "ode\022\017\n\013RC_SUCCESSS\020\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Chat_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Chat_2eproto = {
-  false, false, 158, descriptor_table_protodef_Chat_2eproto, "Chat.proto", 
-  &descriptor_table_Chat_2eproto_once, nullptr, 0, 1,
+  false, false, 308, descriptor_table_protodef_Chat_2eproto, "Chat.proto", 
+  &descriptor_table_Chat_2eproto_once, nullptr, 0, 2,
   schemas, file_default_instances, TableStruct_Chat_2eproto::offsets,
   file_level_metadata_Chat_2eproto, file_level_enum_descriptors_Chat_2eproto, file_level_service_descriptors_Chat_2eproto,
 };
@@ -101,13 +137,358 @@ bool ReturnCode_IsValid(int value) {
 
 // ===================================================================
 
+class Speak1::_Internal {
+ public:
+  static const ::Zee::Proto::Chat::Speak& speak1(const Speak1* msg);
+};
+
+const ::Zee::Proto::Chat::Speak&
+Speak1::_Internal::speak1(const Speak1* msg) {
+  return *msg->speak1_;
+}
+Speak1::Speak1(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:Zee.Proto.Chat.Speak1)
+}
+Speak1::Speak1(const Speak1& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_id().empty()) {
+    id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
+      GetArenaForAllocation());
+  }
+  content_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_content().empty()) {
+    content_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_content(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_speak1()) {
+    speak1_ = new ::Zee::Proto::Chat::Speak(*from.speak1_);
+  } else {
+    speak1_ = nullptr;
+  }
+  ::memcpy(&uid_, &from.uid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&rc_) -
+    reinterpret_cast<char*>(&uid_)) + sizeof(rc_));
+  // @@protoc_insertion_point(copy_constructor:Zee.Proto.Chat.Speak1)
+}
+
+void Speak1::SharedCtor() {
+id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+content_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&speak1_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&rc_) -
+    reinterpret_cast<char*>(&speak1_)) + sizeof(rc_));
+}
+
+Speak1::~Speak1() {
+  // @@protoc_insertion_point(destructor:Zee.Proto.Chat.Speak1)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void Speak1::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  content_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete speak1_;
+}
+
+void Speak1::ArenaDtor(void* object) {
+  Speak1* _this = reinterpret_cast< Speak1* >(object);
+  (void)_this;
+}
+void Speak1::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void Speak1::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Speak1::Clear() {
+// @@protoc_insertion_point(message_clear_start:Zee.Proto.Chat.Speak1)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_.ClearToEmpty();
+  content_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && speak1_ != nullptr) {
+    delete speak1_;
+  }
+  speak1_ = nullptr;
+  ::memset(&uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&rc_) -
+      reinterpret_cast<char*>(&uid_)) + sizeof(rc_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Speak1::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .Zee.Proto.Chat.ReturnCode RC = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_rc(static_cast<::Zee::Proto::Chat::ReturnCode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 UID = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          uid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string Id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.Chat.Speak1.Id"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string Content = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_content();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.Chat.Speak1.Content"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .Zee.Proto.Chat.Speak Speak1 = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_speak1(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Speak1::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Zee.Proto.Chat.Speak1)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Zee.Proto.Chat.ReturnCode RC = 1;
+  if (this->_internal_rc() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_rc(), target);
+  }
+
+  // int64 UID = 2;
+  if (this->_internal_uid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(2, this->_internal_uid(), target);
+  }
+
+  // string Id = 3;
+  if (!this->_internal_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Zee.Proto.Chat.Speak1.Id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_id(), target);
+  }
+
+  // string Content = 4;
+  if (!this->_internal_content().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_content().data(), static_cast<int>(this->_internal_content().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Zee.Proto.Chat.Speak1.Content");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_content(), target);
+  }
+
+  // .Zee.Proto.Chat.Speak Speak1 = 5;
+  if (this->_internal_has_speak1()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        5, _Internal::speak1(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Zee.Proto.Chat.Speak1)
+  return target;
+}
+
+size_t Speak1::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Zee.Proto.Chat.Speak1)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string Id = 3;
+  if (!this->_internal_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_id());
+  }
+
+  // string Content = 4;
+  if (!this->_internal_content().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_content());
+  }
+
+  // .Zee.Proto.Chat.Speak Speak1 = 5;
+  if (this->_internal_has_speak1()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *speak1_);
+  }
+
+  // int64 UID = 2;
+  if (this->_internal_uid() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_uid());
+  }
+
+  // .Zee.Proto.Chat.ReturnCode RC = 1;
+  if (this->_internal_rc() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_rc());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Speak1::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Speak1::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Speak1::GetClassData() const { return &_class_data_; }
+
+void Speak1::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Speak1 *>(to)->MergeFrom(
+      static_cast<const Speak1 &>(from));
+}
+
+
+void Speak1::MergeFrom(const Speak1& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Zee.Proto.Chat.Speak1)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_id().empty()) {
+    _internal_set_id(from._internal_id());
+  }
+  if (!from._internal_content().empty()) {
+    _internal_set_content(from._internal_content());
+  }
+  if (from._internal_has_speak1()) {
+    _internal_mutable_speak1()->::Zee::Proto::Chat::Speak::MergeFrom(from._internal_speak1());
+  }
+  if (from._internal_uid() != 0) {
+    _internal_set_uid(from._internal_uid());
+  }
+  if (from._internal_rc() != 0) {
+    _internal_set_rc(from._internal_rc());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Speak1::CopyFrom(const Speak1& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Zee.Proto.Chat.Speak1)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Speak1::IsInitialized() const {
+  return true;
+}
+
+void Speak1::InternalSwap(Speak1* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &id_, lhs_arena,
+      &other->id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &content_, lhs_arena,
+      &other->content_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Speak1, rc_)
+      + sizeof(Speak1::rc_)
+      - PROTOBUF_FIELD_OFFSET(Speak1, speak1_)>(
+          reinterpret_cast<char*>(&speak1_),
+          reinterpret_cast<char*>(&other->speak1_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Speak1::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_Chat_2eproto_getter, &descriptor_table_Chat_2eproto_once,
+      file_level_metadata_Chat_2eproto[0]);
+}
+
+// ===================================================================
+
 class Speak::_Internal {
  public:
 };
 
 Speak::Speak(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  contents_(arena) {
   SharedCtor();
   if (!is_message_owned) {
     RegisterArenaDtor(arena);
@@ -115,7 +496,8 @@ Speak::Speak(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   // @@protoc_insertion_point(arena_constructor:Zee.Proto.Chat.Speak)
 }
 Speak::Speak(const Speak& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      contents_(from.contents_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_id().empty()) {
@@ -171,6 +553,7 @@ void Speak::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  contents_.Clear();
   id_.ClearToEmpty();
   content_.ClearToEmpty();
   ::memset(&uid_, 0, static_cast<size_t>(
@@ -219,6 +602,21 @@ const char* Speak::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.Chat.Speak.Content"));
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string Contents = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_contents();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.Chat.Speak.Contents"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -284,6 +682,16 @@ failure:
         4, this->_internal_content(), target);
   }
 
+  // repeated string Contents = 5;
+  for (int i = 0, n = this->_internal_contents_size(); i < n; i++) {
+    const auto& s = this->_internal_contents(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Zee.Proto.Chat.Speak.Contents");
+    target = stream->WriteString(5, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -299,6 +707,14 @@ size_t Speak::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated string Contents = 5;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(contents_.size());
+  for (int i = 0, n = contents_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      contents_.Get(i));
+  }
 
   // string Id = 3;
   if (!this->_internal_id().empty()) {
@@ -347,6 +763,7 @@ void Speak::MergeFrom(const Speak& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  contents_.MergeFrom(from.contents_);
   if (!from._internal_id().empty()) {
     _internal_set_id(from._internal_id());
   }
@@ -378,6 +795,7 @@ void Speak::InternalSwap(Speak* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  contents_.InternalSwap(&other->contents_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       &id_, lhs_arena,
@@ -399,7 +817,7 @@ void Speak::InternalSwap(Speak* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Speak::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_Chat_2eproto_getter, &descriptor_table_Chat_2eproto_once,
-      file_level_metadata_Chat_2eproto[0]);
+      file_level_metadata_Chat_2eproto[1]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -407,6 +825,9 @@ void Speak::InternalSwap(Speak* other) {
 }  // namespace Proto
 }  // namespace Zee
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::Zee::Proto::Chat::Speak1* Arena::CreateMaybeMessage< ::Zee::Proto::Chat::Speak1 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Zee::Proto::Chat::Speak1 >(arena);
+}
 template<> PROTOBUF_NOINLINE ::Zee::Proto::Chat::Speak* Arena::CreateMaybeMessage< ::Zee::Proto::Chat::Speak >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Zee::Proto::Chat::Speak >(arena);
 }

@@ -25,16 +25,18 @@ namespace Zee.Proto.Authentication {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChRBdXRoZW50aWNhdGlvbi5wcm90bxIYWmVlLlByb3RvLkF1dGhlbnRpY2F0",
-            "aW9uIlIKBUxvZ2luEjAKAlJDGAEgASgOMiQuWmVlLlByb3RvLkF1dGhlbnRp",
-            "Y2F0aW9uLlJldHVybkNvZGUSCgoCSWQYAiABKAkSCwoDVUlEGAMgASgDIlMK",
-            "BkxvZ291dBIwCgJSQxgBIAEoDjIkLlplZS5Qcm90by5BdXRoZW50aWNhdGlv",
-            "bi5SZXR1cm5Db2RlEgoKAklkGAIgASgJEgsKA1VJRBgDIAEoAypYCgpSZXR1",
-            "cm5Db2RlEg8KC1JDX1NVQ0NFU1NTEAASGwoXUkNfRkFJTEVEX0FMUkVBRFlf",
-            "TE9HSU4QARIcChhSQ19GQUlMRURfQUxSRUFEWV9MT0dPVVQQAmIGcHJvdG8z"));
+            "aW9uGgpDaGF0LnByb3RvIngKBUxvZ2luEjAKAlJDGAEgASgOMiQuWmVlLlBy",
+            "b3RvLkF1dGhlbnRpY2F0aW9uLlJldHVybkNvZGUSCgoCSWQYAiABKAkSCwoD",
+            "VUlEGAMgASgDEiQKBVNwZWFrGAQgASgLMhUuWmVlLlByb3RvLkNoYXQuU3Bl",
+            "YWsiUwoGTG9nb3V0EjAKAlJDGAEgASgOMiQuWmVlLlByb3RvLkF1dGhlbnRp",
+            "Y2F0aW9uLlJldHVybkNvZGUSCgoCSWQYAiABKAkSCwoDVUlEGAMgASgDKlgK",
+            "ClJldHVybkNvZGUSDwoLUkNfU1VDQ0VTU1MQABIbChdSQ19GQUlMRURfQUxS",
+            "RUFEWV9MT0dJThABEhwKGFJDX0ZBSUxFRF9BTFJFQURZX0xPR09VVBACYgZw",
+            "cm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
+          new pbr::FileDescriptor[] { global::Zee.Proto.Chat.ChatReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Authentication.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Id", "UID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Id", "UID", "Speak" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Logout), global::Zee.Proto.Authentication.Logout.Parser, new[]{ "RC", "Id", "UID" }, null, null, null, null)
           }));
     }
@@ -88,6 +90,7 @@ namespace Zee.Proto.Authentication {
       rC_ = other.rC_;
       id_ = other.id_;
       uID_ = other.uID_;
+      speak_ = other.speak_ != null ? other.speak_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -133,6 +136,18 @@ namespace Zee.Proto.Authentication {
       }
     }
 
+    /// <summary>Field number for the "Speak" field.</summary>
+    public const int SpeakFieldNumber = 4;
+    private global::Zee.Proto.Chat.Speak speak_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Zee.Proto.Chat.Speak Speak {
+      get { return speak_; }
+      set {
+        speak_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -151,6 +166,7 @@ namespace Zee.Proto.Authentication {
       if (RC != other.RC) return false;
       if (Id != other.Id) return false;
       if (UID != other.UID) return false;
+      if (!object.Equals(Speak, other.Speak)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -161,6 +177,7 @@ namespace Zee.Proto.Authentication {
       if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) hash ^= RC.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (UID != 0L) hash ^= UID.GetHashCode();
+      if (speak_ != null) hash ^= Speak.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -191,6 +208,10 @@ namespace Zee.Proto.Authentication {
         output.WriteRawTag(24);
         output.WriteInt64(UID);
       }
+      if (speak_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Speak);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -213,6 +234,10 @@ namespace Zee.Proto.Authentication {
         output.WriteRawTag(24);
         output.WriteInt64(UID);
       }
+      if (speak_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Speak);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -231,6 +256,9 @@ namespace Zee.Proto.Authentication {
       }
       if (UID != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UID);
+      }
+      if (speak_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Speak);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -252,6 +280,12 @@ namespace Zee.Proto.Authentication {
       }
       if (other.UID != 0L) {
         UID = other.UID;
+      }
+      if (other.speak_ != null) {
+        if (speak_ == null) {
+          Speak = new global::Zee.Proto.Chat.Speak();
+        }
+        Speak.MergeFrom(other.Speak);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -280,6 +314,13 @@ namespace Zee.Proto.Authentication {
             UID = input.ReadInt64();
             break;
           }
+          case 34: {
+            if (speak_ == null) {
+              Speak = new global::Zee.Proto.Chat.Speak();
+            }
+            input.ReadMessage(Speak);
+            break;
+          }
         }
       }
     #endif
@@ -305,6 +346,13 @@ namespace Zee.Proto.Authentication {
           }
           case 24: {
             UID = input.ReadInt64();
+            break;
+          }
+          case 34: {
+            if (speak_ == null) {
+              Speak = new global::Zee.Proto.Chat.Speak();
+            }
+            input.ReadMessage(Speak);
             break;
           }
         }

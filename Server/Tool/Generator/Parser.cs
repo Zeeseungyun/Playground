@@ -6,10 +6,11 @@ namespace Zee
     {
         public static string ProtoExeFilePath = string.Empty;
         public static string CSharpDst = string.Empty;
-        public static string CppDst = string.Empty;
+        public static string CppZeeNetDir = string.Empty;
+        public static string CppPrivateMessageDst => $"{CppZeeNetDir}Private/Messages/";
         public static readonly List<string> ProtoSrcFilePaths = new();
         public static string ProtoSrcFilePath = string.Empty;
-        public static void CompileProto()
+        public static void CompileAndGenerateProto()
         {
             ProcessStartInfo startInfo = new();
             startInfo.FileName = ProtoExeFilePath;
@@ -19,7 +20,8 @@ namespace Zee
                 Directory.Delete(CSharpDst, true);
             }
             Directory.CreateDirectory(CSharpDst);
-            startInfo.Arguments = $"--csharp_out={CSharpDst} --cpp_out={CppDst} --proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
+            startInfo.Arguments = $"--csharp_out={CSharpDst} --cpp_out={CppPrivateMessageDst} --proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
+            //startInfo.Arguments = $"--proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
             using (Process? exeProcess = Process.Start(startInfo))
             {
                 if(exeProcess == null)
@@ -34,9 +36,15 @@ namespace Zee
                 }
             }
         }
+
+        private static ParseResult? parseResult;
         public static ParseResult Parse()
         {
-            return new(ProtoSrcFilePath, ProtoSrcFilePaths.ToArray());
+            if(parseResult == null)
+            {
+                parseResult = new(ProtoSrcFilePath, ProtoSrcFilePaths.ToArray());
+            }
+            return parseResult ;
         }
     }
 }

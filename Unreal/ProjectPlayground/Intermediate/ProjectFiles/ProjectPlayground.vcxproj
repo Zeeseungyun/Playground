@@ -948,6 +948,7 @@
     <None Include="..\..\Source\ProjectPlayground.Target.cs"/>
     <None Include="..\..\Source\ProjectPlaygroundEditor.Target.cs"/>
     <None Include="..\..\.vsconfig"/>
+    <None Include="..\..\GenerateProjectFiles.bat"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
@@ -966,30 +967,61 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConverter.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConvert.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConverter.h"/>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConverter_Chat.g.cpp">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConvert.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageSerializer.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageConverter_Chat.g.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageSerializer.g.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetPacketMapping.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Authentication.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Authentication.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Chat.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Chat.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test2.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test2.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Authentication.pb.cc"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Authentication.pb.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.cc"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.h"/>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.cc"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.h"/>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test2.pb.cc"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test2.pb.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNet.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetBPLibrary.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetClient.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetMessageSerializer.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetPacketMapping.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetReceivable.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Authentication.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Chat.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test2.h"/>
     <None Include="..\..\Plugins\ZeeNet\ZeeNet.uplugin"/>
     <None Include="..\..\Plugins\ZeeNet\Resources\Icon128.png"/>
     <None Include="..\..\Source\ProjectPlayground\ProjectPlayground.Build.cs"/>

@@ -1,17 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
-#include "CoreMinimal.h"
+static constexpr int32 ZeeNetInvalidMessagePoint = 0;
 
+template<int32 Point> struct TZeeNetMapping_PointToUnreal { using Type = void; };
+template<typename T> struct TZeeNetMapping_UnrealToPoint { static constexpr int32 Point = ZeeNetInvalidMessagePoint; };
 
-/**
- * 
- */
-class ZEENET_API FZeeNetPacketMapping
+template<typename T>
+struct TZeeNetIsValidMapping 
 {
-public:
-	FZeeNetPacketMapping();
-	~FZeeNetPacketMapping();
-
+	enum { Value = TZeeNetMapping_UnrealToPoint<T>::Point != ZeeNetInvalidMessagePoint	};
 };

@@ -76,7 +76,7 @@
                 "-protoc",      "${config:protoc-path}",
                 "-src",         "${config:protoc.source-path}",
                 "-csharpdst",    "${config:protoc.csharp-output-path}",
-                "-cppdst",       "${config:protoc.cpp-output-path}",
+                "-cppdst",       "${config:protoc.unreal-zee-net-path}",
             ],
             "cwd": "${workspaceFolder}/Server/Tool/Publish/bin/Debug/net8.0/",
             "console": "integratedTerminal",

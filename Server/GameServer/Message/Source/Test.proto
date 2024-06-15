@@ -1,0 +1,13 @@
+syntax = "proto3";
+package Zee.Proto;
+
+enum ReturnCode {
+    RC_SUCCESSS = 0;
+}
+
+message TestMessage {
+    repeated int32 RC = 1;
+    repeated ReturnCode RCLists = 2;
+    string Id = 3;
+    string Content = 4;
+}

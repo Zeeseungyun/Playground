@@ -10,7 +10,7 @@ CommandLineArg cppDstArg     = new (new []{"-cppdst"});
 Generator.ProtoExeFilePath = protocArg.Value;
 Generator.ProtoSrcFilePath = protoSrcArg.Value;
 Generator.CSharpDst = csharpDstArg.Value;
-Generator.CppDst = cppDstArg.Value; //temp.
+Generator.CppZeeNetDir = cppDstArg.Value; //temp.
 
 {
     var files = Directory.GetFiles(Generator.ProtoSrcFilePath, "*.proto", SearchOption.AllDirectories);
@@ -21,15 +21,16 @@ Generator.CppDst = cppDstArg.Value; //temp.
     Console.WriteLine("1) cleanup generated files finished.");
     
     Console.WriteLine("2) compile proto started.");
-    Generator.CompileProto();
+    Generator.CompileAndGenerateProto();
     Console.WriteLine("2) compile proto finished.");
     
     var result = Generator.Parse();
     Console.WriteLine("3) generate mapping file started.");
-    Generator.GenerateMappingFile(result);
+    Generator.CSharp.GenerateMappingFile(result);
     Console.WriteLine("3) generate mapping file finished.");
-    Generator.Fix4125();
-    Generator.FixLF();
-
+    Generator.Unreal.Fix4125();
+    Generator.CSharp.FixLF();
+    Generator.Unreal.GeneratePublicMessages();
+    Generator.Unreal.GenerateMessageConvert();
     Console.WriteLine("Generator done.");
 }

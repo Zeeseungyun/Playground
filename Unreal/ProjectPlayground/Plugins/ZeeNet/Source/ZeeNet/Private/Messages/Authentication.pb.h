@@ -32,6 +32,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "Chat.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_Authentication_2eproto
@@ -222,6 +223,7 @@ class Login final :
 
   enum : int {
     kIdFieldNumber = 2,
+    kSpeakFieldNumber = 4,
     kUIDFieldNumber = 3,
     kRCFieldNumber = 1,
   };
@@ -238,6 +240,24 @@ class Login final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
   std::string* _internal_mutable_id();
   public:
+
+  // .Zee.Proto.Chat.Speak Speak = 4;
+  bool has_speak() const;
+  private:
+  bool _internal_has_speak() const;
+  public:
+  void clear_speak();
+  const ::Zee::Proto::Chat::Speak& speak() const;
+  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::Chat::Speak* release_speak();
+  ::Zee::Proto::Chat::Speak* mutable_speak();
+  void set_allocated_speak(::Zee::Proto::Chat::Speak* speak);
+  private:
+  const ::Zee::Proto::Chat::Speak& _internal_speak() const;
+  ::Zee::Proto::Chat::Speak* _internal_mutable_speak();
+  public:
+  void unsafe_arena_set_allocated_speak(
+      ::Zee::Proto::Chat::Speak* speak);
+  ::Zee::Proto::Chat::Speak* unsafe_arena_release_speak();
 
   // int64 UID = 3;
   void clear_uid();
@@ -265,6 +285,7 @@ class Login final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::Zee::Proto::Chat::Speak* speak_;
   ::PROTOBUF_NAMESPACE_ID::int64 uid_;
   int rc_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -535,6 +556,92 @@ inline void Login::_internal_set_uid(::PROTOBUF_NAMESPACE_ID::int64 value) {
 inline void Login::set_uid(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_uid(value);
   // @@protoc_insertion_point(field_set:Zee.Proto.Authentication.Login.UID)
+}
+
+// .Zee.Proto.Chat.Speak Speak = 4;
+inline bool Login::_internal_has_speak() const {
+  return this != internal_default_instance() && speak_ != nullptr;
+}
+inline bool Login::has_speak() const {
+  return _internal_has_speak();
+}
+inline const ::Zee::Proto::Chat::Speak& Login::_internal_speak() const {
+  const ::Zee::Proto::Chat::Speak* p = speak_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::Chat::Speak&>(
+      ::Zee::Proto::Chat::_Speak_default_instance_);
+}
+inline const ::Zee::Proto::Chat::Speak& Login::speak() const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.Authentication.Login.Speak)
+  return _internal_speak();
+}
+inline void Login::unsafe_arena_set_allocated_speak(
+    ::Zee::Proto::Chat::Speak* speak) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(speak_);
+  }
+  speak_ = speak;
+  if (speak) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Zee.Proto.Authentication.Login.Speak)
+}
+inline ::Zee::Proto::Chat::Speak* Login::release_speak() {
+  
+  ::Zee::Proto::Chat::Speak* temp = speak_;
+  speak_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::Zee::Proto::Chat::Speak* Login::unsafe_arena_release_speak() {
+  // @@protoc_insertion_point(field_release:Zee.Proto.Authentication.Login.Speak)
+  
+  ::Zee::Proto::Chat::Speak* temp = speak_;
+  speak_ = nullptr;
+  return temp;
+}
+inline ::Zee::Proto::Chat::Speak* Login::_internal_mutable_speak() {
+  
+  if (speak_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Zee::Proto::Chat::Speak>(GetArenaForAllocation());
+    speak_ = p;
+  }
+  return speak_;
+}
+inline ::Zee::Proto::Chat::Speak* Login::mutable_speak() {
+  ::Zee::Proto::Chat::Speak* _msg = _internal_mutable_speak();
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.Authentication.Login.Speak)
+  return _msg;
+}
+inline void Login::set_allocated_speak(::Zee::Proto::Chat::Speak* speak) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(speak_);
+  }
+  if (speak) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(speak));
+    if (message_arena != submessage_arena) {
+      speak = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, speak, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  speak_ = speak;
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Authentication.Login.Speak)
 }
 
 // -------------------------------------------------------------------

@@ -12,7 +12,7 @@ namespace Zee.Net
         {
             OnConnected?.Invoke(this, EventArgs.Empty);
         }
-        private int Seq = 0;
+        private int Sequence = 0;
         protected ClientBase(TcpClient? client)
         {
             this.client = client;
@@ -54,11 +54,19 @@ namespace Zee.Net
             packet.Message = msg;
             PacketWrite(packet, client!.GetStream());
         }
-        virtual public void SendMessage(IMessage msg)
+        private Dictionary<int, Action<IMessage>> callbackMaps = new();
+        virtual public void SendMessage<T>(T msg, Action<T> callback) where T : IMessage
         {
             var packet = new PacketBase();
             packet.Message = msg;
-            packet.Seq = Seq++;
+            packet.Sequence = Interlocked.Increment(ref Sequence);
+            packet.IsRespond = true;
+            callbackMaps.Add(packet.Sequence, (IMessage msg)=>
+            {
+                T va = (T)msg;
+                callback.Invoke(va);
+            });
+
             PacketWrite(packet, client!.GetStream());
         }
     }
