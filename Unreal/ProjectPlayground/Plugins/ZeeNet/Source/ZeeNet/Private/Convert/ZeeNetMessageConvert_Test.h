@@ -9,7 +9,7 @@
 
 namespace Zee::Net::Message::Convert 
 { 
-	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::TestMessage> { static constexpr int32 Point = 0x3001; }; 
+	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::TestMessage> { static constexpr int32 Point = 0x4001; }; 
 	template<> struct TZeeNetMapping_PointToProto<TZeeNetMapping_ProtoToPoint<Zee::Proto::TestMessage>::Point> { using Type = Zee::Proto::TestMessage; }; 
 	FORCEINLINE void FromTo(const Zee::Proto::TestMessage& InFrom, FZeeNetTestMessage& OutTo);
 	FORCEINLINE void FromTo(const FZeeNetTestMessage& InFrom, Zee::Proto::TestMessage& OutTo);

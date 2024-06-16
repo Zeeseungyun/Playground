@@ -3,6 +3,7 @@
 #include "ZeeNet.h"
 #include "ZeeNetClient.h"
 #include "ZeeNet/Public/Messages/Chat.h"
+#include "ZeeNet/Private/ZeeNetMessageSerializer.h"
 
 #define LOCTEXT_NAMESPACE "FZeeNetModule"
 
@@ -10,32 +11,13 @@ DEFINE_LOG_CATEGORY(LogZeeNet)
 
 void FZeeNetModule::StartupModule()
 {
+	FZeeNetPacketSerializerMap::GetSerializerMap().BuildPacketSerializer();
+
 	Temp = FZeeNetClient::MakeClient(TEXT(""));
 	Temp->OnConnected().AddLambda([this](const FString& InMessage)
 		{
 			FZeeNetChatSpeak Msg;
 			Msg.Content = TEXT("hi");
-			Temp->Send(Msg);
-
-			Temp->SendWithCallback<FZeeNetChatSpeak>(Msg, [](const FZeeNetChatSpeak& InRes)
-				{
-
-				}
-			);
-			
-			Temp->SendWithCallback<FZeeNetChatSpeak>(Msg, Temp, [](const FZeeNetChatSpeak& InRes)
-				{
-
-				}
-			);
-
-			UObject* ObejctPtr = nullptr;
-
-			Temp->SendWithCallback<FZeeNetChatSpeak>(Msg, ObejctPtr, [](const FZeeNetChatSpeak& InRes)
-				{
-
-				}
-			);
 
 		}
 	);
@@ -48,7 +30,7 @@ void FZeeNetModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
-	
+	FZeeNetPacketSerializerMap::GetSerializerMap().DefaultSerializers.Empty();
 }
 
 #undef LOCTEXT_NAMESPACE

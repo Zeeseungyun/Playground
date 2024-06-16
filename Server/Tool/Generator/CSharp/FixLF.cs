@@ -9,7 +9,7 @@ namespace Zee
         {        
             public static void FixLF()
             {
-                var files = Directory.GetFiles(CSharpDst, "*.cs");
+                var files = Directory.GetFiles(CShardMessageDst, "*.cs");
                 foreach(var file in files)
                 {
                     if(!File.Exists(file))

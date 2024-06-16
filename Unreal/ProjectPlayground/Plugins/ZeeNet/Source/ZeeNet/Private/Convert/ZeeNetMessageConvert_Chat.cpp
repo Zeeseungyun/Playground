@@ -6,7 +6,7 @@ void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Chat::Speak& InFrom, F
 	OutTo.UID = To<int64>(InFrom.uid()); 
 	OutTo.Id = To<FString>(InFrom.id()); 
 	OutTo.Content = To<FString>(InFrom.content()); 
-	FromTo(InFrom.contents(), OutTo.Contents);
+	FromTo(InFrom.contents(), OutTo.Contents); 
 }
 
 void Zee::Net::Message::Convert::FromTo(const FZeeNetChatSpeak& InFrom, Zee::Proto::Chat::Speak& OutTo)

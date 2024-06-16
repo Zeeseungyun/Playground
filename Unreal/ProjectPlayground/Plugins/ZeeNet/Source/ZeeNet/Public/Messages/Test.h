@@ -30,7 +30,7 @@ struct FZeeNetTestMessage
 	FString Content; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTestMessage> { static constexpr int32 Point = 0x3001; }; 
+template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTestMessage> { static constexpr int32 Point = 0x4001; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTestMessage>::Point> { using Type = FZeeNetTestMessage; }; 
 
 

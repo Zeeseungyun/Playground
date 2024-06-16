@@ -3,6 +3,10 @@
 
 #include "ZeeNetClient.h"
 #include "Networking.h"
+#include "ZeeNet/Public/Messages/Packet.h"
+#include "ZeeNet/Private/ZeeNetMessageSerializer.h"
+
+#include "ZeeNet/Private/ZeeNetMessageSerializerDef.h"
 
 /*static*/ TSharedPtr<FZeeNetClient> FZeeNetClient::MakeClient(const FString& InEndPoint)
 {
@@ -10,7 +14,7 @@
 }
 
 FZeeNetClient::FZeeNetClient()
-	: InBuffer{}
+	: InBuffer {}
 	, OutBuffer {}
 {
 	Thread = TUniquePtr<FRunnableThread>(FRunnableThread::Create(this, *ClientName));
@@ -33,13 +37,6 @@ void FZeeNetClient::TryConnect(const FString& InEndPoint)
 	ClientName = FString::Printf(TEXT("FZeeNetClient(%s)"), *EndPoint);
 	
 	Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateUniqueSocket(NAME_Stream, *ClientName);
-}
-
-void FZeeNetClient::Response(const TSharedPtr<FZeeNetPacketBase>& InPacket)
-{
-	TSharedPtr<FZeeNetPacketBase> Clone = InPacket->Clone();
-	Clone->bIsRespond = false;
-	Send_Impl(Clone);
 }
 
 void FZeeNetClient::ExecuteConnectEvent(const FString& InMessage)
@@ -135,61 +132,82 @@ void FZeeNetClient::Exit()
 
 void FZeeNetClient::Recv()
 {
-	int32 BytesRead = 0;
-	
+	int32 HeaderSize = 0, BytesRead = 0, Offset = 0;
+	if (!Socket->Recv(InBuffer, sizeof(HeaderSize), BytesRead))
 	{
-		int32 Offset = 0;
-		if (!Socket->Recv(InBuffer + Offset, sizeof(int32), BytesRead))
-		{
-			check(0);
-			return;
-		}
+		check(0);
+		return;
+	}
+	check(sizeof(HeaderSize) == BytesRead);
+	Offset += BytesRead;
 
-		check(BytesRead == sizeof(int32));
-		const int32 TotalSize = *(int32*)InBuffer;
-		Offset += sizeof(int32);
-		if (!Socket->Recv(InBuffer + Offset, sizeof(int32), BytesRead))
-		{
-			check(0);
-			return;
-		}
+	if (!Socket->Recv(InBuffer + Offset, HeaderSize, BytesRead))
+	{
+		check(0);
+		return;
+	}
+	check(HeaderSize == BytesRead);
+	Offset += BytesRead;
 
-		check(BytesRead == sizeof(int32));
-		const int32 Point = *(int32*)InBuffer;
-		Offset += sizeof(int32);
-		//나머지 전부다 읽어들임.
-		if (!Socket->Recv(InBuffer + Offset, TotalSize - Offset, BytesRead))
-		{
-			check(0);
-			return;
-		}
+	using PacketHeaderType = FZeeNetPacket<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point>;
+	PacketHeaderType PacketHeader;
+	PacketHeader.Deserialize(InBuffer, Offset);
+	
+	if (!Socket->Recv(InBuffer + Offset, PacketHeader.Header.PacketSize, BytesRead))
+	{
+		check(0);
+		return;
+	}
 
-		TSharedPtr<FZeeNetPacketBase> Packet = FZeeNetPacketSerializer::CreatePacketFromBuffer(Point, InBuffer, TotalSize);
-		//응답을 바라는 메시지가 왔음.
-		if (Packet->bIsRespond)
-		{
+	check(PacketHeader.Header.PacketSize == BytesRead);
 
-		}
-		else if(Packet->Sequence != 0) //응답 메시지가옴.
+	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(PacketHeader.Header.Point);
+	Packet->Header = PacketHeader.Header;
+
+	Packet->Deserialize(InBuffer + Offset, BytesRead);
+
+	switch (Packet->GetPacketType())
+	{
+	case EZeeNetPacketType::Response:
 		{
-			TFunction<void(const void*)>* Found = CallbackMaps.Find(Packet->Sequence);
+			TFunction<void(const void*)>* Found = CallbackMaps.Find(Packet->GetSequence());
 			check(Found != nullptr);
 			(*Found)(Packet->GetMessage());
-			CallbackMaps.Remove(Packet->Sequence);
+			CallbackMaps.Remove(Packet->GetSequence());
 		}
+		break;
+
+	case EZeeNetPacketType::Notify:
+		{
+			//TODO:: INotifyHandler
+		}
+		break;
+
+	case EZeeNetPacketType::Request:
+		{
+			//TODO:: IRequestHandler
+		}
+		break;
+
+	default:
+		check(0);
+		break;
 	}
 }
 
-void FZeeNetClient::Send_Impl(const TSharedPtr<FZeeNetPacketBase>& InPacket)
+void FZeeNetClient::Send_Impl(int32 InPoint, int32 InSequence, EZeeNetPacketType InPacketType, const void* InData)
 {
-	const int32 BytesWrote = InPacket->Serialize(OutBuffer, BufferSize);
+	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(InPoint);
+	Packet->SetMessageInternal(InData);
+	Packet->SetSequence(InSequence);
+	Packet->SetPacketType(InPacketType);
+	const int32 BytesWrote = Packet->Serialize(OutBuffer, BufferSize);
 	int32 BytesSent = 0;
 	if (!Socket->Send(OutBuffer, BytesWrote, BytesSent))
 	{
 		//접속 끊김?
+		//TODO:: Shutdown 이후 Close 처리.
+		return;
 	}
-	else
-	{
-		check(BytesSent == BytesWrote);
-	}
+	check(BytesSent == BytesWrote);
 }

@@ -4,23 +4,17 @@ namespace Zee
 {
     static public partial class Generator
     {
-        public static string ProtoExeFilePath = string.Empty;
-        public static string CSharpDst = string.Empty;
-        public static string CppZeeNetDir = string.Empty;
-        public static string CppPrivateMessageDst => $"{CppZeeNetDir}Private/Messages/";
-        public static readonly List<string> ProtoSrcFilePaths = new();
-        public static string ProtoSrcFilePath = string.Empty;
         public static void CompileAndGenerateProto()
         {
             ProcessStartInfo startInfo = new();
             startInfo.FileName = ProtoExeFilePath;
             //--cpp_out={CSharpDst} 
-            if(Directory.Exists(CSharpDst))
+            if(Directory.Exists(CShardMessageDst))
             {
-                Directory.Delete(CSharpDst, true);
+                Directory.Delete(CShardMessageDst, true);
             }
-            Directory.CreateDirectory(CSharpDst);
-            startInfo.Arguments = $"--csharp_out={CSharpDst} --cpp_out={CppPrivateMessageDst} --proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
+            Directory.CreateDirectory(CShardMessageDst);
+            startInfo.Arguments = $"--csharp_out={CShardMessageDst} --cpp_out={CppPrivateMessageDst} --proto_path={ProtoMessageDir} {string.Join(" ", ProtoSrcFilePaths)}";
             //startInfo.Arguments = $"--proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
             using (Process? exeProcess = Process.Start(startInfo))
             {
@@ -42,7 +36,7 @@ namespace Zee
         {
             if(parseResult == null)
             {
-                parseResult = new(ProtoSrcFilePath, ProtoSrcFilePaths.ToArray());
+                parseResult = new(ProtoMessageDir, ProtoSrcFilePaths.ToArray());
             }
             return parseResult ;
         }

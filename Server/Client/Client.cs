@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace Zee.Net
 {
-    public sealed partial class Client : ClientBase, Message.IHandler
+    public sealed partial class Client : ClientBase, Message.IRequestHandler
     {
         private readonly string ipAddress;
         private readonly int port;

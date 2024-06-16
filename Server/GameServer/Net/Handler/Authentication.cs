@@ -1,11 +1,10 @@
 using Google.Protobuf;
-using Zee.Message;
 
 namespace Zee.Net
 {
     public partial class ClientHandler
     {
-        public void OnMessage(Packet<Proto.Authentication.Login> packet)
+        public void OnNotify(Message.Packet<Proto.Authentication.Login> packet)
         {
             var msg = packet.ExactMessage!;
             Name = msg.Id;
@@ -16,7 +15,7 @@ namespace Zee.Net
             NotifyMessage(msg);
         }
 
-        public void OnMessage(Packet<Proto.Authentication.Logout> packet)
+        public void OnNotify(Message.Packet<Proto.Authentication.Logout> packet)
         {
 
         }

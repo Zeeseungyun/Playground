@@ -1,0 +1,17 @@
+syntax = "proto3";
+package Zee.Proto.Packet;
+
+enum Type
+{
+    None = 0;
+    Notify = 1;
+    Response = 2;
+    Request = 3;
+}
+
+message Header {
+    int32 PacketSize = 1;
+    int32 Point = 2;
+    int32 Sequence = 3;
+    Type PacketType = 4;
+}

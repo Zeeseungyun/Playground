@@ -1,9 +1,9 @@
 using System.Reflection;
 using Google.Protobuf;
 
-namespace Zee.Message
+namespace Zee.Net.Message
 {
-    static public partial class PacketMapping
+    static public partial class PacketMap
     {
         private static bool isStarted =false;
         private static readonly Dictionary<int, Type> pointToMessageType = new();
@@ -64,6 +64,5 @@ namespace Zee.Message
             typeToPoint.TryGetValue(type, out ret);
             return ret;
         }
-        
     }
 }

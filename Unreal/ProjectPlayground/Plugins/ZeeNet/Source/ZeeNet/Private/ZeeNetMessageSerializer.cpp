@@ -1,24 +1,25 @@
 #include "ZeeNetMessageSerializer.h"
 
-FZeeNetPacketSerializer::FZeeNetPacketSerializer()
+FZeeNetPacketSerializerMap::FZeeNetPacketSerializerMap()
 {
-	BuildDefaultPackets();
 }
 
-TSharedPtr<FZeeNetPacketBase> FZeeNetPacketSerializer::CreatePacket(int32 Point)
+TSharedPtr<FZeeNetPacketSerializerBase> FZeeNetPacketSerializerMap::CreateSerializer(int32 Point)
 {
-	return GetDefaultSerializer().DefaultMessages[Point]->Clone();
+	checkf(GetSerializerMap().DefaultSerializers.Num() == 0, TEXT("ZeeNet module not loaded."));
+	check(GetSerializerMap().DefaultSerializers.Contains(Point));
+	return GetSerializerMap().DefaultSerializers[Point]->Clone();
 }
 
-TSharedPtr<FZeeNetPacketBase> FZeeNetPacketSerializer::CreatePacketFromBuffer(int32 Point, const uint8* OutBuffer, int32 InSize)
+TSharedPtr<FZeeNetPacketSerializerBase> FZeeNetPacketSerializerMap::CreateSerializerFromBuffer(int32 Point, const uint8* OutBuffer, int32 InSize)
 {
-	TSharedPtr<FZeeNetPacketBase> Packet = CreatePacket(Point);
+	TSharedPtr<FZeeNetPacketSerializerBase> Packet = CreateSerializer(Point);
 	Packet->Deserialize(OutBuffer, InSize);
 	return Packet;
 }
 
-const FZeeNetPacketSerializer& FZeeNetPacketSerializer::GetDefaultSerializer()
+FZeeNetPacketSerializerMap& FZeeNetPacketSerializerMap::GetSerializerMap()
 {
-	static FZeeNetPacketSerializer Ret;
+	static FZeeNetPacketSerializerMap Ret;
 	return Ret;
 }

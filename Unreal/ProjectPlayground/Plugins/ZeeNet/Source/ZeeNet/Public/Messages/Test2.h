@@ -16,7 +16,7 @@ struct FZeeNetTest2TestMessage2
 	FZeeNetTestMessage msg; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage2> { static constexpr int32 Point = 0x4004; }; 
+template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage2> { static constexpr int32 Point = 0x5004; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage2>::Point> { using Type = FZeeNetTest2TestMessage2; }; 
 
 
@@ -32,7 +32,7 @@ struct FZeeNetTest2TestMessage3
 	FZeeNetTest2TestMessage2 msg2; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage3> { static constexpr int32 Point = 0x4002; }; 
+template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage3> { static constexpr int32 Point = 0x5002; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage3>::Point> { using Type = FZeeNetTest2TestMessage3; }; 
 
 
@@ -48,7 +48,7 @@ struct FZeeNetTest2TestMessage4
 	FZeeNetTest2TestMessage3 msg2; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage4> { static constexpr int32 Point = 0x4003; }; 
+template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage4> { static constexpr int32 Point = 0x5003; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage4>::Point> { using Type = FZeeNetTest2TestMessage4; }; 
 
 
@@ -64,7 +64,7 @@ struct FZeeNetTest2TestMessage5
 	FZeeNetTest2TestMessage4 msg3; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage5> { static constexpr int32 Point = 0x4001; }; 
+template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage5> { static constexpr int32 Point = 0x5001; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage5>::Point> { using Type = FZeeNetTest2TestMessage5; }; 
 
 

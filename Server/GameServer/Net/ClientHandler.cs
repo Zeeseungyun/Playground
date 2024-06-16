@@ -1,11 +1,14 @@
 using System.Net.Sockets;
 using System.Text;
 using Google.Protobuf;
-using Zee.Message;
+using Zee.Net.Message;
 
 namespace Zee.Net
 {
-    public partial class ClientHandler : ClientBase, IHandler
+    public partial class ClientHandler 
+        : ClientBase
+        , Message.INotifyHandler
+        , Message.IRequestHandler
     {
         private readonly Server server;
         public Int64 UID = 0;
@@ -13,7 +16,10 @@ namespace Zee.Net
             :base(client)
         {
             this.server = server;
+            RegisterNotifyHandler(this);
+            RegisterRequestHandler(this);
         }
+
         override protected void ReceiveMessages()
         {
             try
@@ -21,8 +27,7 @@ namespace Zee.Net
                 var stream = client!.GetStream();
                 while (client.Connected)
                 {
-                    PacketBase packet = PacketMerge(stream);
-                    PacketMapping.HandleMessage(this, packet);
+                    ProcessPacket(stream.DeserializePacket(buffer, buffer.Length));
                 }
             }
             catch (Exception ex)

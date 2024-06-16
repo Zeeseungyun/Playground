@@ -6,7 +6,6 @@
 #include "HAL/Runnable.h"
 #include "SocketSubsystem.h"
 #include "CoreMinimal.h"
-#include "ZeeNet/Public/ZeeNetMessageSerializer.h"
 
 class ZEENET_API FZeeNetClient
 	: public TSharedFromThis<FZeeNetClient>
@@ -23,33 +22,37 @@ public:
 	DECLARE_EVENT_OneParam(FZeeNetClient, FOnConnected, const FString& /*message if empty is success.*/);
 	FOnConnected& OnConnected() { return EventConnected; }
 
+private:
+	void ExecuteConnectEvent(const FString& Message);
+	FOnConnected EventConnected;
+
+public:
 	template<typename T>
-	void Notify(const T& Msg)
+	typename TEnableIf<TZeeNetIsValidMapping<T>::Value>::Type
+		Notify(const T& Msg)
 	{
-		TSharedPtr<FZeeNetPacketBase> Packet = FZeeNetPacketSerializer::CreatePacketFromMessage(Msg);
-		Send_Impl(Packet);
+		Send_Impl(TZeeNetMapping_UnrealToPoint<T>::Point, 0, EZeeNetPacketType::Notify, &Msg);
 	}
 
 	template<typename T>
-	void Send(const T& Msg, TFunction<void(const T&)>&& Callback)
+	typename TEnableIf<TZeeNetIsValidMapping<T>::Value>::Type
+		Request(const T& Msg, TFunction<void(const T&)>&& Callback)
 	{
 		check(IsInGameThread());
 		const int32 CurSequence = IncrementSequence();
 
 		CallbackMaps.Add(CurSequence, [Callback_ = MoveTemp(Callback)](const void* Data)
 			{
-				Callback_(*(const T*) Data);
+				Callback_(*reinterpret_cast<const T*>(Data));
 			}
 		);
-
-		TSharedPtr<FZeeNetPacketBase> Packet = FZeeNetPacketSerializer::CreatePacketFromMessage(Msg);
-		Packet->Sequence = CurSequence;
-		Packet->bIsRespond = true;
-		Send_Impl(Packet);
+		
+		Send_Impl(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 
 	template<typename T>
-	void Send(const T& Msg, TWeakObjectPtr<UObject> ObjectPtr, TFunction<void(const T&)> Callback)
+	typename TEnableIf<TZeeNetIsValidMapping<T>::Value>::Type
+		Request(const T& Msg, TWeakObjectPtr<UObject> ObjectPtr, TFunction<void(const T&)> Callback)
 	{
 		check(IsInGameThread());
 		const int32 CurSequence = IncrementSequence();
@@ -58,19 +61,17 @@ public:
 			{
 				if (ObjectPtr.IsValid())
 				{
-					Callback_(*(const T*)Data);
+					Callback_(*reinterpret_cast<const T*>(Data));
 				}
 			}
 		);
 
-		TSharedPtr<FZeeNetPacketBase> Packet = FZeeNetPacketSerializer::CreatePacketFromMessage(Msg);
-		Packet->Sequence = CurSequence;
-		Packet->bIsRespond = true;
-		Send_Impl(Packet);
+		Send_Impl(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 
 	template<typename T, typename Y>
-	void Send(const T& Msg, TSharedPtr<Y> SharedPtr, TFunction<void(const T&)> Callback)
+	typename TEnableIf<TZeeNetIsValidMapping<T>::Value>::Type
+		Request(const T& Msg, TSharedPtr<Y> SharedPtr, TFunction<void(const T&)> Callback)
 	{
 		check(IsInGameThread());
 		const int32 CurSequence = IncrementSequence();
@@ -80,24 +81,15 @@ public:
 			{
 				if (WeakPtr.IsValid())
 				{
-					Callback_(*(const T*)Data);
+					Callback_(*reinterpret_cast<const T*>(Data));
 				}
 			}
 		);
 
-		TSharedPtr<FZeeNetPacketBase> Packet = FZeeNetPacketSerializer::CreatePacketFromMessage(Msg);
-		Packet->Sequence = CurSequence;
-		Packet->bIsRespond = true;
-		Send_Impl(Packet);
+		Send_Impl(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 
-	void Response(const TSharedPtr<FZeeNetPacketBase>& InPacket);
-
-private:
-	void ExecuteConnectEvent(const FString& Message);
-	FOnConnected EventConnected;
-
-public: //TODO:: to private.
+public: //TODO:: to private. only use sharedptr
 	FZeeNetClient();
 
 private:
@@ -117,7 +109,7 @@ private:
 
 private:
 	void Recv();
-	void Send_Impl(const TSharedPtr<FZeeNetPacketBase>& InPacket);
+	void Send_Impl(int32 InPoint, int32 InSequecne, EZeeNetPacketType InPacketType, const void* InData);
 
 private:
 	mutable FCriticalSection Mtx;
