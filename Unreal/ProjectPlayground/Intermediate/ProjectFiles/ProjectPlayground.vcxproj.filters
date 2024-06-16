@@ -52,9 +52,6 @@
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNet.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetBPLibrary.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetClient.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
     </ClCompile>
@@ -76,9 +73,6 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetMessageSerializerDef.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\ZeeNetPacketMapping.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private</Filter>
-    </ClCompile>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Convert">
       <UniqueIdentifier>{D6BE0496-8976-3C1E-B645-0E32C59022F0}</UniqueIdentifier>
     </Filter>
@@ -151,19 +145,10 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNet.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetBPLibrary.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetClient.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetMessageInvoker.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetPacketMapping.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetReceivable.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
     </ClInclude>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public\Messages">
