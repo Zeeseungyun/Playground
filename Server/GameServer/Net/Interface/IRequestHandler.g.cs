@@ -4,7 +4,8 @@
 
 using Google.Protobuf;
 namespace Zee.Net.Message
-{     
+{
+                
     public interface IRequestHandler
     {
 		void OnRequest(IResponser r, Packet<Zee.Proto.Authentication.Login> p) { Logger.LogWarning("not impl packet: Zee.Proto.Authentication.Login."); r.Response(p); }
@@ -36,5 +37,7 @@ namespace Zee.Net.Message
                 default: throw new Exception("invalid message point");
             }
         }
+
     }
+
 }

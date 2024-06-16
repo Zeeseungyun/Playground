@@ -7,15 +7,14 @@ namespace Zee
     {
         static public partial class CSharp
         {        
-            static public string PacketMap => Path.GetFullPath(Path.Combine(ProtoMessageDir, "../","PacketMap.g.cs"));
             public static void GeneratePacketMap()
             {
-                if(File.Exists(PacketMap))
+                if(File.Exists(CSharpPacketMapFile))
                 {
-                    File.Delete(PacketMap);
+                    File.Delete(CSharpPacketMapFile);
                 }
 
-                FileStream fileStream = File.OpenWrite(PacketMap);
+                FileStream fileStream = File.OpenWrite(CSharpPacketMapFile);
                 using (StreamWriter streamWriter = new StreamWriter(fileStream))
                 {
                     List<StringBuilder> stringBuilders = new();

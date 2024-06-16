@@ -7,15 +7,14 @@ namespace Zee
     {
         static public partial class CSharp
         {        
-            static public string RequestHandlerFile => Path.GetFullPath(Path.Combine(ProtoMessageDir, "../","IRequestHandler.g.cs"));
             public static void GenerateRequestHandlerFile()
             {
-                if(File.Exists(RequestHandlerFile))
+                if(File.Exists(CSharpRequestHandlerFile))
                 {
-                    File.Delete(RequestHandlerFile);
+                    File.Delete(CSharpRequestHandlerFile);
                 }
 
-                FileStream fileStream = File.OpenWrite(RequestHandlerFile);
+                FileStream fileStream = File.OpenWrite(CSharpRequestHandlerFile);
                 using (StreamWriter streamWriter = new StreamWriter(fileStream))
                 {
                     List<StringBuilder> stringBuilders = new();

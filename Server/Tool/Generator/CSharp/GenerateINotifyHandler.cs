@@ -7,15 +7,14 @@ namespace Zee
     {
         static public partial class CSharp
         {        
-            static public string HandlerFile => Path.GetFullPath(Path.Combine(ProtoMessageDir, "../","INotifyHandler.g.cs"));
             public static void GenerateNotifyHandlerFile()
             {
-                if(File.Exists(HandlerFile))
+                if(File.Exists(CSharpNotifierFile))
                 {
-                    File.Delete(HandlerFile);
+                    File.Delete(CSharpNotifierFile);
                 }
 
-                FileStream fileStream = File.OpenWrite(HandlerFile);
+                FileStream fileStream = File.OpenWrite(CSharpNotifierFile);
                 using (StreamWriter streamWriter = new StreamWriter(fileStream))
                 {
                     List<StringBuilder> stringBuilders = new();

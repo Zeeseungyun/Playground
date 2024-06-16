@@ -7,17 +7,15 @@ namespace Zee
     {
         static public partial class Unreal
         {
-            static List<UnrealFile> PublicMessageFiles = new();
             public static void GeneratePublicMessages()
             {
                 foreach(var protoFile in Parse().ProtoFiles)
                 {
                     var newFile = new UnrealFile();
-                    PublicMessageFiles.Add(newFile);
 
                     newFile.NameWihtoutProto = protoFile.FileNameWithoutProto;
                     newFile.SrcFileName = string.Empty; //현재 소스파일은 사용하지 않을 예정.
-                    newFile.HeaderFileName = $"{CppZeeNetDir}Public/Messages/{newFile.NameWihtoutProto}.h";
+                    newFile.HeaderFileName = $"{UnrealMessageDir}/{newFile.NameWihtoutProto}.h";
                     newFile.HeaderContent.Append(DescriptionGenerated);
                     newFile.HeaderContent.Append("#pragma once\r\n");
                     newFile.HeaderContent.Append("#include \"CoreMinimal.h\"\r\n");

@@ -11,7 +11,7 @@ namespace Zee
             {
                 var newFile = new UnrealFile();
 
-                newFile.SrcFileName = $"{CppZeeNetDir}Private/ZeeNetMessageSerializer.g.cpp";
+                newFile.SrcFileName = UnrealMessageSerializerSrcFile;
                 newFile.SrcContent.Append(DescriptionGenerated);
                 newFile.SrcContent.Append("#include \"ZeeNetMessageSerializer.h \" \r\n");
                 newFile.SrcContent.Append("#include \"ZeeNet/Private/ZeeNetMessageSerializerDef.h\" \r\n");
@@ -25,7 +25,7 @@ namespace Zee
                 }
                 newFile.SrcContent.Append("\r\n");
                 
-                newFile.SrcContent.Append("void FZeeNetPacketSerializer::CreatePacketSerializer() \r\n");
+                newFile.SrcContent.Append("void FZeeNetPacketSerializerMap::BuildPacketSerializer() \r\n");
                 newFile.SrcContent.Append("{ \r\n");
                 newFile.SrcContent.Append("\tusing namespace Zee::Net::Message::Convert; \r\n");
                 newFile.SrcContent.Append("\r\n");
@@ -36,7 +36,7 @@ namespace Zee
                     {
                         if(!msg.IsEnum)
                         {
-                            newFile.SrcContent.Append($"\tDefaultMessages.Add(TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point, \r\n");
+                            newFile.SrcContent.Append($"\tDefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point, \r\n");
                             newFile.SrcContent.Append($"\t\tMakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point>>()); \r\n");
                             newFile.SrcContent.Append("\r\n");
                         }

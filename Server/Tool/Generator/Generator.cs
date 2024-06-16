@@ -12,10 +12,41 @@ namespace Zee
 ";
         
         public static string ProtoExeFilePath = string.Empty;
-        public static string CShardMessageDst = string.Empty;
-        public static string CppZeeNetDir = string.Empty;
-        public static string CppPrivateMessageDst => $"{CppZeeNetDir}Private/Messages/";
-        public static readonly List<string> ProtoSrcFilePaths = new();
         public static string ProtoMessageDir = string.Empty;
+        public static readonly List<string> ProtoSrcFilePaths = new();
+
+        ////////////////////////////////////////////////////////////////
+        //// Unreal path
+        ////////////////////////////////////////////////////////////////
+        public static string UnrealZeeNetDir = string.Empty;
+        public static string UnrealProtoMessageDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private/Messages/"));
+        public static string UnrealMessageConvertDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private/Convert/"));
+        public static string UnrealMessageSerializerSrcFile => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private/ZeeNetMessageSerializer.g.cpp"));
+        public static string UnrealMessageDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Public/Messages/"));
+        
+        ////////////////////////////////////////////////////////////////
+        //// CSharp path
+        ////////////////////////////////////////////////////////////////
+        public static string CSharpProtoMessageDir = string.Empty;
+        public static string CSharpNetDir => Path.GetFullPath(Path.Combine(CSharpProtoMessageDir, "..", "..", "Net")); 
+        public static string CSharpNetInterfaceDir => Path.GetFullPath(Path.Combine(CSharpNetDir, "Interface")); 
+        static public string CSharpNotifierFile => Path.GetFullPath(Path.Combine(CSharpNetInterfaceDir, "INotifyHandler.g.cs"));
+        static public string CSharpRequestHandlerFile => Path.GetFullPath(Path.Combine(CSharpNetInterfaceDir, "IRequestHandler.g.cs"));
+        public static string CSharpMessageDir => Path.GetFullPath(Path.Combine(CSharpNetDir, "..", "Message")); 
+        static public string CSharpPacketMapFile => Path.GetFullPath(Path.Combine(CSharpMessageDir, "PacketMap.g.cs"));
+        static public string[] GetCleanupFiles()
+        {
+            var files = new List<string>();
+            files.AddRange(Directory.GetFiles(UnrealProtoMessageDir, "*.*"));
+            files.AddRange(Directory.GetFiles(UnrealMessageConvertDir, "*.*"));
+            files.AddRange(Directory.GetFiles(UnrealMessageDir, "*.*"));
+            files.Add(UnrealMessageSerializerSrcFile);
+
+            files.AddRange(Directory.GetFiles(CSharpProtoMessageDir, "*.*"));
+            files.Add(CSharpNotifierFile);
+            files.Add(CSharpRequestHandlerFile);
+            files.Add(CSharpPacketMapFile);
+            return files.ToArray();
+        }
     }
 }

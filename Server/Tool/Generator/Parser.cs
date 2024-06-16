@@ -9,12 +9,12 @@ namespace Zee
             ProcessStartInfo startInfo = new();
             startInfo.FileName = ProtoExeFilePath;
             //--cpp_out={CSharpDst} 
-            if(Directory.Exists(CShardMessageDst))
+            if(Directory.Exists(CSharpProtoMessageDir))
             {
-                Directory.Delete(CShardMessageDst, true);
+                Directory.Delete(CSharpProtoMessageDir, true);
             }
-            Directory.CreateDirectory(CShardMessageDst);
-            startInfo.Arguments = $"--csharp_out={CShardMessageDst} --cpp_out={CppPrivateMessageDst} --proto_path={ProtoMessageDir} {string.Join(" ", ProtoSrcFilePaths)}";
+            Directory.CreateDirectory(CSharpProtoMessageDir);
+            startInfo.Arguments = $"--csharp_out={CSharpProtoMessageDir} --cpp_out={UnrealProtoMessageDir} --proto_path={ProtoMessageDir} {string.Join(" ", ProtoSrcFilePaths)}";
             //startInfo.Arguments = $"--proto_path={ProtoSrcFilePath} {string.Join(" ", ProtoSrcFilePaths)}";
             using (Process? exeProcess = Process.Start(startInfo))
             {

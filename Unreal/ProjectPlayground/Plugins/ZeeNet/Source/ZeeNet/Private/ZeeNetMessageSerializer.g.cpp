@@ -15,38 +15,38 @@
 #include "ZeeNet/Public/Messages/Test2.h" 
 #include "ZeeNet/Private/Convert/ZeeNetMessageConvert_Test2.h" 
 
-void FZeeNetPacketSerializer::CreatePacketSerializer() 
+void FZeeNetPacketSerializerMap::BuildPacketSerializer() 
 { 
 	using namespace Zee::Net::Message::Convert; 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Authentication::Login>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Authentication::Login>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Authentication::Login>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Authentication::Logout>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Authentication::Logout>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Authentication::Logout>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Chat::Speak>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Chat::Speak>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Chat::Speak>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Chat::Speak1>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Chat::Speak1>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Chat::Speak1>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Packet::Header>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Packet::Header>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Packet::Header>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::TestMessage>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::TestMessage>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::TestMessage>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage2>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage2>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage2>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage3>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage3>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage3>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage4>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage4>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage4>::Point>>()); 
 
-	DefaultMessages.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage5>::Point, 
+	DefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage5>::Point, 
 		MakeShared<FZeeNetPacket<TZeeNetMapping_ProtoToPoint<Zee::Proto::Test2::TestMessage5>::Point>>()); 
 
 } 

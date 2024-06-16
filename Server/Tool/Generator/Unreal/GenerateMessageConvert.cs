@@ -7,17 +7,15 @@ namespace Zee
     {
         static public partial class Unreal
         {
-            public static List<UnrealFile> GenerateMessageConvertFiles = new();
             public static void GenerateMessageConvert()
             {
                 foreach(var protoFile in Parse().ProtoFiles)
                 {
                     var newFile = new UnrealFile();
-                    GenerateMessageConvertFiles.Add(newFile);
 
                     newFile.NameWihtoutProto = protoFile.FileNameWithoutProto;
-                    newFile.SrcFileName = $"{CppZeeNetDir}Private/Convert/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.cpp";
-                    newFile.HeaderFileName = $"{CppZeeNetDir}Private/Convert/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.h";
+                    newFile.SrcFileName = $"{UnrealMessageConvertDir}/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.cpp";
+                    newFile.HeaderFileName = $"{UnrealMessageConvertDir}/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.h";
 
                     newFile.HeaderContent.Append(DescriptionGenerated);
                     newFile.HeaderContent.Append("#pragma once \r\n");

@@ -9,8 +9,8 @@ CommandLineArg cppDstArg     = new (new []{"-cppdst"});
 
 Generator.ProtoExeFilePath = protocArg.Value;
 Generator.ProtoMessageDir = protoSrcArg.Value;
-Generator.CShardMessageDst = csharpDstArg.Value;
-Generator.CppZeeNetDir = cppDstArg.Value; //temp.
+Generator.CSharpProtoMessageDir = csharpDstArg.Value;
+Generator.UnrealZeeNetDir = cppDstArg.Value; //temp.
 // Generator.CppZeeNetDir
 
 {
