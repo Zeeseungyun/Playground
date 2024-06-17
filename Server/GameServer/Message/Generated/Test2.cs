@@ -24,18 +24,18 @@ namespace Zee.Proto.Test2 {
     static Test2Reflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgtUZXN0Mi5wcm90bxIPWmVlLlByb3RvLlRlc3QyGgpUZXN0LnByb3RvImEK",
-            "DFRlc3RNZXNzYWdlNRIkCgRtc2cyGAEgASgLMhYuWmVlLlByb3RvLlRlc3RN",
-            "ZXNzYWdlEisKBG1zZzMYAiABKAsyHS5aZWUuUHJvdG8uVGVzdDIuVGVzdE1l",
-            "c3NhZ2U0ImgKDFRlc3RNZXNzYWdlMxIrCgRtc2cxGAEgASgLMh0uWmVlLlBy",
-            "b3RvLlRlc3QyLlRlc3RNZXNzYWdlMhIrCgRtc2cyGAIgASgLMh0uWmVlLlBy",
-            "b3RvLlRlc3QyLlRlc3RNZXNzYWdlMiJoCgxUZXN0TWVzc2FnZTQSKwoEbXNn",
-            "MRgBIAEoCzIdLlplZS5Qcm90by5UZXN0Mi5UZXN0TWVzc2FnZTISKwoEbXNn",
-            "MhgCIAEoCzIdLlplZS5Qcm90by5UZXN0Mi5UZXN0TWVzc2FnZTMiMwoMVGVz",
-            "dE1lc3NhZ2UyEiMKA21zZxgBIAEoCzIWLlplZS5Qcm90by5UZXN0TWVzc2Fn",
-            "ZWIGcHJvdG8z"));
+            "CgtUZXN0Mi5wcm90bxIPWmVlLlByb3RvLlRlc3QyGgpUZXN0LnByb3RvImYK",
+            "DFRlc3RNZXNzYWdlNRIpCgRtc2cyGAEgASgLMhsuWmVlLlByb3RvLlRlc3Qu",
+            "VGVzdE1lc3NhZ2USKwoEbXNnMxgCIAEoCzIdLlplZS5Qcm90by5UZXN0Mi5U",
+            "ZXN0TWVzc2FnZTQiaAoMVGVzdE1lc3NhZ2UzEisKBG1zZzEYASABKAsyHS5a",
+            "ZWUuUHJvdG8uVGVzdDIuVGVzdE1lc3NhZ2UyEisKBG1zZzIYAiABKAsyHS5a",
+            "ZWUuUHJvdG8uVGVzdDIuVGVzdE1lc3NhZ2UyImgKDFRlc3RNZXNzYWdlNBIr",
+            "CgRtc2cxGAEgASgLMh0uWmVlLlByb3RvLlRlc3QyLlRlc3RNZXNzYWdlMhIr",
+            "CgRtc2cyGAIgASgLMh0uWmVlLlByb3RvLlRlc3QyLlRlc3RNZXNzYWdlMyI4",
+            "CgxUZXN0TWVzc2FnZTISKAoDbXNnGAEgASgLMhsuWmVlLlByb3RvLlRlc3Qu",
+            "VGVzdE1lc3NhZ2ViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Zee.Proto.TestReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Zee.Proto.Test.TestReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Test2.TestMessage5), global::Zee.Proto.Test2.TestMessage5.Parser, new[]{ "Msg2", "Msg3" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Test2.TestMessage3), global::Zee.Proto.Test2.TestMessage3.Parser, new[]{ "Msg1", "Msg2" }, null, null, null, null),
@@ -94,10 +94,10 @@ namespace Zee.Proto.Test2 {
 
     /// <summary>Field number for the "msg2" field.</summary>
     public const int Msg2FieldNumber = 1;
-    private global::Zee.Proto.TestMessage msg2_;
+    private global::Zee.Proto.Test.TestMessage msg2_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Zee.Proto.TestMessage Msg2 {
+    public global::Zee.Proto.Test.TestMessage Msg2 {
       get { return msg2_; }
       set {
         msg2_ = value;
@@ -216,7 +216,7 @@ namespace Zee.Proto.Test2 {
       }
       if (other.msg2_ != null) {
         if (msg2_ == null) {
-          Msg2 = new global::Zee.Proto.TestMessage();
+          Msg2 = new global::Zee.Proto.Test.TestMessage();
         }
         Msg2.MergeFrom(other.Msg2);
       }
@@ -243,7 +243,7 @@ namespace Zee.Proto.Test2 {
             break;
           case 10: {
             if (msg2_ == null) {
-              Msg2 = new global::Zee.Proto.TestMessage();
+              Msg2 = new global::Zee.Proto.Test.TestMessage();
             }
             input.ReadMessage(Msg2);
             break;
@@ -272,7 +272,7 @@ namespace Zee.Proto.Test2 {
             break;
           case 10: {
             if (msg2_ == null) {
-              Msg2 = new global::Zee.Proto.TestMessage();
+              Msg2 = new global::Zee.Proto.Test.TestMessage();
             }
             input.ReadMessage(Msg2);
             break;
@@ -825,10 +825,10 @@ namespace Zee.Proto.Test2 {
 
     /// <summary>Field number for the "msg" field.</summary>
     public const int MsgFieldNumber = 1;
-    private global::Zee.Proto.TestMessage msg_;
+    private global::Zee.Proto.Test.TestMessage msg_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Zee.Proto.TestMessage Msg {
+    public global::Zee.Proto.Test.TestMessage Msg {
       get { return msg_; }
       set {
         msg_ = value;
@@ -922,7 +922,7 @@ namespace Zee.Proto.Test2 {
       }
       if (other.msg_ != null) {
         if (msg_ == null) {
-          Msg = new global::Zee.Proto.TestMessage();
+          Msg = new global::Zee.Proto.Test.TestMessage();
         }
         Msg.MergeFrom(other.Msg);
       }
@@ -943,7 +943,7 @@ namespace Zee.Proto.Test2 {
             break;
           case 10: {
             if (msg_ == null) {
-              Msg = new global::Zee.Proto.TestMessage();
+              Msg = new global::Zee.Proto.Test.TestMessage();
             }
             input.ReadMessage(Msg);
             break;
@@ -965,7 +965,7 @@ namespace Zee.Proto.Test2 {
             break;
           case 10: {
             if (msg_ == null) {
-              Msg = new global::Zee.Proto.TestMessage();
+              Msg = new global::Zee.Proto.Test.TestMessage();
             }
             input.ReadMessage(Msg);
             break;

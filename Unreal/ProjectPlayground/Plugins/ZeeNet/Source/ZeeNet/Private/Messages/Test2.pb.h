@@ -206,23 +206,23 @@ class TestMessage5 final :
     kMsg2FieldNumber = 1,
     kMsg3FieldNumber = 2,
   };
-  // .Zee.Proto.TestMessage msg2 = 1;
+  // .Zee.Proto.Test.TestMessage msg2 = 1;
   bool has_msg2() const;
   private:
   bool _internal_has_msg2() const;
   public:
   void clear_msg2();
-  const ::Zee::Proto::TestMessage& msg2() const;
-  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::TestMessage* release_msg2();
-  ::Zee::Proto::TestMessage* mutable_msg2();
-  void set_allocated_msg2(::Zee::Proto::TestMessage* msg2);
+  const ::Zee::Proto::Test::TestMessage& msg2() const;
+  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::Test::TestMessage* release_msg2();
+  ::Zee::Proto::Test::TestMessage* mutable_msg2();
+  void set_allocated_msg2(::Zee::Proto::Test::TestMessage* msg2);
   private:
-  const ::Zee::Proto::TestMessage& _internal_msg2() const;
-  ::Zee::Proto::TestMessage* _internal_mutable_msg2();
+  const ::Zee::Proto::Test::TestMessage& _internal_msg2() const;
+  ::Zee::Proto::Test::TestMessage* _internal_mutable_msg2();
   public:
   void unsafe_arena_set_allocated_msg2(
-      ::Zee::Proto::TestMessage* msg2);
-  ::Zee::Proto::TestMessage* unsafe_arena_release_msg2();
+      ::Zee::Proto::Test::TestMessage* msg2);
+  ::Zee::Proto::Test::TestMessage* unsafe_arena_release_msg2();
 
   // .Zee.Proto.Test2.TestMessage4 msg3 = 2;
   bool has_msg3() const;
@@ -249,7 +249,7 @@ class TestMessage5 final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::Zee::Proto::TestMessage* msg2_;
+  ::Zee::Proto::Test::TestMessage* msg2_;
   ::Zee::Proto::Test2::TestMessage4* msg3_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Test2_2eproto;
@@ -721,23 +721,23 @@ class TestMessage2 final :
   enum : int {
     kMsgFieldNumber = 1,
   };
-  // .Zee.Proto.TestMessage msg = 1;
+  // .Zee.Proto.Test.TestMessage msg = 1;
   bool has_msg() const;
   private:
   bool _internal_has_msg() const;
   public:
   void clear_msg();
-  const ::Zee::Proto::TestMessage& msg() const;
-  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::TestMessage* release_msg();
-  ::Zee::Proto::TestMessage* mutable_msg();
-  void set_allocated_msg(::Zee::Proto::TestMessage* msg);
+  const ::Zee::Proto::Test::TestMessage& msg() const;
+  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::Test::TestMessage* release_msg();
+  ::Zee::Proto::Test::TestMessage* mutable_msg();
+  void set_allocated_msg(::Zee::Proto::Test::TestMessage* msg);
   private:
-  const ::Zee::Proto::TestMessage& _internal_msg() const;
-  ::Zee::Proto::TestMessage* _internal_mutable_msg();
+  const ::Zee::Proto::Test::TestMessage& _internal_msg() const;
+  ::Zee::Proto::Test::TestMessage* _internal_mutable_msg();
   public:
   void unsafe_arena_set_allocated_msg(
-      ::Zee::Proto::TestMessage* msg);
-  ::Zee::Proto::TestMessage* unsafe_arena_release_msg();
+      ::Zee::Proto::Test::TestMessage* msg);
+  ::Zee::Proto::Test::TestMessage* unsafe_arena_release_msg();
 
   // @@protoc_insertion_point(class_scope:Zee.Proto.Test2.TestMessage2)
  private:
@@ -746,7 +746,7 @@ class TestMessage2 final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::Zee::Proto::TestMessage* msg_;
+  ::Zee::Proto::Test::TestMessage* msg_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Test2_2eproto;
 };
@@ -761,24 +761,24 @@ class TestMessage2 final :
 #endif  // __GNUC__
 // TestMessage5
 
-// .Zee.Proto.TestMessage msg2 = 1;
+// .Zee.Proto.Test.TestMessage msg2 = 1;
 inline bool TestMessage5::_internal_has_msg2() const {
   return this != internal_default_instance() && msg2_ != nullptr;
 }
 inline bool TestMessage5::has_msg2() const {
   return _internal_has_msg2();
 }
-inline const ::Zee::Proto::TestMessage& TestMessage5::_internal_msg2() const {
-  const ::Zee::Proto::TestMessage* p = msg2_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::TestMessage&>(
-      ::Zee::Proto::_TestMessage_default_instance_);
+inline const ::Zee::Proto::Test::TestMessage& TestMessage5::_internal_msg2() const {
+  const ::Zee::Proto::Test::TestMessage* p = msg2_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::Test::TestMessage&>(
+      ::Zee::Proto::Test::_TestMessage_default_instance_);
 }
-inline const ::Zee::Proto::TestMessage& TestMessage5::msg2() const {
+inline const ::Zee::Proto::Test::TestMessage& TestMessage5::msg2() const {
   // @@protoc_insertion_point(field_get:Zee.Proto.Test2.TestMessage5.msg2)
   return _internal_msg2();
 }
 inline void TestMessage5::unsafe_arena_set_allocated_msg2(
-    ::Zee::Proto::TestMessage* msg2) {
+    ::Zee::Proto::Test::TestMessage* msg2) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(msg2_);
   }
@@ -790,9 +790,9 @@ inline void TestMessage5::unsafe_arena_set_allocated_msg2(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Zee.Proto.Test2.TestMessage5.msg2)
 }
-inline ::Zee::Proto::TestMessage* TestMessage5::release_msg2() {
+inline ::Zee::Proto::Test::TestMessage* TestMessage5::release_msg2() {
   
-  ::Zee::Proto::TestMessage* temp = msg2_;
+  ::Zee::Proto::Test::TestMessage* temp = msg2_;
   msg2_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -805,27 +805,27 @@ inline ::Zee::Proto::TestMessage* TestMessage5::release_msg2() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::Zee::Proto::TestMessage* TestMessage5::unsafe_arena_release_msg2() {
+inline ::Zee::Proto::Test::TestMessage* TestMessage5::unsafe_arena_release_msg2() {
   // @@protoc_insertion_point(field_release:Zee.Proto.Test2.TestMessage5.msg2)
   
-  ::Zee::Proto::TestMessage* temp = msg2_;
+  ::Zee::Proto::Test::TestMessage* temp = msg2_;
   msg2_ = nullptr;
   return temp;
 }
-inline ::Zee::Proto::TestMessage* TestMessage5::_internal_mutable_msg2() {
+inline ::Zee::Proto::Test::TestMessage* TestMessage5::_internal_mutable_msg2() {
   
   if (msg2_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Zee::Proto::TestMessage>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::Zee::Proto::Test::TestMessage>(GetArenaForAllocation());
     msg2_ = p;
   }
   return msg2_;
 }
-inline ::Zee::Proto::TestMessage* TestMessage5::mutable_msg2() {
-  ::Zee::Proto::TestMessage* _msg = _internal_mutable_msg2();
+inline ::Zee::Proto::Test::TestMessage* TestMessage5::mutable_msg2() {
+  ::Zee::Proto::Test::TestMessage* _msg = _internal_mutable_msg2();
   // @@protoc_insertion_point(field_mutable:Zee.Proto.Test2.TestMessage5.msg2)
   return _msg;
 }
-inline void TestMessage5::set_allocated_msg2(::Zee::Proto::TestMessage* msg2) {
+inline void TestMessage5::set_allocated_msg2(::Zee::Proto::Test::TestMessage* msg2) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(msg2_);
@@ -1309,24 +1309,24 @@ inline void TestMessage4::set_allocated_msg2(::Zee::Proto::Test2::TestMessage3* 
 
 // TestMessage2
 
-// .Zee.Proto.TestMessage msg = 1;
+// .Zee.Proto.Test.TestMessage msg = 1;
 inline bool TestMessage2::_internal_has_msg() const {
   return this != internal_default_instance() && msg_ != nullptr;
 }
 inline bool TestMessage2::has_msg() const {
   return _internal_has_msg();
 }
-inline const ::Zee::Proto::TestMessage& TestMessage2::_internal_msg() const {
-  const ::Zee::Proto::TestMessage* p = msg_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::TestMessage&>(
-      ::Zee::Proto::_TestMessage_default_instance_);
+inline const ::Zee::Proto::Test::TestMessage& TestMessage2::_internal_msg() const {
+  const ::Zee::Proto::Test::TestMessage* p = msg_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::Test::TestMessage&>(
+      ::Zee::Proto::Test::_TestMessage_default_instance_);
 }
-inline const ::Zee::Proto::TestMessage& TestMessage2::msg() const {
+inline const ::Zee::Proto::Test::TestMessage& TestMessage2::msg() const {
   // @@protoc_insertion_point(field_get:Zee.Proto.Test2.TestMessage2.msg)
   return _internal_msg();
 }
 inline void TestMessage2::unsafe_arena_set_allocated_msg(
-    ::Zee::Proto::TestMessage* msg) {
+    ::Zee::Proto::Test::TestMessage* msg) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(msg_);
   }
@@ -1338,9 +1338,9 @@ inline void TestMessage2::unsafe_arena_set_allocated_msg(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Zee.Proto.Test2.TestMessage2.msg)
 }
-inline ::Zee::Proto::TestMessage* TestMessage2::release_msg() {
+inline ::Zee::Proto::Test::TestMessage* TestMessage2::release_msg() {
   
-  ::Zee::Proto::TestMessage* temp = msg_;
+  ::Zee::Proto::Test::TestMessage* temp = msg_;
   msg_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -1353,27 +1353,27 @@ inline ::Zee::Proto::TestMessage* TestMessage2::release_msg() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::Zee::Proto::TestMessage* TestMessage2::unsafe_arena_release_msg() {
+inline ::Zee::Proto::Test::TestMessage* TestMessage2::unsafe_arena_release_msg() {
   // @@protoc_insertion_point(field_release:Zee.Proto.Test2.TestMessage2.msg)
   
-  ::Zee::Proto::TestMessage* temp = msg_;
+  ::Zee::Proto::Test::TestMessage* temp = msg_;
   msg_ = nullptr;
   return temp;
 }
-inline ::Zee::Proto::TestMessage* TestMessage2::_internal_mutable_msg() {
+inline ::Zee::Proto::Test::TestMessage* TestMessage2::_internal_mutable_msg() {
   
   if (msg_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Zee::Proto::TestMessage>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::Zee::Proto::Test::TestMessage>(GetArenaForAllocation());
     msg_ = p;
   }
   return msg_;
 }
-inline ::Zee::Proto::TestMessage* TestMessage2::mutable_msg() {
-  ::Zee::Proto::TestMessage* _msg = _internal_mutable_msg();
+inline ::Zee::Proto::Test::TestMessage* TestMessage2::mutable_msg() {
+  ::Zee::Proto::Test::TestMessage* _msg = _internal_mutable_msg();
   // @@protoc_insertion_point(field_mutable:Zee.Proto.Test2.TestMessage2.msg)
   return _msg;
 }
-inline void TestMessage2::set_allocated_msg(::Zee::Proto::TestMessage* msg) {
+inline void TestMessage2::set_allocated_msg(::Zee::Proto::Test::TestMessage* msg) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(msg_);

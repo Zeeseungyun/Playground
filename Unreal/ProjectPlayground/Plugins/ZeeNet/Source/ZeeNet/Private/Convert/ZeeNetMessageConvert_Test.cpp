@@ -3,15 +3,15 @@
 ////////////////////////////////////////////////////////
 #include "ZeeNet/Private/Convert/ZeeNetMessageConvert_Test.h" 
 
-void Zee::Net::Message::Convert::FromTo(const Zee::Proto::TestMessage& InFrom, FZeeNetTestMessage& OutTo)
+void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Test::TestMessage& InFrom, FZeeNetTestTestMessage& OutTo)
 {
 	FromTo(InFrom.rc(), OutTo.RC); 
-	OutTo.RCLists = To<EZeeNetReturnCode>(InFrom.rclists()); 
+	OutTo.RCLists = To<EZeeNetTestReturnCode>(InFrom.rclists()); 
 	OutTo.Id = To<FString>(InFrom.id()); 
 	OutTo.Content = To<FString>(InFrom.content()); 
 }
 
-void Zee::Net::Message::Convert::FromTo(const FZeeNetTestMessage& InFrom, Zee::Proto::TestMessage& OutTo)
+void Zee::Net::Message::Convert::FromTo(const FZeeNetTestTestMessage& InFrom, Zee::Proto::Test::TestMessage& OutTo)
 {
 	FromTo(InFrom.RC, *OutTo.mutable_rc());
 	*OutTo.mutable_rclists() = To<int32>(InFrom.RCLists); 

@@ -13,7 +13,7 @@ namespace Zee.Net.Message
 		void OnRequest(IResponser r, Packet<Zee.Proto.Chat.Speak> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Chat.Speak1> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak1."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Packet.Header> p) { Logger.LogWarning("not impl packet: Zee.Proto.Packet.Header."); r.Response(p); }
-		void OnRequest(IResponser r, Packet<Zee.Proto.TestMessage> p) { Logger.LogWarning("not impl packet: Zee.Proto.TestMessage."); r.Response(p); }
+		void OnRequest(IResponser r, Packet<Zee.Proto.Test.TestMessage> p) { Logger.LogWarning("not impl packet: Zee.Proto.Test.TestMessage."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Test2.TestMessage2> p) { Logger.LogWarning("not impl packet: Zee.Proto.Test2.TestMessage2."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Test2.TestMessage3> p) { Logger.LogWarning("not impl packet: Zee.Proto.Test2.TestMessage3."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Test2.TestMessage4> p) { Logger.LogWarning("not impl packet: Zee.Proto.Test2.TestMessage4."); r.Response(p); }
@@ -28,7 +28,7 @@ namespace Zee.Net.Message
 				case 0x2002: h.OnRequest(r, p as Packet<Zee.Proto.Chat.Speak>); return;
 				case 0x2001: h.OnRequest(r, p as Packet<Zee.Proto.Chat.Speak1>); return;
 				case 0x3001: h.OnRequest(r, p as Packet<Zee.Proto.Packet.Header>); return;
-				case 0x4001: h.OnRequest(r, p as Packet<Zee.Proto.TestMessage>); return;
+				case 0x4001: h.OnRequest(r, p as Packet<Zee.Proto.Test.TestMessage>); return;
 				case 0x5004: h.OnRequest(r, p as Packet<Zee.Proto.Test2.TestMessage2>); return;
 				case 0x5002: h.OnRequest(r, p as Packet<Zee.Proto.Test2.TestMessage3>); return;
 				case 0x5003: h.OnRequest(r, p as Packet<Zee.Proto.Test2.TestMessage4>); return;

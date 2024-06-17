@@ -31,14 +31,11 @@ namespace Zee
                     
                 foreach(var protoFile in Parse().ProtoFiles)
                 {
-                    foreach(var msg in protoFile.Messages)
+                    foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        if(!msg.IsEnum)
-                        {
-                            newFile.SrcContent.Append($"\tDefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point, \r\n");
-                            newFile.SrcContent.Append($"\t\tMakeShared<FZeeNetPacketSerializer<TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point>>()); \r\n");
-                            newFile.SrcContent.Append("\r\n");
-                        }
+                        newFile.SrcContent.Append($"\tDefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point, \r\n");
+                        newFile.SrcContent.Append($"\t\tMakeShared<FZeeNetPacketSerializer<TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point>>()); \r\n");
+                        newFile.SrcContent.Append("\r\n");
                     }
                 }
                 

@@ -16,7 +16,7 @@ ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2();
 ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3();
 ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4();
 ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5();
-ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetTestMessage();
+ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetTestTestMessage();
 // End Cross Module References
 
 // Begin ScriptStruct FZeeNetTest2TestMessage2
@@ -53,7 +53,7 @@ struct Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2_Statics
 	}
 	static const UECodeGen_Private::FStructParams StructParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2_Statics::NewProp_msg = { "msg", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage2, msg), Z_Construct_UScriptStruct_FZeeNetTestMessage, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg_MetaData), NewProp_msg_MetaData) }; // 1049621564
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2_Statics::NewProp_msg = { "msg", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage2, msg), Z_Construct_UScriptStruct_FZeeNetTestTestMessage, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg_MetaData), NewProp_msg_MetaData) }; // 317897572
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2_Statics::NewProp_msg,
 };
@@ -120,8 +120,8 @@ struct Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics
 	}
 	static const UECodeGen_Private::FStructParams StructParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::NewProp_msg1 = { "msg1", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage3, msg1), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg1_MetaData), NewProp_msg1_MetaData) }; // 2380247071
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::NewProp_msg2 = { "msg2", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage3, msg2), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg2_MetaData), NewProp_msg2_MetaData) }; // 2380247071
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::NewProp_msg1 = { "msg1", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage3, msg1), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg1_MetaData), NewProp_msg1_MetaData) }; // 1497234574
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::NewProp_msg2 = { "msg2", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage3, msg2), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg2_MetaData), NewProp_msg2_MetaData) }; // 1497234574
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::NewProp_msg1,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::NewProp_msg2,
@@ -189,8 +189,8 @@ struct Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics
 	}
 	static const UECodeGen_Private::FStructParams StructParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::NewProp_msg1 = { "msg1", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage4, msg1), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg1_MetaData), NewProp_msg1_MetaData) }; // 2380247071
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::NewProp_msg2 = { "msg2", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage4, msg2), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg2_MetaData), NewProp_msg2_MetaData) }; // 3198851439
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::NewProp_msg1 = { "msg1", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage4, msg1), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg1_MetaData), NewProp_msg1_MetaData) }; // 1497234574
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::NewProp_msg2 = { "msg2", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage4, msg2), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg2_MetaData), NewProp_msg2_MetaData) }; // 1401232259
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::NewProp_msg1,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::NewProp_msg2,
@@ -258,8 +258,8 @@ struct Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics
 	}
 	static const UECodeGen_Private::FStructParams StructParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::NewProp_msg2 = { "msg2", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage5, msg2), Z_Construct_UScriptStruct_FZeeNetTestMessage, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg2_MetaData), NewProp_msg2_MetaData) }; // 1049621564
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::NewProp_msg3 = { "msg3", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage5, msg3), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg3_MetaData), NewProp_msg3_MetaData) }; // 3339745664
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::NewProp_msg2 = { "msg2", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage5, msg2), Z_Construct_UScriptStruct_FZeeNetTestTestMessage, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg2_MetaData), NewProp_msg2_MetaData) }; // 317897572
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::NewProp_msg3 = { "msg3", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetTest2TestMessage5, msg3), Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_msg3_MetaData), NewProp_msg3_MetaData) }; // 1568233551
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::NewProp_msg2,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::NewProp_msg3,
@@ -292,13 +292,13 @@ UScriptStruct* Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5()
 struct Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FZeeNetTest2TestMessage2::StaticStruct, Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2_Statics::NewStructOps, TEXT("ZeeNetTest2TestMessage2"), &Z_Registration_Info_UScriptStruct_ZeeNetTest2TestMessage2, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetTest2TestMessage2), 2380247071U) },
-		{ FZeeNetTest2TestMessage3::StaticStruct, Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::NewStructOps, TEXT("ZeeNetTest2TestMessage3"), &Z_Registration_Info_UScriptStruct_ZeeNetTest2TestMessage3, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetTest2TestMessage3), 3198851439U) },
-		{ FZeeNetTest2TestMessage4::StaticStruct, Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::NewStructOps, TEXT("ZeeNetTest2TestMessage4"), &Z_Registration_Info_UScriptStruct_ZeeNetTest2TestMessage4, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetTest2TestMessage4), 3339745664U) },
-		{ FZeeNetTest2TestMessage5::StaticStruct, Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::NewStructOps, TEXT("ZeeNetTest2TestMessage5"), &Z_Registration_Info_UScriptStruct_ZeeNetTest2TestMessage5, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetTest2TestMessage5), 2039143488U) },
+		{ FZeeNetTest2TestMessage2::StaticStruct, Z_Construct_UScriptStruct_FZeeNetTest2TestMessage2_Statics::NewStructOps, TEXT("ZeeNetTest2TestMessage2"), &Z_Registration_Info_UScriptStruct_ZeeNetTest2TestMessage2, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetTest2TestMessage2), 1497234574U) },
+		{ FZeeNetTest2TestMessage3::StaticStruct, Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics::NewStructOps, TEXT("ZeeNetTest2TestMessage3"), &Z_Registration_Info_UScriptStruct_ZeeNetTest2TestMessage3, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetTest2TestMessage3), 1401232259U) },
+		{ FZeeNetTest2TestMessage4::StaticStruct, Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics::NewStructOps, TEXT("ZeeNetTest2TestMessage4"), &Z_Registration_Info_UScriptStruct_ZeeNetTest2TestMessage4, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetTest2TestMessage4), 1568233551U) },
+		{ FZeeNetTest2TestMessage5::StaticStruct, Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics::NewStructOps, TEXT("ZeeNetTest2TestMessage5"), &Z_Registration_Info_UScriptStruct_ZeeNetTest2TestMessage5, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetTest2TestMessage5), 3499432866U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_3819634863(TEXT("/Script/ZeeNet"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_3797090558(TEXT("/Script/ZeeNet"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_Statics::ScriptStructInfo),
 	nullptr, 0);

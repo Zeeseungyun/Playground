@@ -5,5 +5,5 @@ struct IZeeNetNotifyHandler
 {
 public:
 	virtual ~IZeeNetNotifyHandler() = default;
-	virtual const TCHAR* GetHandlerName() const = 0;
+	virtual const FString& GetHandlerName() const = 0;
 };

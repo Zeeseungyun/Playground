@@ -23,7 +23,7 @@ namespace Zee.Net.Message
 			mapping<Zee.Proto.Chat.Speak>(0x2002);
 			mapping<Zee.Proto.Chat.Speak1>(0x2001);
 			mapping<Zee.Proto.Packet.Header>(0x3001);
-			mapping<Zee.Proto.TestMessage>(0x4001);
+			mapping<Zee.Proto.Test.TestMessage>(0x4001);
 			mapping<Zee.Proto.Test2.TestMessage2>(0x5004);
 			mapping<Zee.Proto.Test2.TestMessage3>(0x5002);
 			mapping<Zee.Proto.Test2.TestMessage4>(0x5003);

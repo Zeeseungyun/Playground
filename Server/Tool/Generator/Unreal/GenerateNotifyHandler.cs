@@ -41,7 +41,7 @@ namespace Zee
                     newFile.HeaderContent.Append($"struct ZEENET_API IZeeNetNotifyHandler_{newFile.NameWihtoutProto} \r\n");
                     newFile.HeaderContent.Append($"\t: public IZeeNetNotifyHandler \r\n");
                     newFile.HeaderContent.Append($"{{\r\n");
-                    newFile.HeaderContent.Append($"\tconst TCHAR* GetHandlerName() const final {{ return TEXT(\"Notify_{newFile.NameWihtoutProto}\"); }} \r\n");
+                    newFile.HeaderContent.Append($"\tconst FString& GetHandlerName() const final {{ static FString Name = TEXT(\"Notify_{newFile.NameWihtoutProto}\"); return Name; }} \r\n");
                     newFile.HeaderContent.Append("\r\n");
 
                     foreach(var msg in protoFile.Messages)
@@ -72,17 +72,22 @@ namespace Zee
                     newFile.SrcContent.Append($"#include \"ZeeNet/{relativeHeaderFile}\" \r\n");
                     newFile.SrcContent.Append("\r\n");
 
-                    newFile.SrcContent.Append($"FZeeNetNotifyHandlerArray* FindNotifyHandler_{newFile.NameWihtoutProto}(int32 Point, TMap<const TCHAR*, FZeeNetNotifyHandlerArray>& NotifyHandlers) {{ \r\n");
+                    newFile.SrcContent.Append($"FZeeNetNotifyHandlerArray* FindNotifyHandler_{newFile.NameWihtoutProto}(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers) {{ \r\n");
                     newFile.SrcContent.Append($"\tswitch (Point) {{ \r\n");
-                    foreach(var msg in protoFile.Messages)
+                    foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        if(!msg.IsEnum)
+                        newFile.SrcContent.Append($"\tcase TZeeNetMapping_UnrealToPoint<{msg.UnrealName}>::Point: ");
+                        if(protoFile.NonEnumMessages.Last() != msg)
                         {
-                            newFile.SrcContent.Append($"\tcase TZeeNetMapping_UnrealToPoint<{msg.UnrealName}>::Point: [[fallthrough]]; \r\n");
+                            newFile.SrcContent.Append("[[fallthrough]]; \r\n");
+                        }
+                        else
+                        {
+                            newFile.SrcContent.Append("\r\n");
                         }
                     }
 
-                    newFile.SrcContent.Append($"\treturn NotifyHandlers.Find(TEXT(\"Notify_{newFile.NameWihtoutProto}\")); \r\n");
+                    newFile.SrcContent.Append($"\t\treturn NotifyHandlers.Find(TEXT(\"Notify_{newFile.NameWihtoutProto}\")); \r\n");
                     newFile.SrcContent.Append($"\tdefault: break; \r\n");
                     newFile.SrcContent.Append($"\t}}\r\n");
                     newFile.SrcContent.Append("\r\n");
@@ -93,12 +98,9 @@ namespace Zee
                     newFile.SrcContent.Append($"bool ConsumeNotifyMessage_{newFile.NameWihtoutProto}(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers) {{ \r\n");
                     newFile.SrcContent.Append($"\tconst int32 PacketPoint = Packet->GetHeader().Point; \r\n");
                     newFile.SrcContent.Append($"\tswitch (PacketPoint) {{ \r\n");
-                    foreach(var msg in protoFile.Messages)
+                    foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        if(!msg.IsEnum)
-                        {
-                            newFile.SrcContent.Append($"\tZEENET_CASE_CONSUME_NOTIFY({newFile.NameWihtoutProto}, {msg.Name});\r\n");
-                        }
+                        newFile.SrcContent.Append($"\t\tZEENET_CASE_CONSUME_NOTIFY({newFile.NameWihtoutProto}, {msg.Name});\r\n");
                     }
 
                     newFile.SrcContent.Append($"\tdefault: break; \r\n");
@@ -129,7 +131,7 @@ namespace Zee
                             continue;
                         }
 
-                        newFile.SrcContent.Append($"extern FZeeNetNotifyHandlerArray* FindNotifyHandler_{protoFile.FileNameWithoutProto}(int32 Point, TMap<const TCHAR*, FZeeNetNotifyHandlerArray>& NotifyHandlers); \r\n");
+                        newFile.SrcContent.Append($"extern FZeeNetNotifyHandlerArray* FindNotifyHandler_{protoFile.FileNameWithoutProto}(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers); \r\n");
                         newFile.SrcContent.Append($"extern bool ConsumeNotifyMessage_{protoFile.FileNameWithoutProto}(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers); \r\n");
                     }// for proto
 

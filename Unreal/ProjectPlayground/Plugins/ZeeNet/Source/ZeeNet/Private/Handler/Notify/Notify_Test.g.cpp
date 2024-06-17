@@ -7,10 +7,10 @@
 #include "ZeeNet/Private/Handler/NotifyDef.h"
 #include "ZeeNet/Public/Interface/Handler/Notify/Test.h" 
 
-FZeeNetNotifyHandlerArray* FindNotifyHandler_Test(int32 Point, TMap<const TCHAR*, FZeeNetNotifyHandlerArray>& NotifyHandlers) { 
+FZeeNetNotifyHandlerArray* FindNotifyHandler_Test(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers) { 
 	switch (Point) { 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetTestMessage>::Point: [[fallthrough]]; 
-	return NotifyHandlers.Find(TEXT("Notify_Test")); 
+	case TZeeNetMapping_UnrealToPoint<FZeeNetTestTestMessage>::Point: 
+		return NotifyHandlers.Find(TEXT("Notify_Test")); 
 	default: break; 
 	}
 
@@ -20,7 +20,7 @@ FZeeNetNotifyHandlerArray* FindNotifyHandler_Test(int32 Point, TMap<const TCHAR*
 bool ConsumeNotifyMessage_Test(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers) { 
 	const int32 PacketPoint = Packet->GetHeader().Point; 
 	switch (PacketPoint) { 
-	ZEENET_CASE_CONSUME_NOTIFY(Test, TestMessage);
+		ZEENET_CASE_CONSUME_NOTIFY(Test, TestMessage);
 	default: break; 
 	} 
 

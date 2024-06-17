@@ -27,19 +27,14 @@ namespace Zee
                     newFile.HeaderContent.Append("namespace Zee::Net::Message::Convert \r\n");
                     newFile.HeaderContent.Append("{ \r\n");
 
-                    foreach(var msg in protoFile.Messages)
+                    foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        if(!msg.IsEnum)
-                        {
-                            newFile.HeaderContent.Append($"\ttemplate<> struct TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}> {{ static constexpr int32 Point = 0x{msg.Point.ToString("X")}; }}; \r\n");
-                            newFile.HeaderContent.Append($"\ttemplate<> struct TZeeNetMapping_PointToProto<TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point> {{ using Type = {msg.UnrealProtoName}; }}; \r\n");
-                    
-                            newFile.HeaderContent.Append($"\tFORCEINLINE void FromTo(const {msg.UnrealProtoName}& InFrom, {msg.UnrealName}& OutTo);\r\n");
-                            newFile.HeaderContent.Append($"\tFORCEINLINE void FromTo(const {msg.UnrealName}& InFrom, {msg.UnrealProtoName}& OutTo);\r\n");
-                            newFile.HeaderContent.Append("\r\n");
-                            // newFile.HeaderContent.Append($"\ttemplate<> struct TIsConvertible<{msg.UnrealName}, {msg.UnrealProtoName}> {{ enum {{ Value = true }}; }};\r\n");
-                            // newFile.HeaderContent.Append($"\ttemplate<> struct TIsConvertible<{msg.UnrealProtoName}, {msg.UnrealName}> {{ enum {{ Value = true }}; }};\r\n");
-                        }
+                        newFile.HeaderContent.Append($"\ttemplate<> struct TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}> {{ static constexpr int32 Point = 0x{msg.Point.ToString("X")}; }}; \r\n");
+                        newFile.HeaderContent.Append($"\ttemplate<> struct TZeeNetMapping_PointToProto<TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point> {{ using Type = {msg.UnrealProtoName}; }}; \r\n");
+                
+                        newFile.HeaderContent.Append($"\tFORCEINLINE void FromTo(const {msg.UnrealProtoName}& InFrom, {msg.UnrealName}& OutTo);\r\n");
+                        newFile.HeaderContent.Append($"\tFORCEINLINE void FromTo(const {msg.UnrealName}& InFrom, {msg.UnrealProtoName}& OutTo);\r\n");
+                        newFile.HeaderContent.Append("\r\n");
                     }
                     newFile.HeaderContent.Append("} \r\n");
                     //Header content end.
@@ -54,49 +49,45 @@ namespace Zee
                     }
                     newFile.SrcContent.Append("\r\n");
                     
-                    foreach(var msg in protoFile.Messages)
+                    foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        if(!msg.IsEnum)
-                        {
-                            newFile.SrcContent.Append($"void Zee::Net::Message::Convert::FromTo(const {msg.UnrealProtoName}& InFrom, {msg.UnrealName}& OutTo)\r\n");
-                            newFile.SrcContent.Append("{\r\n");
-                            foreach(var prop in msg.Properties)
-                            {   
-                                if(!prop.IsArray && (prop.IsEnum || prop.IsStandardType || prop.IsStringType))
-                                {
-                                    newFile.SrcContent.Append($"\tOutTo.{prop.Name} = To<{prop.TypeToUnreal}>(InFrom.{prop.Name.ToLower()}()); \r\n");
-                                }
-                                else if(prop.IsArray && prop.IsEnum)
-                                {
-                                    newFile.SrcContent.Append($"\tOutTo.{prop.Name} = To<{prop.TypeToUnreal}>(InFrom.{prop.Name.ToLower()}()); \r\n");
-                                }
-                                else 
-                                {
-                                    newFile.SrcContent.Append($"\tFromTo(InFrom.{prop.Name.ToLower()}(), OutTo.{prop.Name}); \r\n");
-                                }
-                            }
-                            newFile.SrcContent.Append("}\r\n\r\n");
-
-                            newFile.SrcContent.Append($"void Zee::Net::Message::Convert::FromTo(const {msg.UnrealName}& InFrom, {msg.UnrealProtoName}& OutTo)\r\n");
-                            newFile.SrcContent.Append("{\r\n");
-                            foreach(var prop in msg.Properties)
+                        newFile.SrcContent.Append($"void Zee::Net::Message::Convert::FromTo(const {msg.UnrealProtoName}& InFrom, {msg.UnrealName}& OutTo)\r\n");
+                        newFile.SrcContent.Append("{\r\n");
+                        foreach(var prop in msg.Properties)
+                        {   
+                            if(!prop.IsArray && (prop.IsEnum || prop.IsStandardType || prop.IsStringType))
                             {
-                                if(!prop.IsArray && (prop.IsEnum || prop.IsStandardType || prop.IsStringType))
-                                {
-                                    newFile.SrcContent.Append($"\tOutTo.set_{prop.Name.ToLower()}(To<{prop.TypeToUnrealProto}>(InFrom.{prop.Name})); \r\n");
-                                }
-                                else if(prop.IsArray && prop.IsEnum)
-                                {
-                                    newFile.SrcContent.Append($"\t*OutTo.mutable_{prop.Name.ToLower()}() = To<int32>(InFrom.{prop.Name}); \r\n");
-                                }
-                                else //maybe struct
-                                {
-                                    newFile.SrcContent.Append($"\tFromTo(InFrom.{prop.Name}, *OutTo.mutable_{prop.Name.ToLower()}());\r\n");
-                                }
+                                newFile.SrcContent.Append($"\tOutTo.{prop.Name} = To<{prop.TypeToUnreal}>(InFrom.{prop.Name.ToLower()}()); \r\n");
                             }
-                            newFile.SrcContent.Append("}\r\n\r\n");
-
+                            else if(prop.IsArray && prop.IsEnum)
+                            {
+                                newFile.SrcContent.Append($"\tOutTo.{prop.Name} = To<{prop.TypeToUnreal}>(InFrom.{prop.Name.ToLower()}()); \r\n");
+                            }
+                            else 
+                            {
+                                newFile.SrcContent.Append($"\tFromTo(InFrom.{prop.Name.ToLower()}(), OutTo.{prop.Name}); \r\n");
+                            }
                         }
+                        newFile.SrcContent.Append("}\r\n\r\n");
+
+                        newFile.SrcContent.Append($"void Zee::Net::Message::Convert::FromTo(const {msg.UnrealName}& InFrom, {msg.UnrealProtoName}& OutTo)\r\n");
+                        newFile.SrcContent.Append("{\r\n");
+                        foreach(var prop in msg.Properties)
+                        {
+                            if(!prop.IsArray && (prop.IsEnum || prop.IsStandardType || prop.IsStringType))
+                            {
+                                newFile.SrcContent.Append($"\tOutTo.set_{prop.Name.ToLower()}(To<{prop.TypeToUnrealProto}>(InFrom.{prop.Name})); \r\n");
+                            }
+                            else if(prop.IsArray && prop.IsEnum)
+                            {
+                                newFile.SrcContent.Append($"\t*OutTo.mutable_{prop.Name.ToLower()}() = To<int32>(InFrom.{prop.Name}); \r\n");
+                            }
+                            else //maybe struct
+                            {
+                                newFile.SrcContent.Append($"\tFromTo(InFrom.{prop.Name}, *OutTo.mutable_{prop.Name.ToLower()}());\r\n");
+                            }
+                        }
+                        newFile.SrcContent.Append("}\r\n\r\n");
                     }
 
                     newFile.DoWrite();

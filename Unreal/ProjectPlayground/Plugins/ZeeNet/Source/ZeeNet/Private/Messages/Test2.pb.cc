@@ -127,23 +127,23 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_Test2_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\013Test2.proto\022\017Zee.Proto.Test2\032\nTest.pro"
-  "to\"a\n\014TestMessage5\022$\n\004msg2\030\001 \001(\0132\026.Zee.P"
-  "roto.TestMessage\022+\n\004msg3\030\002 \001(\0132\035.Zee.Pro"
-  "to.Test2.TestMessage4\"h\n\014TestMessage3\022+\n"
-  "\004msg1\030\001 \001(\0132\035.Zee.Proto.Test2.TestMessag"
-  "e2\022+\n\004msg2\030\002 \001(\0132\035.Zee.Proto.Test2.TestM"
-  "essage2\"h\n\014TestMessage4\022+\n\004msg1\030\001 \001(\0132\035."
-  "Zee.Proto.Test2.TestMessage2\022+\n\004msg2\030\002 \001"
-  "(\0132\035.Zee.Proto.Test2.TestMessage3\"3\n\014Tes"
-  "tMessage2\022#\n\003msg\030\001 \001(\0132\026.Zee.Proto.TestM"
-  "essageb\006proto3"
+  "to\"f\n\014TestMessage5\022)\n\004msg2\030\001 \001(\0132\033.Zee.P"
+  "roto.Test.TestMessage\022+\n\004msg3\030\002 \001(\0132\035.Ze"
+  "e.Proto.Test2.TestMessage4\"h\n\014TestMessag"
+  "e3\022+\n\004msg1\030\001 \001(\0132\035.Zee.Proto.Test2.TestM"
+  "essage2\022+\n\004msg2\030\002 \001(\0132\035.Zee.Proto.Test2."
+  "TestMessage2\"h\n\014TestMessage4\022+\n\004msg1\030\001 \001"
+  "(\0132\035.Zee.Proto.Test2.TestMessage2\022+\n\004msg"
+  "2\030\002 \001(\0132\035.Zee.Proto.Test2.TestMessage3\"8"
+  "\n\014TestMessage2\022(\n\003msg\030\001 \001(\0132\033.Zee.Proto."
+  "Test.TestMessageb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Test2_2eproto_deps[1] = {
   &::descriptor_table_Test_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Test2_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Test2_2eproto = {
-  false, false, 414, descriptor_table_protodef_Test2_2eproto, "Test2.proto", 
+  false, false, 424, descriptor_table_protodef_Test2_2eproto, "Test2.proto", 
   &descriptor_table_Test2_2eproto_once, descriptor_table_Test2_2eproto_deps, 1, 4,
   schemas, file_default_instances, TableStruct_Test2_2eproto::offsets,
   file_level_metadata_Test2_2eproto, file_level_enum_descriptors_Test2_2eproto, file_level_service_descriptors_Test2_2eproto,
@@ -162,11 +162,11 @@ namespace Test2 {
 
 class TestMessage5::_Internal {
  public:
-  static const ::Zee::Proto::TestMessage& msg2(const TestMessage5* msg);
+  static const ::Zee::Proto::Test::TestMessage& msg2(const TestMessage5* msg);
   static const ::Zee::Proto::Test2::TestMessage4& msg3(const TestMessage5* msg);
 };
 
-const ::Zee::Proto::TestMessage&
+const ::Zee::Proto::Test::TestMessage&
 TestMessage5::_Internal::msg2(const TestMessage5* msg) {
   return *msg->msg2_;
 }
@@ -193,7 +193,7 @@ TestMessage5::TestMessage5(const TestMessage5& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_msg2()) {
-    msg2_ = new ::Zee::Proto::TestMessage(*from.msg2_);
+    msg2_ = new ::Zee::Proto::Test::TestMessage(*from.msg2_);
   } else {
     msg2_ = nullptr;
   }
@@ -258,7 +258,7 @@ const char* TestMessage5::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .Zee.Proto.TestMessage msg2 = 1;
+      // .Zee.Proto.Test.TestMessage msg2 = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_msg2(), ptr);
@@ -303,7 +303,7 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .Zee.Proto.TestMessage msg2 = 1;
+  // .Zee.Proto.Test.TestMessage msg2 = 1;
   if (this->_internal_has_msg2()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -335,7 +335,7 @@ size_t TestMessage5::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Zee.Proto.TestMessage msg2 = 1;
+  // .Zee.Proto.Test.TestMessage msg2 = 1;
   if (this->_internal_has_msg2()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -372,7 +372,7 @@ void TestMessage5::MergeFrom(const TestMessage5& from) {
   (void) cached_has_bits;
 
   if (from._internal_has_msg2()) {
-    _internal_mutable_msg2()->::Zee::Proto::TestMessage::MergeFrom(from._internal_msg2());
+    _internal_mutable_msg2()->::Zee::Proto::Test::TestMessage::MergeFrom(from._internal_msg2());
   }
   if (from._internal_has_msg3()) {
     _internal_mutable_msg3()->::Zee::Proto::Test2::TestMessage4::MergeFrom(from._internal_msg3());
@@ -900,10 +900,10 @@ void TestMessage4::InternalSwap(TestMessage4* other) {
 
 class TestMessage2::_Internal {
  public:
-  static const ::Zee::Proto::TestMessage& msg(const TestMessage2* msg);
+  static const ::Zee::Proto::Test::TestMessage& msg(const TestMessage2* msg);
 };
 
-const ::Zee::Proto::TestMessage&
+const ::Zee::Proto::Test::TestMessage&
 TestMessage2::_Internal::msg(const TestMessage2* msg) {
   return *msg->msg_;
 }
@@ -926,7 +926,7 @@ TestMessage2::TestMessage2(const TestMessage2& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_msg()) {
-    msg_ = new ::Zee::Proto::TestMessage(*from.msg_);
+    msg_ = new ::Zee::Proto::Test::TestMessage(*from.msg_);
   } else {
     msg_ = nullptr;
   }
@@ -978,7 +978,7 @@ const char* TestMessage2::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .Zee.Proto.TestMessage msg = 1;
+      // .Zee.Proto.Test.TestMessage msg = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_msg(), ptr);
@@ -1015,7 +1015,7 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .Zee.Proto.TestMessage msg = 1;
+  // .Zee.Proto.Test.TestMessage msg = 1;
   if (this->_internal_has_msg()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1039,7 +1039,7 @@ size_t TestMessage2::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Zee.Proto.TestMessage msg = 1;
+  // .Zee.Proto.Test.TestMessage msg = 1;
   if (this->_internal_has_msg()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1069,7 +1069,7 @@ void TestMessage2::MergeFrom(const TestMessage2& from) {
   (void) cached_has_bits;
 
   if (from._internal_has_msg()) {
-    _internal_mutable_msg()->::Zee::Proto::TestMessage::MergeFrom(from._internal_msg());
+    _internal_mutable_msg()->::Zee::Proto::Test::TestMessage::MergeFrom(from._internal_msg());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }

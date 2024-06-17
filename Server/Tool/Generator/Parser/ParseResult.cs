@@ -335,6 +335,7 @@ namespace Zee
         public readonly string ScopeString = string.Empty;
         public readonly List<ProtoFileDependency> ProtoFileDependencies = new();
         public List<Message> Messages = new();
+        public List<Message> NonEnumMessages = new();
         private readonly ParseResult parseResult;
         public void BindDependcy()
         {
@@ -353,12 +354,13 @@ namespace Zee
                 {
                     continue;
                 }
-                
                 msg.Point = ++point;
                 foreach(var prop in msg.Properties)
                 {
                     prop.Build();
                 }
+                
+                NonEnumMessages.Add(msg);
             }
         }
         static private List<Message> sortMessageByInternalDependency(List<Message> messages)

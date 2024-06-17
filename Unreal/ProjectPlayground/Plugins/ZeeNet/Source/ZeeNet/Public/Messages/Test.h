@@ -7,13 +7,13 @@
 #include "Test.generated.h"
 
 UENUM(BlueprintType) 
-enum class EZeeNetReturnCode : uint8 
+enum class EZeeNetTestReturnCode : uint8 
 { 
 	RC_SUCCESSS = 0,
 }; 
 
 USTRUCT(BlueprintType) 
-struct FZeeNetTestMessage 
+struct FZeeNetTestTestMessage 
 { 
 	GENERATED_BODY()
 
@@ -21,7 +21,7 @@ struct FZeeNetTestMessage
 	TArray<int32> RC; 
 
 	UPROPERTY(BlueprintReadWrite) 
-	TArray<EZeeNetReturnCode> RCLists; 
+	TArray<EZeeNetTestReturnCode> RCLists; 
 
 	UPROPERTY(BlueprintReadWrite) 
 	FString Id; 
@@ -30,6 +30,6 @@ struct FZeeNetTestMessage
 	FString Content; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTestMessage> { static constexpr int32 Point = 0x4001; }; 
-template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTestMessage>::Point> { using Type = FZeeNetTestMessage; }; 
+template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTestTestMessage> { static constexpr int32 Point = 0x4001; }; 
+template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTestTestMessage>::Point> { using Type = FZeeNetTestTestMessage; }; 
 

@@ -11,9 +11,9 @@
 enum class EZeeNetRequestHandlerResponse : uint8;
 
 class ZEENET_API FZeeNetClient
-	: public TSharedFromThis<FZeeNetClient>
-	, public FRunnable
+	: public FRunnable
 	, public IZeeNetResponser
+	, public TSharedFromThis<FZeeNetClient>
 {
 public:
 	static constexpr size_t BufferSize = 1024;
@@ -114,9 +114,8 @@ public:
 	bool IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& InHandler) const;
 
 private:
-	TMap<const TCHAR*, TArray<TWeakPtr<struct IZeeNetNotifyHandler>>> NotifyHandlers;
-	//전역변수로 정의하는것이 맞음.
-	static TSet<const TCHAR*> ValidNotifyHandlerNames;
+	TMap<FString, TArray<TWeakPtr<struct IZeeNetNotifyHandler>>> NotifyHandlers;
+	static TSet<FString> ValidNotifyHandlerNames;
 
 	void CheckNotifyHandlers();
 	//implemented in Private/Handler/Notify.g.cpp
@@ -137,11 +136,12 @@ public:
 	bool IsInRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& InHandler) const;
 
 	float GetRequestTimeoutSec() const { return RequestTimeoutSec; }
+	
+	//TODO:: 요청타임아웃 설정시키고.. 타임아웃이 지나면 자동 리스폰스
 	void SetRequestTimeoutSec(float NewRequestTimeoutSec) { }
 private:
-	TMap<const TCHAR*, TArray<TWeakPtr<struct IZeeNetRequestHandler>>> RequestHandlers;
-	//전역변수로 정의하는것이 맞음.
-	static TSet<const TCHAR*> ValidRequestHandlerNames;
+	TMap<FString, TArray<TWeakPtr<struct IZeeNetRequestHandler>>> RequestHandlers;
+	static TSet<FString> ValidRequestHandlerNames;
 	float RequestTimeoutSec = 10.0f;
 
 	mutable FCriticalSection MtxRequestPendingPackets;

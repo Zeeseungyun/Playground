@@ -1,5 +1,5 @@
 syntax = "proto3";
-package Zee.Proto;
+package Zee.Proto.Test;
 
 enum ReturnCode {
     RC_SUCCESSS = 0;

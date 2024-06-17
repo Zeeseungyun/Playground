@@ -9,10 +9,9 @@
 struct ZEENET_API IZeeNetNotifyHandler_Chat 
 	: public IZeeNetNotifyHandler 
 {
-	const TCHAR* GetHandlerName() const final { return TEXT("Notify_Chat"); } 
+	const FString& GetHandlerName() const final { static FString Name = TEXT("Notify_Chat"); return Name; } 
 
 	virtual void OnNotify(const FZeeNetChatSpeak& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetChatSpeak'")); } 
 	virtual void OnNotify(const FZeeNetChatSpeak1& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetChatSpeak1'")); } 
 };
-
 

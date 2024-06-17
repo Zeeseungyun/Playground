@@ -56,16 +56,19 @@ struct TableStruct_Test_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Test_2eproto;
 namespace Zee {
 namespace Proto {
+namespace Test {
 class TestMessage;
 struct TestMessageDefaultTypeInternal;
 extern TestMessageDefaultTypeInternal _TestMessage_default_instance_;
+}  // namespace Test
 }  // namespace Proto
 }  // namespace Zee
 PROTOBUF_NAMESPACE_OPEN
-template<> ::Zee::Proto::TestMessage* Arena::CreateMaybeMessage<::Zee::Proto::TestMessage>(Arena*);
+template<> ::Zee::Proto::Test::TestMessage* Arena::CreateMaybeMessage<::Zee::Proto::Test::TestMessage>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Zee {
 namespace Proto {
+namespace Test {
 
 enum ReturnCode : int {
   RC_SUCCESSS = 0,
@@ -94,7 +97,7 @@ inline bool ReturnCode_Parse(
 // ===================================================================
 
 class TestMessage final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Zee.Proto.TestMessage) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Zee.Proto.Test.TestMessage) */ {
  public:
   inline TestMessage() : TestMessage(nullptr) {}
   ~TestMessage() override;
@@ -192,7 +195,7 @@ class TestMessage final :
   void InternalSwap(TestMessage* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Zee.Proto.TestMessage";
+    return "Zee.Proto.Test.TestMessage";
   }
   protected:
   explicit TestMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -239,20 +242,20 @@ class TestMessage final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
       mutable_rc();
 
-  // repeated .Zee.Proto.ReturnCode RCLists = 2;
+  // repeated .Zee.Proto.Test.ReturnCode RCLists = 2;
   int rclists_size() const;
   private:
   int _internal_rclists_size() const;
   public:
   void clear_rclists();
   private:
-  ::Zee::Proto::ReturnCode _internal_rclists(int index) const;
-  void _internal_add_rclists(::Zee::Proto::ReturnCode value);
+  ::Zee::Proto::Test::ReturnCode _internal_rclists(int index) const;
+  void _internal_add_rclists(::Zee::Proto::Test::ReturnCode value);
   ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* _internal_mutable_rclists();
   public:
-  ::Zee::Proto::ReturnCode rclists(int index) const;
-  void set_rclists(int index, ::Zee::Proto::ReturnCode value);
-  void add_rclists(::Zee::Proto::ReturnCode value);
+  ::Zee::Proto::Test::ReturnCode rclists(int index) const;
+  void set_rclists(int index, ::Zee::Proto::Test::ReturnCode value);
+  void add_rclists(::Zee::Proto::Test::ReturnCode value);
   const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>& rclists() const;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* mutable_rclists();
 
@@ -284,7 +287,7 @@ class TestMessage final :
   std::string* _internal_mutable_content();
   public:
 
-  // @@protoc_insertion_point(class_scope:Zee.Proto.TestMessage)
+  // @@protoc_insertion_point(class_scope:Zee.Proto.Test.TestMessage)
  private:
   class _Internal;
 
@@ -325,19 +328,19 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 TestMessage::_internal_rc(int index) const
   return rc_.Get(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 TestMessage::rc(int index) const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.TestMessage.RC)
+  // @@protoc_insertion_point(field_get:Zee.Proto.Test.TestMessage.RC)
   return _internal_rc(index);
 }
 inline void TestMessage::set_rc(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
   rc_.Set(index, value);
-  // @@protoc_insertion_point(field_set:Zee.Proto.TestMessage.RC)
+  // @@protoc_insertion_point(field_set:Zee.Proto.Test.TestMessage.RC)
 }
 inline void TestMessage::_internal_add_rc(::PROTOBUF_NAMESPACE_ID::int32 value) {
   rc_.Add(value);
 }
 inline void TestMessage::add_rc(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_add_rc(value);
-  // @@protoc_insertion_point(field_add:Zee.Proto.TestMessage.RC)
+  // @@protoc_insertion_point(field_add:Zee.Proto.Test.TestMessage.RC)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
 TestMessage::_internal_rc() const {
@@ -345,7 +348,7 @@ TestMessage::_internal_rc() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
 TestMessage::rc() const {
-  // @@protoc_insertion_point(field_list:Zee.Proto.TestMessage.RC)
+  // @@protoc_insertion_point(field_list:Zee.Proto.Test.TestMessage.RC)
   return _internal_rc();
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
@@ -354,11 +357,11 @@ TestMessage::_internal_mutable_rc() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
 TestMessage::mutable_rc() {
-  // @@protoc_insertion_point(field_mutable_list:Zee.Proto.TestMessage.RC)
+  // @@protoc_insertion_point(field_mutable_list:Zee.Proto.Test.TestMessage.RC)
   return _internal_mutable_rc();
 }
 
-// repeated .Zee.Proto.ReturnCode RCLists = 2;
+// repeated .Zee.Proto.Test.ReturnCode RCLists = 2;
 inline int TestMessage::_internal_rclists_size() const {
   return rclists_.size();
 }
@@ -368,27 +371,27 @@ inline int TestMessage::rclists_size() const {
 inline void TestMessage::clear_rclists() {
   rclists_.Clear();
 }
-inline ::Zee::Proto::ReturnCode TestMessage::_internal_rclists(int index) const {
-  return static_cast< ::Zee::Proto::ReturnCode >(rclists_.Get(index));
+inline ::Zee::Proto::Test::ReturnCode TestMessage::_internal_rclists(int index) const {
+  return static_cast< ::Zee::Proto::Test::ReturnCode >(rclists_.Get(index));
 }
-inline ::Zee::Proto::ReturnCode TestMessage::rclists(int index) const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.TestMessage.RCLists)
+inline ::Zee::Proto::Test::ReturnCode TestMessage::rclists(int index) const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.Test.TestMessage.RCLists)
   return _internal_rclists(index);
 }
-inline void TestMessage::set_rclists(int index, ::Zee::Proto::ReturnCode value) {
+inline void TestMessage::set_rclists(int index, ::Zee::Proto::Test::ReturnCode value) {
   rclists_.Set(index, value);
-  // @@protoc_insertion_point(field_set:Zee.Proto.TestMessage.RCLists)
+  // @@protoc_insertion_point(field_set:Zee.Proto.Test.TestMessage.RCLists)
 }
-inline void TestMessage::_internal_add_rclists(::Zee::Proto::ReturnCode value) {
+inline void TestMessage::_internal_add_rclists(::Zee::Proto::Test::ReturnCode value) {
   rclists_.Add(value);
 }
-inline void TestMessage::add_rclists(::Zee::Proto::ReturnCode value) {
+inline void TestMessage::add_rclists(::Zee::Proto::Test::ReturnCode value) {
   _internal_add_rclists(value);
-  // @@protoc_insertion_point(field_add:Zee.Proto.TestMessage.RCLists)
+  // @@protoc_insertion_point(field_add:Zee.Proto.Test.TestMessage.RCLists)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>&
 TestMessage::rclists() const {
-  // @@protoc_insertion_point(field_list:Zee.Proto.TestMessage.RCLists)
+  // @@protoc_insertion_point(field_list:Zee.Proto.Test.TestMessage.RCLists)
   return rclists_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
@@ -397,7 +400,7 @@ TestMessage::_internal_mutable_rclists() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
 TestMessage::mutable_rclists() {
-  // @@protoc_insertion_point(field_mutable_list:Zee.Proto.TestMessage.RCLists)
+  // @@protoc_insertion_point(field_mutable_list:Zee.Proto.Test.TestMessage.RCLists)
   return _internal_mutable_rclists();
 }
 
@@ -406,7 +409,7 @@ inline void TestMessage::clear_id() {
   id_.ClearToEmpty();
 }
 inline const std::string& TestMessage::id() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.TestMessage.Id)
+  // @@protoc_insertion_point(field_get:Zee.Proto.Test.TestMessage.Id)
   return _internal_id();
 }
 template <typename ArgT0, typename... ArgT>
@@ -414,11 +417,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void TestMessage::set_id(ArgT0&& arg0, ArgT... args) {
  
  id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Zee.Proto.TestMessage.Id)
+  // @@protoc_insertion_point(field_set:Zee.Proto.Test.TestMessage.Id)
 }
 inline std::string* TestMessage::mutable_id() {
   std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:Zee.Proto.TestMessage.Id)
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.Test.TestMessage.Id)
   return _s;
 }
 inline const std::string& TestMessage::_internal_id() const {
@@ -433,7 +436,7 @@ inline std::string* TestMessage::_internal_mutable_id() {
   return id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* TestMessage::release_id() {
-  // @@protoc_insertion_point(field_release:Zee.Proto.TestMessage.Id)
+  // @@protoc_insertion_point(field_release:Zee.Proto.Test.TestMessage.Id)
   return id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void TestMessage::set_allocated_id(std::string* id) {
@@ -444,7 +447,7 @@ inline void TestMessage::set_allocated_id(std::string* id) {
   }
   id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), id,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.TestMessage.Id)
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Test.TestMessage.Id)
 }
 
 // string Content = 4;
@@ -452,7 +455,7 @@ inline void TestMessage::clear_content() {
   content_.ClearToEmpty();
 }
 inline const std::string& TestMessage::content() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.TestMessage.Content)
+  // @@protoc_insertion_point(field_get:Zee.Proto.Test.TestMessage.Content)
   return _internal_content();
 }
 template <typename ArgT0, typename... ArgT>
@@ -460,11 +463,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void TestMessage::set_content(ArgT0&& arg0, ArgT... args) {
  
  content_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Zee.Proto.TestMessage.Content)
+  // @@protoc_insertion_point(field_set:Zee.Proto.Test.TestMessage.Content)
 }
 inline std::string* TestMessage::mutable_content() {
   std::string* _s = _internal_mutable_content();
-  // @@protoc_insertion_point(field_mutable:Zee.Proto.TestMessage.Content)
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.Test.TestMessage.Content)
   return _s;
 }
 inline const std::string& TestMessage::_internal_content() const {
@@ -479,7 +482,7 @@ inline std::string* TestMessage::_internal_mutable_content() {
   return content_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* TestMessage::release_content() {
-  // @@protoc_insertion_point(field_release:Zee.Proto.TestMessage.Content)
+  // @@protoc_insertion_point(field_release:Zee.Proto.Test.TestMessage.Content)
   return content_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void TestMessage::set_allocated_content(std::string* content) {
@@ -490,7 +493,7 @@ inline void TestMessage::set_allocated_content(std::string* content) {
   }
   content_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), content,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.TestMessage.Content)
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Test.TestMessage.Content)
 }
 
 #ifdef __GNUC__
@@ -499,15 +502,16 @@ inline void TestMessage::set_allocated_content(std::string* content) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace Test
 }  // namespace Proto
 }  // namespace Zee
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::Zee::Proto::ReturnCode> : ::std::true_type {};
+template <> struct is_proto_enum< ::Zee::Proto::Test::ReturnCode> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Zee::Proto::ReturnCode>() {
-  return ::Zee::Proto::ReturnCode_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Zee::Proto::Test::ReturnCode>() {
+  return ::Zee::Proto::Test::ReturnCode_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

@@ -13,7 +13,7 @@ struct FZeeNetTest2TestMessage2
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite) 
-	FZeeNetTestMessage msg; 
+	FZeeNetTestTestMessage msg; 
 
 }; 
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage2> { static constexpr int32 Point = 0x5004; }; 
@@ -55,7 +55,7 @@ struct FZeeNetTest2TestMessage5
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite) 
-	FZeeNetTestMessage msg2; 
+	FZeeNetTestTestMessage msg2; 
 
 	UPROPERTY(BlueprintReadWrite) 
 	FZeeNetTest2TestMessage4 msg3; 

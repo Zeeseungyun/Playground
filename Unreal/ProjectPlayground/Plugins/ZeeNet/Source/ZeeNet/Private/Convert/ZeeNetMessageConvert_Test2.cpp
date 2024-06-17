@@ -4,14 +4,16 @@
 #include "ZeeNet/Private/Convert/ZeeNetMessageConvert_Test2.h" 
 #include "ZeeNet/Private/Convert/ZeeNetMessageConvert_Test.h" 
 
-void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Test2::TestMessage2& InFrom, FZeeNetTest2TestMessage2& OutTo)
+void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Test2::TestMessage5& InFrom, FZeeNetTest2TestMessage5& OutTo)
 {
-	FromTo(InFrom.msg(), OutTo.msg); 
+	FromTo(InFrom.msg2(), OutTo.msg2); 
+	FromTo(InFrom.msg3(), OutTo.msg3); 
 }
 
-void Zee::Net::Message::Convert::FromTo(const FZeeNetTest2TestMessage2& InFrom, Zee::Proto::Test2::TestMessage2& OutTo)
+void Zee::Net::Message::Convert::FromTo(const FZeeNetTest2TestMessage5& InFrom, Zee::Proto::Test2::TestMessage5& OutTo)
 {
-	FromTo(InFrom.msg, *OutTo.mutable_msg());
+	FromTo(InFrom.msg2, *OutTo.mutable_msg2());
+	FromTo(InFrom.msg3, *OutTo.mutable_msg3());
 }
 
 void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Test2::TestMessage3& InFrom, FZeeNetTest2TestMessage3& OutTo)
@@ -38,15 +40,13 @@ void Zee::Net::Message::Convert::FromTo(const FZeeNetTest2TestMessage4& InFrom, 
 	FromTo(InFrom.msg2, *OutTo.mutable_msg2());
 }
 
-void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Test2::TestMessage5& InFrom, FZeeNetTest2TestMessage5& OutTo)
+void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Test2::TestMessage2& InFrom, FZeeNetTest2TestMessage2& OutTo)
 {
-	FromTo(InFrom.msg2(), OutTo.msg2); 
-	FromTo(InFrom.msg3(), OutTo.msg3); 
+	FromTo(InFrom.msg(), OutTo.msg); 
 }
 
-void Zee::Net::Message::Convert::FromTo(const FZeeNetTest2TestMessage5& InFrom, Zee::Proto::Test2::TestMessage5& OutTo)
+void Zee::Net::Message::Convert::FromTo(const FZeeNetTest2TestMessage2& InFrom, Zee::Proto::Test2::TestMessage2& OutTo)
 {
-	FromTo(InFrom.msg2, *OutTo.mutable_msg2());
-	FromTo(InFrom.msg3, *OutTo.mutable_msg3());
+	FromTo(InFrom.msg, *OutTo.mutable_msg());
 }
 

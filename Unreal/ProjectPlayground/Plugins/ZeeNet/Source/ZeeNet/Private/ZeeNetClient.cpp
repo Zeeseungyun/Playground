@@ -191,16 +191,16 @@ void FZeeNetClient::UnregisterNotifyHandler(const TSharedPtr<struct IZeeNetNotif
 	}
 }
 
-bool FZeeNetClient::IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& Handler) const
+bool FZeeNetClient::IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& InHandler) const
 {
-	if (!Handler.IsValid())
+	if (!InHandler.IsValid())
 	{
 		return false;
 	}
 
-	checkf(ValidNotifyHandlerNames.Contains(Handler->GetHandlerName()), TEXT("invalid notify handler name. %s"), Handler->GetHandlerName());
+	checkf(ValidNotifyHandlerNames.Contains(InHandler->GetHandlerName()), TEXT("invalid notify handler name. %s"), *InHandler->GetHandlerName());
 
-	const TArray<TWeakPtr<struct IZeeNetNotifyHandler>>* const FoundHandlers = NotifyHandlers.Find(Handler->GetHandlerName());
+	const TArray<TWeakPtr<struct IZeeNetNotifyHandler>>* const FoundHandlers = NotifyHandlers.Find(InHandler->GetHandlerName());
 	if (!FoundHandlers)
 	{
 		return false;
@@ -213,7 +213,7 @@ bool FZeeNetClient::IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandl
 			continue;
 		}
 
-		if (Elem.Pin() == Handler)
+		if (Elem.Pin() == InHandler)
 		{
 			return true;
 		}
@@ -221,6 +221,8 @@ bool FZeeNetClient::IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandl
 
 	return false;
 }
+
+TSet<FString> FZeeNetClient::ValidNotifyHandlerNames;
 
 void FZeeNetClient::CheckNotifyHandlers()
 {
@@ -243,22 +245,94 @@ void FZeeNetClient::CheckNotifyHandlers()
 
 bool FZeeNetClient::RegisterRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& NewHandler)
 {
+	CheckRequestHandlers();
 
+	if (!NewHandler.IsValid())
+	{
+		return false;
+	}
+
+	if (IsInRequestHandler(NewHandler))
+	{
+		return true;
+	}
+
+	//TODO:: 정렬시켜서 삽입해야함.
+	// RequestHandlers.FindOrAdd(NewHandler->GetHandlerName()).Add(NewHandler);
+	
+	return true;
 }
 
 void FZeeNetClient::UnregisterRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& NewHandler)
 {
+	bool bWasRemoved = false;
+	if (!NewHandler.IsValid())
+	{
+		return;
+	}
 
+	TArray<TWeakPtr<struct IZeeNetRequestHandler>>* const FoundHandlers = RequestHandlers.Find(NewHandler->GetHandlerName());
+	if (!FoundHandlers)
+	{
+		return;
+	}
+
+	TArray<TWeakPtr<struct IZeeNetRequestHandler>>& Handlers = *FoundHandlers;
+	for (int32 i = 0; i != Handlers.Num();)
+	{
+		if (!Handlers[i].IsValid())
+		{
+			Handlers.RemoveAt(i);
+		}
+		else if (Handlers[i].Pin() == NewHandler)
+		{
+			Handlers.RemoveAt(i);
+			return;
+		}
+		else
+		{
+			++i;
+		}
+	}
 }
 
 bool FZeeNetClient::IsInRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& InHandler) const
 {
+	if (!InHandler.IsValid())
+	{
+		return false;
+	}
+
+	checkf(ValidRequestHandlerNames.Contains(InHandler->GetHandlerName()), TEXT("invalid Request handler name. %s"), *InHandler->GetHandlerName());
+
+	const TArray<TWeakPtr<struct IZeeNetRequestHandler>>* const FoundHandlers = RequestHandlers.Find(InHandler->GetHandlerName());
+	if (!FoundHandlers)
+	{
+		return false;
+	}
+
+	for (const TWeakPtr<struct IZeeNetRequestHandler>& Elem : *FoundHandlers)
+	{
+		if (!Elem.IsValid())
+		{
+			continue;
+		}
+
+		if (Elem.Pin() == InHandler)
+		{
+			return true;
+		}
+	}
+
 	return false;
 }
 
+TSet<FString> FZeeNetClient::ValidRequestHandlerNames;
+
 void FZeeNetClient::CheckRequestHandlers()
 {
-
+	// TODO:: 우선순위 기준 정렬
+	// RequestHandlers
 }
 
 
@@ -302,8 +376,7 @@ void FZeeNetClient::Recv()
 	// 	FScopeLock Lock(&MtxPendingPackets);
 	// 	PendingPackets.Add(Packet);
 	// }
-
-	//아랫 쪽 윗 주석 없애서 게임스레드에서 호출되도록 구현해야함.
+	//TODO:: 아랫 쪽 윗 주석 없애서 게임스레드에서 호출되도록 구현해야함.
 	switch (Packet->GetHeader().PacketType)
 	{
 	case EZeeNetPacketType::Response:
@@ -377,6 +450,16 @@ void FZeeNetClient::Send(int32 InPoint, int32 InSequence, EZeeNetPacketType InPa
 
 EZeeNetReponseType FZeeNetClient::Response_Impl(const void* InPacketRawPtr) /* final */
 {
+	if (!Socket.IsValid())
+	{
+		return EZeeNetReponseType::SocketError;
+	}
+
+	if (Socket->GetConnectionState() != ESocketConnectionState::SCS_Connected)
+	{
+		return EZeeNetReponseType::SocketError;
+	}
+
 	const FZeeNetPacketHeader* HeaderPtr = reinterpret_cast<const FZeeNetPacketHeader*>(InPacketRawPtr);
 	check(HeaderPtr->PacketType == EZeeNetPacketType::Request);
 
@@ -386,4 +469,5 @@ EZeeNetReponseType FZeeNetClient::Response_Impl(const void* InPacketRawPtr) /* f
 	HeaderPtr++; //offset move.
 
 	Send(MsgPoint, MsgSequence, EZeeNetPacketType::Response, HeaderPtr /*maybe message ptr.*/);
+	return EZeeNetReponseType::Succeess;
 }

@@ -29,7 +29,7 @@ namespace Zee
         public static string UnrealInterfaceRequestHandlerDir => Path.GetFullPath(Path.Combine(UnrealInterfaceHandlerDir, "Request"));
         public static string UnrealResponserFile => Path.GetFullPath(Path.Combine(UnrealInterfaceDir, "ZeeNetResponser.h"));
         public static string UnrealNotifyHandlerFile => Path.GetFullPath(Path.Combine(UnrealInterfaceHandlerDir, "ZeeNetNotifyHandler.h"));
-        public static string UnrealRequestHandlerFile => Path.GetFullPath(Path.Combine(UnrealInterfaceHandlerDir, "ZeeNetNotifyHandler.h"));
+        public static string UnrealRequestHandlerFile => Path.GetFullPath(Path.Combine(UnrealInterfaceHandlerDir, "ZeeNetRequestHandler.h"));
         public static string UnrealConsumeNotifyHandlerDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private", "Handler", "Notify"));
         public static string UnrealConsumeNotifyFile => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private", "Handler", "Notify.g.cpp"));
         public static string UnrealConsumeRequestHandlerDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private", "Handler", "Request"));
@@ -54,6 +54,8 @@ namespace Zee
             files.Add(UnrealMessageSerializerSrcFile);
             files.AddRange(Directory.GetFiles(UnrealConsumeNotifyHandlerDir, "*.*"));
             files.Add(UnrealConsumeNotifyFile);
+            files.AddRange(Directory.GetFiles(UnrealConsumeRequestHandlerDir, "*.*"));
+            files.Add(UnrealConsumeRequestFile);
 
             files.AddRange(Directory.GetFiles(CSharpProtoMessageDir, "*.*"));
             files.Add(CSharpNotifierFile);

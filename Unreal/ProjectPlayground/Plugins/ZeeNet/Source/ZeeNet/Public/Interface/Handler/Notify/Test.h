@@ -9,9 +9,8 @@
 struct ZEENET_API IZeeNetNotifyHandler_Test 
 	: public IZeeNetNotifyHandler 
 {
-	const TCHAR* GetHandlerName() const final { return TEXT("Notify_Test"); } 
+	const FString& GetHandlerName() const final { static FString Name = TEXT("Notify_Test"); return Name; } 
 
-	virtual void OnNotify(const FZeeNetTestMessage& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetTestMessage'")); } 
+	virtual void OnNotify(const FZeeNetTestTestMessage& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetTestTestMessage'")); } 
 };
-
 

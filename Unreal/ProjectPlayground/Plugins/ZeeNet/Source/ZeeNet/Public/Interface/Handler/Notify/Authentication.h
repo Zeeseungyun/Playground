@@ -9,10 +9,9 @@
 struct ZEENET_API IZeeNetNotifyHandler_Authentication 
 	: public IZeeNetNotifyHandler 
 {
-	const TCHAR* GetHandlerName() const final { return TEXT("Notify_Authentication"); } 
+	const FString& GetHandlerName() const final { static FString Name = TEXT("Notify_Authentication"); return Name; } 
 
 	virtual void OnNotify(const FZeeNetAuthenticationLogin& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetAuthenticationLogin'")); } 
 	virtual void OnNotify(const FZeeNetAuthenticationLogout& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetAuthenticationLogout'")); } 
 };
-
 

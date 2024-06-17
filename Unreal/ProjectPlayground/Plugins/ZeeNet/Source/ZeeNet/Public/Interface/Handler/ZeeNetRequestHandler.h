@@ -22,7 +22,7 @@ struct ZEENET_API IZeeNetRequestHandler
 {
 public:
 	virtual ~IZeeNetRequestHandler() = default;
-	virtual const TCHAR* GetHandlerName() const = 0;
+	virtual const FString& GetHandlerName() const = 0;
 	//응답 우선 순위 숫자가 작을 수록 우선 순위가 올라감.
 	virtual int32 GetPriority() const { return 0; }
 };

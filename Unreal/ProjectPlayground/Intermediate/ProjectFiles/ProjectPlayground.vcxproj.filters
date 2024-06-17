@@ -142,6 +142,15 @@
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Authentication.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Chat.g.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Test.g.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Test2.g.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
+    </ClCompile>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Messages">
       <UniqueIdentifier>{5C67FD0B-6922-30DD-8A05-3F8491D2144D}</UniqueIdentifier>
     </Filter>
@@ -219,6 +228,21 @@
     </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Test2.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify</Filter>
+    </ClInclude>
+    <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request">
+      <UniqueIdentifier>{7E32780F-45F8-3B47-9F32-369D1003044B}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Authentication.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Chat.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Test.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Test2.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
     </ClInclude>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public\Messages">
       <UniqueIdentifier>{ADBBECE9-935A-35A5-93B2-37BC2ACE052F}</UniqueIdentifier>

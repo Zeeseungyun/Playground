@@ -7,11 +7,11 @@
 #include "ZeeNet/Private/Handler/NotifyDef.h"
 #include "ZeeNet/Public/Interface/Handler/Notify/Chat.h" 
 
-FZeeNetNotifyHandlerArray* FindNotifyHandler_Chat(int32 Point, TMap<const TCHAR*, FZeeNetNotifyHandlerArray>& NotifyHandlers) { 
+FZeeNetNotifyHandlerArray* FindNotifyHandler_Chat(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers) { 
 	switch (Point) { 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak>::Point: [[fallthrough]]; 
 	case TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak1>::Point: [[fallthrough]]; 
-	return NotifyHandlers.Find(TEXT("Notify_Chat")); 
+	case TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak>::Point: 
+		return NotifyHandlers.Find(TEXT("Notify_Chat")); 
 	default: break; 
 	}
 
@@ -21,8 +21,8 @@ FZeeNetNotifyHandlerArray* FindNotifyHandler_Chat(int32 Point, TMap<const TCHAR*
 bool ConsumeNotifyMessage_Chat(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers) { 
 	const int32 PacketPoint = Packet->GetHeader().Point; 
 	switch (PacketPoint) { 
-	ZEENET_CASE_CONSUME_NOTIFY(Chat, Speak);
-	ZEENET_CASE_CONSUME_NOTIFY(Chat, Speak1);
+		ZEENET_CASE_CONSUME_NOTIFY(Chat, Speak1);
+		ZEENET_CASE_CONSUME_NOTIFY(Chat, Speak);
 	default: break; 
 	} 
 

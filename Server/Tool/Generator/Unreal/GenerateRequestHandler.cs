@@ -41,7 +41,7 @@ namespace Zee
                     newFile.HeaderContent.Append($"struct ZEENET_API IZeeNetRequestHandler_{newFile.NameWihtoutProto} \r\n");
                     newFile.HeaderContent.Append($"\t: public IZeeNetRequestHandler \r\n");
                     newFile.HeaderContent.Append($"{{\r\n");
-                    newFile.HeaderContent.Append($"\tconst TCHAR* GetHandlerName() const final {{ return TEXT(\"Request_{newFile.NameWihtoutProto}\"); }} \r\n");
+                    newFile.HeaderContent.Append($"\tconst FString& GetHandlerName() const final {{ static FString Name = TEXT(\"Request_{newFile.NameWihtoutProto}\"); return Name; }} \r\n");
                     newFile.HeaderContent.Append("\r\n");
 
                     foreach(var msg in protoFile.Messages)
@@ -73,19 +73,25 @@ namespace Zee
                     var relativeHeaderFile = Path.GetRelativePath(UnrealZeeNetDir, newFile.HeaderFileName);
                     relativeHeaderFile = relativeHeaderFile.Replace("\\", "/");
                     newFile.SrcContent.Append($"#include \"ZeeNet/{relativeHeaderFile}\" \r\n");
+                    newFile.SrcContent.Append($"#include \"ZeeNet/{relativeHeaderFile}\" \r\n");
                     newFile.SrcContent.Append("\r\n");
 
-                    newFile.SrcContent.Append($"FZeeNetRequestHandlerArray* FindRequestHandler_{newFile.NameWihtoutProto}(int32 Point, TMap<const TCHAR*, FZeeNetRequestHandlerArray>& RequestHandlers) {{ \r\n");
+                    newFile.SrcContent.Append($"FZeeNetRequestHandlerArray* FindRequestHandler_{newFile.NameWihtoutProto}(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers) {{ \r\n");
                     newFile.SrcContent.Append($"\tswitch (Point) {{ \r\n");
-                    foreach(var msg in protoFile.Messages)
+                    foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        if(!msg.IsEnum)
+                        newFile.SrcContent.Append($"\tcase TZeeNetMapping_UnrealToPoint<{msg.UnrealName}>::Point: ");
+                        if(protoFile.NonEnumMessages.Last() != msg)
                         {
-                            newFile.SrcContent.Append($"\tcase TZeeNetMapping_UnrealToPoint<{msg.UnrealName}>::Point: [[fallthrough]]; \r\n");
+                            newFile.SrcContent.Append("[[fallthrough]]; \r\n");
+                        }
+                        else
+                        {
+                            newFile.SrcContent.Append("\r\n");
                         }
                     }
 
-                    newFile.SrcContent.Append($"\treturn RequestHandlers.Find(TEXT(\"Request_{newFile.NameWihtoutProto}\")); \r\n");
+                    newFile.SrcContent.Append($"\t\treturn RequestHandlers.Find(TEXT(\"Request_{newFile.NameWihtoutProto}\")); \r\n");
                     newFile.SrcContent.Append($"\tdefault: break; \r\n");
                     newFile.SrcContent.Append($"\t}}\r\n");
                     newFile.SrcContent.Append("\r\n");
@@ -93,15 +99,12 @@ namespace Zee
                     newFile.SrcContent.Append("}\r\n");
                     newFile.SrcContent.Append("\r\n");
 
-                    newFile.SrcContent.Append($"bool ConsumeRequestMessage_{newFile.NameWihtoutProto}(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetRequestHandlerArray& RequestHandlers) {{ \r\n");
+                    newFile.SrcContent.Append($"EZeeNetRequestHandlerResponse ConsumeRequestMessage_{newFile.NameWihtoutProto}(TSharedPtr<IZeeNetResponser> Responser\r\n\t, TSharedPtr<struct FZeeNetPacketSerializerBase> Packet\r\n\t, FZeeNetRequestHandlerArray& RequestHandlers) {{ \r\n");
                     newFile.SrcContent.Append($"\tconst int32 PacketPoint = Packet->GetHeader().Point; \r\n");
                     newFile.SrcContent.Append($"\tswitch (PacketPoint) {{ \r\n");
-                    foreach(var msg in protoFile.Messages)
+                    foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        if(!msg.IsEnum)
-                        {
-                            newFile.SrcContent.Append($"\tZEENET_CASE_CONSUME_REQUEST({newFile.NameWihtoutProto}, {msg.Name});\r\n");
-                        }
+                        newFile.SrcContent.Append($"\t\tZEENET_CASE_CONSUME_REQUEST({newFile.NameWihtoutProto}, {msg.Name});\r\n");
                     }
 
                     newFile.SrcContent.Append($"\tdefault: break; \r\n");
@@ -133,14 +136,16 @@ namespace Zee
                             continue;
                         }
 
-                        newFile.SrcContent.Append($"extern FZeeNetRequestHandlerArray* FindRequestHandler_{protoFile.FileNameWithoutProto}(int32 Point, TMap<const TCHAR*, FZeeNetRequestHandlerArray>& RequestHandlers); \r\n");
-                        newFile.SrcContent.Append($"extern bool ConsumeRequestMessage_{protoFile.FileNameWithoutProto}(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetRequestHandlerArray& RequestHandlers); \r\n");
+                        newFile.SrcContent.Append($"extern FZeeNetRequestHandlerArray* FindRequestHandler_{protoFile.FileNameWithoutProto}(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers); \r\n");
+                        newFile.SrcContent.Append($"extern EZeeNetRequestHandlerResponse ConsumeRequestMessage_{protoFile.FileNameWithoutProto}(\r\n\tTSharedPtr<IZeeNetResponser> Responser\r\n\t, TSharedPtr<struct FZeeNetPacketSerializerBase> Packet\r\n\t, FZeeNetRequestHandlerArray& RequestHandlers\r\n); \r\n");
                     }// for proto
 
                     newFile.SrcContent.Append("\r\n");
-                    newFile.SrcContent.Append("void FZeeNetClient::ConsumeRequestMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { \r\n");
+                    newFile.SrcContent.Append("EZeeNetRequestHandlerResponse FZeeNetClient::ConsumeRequestMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { \r\n");
                     newFile.SrcContent.Append("\tCheckRequestHandlers(); \r\n");
                     newFile.SrcContent.Append("\tFZeeNetRequestHandlerArray* Found = nullptr; \r\n");
+                    newFile.SrcContent.Append("\tTSharedPtr<IZeeNetResponser> Responser = StaticCastSharedPtr<IZeeNetResponser>(AsShared().ToSharedPtr()); \r\n");
+                    newFile.SrcContent.Append("\r\n");
                     
                     foreach(var protoFile in Parse().ProtoFiles)
                     {
@@ -151,18 +156,16 @@ namespace Zee
 
                         newFile.SrcContent.Append($"\tFound = FindRequestHandler_{protoFile.FileNameWithoutProto}(Packet->GetHeader().Point, RequestHandlers); \r\n");
                         newFile.SrcContent.Append($"\tif (Found) {{ \r\n");
-                        newFile.SrcContent.Append($"\t\tif (Found->Num() > 0) return ConsumeRequestMessage_{protoFile.FileNameWithoutProto}(Packet, *Found); \r\n");
+                        newFile.SrcContent.Append($"\t\tif (Found->Num() > 0) return ConsumeRequestMessage_{protoFile.FileNameWithoutProto}(Responser, Packet, *Found); \r\n");
                         newFile.SrcContent.Append($"\t\treturn EZeeNetRequestHandlerResponse::NoResponse; \r\n");
                         newFile.SrcContent.Append($"\t}}\r\n");
                         newFile.SrcContent.Append("\r\n");
 
                     }// for proto
-
-                    newFile.SrcContent.Append("\r\n");
+                    newFile.SrcContent.Append("\treturn EZeeNetRequestHandlerResponse::NoResponse;\r\n");
                     newFile.SrcContent.Append("}\r\n");
                     newFile.SrcContent.Append("\r\n");
                     
-                    newFile.SrcContent.Append("\r\n");
                     newFile.SrcContent.Append("void FZeeNetClient::BuildValidRequestHandlerNames() {\r\n");
                     
                     foreach(var protoFile in Parse().ProtoFiles)

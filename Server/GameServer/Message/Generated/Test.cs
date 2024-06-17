@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Zee.Proto {
+namespace Zee.Proto.Test {
 
   /// <summary>Holder for reflection information generated from Test.proto</summary>
   public static partial class TestReflection {
@@ -24,14 +24,14 @@ namespace Zee.Proto {
     static TestReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgpUZXN0LnByb3RvEglaZWUuUHJvdG8iXgoLVGVzdE1lc3NhZ2USCgoCUkMY",
-            "ASADKAUSJgoHUkNMaXN0cxgCIAMoDjIVLlplZS5Qcm90by5SZXR1cm5Db2Rl",
-            "EgoKAklkGAMgASgJEg8KB0NvbnRlbnQYBCABKAkqHQoKUmV0dXJuQ29kZRIP",
-            "CgtSQ19TVUNDRVNTUxAAYgZwcm90bzM="));
+            "CgpUZXN0LnByb3RvEg5aZWUuUHJvdG8uVGVzdCJjCgtUZXN0TWVzc2FnZRIK",
+            "CgJSQxgBIAMoBRIrCgdSQ0xpc3RzGAIgAygOMhouWmVlLlByb3RvLlRlc3Qu",
+            "UmV0dXJuQ29kZRIKCgJJZBgDIAEoCRIPCgdDb250ZW50GAQgASgJKh0KClJl",
+            "dHVybkNvZGUSDwoLUkNfU1VDQ0VTU1MQAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.TestMessage), global::Zee.Proto.TestMessage.Parser, new[]{ "RC", "RCLists", "Id", "Content" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Test.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Test.TestMessage), global::Zee.Proto.Test.TestMessage.Parser, new[]{ "RC", "RCLists", "Id", "Content" }, null, null, null, null)
           }));
     }
     #endregion
@@ -59,7 +59,7 @@ namespace Zee.Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Zee.Proto.TestReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Zee.Proto.Test.TestReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -105,12 +105,12 @@ namespace Zee.Proto {
 
     /// <summary>Field number for the "RCLists" field.</summary>
     public const int RCListsFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Zee.Proto.ReturnCode> _repeated_rCLists_codec
-        = pb::FieldCodec.ForEnum(18, x => (int) x, x => (global::Zee.Proto.ReturnCode) x);
-    private readonly pbc::RepeatedField<global::Zee.Proto.ReturnCode> rCLists_ = new pbc::RepeatedField<global::Zee.Proto.ReturnCode>();
+    private static readonly pb::FieldCodec<global::Zee.Proto.Test.ReturnCode> _repeated_rCLists_codec
+        = pb::FieldCodec.ForEnum(18, x => (int) x, x => (global::Zee.Proto.Test.ReturnCode) x);
+    private readonly pbc::RepeatedField<global::Zee.Proto.Test.ReturnCode> rCLists_ = new pbc::RepeatedField<global::Zee.Proto.Test.ReturnCode>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Zee.Proto.ReturnCode> RCLists {
+    public pbc::RepeatedField<global::Zee.Proto.Test.ReturnCode> RCLists {
       get { return rCLists_; }
     }
 
