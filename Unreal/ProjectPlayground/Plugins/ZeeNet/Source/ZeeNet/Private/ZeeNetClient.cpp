@@ -4,9 +4,9 @@
 #include "ZeeNetClient.h"
 #include "Networking.h"
 #include "ZeeNet/Public/Messages/Packet.h"
-#include "ZeeNet/Private/ZeeNetMessageSerializer.h"
-
 #include "ZeeNet/Private/ZeeNetMessageSerializerDef.h"
+#include "ZeeNet/Public/Interface/Handler/ZeeNetNotifyHandler.h"
+#include "ZeeNet/Public/Interface/Handler/ZeeNetRequestHandler.h"
 
 /*static*/ TSharedPtr<FZeeNetClient> FZeeNetClient::MakeClient(const FString& InEndPoint)
 {
@@ -17,6 +17,16 @@ FZeeNetClient::FZeeNetClient()
 	: InBuffer {}
 	, OutBuffer {}
 {
+	if (ValidNotifyHandlerNames.Num() == 0)
+	{
+		BuildValidNotifyHandlerNames();
+	}
+
+	if (ValidRequestHandlerNames.Num() == 0)
+	{
+		BuildValidRequestHandlerNames();
+	}
+
 	Thread = TUniquePtr<FRunnableThread>(FRunnableThread::Create(this, *ClientName));
 }
 
@@ -26,7 +36,7 @@ FZeeNetClient::~FZeeNetClient()
 
 void FZeeNetClient::TryConnect(const FString& InEndPoint)
 {
-	FScopeLock Lock(&Mtx);
+	FScopeLock Lock(&MtxSocket);
 	if (Socket && Socket->GetConnectionState() == ESocketConnectionState::SCS_Connected)
 	{
 		OnConnected().Broadcast(FString::Printf(TEXT("already connected [%s]"), *ClientName));
@@ -35,7 +45,7 @@ void FZeeNetClient::TryConnect(const FString& InEndPoint)
 
 	EndPoint = InEndPoint;
 	ClientName = FString::Printf(TEXT("FZeeNetClient(%s)"), *EndPoint);
-	
+
 	Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateUniqueSocket(NAME_Stream, *ClientName);
 }
 
@@ -51,7 +61,7 @@ void FZeeNetClient::ExecuteConnectEvent(const FString& InMessage)
 //~begin FRunnable Interface
 
 bool FZeeNetClient::Init()
-{	
+{
 	return true;
 }
 // 
@@ -89,13 +99,13 @@ uint32 FZeeNetClient::Run()
 	FIPv4Endpoint EndPointv4;
 	if (FIPv4Endpoint::Parse(EndPoint, EndPointv4))
 	{
-		FScopeLock Lock(&Mtx);
+		FScopeLock Lock(&MtxSocket);
 		bSuccess = Socket->Connect(*EndPointv4.ToInternetAddr());
 	}
-	
+
 	if (!bSuccess)
 	{
-		FScopeLock Lock(&Mtx);
+		FScopeLock Lock(&MtxSocket);
 		Socket->Close();
 		Socket = nullptr;
 		ExecuteConnectEvent(TEXT("connection failed."));
@@ -109,7 +119,7 @@ uint32 FZeeNetClient::Run()
 	}
 
 	{
-		FScopeLock Lock(&Mtx);
+		FScopeLock Lock(&MtxSocket);
 		Socket->Shutdown(ESocketShutdownMode::ReadWrite);
 		Socket->Close();
 		Socket = nullptr;
@@ -130,6 +140,128 @@ void FZeeNetClient::Exit()
 
 //~end FRunnable Interface
 
+bool FZeeNetClient::RegisterNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& NewHandler)
+{
+	CheckNotifyHandlers();
+
+	if (!NewHandler.IsValid())
+	{
+		return false;
+	}
+
+	if (IsInNotifyHandler(NewHandler))
+	{
+		return true;
+	}
+
+	NotifyHandlers.FindOrAdd(NewHandler->GetHandlerName()).Add(NewHandler);
+	return true;
+}
+
+void FZeeNetClient::UnregisterNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& NewHandler)
+{
+	bool bWasRemoved = false;
+	if (!NewHandler.IsValid())
+	{
+		return;
+	}
+
+	TArray<TWeakPtr<struct IZeeNetNotifyHandler>>* const FoundHandlers = NotifyHandlers.Find(NewHandler->GetHandlerName());
+	if (!FoundHandlers)
+	{
+		return;
+	}
+
+	TArray<TWeakPtr<struct IZeeNetNotifyHandler>>& Handlers = *FoundHandlers;
+	for (int32 i = 0; i != Handlers.Num();)
+	{
+		if (!Handlers[i].IsValid())
+		{
+			Handlers.RemoveAt(i);
+		}
+		else if(Handlers[i].Pin() == NewHandler)
+		{
+			Handlers.RemoveAt(i);
+			return;
+		}
+		else
+		{
+			++i;
+		}
+	}
+}
+
+bool FZeeNetClient::IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& Handler) const
+{
+	if (!Handler.IsValid())
+	{
+		return false;
+	}
+
+	checkf(ValidNotifyHandlerNames.Contains(Handler->GetHandlerName()), TEXT("invalid notify handler name. %s"), Handler->GetHandlerName());
+
+	const TArray<TWeakPtr<struct IZeeNetNotifyHandler>>* const FoundHandlers = NotifyHandlers.Find(Handler->GetHandlerName());
+	if (!FoundHandlers)
+	{
+		return false;
+	}
+
+	for (const TWeakPtr<struct IZeeNetNotifyHandler>& Elem : *FoundHandlers)
+	{
+		if (!Elem.IsValid())
+		{
+			continue;
+		}
+
+		if (Elem.Pin() == Handler)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void FZeeNetClient::CheckNotifyHandlers()
+{
+	for (auto& Elem : NotifyHandlers)
+	{
+		TArray<TWeakPtr<struct IZeeNetNotifyHandler>>& Handlers = Elem.Value;
+		for (int32 i = 0; i < Handlers.Num();)
+		{
+			if (!Handlers[i].IsValid())
+			{
+				Handlers.RemoveAt(i);
+			}
+			else
+			{
+				++i;
+			}
+		}
+	}
+}
+
+bool FZeeNetClient::RegisterRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& NewHandler)
+{
+
+}
+
+void FZeeNetClient::UnregisterRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& NewHandler)
+{
+
+}
+
+bool FZeeNetClient::IsInRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& InHandler) const
+{
+	return false;
+}
+
+void FZeeNetClient::CheckRequestHandlers()
+{
+
+}
+
+
 void FZeeNetClient::Recv()
 {
 	int32 HeaderSize = 0, BytesRead = 0, Offset = 0;
@@ -149,43 +281,73 @@ void FZeeNetClient::Recv()
 	check(HeaderSize == BytesRead);
 	Offset += BytesRead;
 
-	using PacketHeaderType = FZeeNetPacket<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point>;
-	PacketHeaderType PacketHeader;
-	PacketHeader.Deserialize(InBuffer, Offset);
+	using PacketHeaderSerializerType = FZeeNetPacketSerializer<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point>;
+	PacketHeaderSerializerType PacketHeaderSerializer;
+	PacketHeaderSerializer.Deserialize(InBuffer, Offset);
 	
-	if (!Socket->Recv(InBuffer + Offset, PacketHeader.Header.PacketSize, BytesRead))
+	if (!Socket->Recv(InBuffer + Offset, PacketHeaderSerializer.GetHeader().PacketSize, BytesRead))
 	{
 		check(0);
 		return;
 	}
 
-	check(PacketHeader.Header.PacketSize == BytesRead);
+	check(PacketHeaderSerializer.GetHeader().PacketSize == BytesRead);
 
-	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(PacketHeader.Header.Point);
-	Packet->Header = PacketHeader.Header;
+	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(PacketHeaderSerializer.GetHeader().Point);
+	Packet->GetHeader() = PacketHeaderSerializer.GetHeader();
 
 	Packet->Deserialize(InBuffer + Offset, BytesRead);
+	
+	// {
+	// 	FScopeLock Lock(&MtxPendingPackets);
+	// 	PendingPackets.Add(Packet);
+	// }
 
-	switch (Packet->GetPacketType())
+	//아랫 쪽 윗 주석 없애서 게임스레드에서 호출되도록 구현해야함.
+	switch (Packet->GetHeader().PacketType)
 	{
 	case EZeeNetPacketType::Response:
 		{
-			TFunction<void(const void*)>* Found = CallbackMaps.Find(Packet->GetSequence());
+			TFunction<void(const void*)>* Found = CallbackMaps.Find(Packet->GetHeader().Sequence);
 			check(Found != nullptr);
 			(*Found)(Packet->GetMessage());
-			CallbackMaps.Remove(Packet->GetSequence());
+			CallbackMaps.Remove(Packet->GetHeader().Sequence);
 		}
 		break;
 
 	case EZeeNetPacketType::Notify:
 		{
-			//TODO:: INotifyHandler
+			//is not game thread..
+			ConsumeNotifyMessage(Packet);
 		}
 		break;
 
 	case EZeeNetPacketType::Request:
 		{
-			//TODO:: IRequestHandler
+			switch (ConsumeRequestMessage(Packet))
+			{
+			case EZeeNetRequestHandlerResponse::NoResponse:
+				{
+					Response_Impl(Packet->GetPacket());
+				}
+				break;
+
+			case EZeeNetRequestHandlerResponse::ResponseDirectly:
+				{
+					//do nothing..
+				}
+				break;
+
+			case EZeeNetRequestHandlerResponse::ResponsePending:
+				{
+					FScopeLock Lock(&MtxRequestPendingPackets);
+					RequestPendingPackets.Add(Packet);
+				}
+				break;
+
+			default:
+				break;
+			}
 		}
 		break;
 
@@ -195,12 +357,13 @@ void FZeeNetClient::Recv()
 	}
 }
 
-void FZeeNetClient::Send_Impl(int32 InPoint, int32 InSequence, EZeeNetPacketType InPacketType, const void* InData)
+void FZeeNetClient::Send(int32 InPoint, int32 InSequence, EZeeNetPacketType InPacketType, const void* InMessageRawPtr)
 {
 	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(InPoint);
-	Packet->SetMessageInternal(InData);
-	Packet->SetSequence(InSequence);
-	Packet->SetPacketType(InPacketType);
+	Packet->SetMessageInternal(InMessageRawPtr);
+	Packet->GetHeader().Sequence = InSequence;
+	Packet->GetHeader().PacketType = InPacketType;
+
 	const int32 BytesWrote = Packet->Serialize(OutBuffer, BufferSize);
 	int32 BytesSent = 0;
 	if (!Socket->Send(OutBuffer, BytesWrote, BytesSent))
@@ -210,4 +373,17 @@ void FZeeNetClient::Send_Impl(int32 InPoint, int32 InSequence, EZeeNetPacketType
 		return;
 	}
 	check(BytesSent == BytesWrote);
+}
+
+EZeeNetReponseType FZeeNetClient::Response_Impl(const void* InPacketRawPtr) /* final */
+{
+	const FZeeNetPacketHeader* HeaderPtr = reinterpret_cast<const FZeeNetPacketHeader*>(InPacketRawPtr);
+	check(HeaderPtr->PacketType == EZeeNetPacketType::Request);
+
+	const int32 MsgPoint = HeaderPtr->Point;
+	const int32 MsgSequence = HeaderPtr->Sequence;
+	check(HeaderPtr->Point != TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point); //must not be packet header.
+	HeaderPtr++; //offset move.
+
+	Send(MsgPoint, MsgSequence, EZeeNetPacketType::Response, HeaderPtr /*maybe message ptr.*/);
 }

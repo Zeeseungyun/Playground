@@ -21,21 +21,21 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetTest2TestMessage2>();
 
-#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_26_GENERATED_BODY \
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_25_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeNetTest2TestMessage3_Statics; \
 	ZEENET_API static class UScriptStruct* StaticStruct();
 
 
 template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetTest2TestMessage3>();
 
-#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_42_GENERATED_BODY \
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_40_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeNetTest2TestMessage4_Statics; \
 	ZEENET_API static class UScriptStruct* StaticStruct();
 
 
 template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetTest2TestMessage4>();
 
-#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_58_GENERATED_BODY \
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Test2_h_55_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeNetTest2TestMessage5_Statics; \
 	ZEENET_API static class UScriptStruct* StaticStruct();
 

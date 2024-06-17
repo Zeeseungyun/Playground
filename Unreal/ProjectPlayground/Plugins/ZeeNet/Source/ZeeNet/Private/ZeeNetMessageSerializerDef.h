@@ -2,21 +2,34 @@
 #include "ZeeNet/Private/ZeeNetMessageSerializer.h"
 #include "ZeeNet/Private/ZeeNetMessageConvert.h" 
 #include "ZeeNet/Public/ZeeNetPacketMapping.h" 
+#include "ZeeNet/Public/ZeeNetPacket.h"
 #include "ZeeNet/Private/Convert/ZeeNetMessageConvert_Packet.h"
 
-template<int32 MessagePoint> struct FZeeNetPacket;
+template<int32 MessagePoint> struct FZeeNetPacketSerializer;
 
 template<>
-struct FZeeNetPacket<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point> final : public FZeeNetPacketSerializerBase
+struct FZeeNetPacketSerializer<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point> final : public FZeeNetPacketSerializerBase
 {
 public:
 	using ProtoType = Zee::Proto::Packet::Header;
 	using UnrealType = FZeeNetPacketHeader;
 
 	friend class FZeeNetClient;
+
+	FZeeNetPacket<FZeeNetPacketHeader> UnrealMessage;
+
+	FZeeNetPacketHeader& GetHeader() const final
+	{
+		return const_cast<FZeeNetPacketSerializer*>(this)->UnrealMessage.Header;
+	}
+
+	FZeeNetPacketSerializer() = default;
+
 public:
-	const void* GetMessage() const final { return &Header; }
-	void SetMessageInternal(const void* InMessagePtr) final { Header = *(const UnrealType*)(InMessagePtr); }
+	void* GetMessage() const final { return &const_cast<FZeeNetPacketSerializer*>(this)->GetHeader(); }
+	void* GetPacket() const final { return GetMessage(); }
+
+	void SetMessageInternal(const void* InMessagePtr) final { GetHeader() = *(const UnrealType*)(InMessagePtr); }
 
 	//return read bytes.
 	int32 Deserialize(const uint8* InBuffer, int32 InBufferSize) final
@@ -31,7 +44,7 @@ public:
 			check(0);
 		}
 
-		Zee::Net::Message::Convert::FromTo(ProtoMessage, Header);
+		Zee::Net::Message::Convert::FromTo(ProtoMessage, GetHeader());
 
 		return HeaderSize + ReadBytes;
 	}
@@ -40,7 +53,7 @@ public:
 	int32 Serialize(uint8* OutBuffer, int32 InBufferSize) const final
 	{
 		ProtoType ProtoMessage;
-		Zee::Net::Message::Convert::FromTo(Header, ProtoMessage);
+		Zee::Net::Message::Convert::FromTo(GetHeader(), ProtoMessage);
 		const int32 HeaderSize = (int32)ProtoMessage.ByteSizeLong();
 
 		int32 WrittenBytes = WriteBuffer(OutBuffer, HeaderSize);
@@ -57,29 +70,36 @@ public:
 
 	virtual TSharedPtr<FZeeNetPacketSerializerBase> Clone() const final
 	{
-		return TSharedPtr<FZeeNetPacketSerializerBase>(MakeShared<FZeeNetPacket>(*this));
+		return TSharedPtr<FZeeNetPacketSerializerBase>(MakeShared<FZeeNetPacketSerializer>(*this));
 	}
 };
 
 template<int32 MessagePoint>
-struct FZeeNetPacket final
+struct FZeeNetPacketSerializer final
 	: public FZeeNetPacketSerializerBase
 {
 public:
 	using ProtoType = typename Zee::Net::Message::Convert::TZeeNetMapping_PointToProto<MessagePoint>::Type;
 	using UnrealType = typename TZeeNetMapping_PointToUnreal<MessagePoint>::Type;
 	
-	FZeeNetPacket()
+	FZeeNetPacketSerializer()
 	{
-		this->Header.Point = MessagePoint;
+		UnrealMessage.Header.Point = MessagePoint;
 	}
 
 private:
-	UnrealType UnrealMessage;
+	FZeeNetPacket<UnrealType> UnrealMessage;
+
+	FZeeNetPacketHeader& GetHeader() const final
+	{
+		return const_cast<FZeeNetPacketSerializer*>(this)->UnrealMessage.Header;
+	}
 
 public:
-	const void* GetMessage() const final { return &UnrealMessage; }
-	void SetMessageInternal(const void* InMessagePtr) final { UnrealMessage = *(const UnrealType*)(InMessagePtr); }
+	void* GetMessage() const final { return &const_cast<FZeeNetPacketSerializer*>(this)->UnrealMessage.Message; }
+	void* GetPacket() const final { return &const_cast<FZeeNetPacketSerializer*>(this)->UnrealMessage; }
+
+	void SetMessageInternal(const void* InMessagePtr) final { UnrealMessage.Message = *reinterpret_cast<const UnrealType*>(InMessagePtr); }
 
 	//return read bytes.
 	int32 Deserialize(const uint8* InBuffer, int32 InBufferSize) final
@@ -100,7 +120,7 @@ public:
 			check(0);
 		}
 
-		Zee::Net::Message::Convert::FromTo(ProtoMessage, UnrealMessage);
+		Zee::Net::Message::Convert::FromTo(ProtoMessage, GetCastMutableMessage<UnrealType>());
 		return InBufferSize;
 	}
 
@@ -108,20 +128,19 @@ public:
 	int32 Serialize(uint8* OutBuffer, int32 InBufferSize) const final
 	{
 		ProtoType ProtoMessage;
-		Zee::Net::Message::Convert::FromTo(UnrealMessage, ProtoMessage);
-		const int32 PacketSize = (int32)ProtoMessage.ByteSizeLong();
+		Zee::Net::Message::Convert::FromTo(GetCastMessage<UnrealType>(), ProtoMessage);
+		GetHeader().PacketSize = (int32)ProtoMessage.ByteSizeLong();
 
 		//header write first.
 		int32 WrittenBytes = 0;
 		{
-			using HeaderType = FZeeNetPacket<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point>;
+			using HeaderType = FZeeNetPacketSerializer<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point>;
 			HeaderType HeaderWrite;
-			HeaderWrite.Header = Header;
-			Header.PacketSize = PacketSize;
+			HeaderWrite.GetHeader() = GetHeader();
 			WrittenBytes = HeaderWrite.Serialize(OutBuffer, InBufferSize);
 		}
 
-		check(InBufferSize - WrittenBytes >= PacketSize);
+		check(InBufferSize - WrittenBytes >= GetHeader().PacketSize);
 
 		if (!ProtoMessage.SerializeToArray(OutBuffer + WrittenBytes, InBufferSize - WrittenBytes))
 		{
@@ -129,12 +148,12 @@ public:
 			return 0;
 		}
 
-		WrittenBytes += PacketSize;
+		WrittenBytes += GetHeader().PacketSize;
 		return WrittenBytes;
 	}
 
 	virtual TSharedPtr<FZeeNetPacketSerializerBase> Clone() const final 
 	{
-		return TSharedPtr<FZeeNetPacketSerializerBase>(MakeShared<FZeeNetPacket>(*this));
+		return TSharedPtr<FZeeNetPacketSerializerBase>(MakeShared<FZeeNetPacketSerializer>(*this));
 	}
 };

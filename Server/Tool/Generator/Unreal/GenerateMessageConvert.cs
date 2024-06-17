@@ -17,7 +17,6 @@ namespace Zee
                     newFile.SrcFileName = $"{UnrealMessageConvertDir}/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.cpp";
                     newFile.HeaderFileName = $"{UnrealMessageConvertDir}/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.h";
 
-                    newFile.HeaderContent.Append(DescriptionGenerated);
                     newFile.HeaderContent.Append("#pragma once \r\n");
                     newFile.HeaderContent.Append("#include \"CoreMinimal.h\" \r\n");
                     newFile.HeaderContent.Append($"#include \"ZeeNet/Public/Messages/{protoFile.FileNameWithoutProto}.h\" \r\n");
@@ -99,22 +98,8 @@ namespace Zee
 
                         }
                     }
-                    
-                    //header
-                    {
-                        using var fs = File.OpenWrite(newFile.HeaderFileName);
-                        Console.WriteLine($"generate message convert: {newFile.HeaderFileName}");
-                        using var sw = new StreamWriter(fs);
-                        sw.Write(newFile.HeaderContent);
-                    }
 
-                    //source
-                    {
-                        using var fs = File.OpenWrite(newFile.SrcFileName);
-                        Console.WriteLine($"generate message convert: {newFile.SrcFileName}");
-                        using var sw = new StreamWriter(fs);
-                        sw.Write(newFile.SrcContent);
-                    }
+                    newFile.DoWrite();
                 }
             }
         }

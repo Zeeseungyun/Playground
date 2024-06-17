@@ -16,7 +16,6 @@ namespace Zee
                     newFile.NameWihtoutProto = protoFile.FileNameWithoutProto;
                     newFile.SrcFileName = string.Empty; //현재 소스파일은 사용하지 않을 예정.
                     newFile.HeaderFileName = $"{UnrealMessageDir}/{newFile.NameWihtoutProto}.h";
-                    newFile.HeaderContent.Append(DescriptionGenerated);
                     newFile.HeaderContent.Append("#pragma once\r\n");
                     newFile.HeaderContent.Append("#include \"CoreMinimal.h\"\r\n");
                     newFile.HeaderContent.Append($"#include \"ZeeNet/Public/ZeeNetPacketMapping.h\"\r\n");
@@ -91,15 +90,11 @@ namespace Zee
                             newFile.HeaderContent.Append("}; \r\n");
                             newFile.HeaderContent.Append($"template<> struct TZeeNetMapping_UnrealToPoint<{msg.UnrealName}> {{ static constexpr int32 Point = 0x{msg.Point.ToString("X")}; }}; \r\n");
                             newFile.HeaderContent.Append($"template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<{msg.UnrealName}>::Point> {{ using Type = {msg.UnrealName}; }}; \r\n");
-                            newFile.HeaderContent.Append("\r\n\r\n");
+                            newFile.HeaderContent.Append("\r\n");
                         }
                     }
 
-                    using var fs = File.OpenWrite(newFile.HeaderFileName);
-                    Console.WriteLine($"generate message : {newFile.HeaderFileName}");
-                    
-                    using var sw = new StreamWriter(fs);
-                    sw.Write(newFile.HeaderContent);
+                    newFile.DoWrite();
                 }//function 
             }
         }

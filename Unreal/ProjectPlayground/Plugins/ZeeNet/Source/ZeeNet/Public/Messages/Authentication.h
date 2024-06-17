@@ -36,7 +36,6 @@ struct FZeeNetAuthenticationLogin
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogin> { static constexpr int32 Point = 0x1001; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogin>::Point> { using Type = FZeeNetAuthenticationLogin; }; 
 
-
 USTRUCT(BlueprintType) 
 struct FZeeNetAuthenticationLogout 
 { 
@@ -54,5 +53,4 @@ struct FZeeNetAuthenticationLogout
 }; 
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogout> { static constexpr int32 Point = 0x1002; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogout>::Point> { using Type = FZeeNetAuthenticationLogout; }; 
-
 

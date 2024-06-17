@@ -38,6 +38,7 @@ Generator.UnrealZeeNetDir = cppDstArg.Value; //temp.
     Generator.Unreal.GeneratePublicMessages();
     Generator.Unreal.GenerateMessageConvert();
     Generator.Unreal.GenerateMessageSerializer();
+    Generator.Unreal.GenerateNotifyHandler();
     Console.WriteLine("4) generate cpp files finished.");
 
     Console.WriteLine("Generator done.");

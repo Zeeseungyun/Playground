@@ -19,7 +19,6 @@ struct FZeeNetTest2TestMessage2
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage2> { static constexpr int32 Point = 0x5004; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage2>::Point> { using Type = FZeeNetTest2TestMessage2; }; 
 
-
 USTRUCT(BlueprintType) 
 struct FZeeNetTest2TestMessage3 
 { 
@@ -34,7 +33,6 @@ struct FZeeNetTest2TestMessage3
 }; 
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage3> { static constexpr int32 Point = 0x5002; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage3>::Point> { using Type = FZeeNetTest2TestMessage3; }; 
-
 
 USTRUCT(BlueprintType) 
 struct FZeeNetTest2TestMessage4 
@@ -51,7 +49,6 @@ struct FZeeNetTest2TestMessage4
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage4> { static constexpr int32 Point = 0x5003; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage4>::Point> { using Type = FZeeNetTest2TestMessage4; }; 
 
-
 USTRUCT(BlueprintType) 
 struct FZeeNetTest2TestMessage5 
 { 
@@ -66,5 +63,4 @@ struct FZeeNetTest2TestMessage5
 }; 
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage5> { static constexpr int32 Point = 0x5001; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTest2TestMessage5>::Point> { using Type = FZeeNetTest2TestMessage5; }; 
-
 

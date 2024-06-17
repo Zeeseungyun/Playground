@@ -36,4 +36,3 @@ struct FZeeNetPacketHeader
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader> { static constexpr int32 Point = 0x3001; }; 
 template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point> { using Type = FZeeNetPacketHeader; }; 
 
-

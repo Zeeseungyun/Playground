@@ -6,16 +6,21 @@
 #include "HAL/Runnable.h"
 #include "SocketSubsystem.h"
 #include "CoreMinimal.h"
+#include "ZeeNet/Public/Interface/ZeeNetResponser.h"
+
+enum class EZeeNetRequestHandlerResponse : uint8;
 
 class ZEENET_API FZeeNetClient
 	: public TSharedFromThis<FZeeNetClient>
 	, public FRunnable
+	, public IZeeNetResponser
 {
 public:
 	static constexpr size_t BufferSize = 1024;
-	static TSharedPtr<FZeeNetClient> MakeClient(const FString& InEndPoint);
+	[[nodiscard]] static TSharedPtr<FZeeNetClient> MakeClient(const FString& InEndPoint);
 
-public:
+public: //TODO:: to private. only use sharedptr
+	FZeeNetClient();
 	~FZeeNetClient();
 
 	void TryConnect(const FString& InEndPoint);
@@ -26,17 +31,30 @@ private:
 	void ExecuteConnectEvent(const FString& Message);
 	FOnConnected EventConnected;
 
+private:
+	FZeeNetClient(const FZeeNetClient&) = delete;
+	FZeeNetClient(FZeeNetClient&&) = delete;
+	FZeeNetClient& operator=(const FZeeNetClient&) = delete;
+	FZeeNetClient& operator=(FZeeNetClient&&) = delete;
+
+private:
+	//~begin FRunnable Interface
+
+	bool Init() override;
+	uint32 Run() override;
+	void Stop() override;
+	void Exit() override;
+
+	//~end FRunnable Interface
 public:
-	template<typename T>
-	typename TEnableIf<TZeeNetIsValidMapping<T>::Value>::Type
-		Notify(const T& Msg)
+	template<CZeeNetPacketMessage T>
+	void Notify(const T& Msg)
 	{
-		Send_Impl(TZeeNetMapping_UnrealToPoint<T>::Point, 0, EZeeNetPacketType::Notify, &Msg);
+		Send(TZeeNetMapping_UnrealToPoint<T>::Point, 0, EZeeNetPacketType::Notify, &Msg);
 	}
 
-	template<typename T>
-	typename TEnableIf<TZeeNetIsValidMapping<T>::Value>::Type
-		Request(const T& Msg, TFunction<void(const T&)>&& Callback)
+	template<CZeeNetPacketMessage T>
+	void Request(const T& Msg, TFunction<void(const T&)>&& Callback)
 	{
 		check(IsInGameThread());
 		const int32 CurSequence = IncrementSequence();
@@ -47,12 +65,11 @@ public:
 			}
 		);
 		
-		Send_Impl(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
+		Send(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 
-	template<typename T>
-	typename TEnableIf<TZeeNetIsValidMapping<T>::Value>::Type
-		Request(const T& Msg, TWeakObjectPtr<UObject> ObjectPtr, TFunction<void(const T&)> Callback)
+	template<CZeeNetPacketMessage T>
+	void Request(const T& Msg, TWeakObjectPtr<UObject> ObjectPtr, TFunction<void(const T&)>&& Callback)
 	{
 		check(IsInGameThread());
 		const int32 CurSequence = IncrementSequence();
@@ -66,17 +83,16 @@ public:
 			}
 		);
 
-		Send_Impl(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
+		Send(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 
-	template<typename T, typename Y>
-	typename TEnableIf<TZeeNetIsValidMapping<T>::Value>::Type
-		Request(const T& Msg, TSharedPtr<Y> SharedPtr, TFunction<void(const T&)> Callback)
+	template<CZeeNetPacketMessage T, typename U>
+	void Request(const T& Msg, TSharedPtr<U> SharedPtr, TFunction<void(const T&)>&& Callback)
 	{
 		check(IsInGameThread());
 		const int32 CurSequence = IncrementSequence();
 
-		TWeakPtr<Y> WeakPtr = SharedPtr;
+		TWeakPtr<U> WeakPtr = SharedPtr;
 		CallbackMaps.Add(CurSequence, [WeakPtr, Callback_ = MoveTemp(Callback)](const void* Data)
 			{
 				if (WeakPtr.IsValid())
@@ -86,43 +102,79 @@ public:
 			}
 		);
 
-		Send_Impl(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
+		Send(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
-
-public: //TODO:: to private. only use sharedptr
-	FZeeNetClient();
+	
+	////////////////////////////
+	// begin NotifyHandler
+	////////////////////////////
+public:
+	bool RegisterNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& NewHandler);
+	void UnregisterNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& NewHandler);
+	bool IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& InHandler) const;
 
 private:
-	FZeeNetClient(const FZeeNetClient&) = delete;
-	FZeeNetClient(FZeeNetClient&&) = delete;
-	FZeeNetClient& operator=(const FZeeNetClient&) = delete;
-	FZeeNetClient& operator=(FZeeNetClient&&) = delete;
+	TMap<const TCHAR*, TArray<TWeakPtr<struct IZeeNetNotifyHandler>>> NotifyHandlers;
+	//전역변수로 정의하는것이 맞음.
+	static TSet<const TCHAR*> ValidNotifyHandlerNames;
 
-	//~begin FRunnable Interface
+	void CheckNotifyHandlers();
+	//implemented in Private/Handler/Notify.g.cpp
+	void ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet);
+	//implemented in Private/Handler/Notify.g.cpp
+	void BuildValidNotifyHandlerNames();
 
-	bool Init() override;
-	uint32 Run() override;
-	void Stop() override;
-	void Exit() override;
+	////////////////////////////
+	// end NotifyHandler
+	////////////////////////////
 
-	//~end FRunnable Interface
+	////////////////////////////
+	// begin RequestHandler
+	////////////////////////////
+public:
+	bool RegisterRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& NewHandler);
+	void UnregisterRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& NewHandler);
+	bool IsInRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& InHandler) const;
+
+	float GetRequestTimeoutSec() const { return RequestTimeoutSec; }
+	void SetRequestTimeoutSec(float NewRequestTimeoutSec) { }
+private:
+	TMap<const TCHAR*, TArray<TWeakPtr<struct IZeeNetRequestHandler>>> RequestHandlers;
+	//전역변수로 정의하는것이 맞음.
+	static TSet<const TCHAR*> ValidRequestHandlerNames;
+	float RequestTimeoutSec = 10.0f;
+
+	mutable FCriticalSection MtxRequestPendingPackets;
+	TArray<TSharedPtr<struct FZeeNetPacketSerializerBase>> RequestPendingPackets;
+
+	void CheckRequestHandlers();
+	//implemented in Private/Handler/Request.g.cpp
+	EZeeNetRequestHandlerResponse ConsumeRequestMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet);
+	//implemented in Private/Handler/Request.g.cpp
+	void BuildValidRequestHandlerNames();
+
+	////////////////////////////
+	// end RequestHandler
+	////////////////////////////
 
 private:
 	void Recv();
-	void Send_Impl(int32 InPoint, int32 InSequecne, EZeeNetPacketType InPacketType, const void* InData);
+	void Send(int32 InPoint, int32 InSequecne, EZeeNetPacketType InPacketType, const void* InMessageRawPtr);
+	EZeeNetReponseType Response_Impl(const void* InPacketRawPtr) final;
 
 private:
-	mutable FCriticalSection Mtx;
-
-	bool bIsStop = false;
 	uint8 InBuffer[BufferSize];
 	uint8 OutBuffer[BufferSize];
 	TUniquePtr<class FRunnableThread> Thread;
-	FUniqueSocket Socket;
+	bool bIsStop = false;
 
+	mutable FCriticalSection MtxSocket;
+	FUniqueSocket Socket;
+	
 	FString EndPoint;
 	FString ClientName;
 	int32 Sequence = 1;
+
 	int32 IncrementSequence()
 	{
 		int32 Return = Sequence++;
@@ -135,4 +187,8 @@ private:
 	}
 
 	TMap<int32 /*Sequence*/, TFunction<void(const void*)>> CallbackMaps;
+
+	mutable FCriticalSection MtxPendingPackets;
+	TArray<TSharedPtr<struct FZeeNetPacketSerializerBase>> PendingPackets;
+	
 };

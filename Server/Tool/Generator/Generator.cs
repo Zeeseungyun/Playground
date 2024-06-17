@@ -23,7 +23,18 @@ namespace Zee
         public static string UnrealMessageConvertDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private/Convert/"));
         public static string UnrealMessageSerializerSrcFile => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private/ZeeNetMessageSerializer.g.cpp"));
         public static string UnrealMessageDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Public/Messages/"));
-        
+        public static string UnrealInterfaceDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Public", "Interface"));
+        public static string UnrealInterfaceHandlerDir => Path.GetFullPath(Path.Combine(UnrealInterfaceDir, "Handler"));
+        public static string UnrealInterfaceNotifyHandlerDir => Path.GetFullPath(Path.Combine(UnrealInterfaceHandlerDir, "Notify"));
+        public static string UnrealInterfaceRequestHandlerDir => Path.GetFullPath(Path.Combine(UnrealInterfaceHandlerDir, "Request"));
+        public static string UnrealResponserFile => Path.GetFullPath(Path.Combine(UnrealInterfaceDir, "ZeeNetResponser.h"));
+        public static string UnrealNotifyHandlerFile => Path.GetFullPath(Path.Combine(UnrealInterfaceHandlerDir, "ZeeNetNotifyHandler.h"));
+        public static string UnrealRequestHandlerFile => Path.GetFullPath(Path.Combine(UnrealInterfaceHandlerDir, "ZeeNetNotifyHandler.h"));
+        public static string UnrealConsumeNotifyHandlerDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private", "Handler", "Notify"));
+        public static string UnrealConsumeNotifyFile => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private", "Handler", "Notify.g.cpp"));
+        public static string UnrealConsumeRequestHandlerDir => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private", "Handler", "Request"));
+        public static string UnrealConsumeRequestFile => Path.GetFullPath(Path.Combine(UnrealZeeNetDir, "Private", "Handler", "Request.g.cpp"));
+
         ////////////////////////////////////////////////////////////////
         //// CSharp path
         ////////////////////////////////////////////////////////////////
@@ -41,6 +52,8 @@ namespace Zee
             files.AddRange(Directory.GetFiles(UnrealMessageConvertDir, "*.*"));
             files.AddRange(Directory.GetFiles(UnrealMessageDir, "*.*"));
             files.Add(UnrealMessageSerializerSrcFile);
+            files.AddRange(Directory.GetFiles(UnrealConsumeNotifyHandlerDir, "*.*"));
+            files.Add(UnrealConsumeNotifyFile);
 
             files.AddRange(Directory.GetFiles(CSharpProtoMessageDir, "*.*"));
             files.Add(CSharpNotifierFile);

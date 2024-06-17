@@ -3,7 +3,7 @@
 #include "ZeeNet/Public/ZeeNetPacketMapping.h"
 #include "ZeeNet/Public/Messages/Packet.h"
 
-struct ZEENET_API FZeeNetPacketSerializerBase
+struct FZeeNetPacketSerializerBase
 	: public TSharedFromThis<FZeeNetPacketSerializerBase>
 {
 	virtual ~FZeeNetPacketSerializerBase() = default;
@@ -15,31 +15,42 @@ struct ZEENET_API FZeeNetPacketSerializerBase
 	virtual int32 Serialize(uint8* OutBuffer, int32 InBuffetSize) const = 0;
 	virtual TSharedPtr<FZeeNetPacketSerializerBase> Clone() const = 0;
 
-	template<typename T>
-	typename TEnableIf<TZeeNetMapping_UnrealToPoint<T>::Point != ZeeNetInvalidMessagePoint, const T&>::Type
-		GetCastMessage() const
+	template<CZeeNetPacketMessage T>
+	const T& GetCastMessage() const
 	{
-		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetPoint());
+		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetHeader().Point);
 		return *reinterpret_cast<const T*>(GetMessage());
 	}
 
-	template<typename T>
-	typename TEnableIf<TZeeNetMapping_UnrealToPoint<T>::Point != ZeeNetInvalidMessagePoint>::Type
-		SetCastMessage(const T& InMessage) 
+	template<CZeeNetPacketMessage T>
+	void SetCastMessage(const T& InMessage) 
 	{
-		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetPoint());
+		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetHeader().Point);
 		SetMessageInternal(&InMessage);
 		return;
 	}
 
-	template<typename T>
-	typename TEnableIf<TZeeNetMapping_UnrealToPoint<T>::Point != ZeeNetInvalidMessagePoint, const T&>::Type
-		GetCastMutableMessage() 
+	template<CZeeNetPacketMessage T>
+	T& GetCastMutableMessage() 
 	{
 		return const_cast<T&>(GetCastMessage<T>());
 	}
 
-	virtual const void* GetMessage() const = 0;
+	template<CZeeNetPacketMessage T>
+	const T& GetCastPacket() const
+	{
+		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetHeader().Point);
+		return *reinterpret_cast<const T*>(GetPacket());
+	}
+
+	template<CZeeNetPacketMessage T>
+	T& GetCastMutablePacket()
+	{
+		return const_cast<T&>(GetCastPacket<T>());
+	}
+
+	virtual void* GetMessage() const = 0;
+	virtual void* GetPacket() const = 0;
 
 protected:
 	template<typename T>
@@ -62,20 +73,14 @@ protected:
 
 protected:
 	friend class FZeeNetClient;
-	template<int32 MessagePoint> friend struct FZeeNetPacket;
-	mutable FZeeNetPacketHeader Header;
+	template<int32 MessagePoint> friend struct FZeeNetPacketSerializer;
 
 public:
-	int32 GetPoint() const { return Header.Point; }
+	virtual FZeeNetPacketHeader& GetHeader() const = 0;
 
-	int32 GetSequence() const { return Header.Point; }
-	void SetSequence(int32 NewSequence) { Header.Sequence = NewSequence; }
-
-	EZeeNetPacketType GetPacketType() const { return Header.PacketType; }
-	void SetPacketType(EZeeNetPacketType NewType) { Header.PacketType = NewType; }
 };
 
-struct ZEENET_API FZeeNetPacketSerializerMap
+struct FZeeNetPacketSerializerMap
 {
 private:
 	friend class FZeeNetModule;
@@ -84,10 +89,11 @@ private:
 
 	void BuildPacketSerializer();
 
-	FZeeNetPacketSerializerMap();
+	FZeeNetPacketSerializerMap() = default;
+
 public:
-	template<typename T>
-	static typename TEnableIf<TZeeNetIsValidMapping<T>::Value, TSharedPtr<FZeeNetPacketSerializerBase>>::Type
+	template<CZeeNetPacketMessage T>
+	static TSharedPtr<FZeeNetPacketSerializerBase>
 		CreateSerializerFromMessage(const T& InMessage)
 	{
 		TSharedPtr<FZeeNetPacketSerializerBase> Ret = CreateSerializer(TZeeNetMapping_UnrealToPoint<T>::Point);
@@ -95,8 +101,8 @@ public:
 		return Ret;
 	}
 
-	template<typename T>
-	static typename TEnableIf<TZeeNetIsValidMapping<T>::Value, TSharedPtr<FZeeNetPacketSerializerBase>>::Type
+	template<CZeeNetPacketMessage T>
+	static TSharedPtr<FZeeNetPacketSerializerBase>
 		CreateSerializer()
 	{
 		return CreateSerializer(TZeeNetMapping_UnrealToPoint<T>::Point);

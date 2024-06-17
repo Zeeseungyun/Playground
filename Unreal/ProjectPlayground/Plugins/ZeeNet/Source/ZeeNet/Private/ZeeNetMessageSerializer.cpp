@@ -1,9 +1,5 @@
 #include "ZeeNetMessageSerializer.h"
 
-FZeeNetPacketSerializerMap::FZeeNetPacketSerializerMap()
-{
-}
-
 TSharedPtr<FZeeNetPacketSerializerBase> FZeeNetPacketSerializerMap::CreateSerializer(int32 Point)
 {
 	checkf(GetSerializerMap().DefaultSerializers.Num() == 0, TEXT("ZeeNet module not loaded."));

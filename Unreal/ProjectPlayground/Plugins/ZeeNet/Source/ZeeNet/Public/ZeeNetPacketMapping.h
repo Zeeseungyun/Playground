@@ -8,5 +8,8 @@ template<typename T> struct TZeeNetMapping_UnrealToPoint { static constexpr int3
 template<typename T>
 struct TZeeNetIsValidMapping 
 {
-	enum { Value = TZeeNetMapping_UnrealToPoint<T>::Point != ZeeNetInvalidMessagePoint	};
+	static constexpr bool Value = TZeeNetMapping_UnrealToPoint<T>::Point != ZeeNetInvalidMessagePoint;
 };
+
+template<typename T>
+concept CZeeNetPacketMessage = TZeeNetIsValidMapping<T>::Value;
