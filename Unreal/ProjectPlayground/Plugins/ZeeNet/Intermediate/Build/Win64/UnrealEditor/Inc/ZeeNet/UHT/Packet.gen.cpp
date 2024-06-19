@@ -36,16 +36,20 @@ struct Z_Construct_UEnum_ZeeNet_EZeeNetPacketType_Statics
 		{ "BlueprintType", "true" },
 		{ "ModuleRelativePath", "Public/Messages/Packet.h" },
 		{ "None.Name", "EZeeNetPacketType::None" },
+		{ "NoResponse.Name", "EZeeNetPacketType::NoResponse" },
 		{ "Notify.Name", "EZeeNetPacketType::Notify" },
 		{ "Request.Name", "EZeeNetPacketType::Request" },
 		{ "Response.Name", "EZeeNetPacketType::Response" },
+		{ "ResponseTimeout.Name", "EZeeNetPacketType::ResponseTimeout" },
 	};
 #endif // WITH_METADATA
 	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
 		{ "EZeeNetPacketType::None", (int64)EZeeNetPacketType::None },
 		{ "EZeeNetPacketType::Notify", (int64)EZeeNetPacketType::Notify },
-		{ "EZeeNetPacketType::Response", (int64)EZeeNetPacketType::Response },
 		{ "EZeeNetPacketType::Request", (int64)EZeeNetPacketType::Request },
+		{ "EZeeNetPacketType::Response", (int64)EZeeNetPacketType::Response },
+		{ "EZeeNetPacketType::NoResponse", (int64)EZeeNetPacketType::NoResponse },
+		{ "EZeeNetPacketType::ResponseTimeout", (int64)EZeeNetPacketType::ResponseTimeout },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -125,7 +129,7 @@ const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FZeeNetPac
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewProp_Point = { "Point", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetPacketHeader, Point), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Point_MetaData), NewProp_Point_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewProp_Sequence = { "Sequence", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetPacketHeader, Sequence), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Sequence_MetaData), NewProp_Sequence_MetaData) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewProp_PacketType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewProp_PacketType = { "PacketType", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetPacketHeader, PacketType), Z_Construct_UEnum_ZeeNet_EZeeNetPacketType, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PacketType_MetaData), NewProp_PacketType_MetaData) }; // 62845932
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewProp_PacketType = { "PacketType", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetPacketHeader, PacketType), Z_Construct_UEnum_ZeeNet_EZeeNetPacketType, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PacketType_MetaData), NewProp_PacketType_MetaData) }; // 659019632
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewProp_PacketSize,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewProp_Point,
@@ -161,13 +165,13 @@ UScriptStruct* Z_Construct_UScriptStruct_FZeeNetPacketHeader()
 struct Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EZeeNetPacketType_StaticEnum, TEXT("EZeeNetPacketType"), &Z_Registration_Info_UEnum_EZeeNetPacketType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 62845932U) },
+		{ EZeeNetPacketType_StaticEnum, TEXT("EZeeNetPacketType"), &Z_Registration_Info_UEnum_EZeeNetPacketType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 659019632U) },
 	};
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FZeeNetPacketHeader::StaticStruct, Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewStructOps, TEXT("ZeeNetPacketHeader"), &Z_Registration_Info_UScriptStruct_ZeeNetPacketHeader, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetPacketHeader), 1607141985U) },
+		{ FZeeNetPacketHeader::StaticStruct, Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics::NewStructOps, TEXT("ZeeNetPacketHeader"), &Z_Registration_Info_UScriptStruct_ZeeNetPacketHeader, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetPacketHeader), 213440825U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_796193024(TEXT("/Script/ZeeNet"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_32066798(TEXT("/Script/ZeeNet"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_Statics::EnumInfo));

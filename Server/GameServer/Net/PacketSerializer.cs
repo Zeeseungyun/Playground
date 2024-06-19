@@ -7,11 +7,16 @@ namespace Zee.Net.Message
     {
         static public void SerializePacket(this Stream stream, PacketBase p)
         {
-            Int32 headerSize = p.Header.CalculateSize();
-            stream.Write(BitConverter.GetBytes(headerSize));
             p.Header.PacketSize = p.Message!.CalculateSize();
-            p.Header.MergeFrom(stream);
-            p.Message.MergeFrom(stream);
+            p.Header.Point = PacketMap.GetMessagePoint(p.Message.GetType());
+            if(p.Header.PacketType == Proto.Packet.Type.None)
+            {
+                throw new InvalidDataException("must be set packet type.");
+            }
+
+            stream.Write(BitConverter.GetBytes(p.Header.CalculateSize()), 0, sizeof(Int32));
+            p.Header.WriteTo(stream);
+            p.Message.WriteTo(stream);
             stream.Flush();
         }
 
@@ -40,9 +45,6 @@ namespace Zee.Net.Message
         //이건 수정해야하지만, 일단 남겨둠.
         public Zee.Proto.Packet.Header Header = new();
         public int Point => Header.Point;
-        public int Sequence => Header.Sequence;
-        public Proto.Packet.Type Type => Header.PacketType;
-        public int CalculateSize => Message!.CalculateSize() + Header.CalculateSize();
         public IMessage? Message;
     }
     public class Packet<T> : PacketBase

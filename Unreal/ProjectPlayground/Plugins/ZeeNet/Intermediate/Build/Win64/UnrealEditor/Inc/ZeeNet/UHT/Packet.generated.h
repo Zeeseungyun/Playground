@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ZEENET_Packet_generated_h
 
-#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_21_GENERATED_BODY \
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Packet_h_23_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeNetPacketHeader_Statics; \
 	ZEENET_API static class UScriptStruct* StaticStruct();
 
@@ -28,8 +28,10 @@ template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetPacketHeader>();
 #define FOREACH_ENUM_EZEENETPACKETTYPE(op) \
 	op(EZeeNetPacketType::None) \
 	op(EZeeNetPacketType::Notify) \
+	op(EZeeNetPacketType::Request) \
 	op(EZeeNetPacketType::Response) \
-	op(EZeeNetPacketType::Request) 
+	op(EZeeNetPacketType::NoResponse) \
+	op(EZeeNetPacketType::ResponseTimeout) 
 
 enum class EZeeNetPacketType : uint8;
 template<> struct TIsUEnumClass<EZeeNetPacketType> { enum { Value = true }; };

@@ -58,7 +58,7 @@ namespace Zee.Net.Message
             pointToPacketType.TryGetValue(point, out ret);
             return ret;
         }
-        public static int GetPacketPoint(Type type)
+        public static int GetMessagePoint(Type type)
         {
             int ret = 0;
             typeToPoint.TryGetValue(type, out ret);

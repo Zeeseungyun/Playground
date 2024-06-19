@@ -27,17 +27,6 @@
             "stopAtEntry": false
         },
         {
-            "name": "[Debug] Tool/Generator",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "[Build] Tool/Generator",
-            "program": "${workspaceFolder}/Server/Tool/Generator/bin/Debug/net8.0/Generator.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/Server/Tool/Generator/bin/Debug/net8.0/",
-            "console": "integratedTerminal",
-            "stopAtEntry": false
-        },
-        {
             "name": "[Debug] Tool/Publish",
             "type": "coreclr",
             "request": "launch",
@@ -67,7 +56,7 @@
             "stopAtEntry": false
         },
         {
-            "name": "[Debug] Test Tool/Generator",
+            "name": "[Debug] Tool/Generator",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "[Build] Tool/Generator",

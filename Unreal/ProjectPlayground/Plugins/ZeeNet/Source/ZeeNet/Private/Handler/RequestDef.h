@@ -1,10 +1,10 @@
 #pragma once
 #ifndef ZEENET_CASE_CONSUME_REQUEST
-	#define ZEENET_CASE_CONSUME_REQUEST(MessageName, PropName) \
-	case TZeeNetMapping_UnrealToPoint<FZeeNet##MessageName##PropName>::Point: \
+	#define ZEENET_CASE_CONSUME_REQUEST(CategoryName, MessageName) \
+	case TZeeNetMapping_UnrealToPoint<FZeeNet##CategoryName##MessageName>::Point: \
 	for (auto& Elem : RequestHandlers) { \
-		auto Pin = StaticCastSharedPtr<IZeeNetRequestHandler_##MessageName>(Elem.Pin()); \
-		auto Ret = Pin->OnRequest(Responser, Packet->GetCastMessage<FZeeNet##MessageName##PropName>()); \
+		auto Pin = StaticCastSharedPtr<IZeeNetRequestHandler_##CategoryName>(Elem.Pin()); \
+		auto Ret = Pin->OnRequest(Responser, Packet->GetCastPacket<FZeeNet##CategoryName##MessageName>()); \
 		if( Ret != EZeeNetRequestHandlerResponse::NoResponse ) { \
 			return Ret; \
 		} \

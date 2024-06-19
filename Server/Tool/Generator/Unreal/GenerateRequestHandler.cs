@@ -48,7 +48,7 @@ namespace Zee
                     {
                         if(!msg.IsEnum)
                         {
-                            newFile.HeaderContent.Append($"\t[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const {msg.UnrealName}& InMessage) {{ \r\n");
+                            newFile.HeaderContent.Append($"\t[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<{msg.UnrealName}>& InPacket) {{ \r\n");
                             newFile.HeaderContent.Append($"\t\treturn EZeeNetRequestHandlerResponse::NoResponse; \r\n");
                             newFile.HeaderContent.Append($"\t}}\r\n");
                             newFile.HeaderContent.Append($"\r\n");

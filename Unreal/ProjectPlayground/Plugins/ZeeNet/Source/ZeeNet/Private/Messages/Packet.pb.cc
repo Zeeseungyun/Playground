@@ -67,13 +67,14 @@ const char descriptor_table_protodef_Packet_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\n\014Packet.proto\022\020Zee.Proto.Packet\"i\n\006Head"
   "er\022\022\n\nPacketSize\030\001 \001(\005\022\r\n\005Point\030\002 \001(\005\022\020\n"
   "\010Sequence\030\003 \001(\005\022*\n\nPacketType\030\004 \001(\0162\026.Ze"
-  "e.Proto.Packet.Type*7\n\004Type\022\010\n\004None\020\000\022\n\n"
-  "\006Notify\020\001\022\014\n\010Response\020\002\022\013\n\007Request\020\003b\006pr"
-  "oto3"
+  "e.Proto.Packet.Type*\\\n\004Type\022\010\n\004None\020\000\022\n\n"
+  "\006Notify\020\001\022\013\n\007Request\020\002\022\014\n\010Response\020\003\022\016\n\n"
+  "NoResponse\020\004\022\023\n\017ResponseTimeout\020\005b\006proto"
+  "3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Packet_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Packet_2eproto = {
-  false, false, 204, descriptor_table_protodef_Packet_2eproto, "Packet.proto", 
+  false, false, 241, descriptor_table_protodef_Packet_2eproto, "Packet.proto", 
   &descriptor_table_Packet_2eproto_once, nullptr, 0, 1,
   schemas, file_default_instances, TableStruct_Packet_2eproto::offsets,
   file_level_metadata_Packet_2eproto, file_level_enum_descriptors_Packet_2eproto, file_level_service_descriptors_Packet_2eproto,
@@ -97,6 +98,8 @@ bool Type_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+    case 4:
+    case 5:
       return true;
     default:
       return false;

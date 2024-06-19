@@ -11,11 +11,11 @@ struct ZEENET_API IZeeNetRequestHandler_Chat
 {
 	const FString& GetHandlerName() const final { static FString Name = TEXT("Request_Chat"); return Name; } 
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetChatSpeak& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetChatSpeak>& InMessage) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetChatSpeak1& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetChatSpeak1>& InMessage) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 

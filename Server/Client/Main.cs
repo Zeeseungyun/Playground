@@ -32,6 +32,6 @@ while(true)
         var tt = Console.ReadLine();
         Zee.Proto.Chat.Speak msg = new();
         msg.Content = tt;
-        client.NotifyMessage(msg);
+        client.Notify(msg);
     }
 }

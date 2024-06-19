@@ -291,7 +291,7 @@ namespace Zee
                 var messageProperty = new MessageProperty(ret);
                 if(isEnum)
                 {
-                    string ptnField = @"\s*(\w+)*\s+=\s*(\d)\s*;";
+                    string ptnField = @"\s*(\w+)*\s*=\s*(\d)\s*;";
                     var match = Regex.Match(lines[index], ptnField);
                     if(match.Success)
                     {
@@ -302,7 +302,7 @@ namespace Zee
                 }
                 else
                 {
-                    string ptnField = @"\s*(\w+\s+)*([\w.]+)\s+(\w+)\s+=\s*(\d)\s*;";
+                    string ptnField = @"\s*(\w+\s+)*([\w.]+)\s+(\w+)\s*=\s*(\d)\s*;";
                     var match = Regex.Match(lines[index], ptnField);
                     if(match.Success)
                     {

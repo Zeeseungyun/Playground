@@ -9,10 +9,10 @@ struct FZeeNetPacketSerializerBase
 	virtual ~FZeeNetPacketSerializerBase() = default;
 
 	//return read bytes.
-	virtual int32 Deserialize(const uint8* InBuffer, int32 InBuffetSize) = 0;
+	virtual int32 Deserialize(const uint8* InBuffer, int32 InBufferSize) = 0;
 
 	//return written bytes.
-	virtual int32 Serialize(uint8* OutBuffer, int32 InBuffetSize) const = 0;
+	virtual int32 Serialize(uint8* OutBuffer, int32 InBufferSize) const = 0;
 	virtual TSharedPtr<FZeeNetPacketSerializerBase> Clone() const = 0;
 
 	template<CZeeNetPacketMessage T>
@@ -37,16 +37,16 @@ struct FZeeNetPacketSerializerBase
 	}
 
 	template<CZeeNetPacketMessage T>
-	const T& GetCastPacket() const
+	const FZeeNetPacket<T>& GetCastPacket() const
 	{
 		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetHeader().Point);
-		return *reinterpret_cast<const T*>(GetPacket());
+		return *reinterpret_cast<const FZeeNetPacket<T>*>(GetPacket());
 	}
 
 	template<CZeeNetPacketMessage T>
-	T& GetCastMutablePacket()
+	FZeeNetPacket<T>& GetCastMutablePacket()
 	{
-		return const_cast<T&>(GetCastPacket<T>());
+		return const_cast<FZeeNetPacket<T>&>(GetCastPacket<T>());
 	}
 
 	virtual void* GetMessage() const = 0;
@@ -57,7 +57,6 @@ protected:
 	static int32 ReadBuffer(const uint8*& Buffer, T& Value)
 	{	
 		Value = *reinterpret_cast<const T*>(Buffer);
-		Buffer += sizeof(T);
 		return sizeof(T);
 	}
 
@@ -65,7 +64,6 @@ protected:
 	static int32 WriteBuffer(uint8*& Buffer, const T& Value)
 	{
 		*reinterpret_cast<T*>(Buffer) = Value;
-		Buffer += sizeof(T);
 		return sizeof(T);
 	}
 

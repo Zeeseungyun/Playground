@@ -10,6 +10,9 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
+#include "ZeeNet/Public/ZeeNetClient.h"
+#include "ZeeNet/Public/Messages/Chat.h"
+#include "ProjectPlayground.h"
 
 AProjectPlaygroundCharacter::AProjectPlaygroundCharacter()
 {
@@ -48,4 +51,29 @@ AProjectPlaygroundCharacter::AProjectPlaygroundCharacter()
 void AProjectPlaygroundCharacter::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
+}
+
+void AProjectPlaygroundCharacter::BeginPlay() /*override*/
+{
+	Super::BeginPlay();
+	MyClient = MakeShared<FZeeNetClient>();
+
+	MyClient->OnConnected().AddLambda([this](const FString& InMessage)
+		{
+			FZeeNetChatSpeak Msg;
+			Msg.Content = TEXT("Request Test Message");
+			UE_LOG(LogProjectPlayground, Log, TEXT("Request Test Message Responsed, %s"), *Msg.Content);
+			//UE_LOG(LogZeeNet, Log, TEXT("Request Test Message Request, %s"), *Msg.Content);
+			MyClient->Request<FZeeNetChatSpeak>(Msg, [](const FZeeNetChatSpeak& InMsg)
+				{
+					UE_LOG(LogProjectPlayground, Log, TEXT("Request Test Message Responsed, %s"), *InMsg.Content);
+				}
+			);
+
+			// Msg.Content = TEXT("Notify Test Message");
+			// Temp->Notify(Msg);
+		}
+	);
+
+	MyClient->TryConnect(TEXT("127.0.0.1:20500"));
 }

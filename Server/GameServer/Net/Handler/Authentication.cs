@@ -12,12 +12,13 @@ namespace Zee.Net
             UID = rnd.NextInt64();
             msg.UID = UID;
             msg.RC = Proto.Authentication.ReturnCode.RcSuccesss;
-            NotifyMessage(msg);
+            Notify(msg);
         }
 
         public void OnNotify(Message.Packet<Proto.Authentication.Logout> packet)
         {
 
         }
+
     }
 }

@@ -3,6 +3,10 @@
 
 #include "ZeeNetClient.h"
 #include "Networking.h"
+#include "Algo/BinarySearch.h"
+#include "Misc/CoreDelegates.h"
+#include "Misc/App.h"
+
 #include "ZeeNet/Public/Messages/Packet.h"
 #include "ZeeNet/Private/ZeeNetMessageSerializerDef.h"
 #include "ZeeNet/Public/Interface/Handler/ZeeNetNotifyHandler.h"
@@ -17,6 +21,7 @@ FZeeNetClient::FZeeNetClient()
 	: InBuffer {}
 	, OutBuffer {}
 {
+	bIsStop = true;
 	if (ValidNotifyHandlerNames.Num() == 0)
 	{
 		BuildValidNotifyHandlerNames();
@@ -27,26 +32,38 @@ FZeeNetClient::FZeeNetClient()
 		BuildValidRequestHandlerNames();
 	}
 
-	Thread = TUniquePtr<FRunnableThread>(FRunnableThread::Create(this, *ClientName));
 }
 
 FZeeNetClient::~FZeeNetClient()
 {
+	if (BeginFrameDelegate.IsValid())
+	{
+		FCoreDelegates::OnBeginFrame.Remove(BeginFrameDelegate);
+		BeginFrameDelegate.Reset();
+	}
 }
 
 void FZeeNetClient::TryConnect(const FString& InEndPoint)
 {
-	FScopeLock Lock(&MtxSocket);
-	if (Socket && Socket->GetConnectionState() == ESocketConnectionState::SCS_Connected)
 	{
-		OnConnected().Broadcast(FString::Printf(TEXT("already connected [%s]"), *ClientName));
+		FScopeLock Lock(&MtxSocket);
+		if (Socket && Socket->GetConnectionState() == ESocketConnectionState::SCS_Connected)
+		{
+			OnConnected().Broadcast(FString::Printf(TEXT("already connected [%s]"), *ClientName));
+			return;
+		}
+	}
+
+	if (Thread.IsValid())
+	{
+		OnConnected().Broadcast(FString::Printf(TEXT("idk [%s]"), *ClientName));
 		return;
 	}
 
 	EndPoint = InEndPoint;
 	ClientName = FString::Printf(TEXT("FZeeNetClient(%s)"), *EndPoint);
-
 	Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateUniqueSocket(NAME_Stream, *ClientName);
+	Thread = TUniquePtr<FRunnableThread>(FRunnableThread::Create(this, *ClientName));
 }
 
 void FZeeNetClient::ExecuteConnectEvent(const FString& InMessage)
@@ -62,38 +79,16 @@ void FZeeNetClient::ExecuteConnectEvent(const FString& InMessage)
 
 bool FZeeNetClient::Init()
 {
-	return true;
+	bool bSuccess = true;
+	BeginFrameDelegate = FCoreDelegates::OnBeginFrame.AddThreadSafeSP(AsShared(), &FZeeNetClient::OnBeginFrame);
+	bSuccess &= BeginFrameDelegate.IsValid();
+	return bSuccess;
 }
-// 
-// std::string error_to_str(
-// 	int error_code,
-// 	int languageid = MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT))
-// {
-// 	std::string ret = "";
-// 	HLOCAL hLocal = NULL;
-// 	FormatMessageA(
-// 		FORMAT_MESSAGE_FROM_SYSTEM
-// 		| FORMAT_MESSAGE_ALLOCATE_BUFFER,   // flags
-// 		nullptr,
-// 		error_code,
-// 		languageid,
-// 		reinterpret_cast<LPSTR>(&hLocal),
-// 		0,
-// 		NULL
-// 	);
-// 
-// 	ret = reinterpret_cast<const LPSTR>(hLocal);
-// 	LocalFree(hLocal);
-// 	return ret;
-// }
 
 uint32 FZeeNetClient::Run()
 {
 	//TryConnect 함수 호출을 통해 해당 Socket이 생성되기 전까지 대기.
-	while (!Socket)
-	{
-		FPlatformProcess::Sleep(1.0f);
-	}
+	while (!Socket) { FPlatformProcess::YieldThread(); }
 
 	bool bSuccess = false;
 	FIPv4Endpoint EndPointv4;
@@ -105,9 +100,13 @@ uint32 FZeeNetClient::Run()
 
 	if (!bSuccess)
 	{
-		FScopeLock Lock(&MtxSocket);
-		Socket->Close();
-		Socket = nullptr;
+		{
+			FScopeLock Lock(&MtxSocket);
+			Socket->Close();
+			Socket = nullptr;
+			bIsStop = true;
+		}
+
 		ExecuteConnectEvent(TEXT("connection failed."));
 		return -1;
 	}
@@ -120,6 +119,7 @@ uint32 FZeeNetClient::Run()
 
 	{
 		FScopeLock Lock(&MtxSocket);
+		//bIsStop = true; stop is already true.
 		Socket->Shutdown(ESocketShutdownMode::ReadWrite);
 		Socket->Close();
 		Socket = nullptr;
@@ -166,6 +166,8 @@ void FZeeNetClient::UnregisterNotifyHandler(const TSharedPtr<struct IZeeNetNotif
 		return;
 	}
 
+	checkf(ValidNotifyHandlerNames.Contains(NewHandler->GetHandlerName()), TEXT("invalid handler name. %s"), *NewHandler->GetHandlerName());
+
 	TArray<TWeakPtr<struct IZeeNetNotifyHandler>>* const FoundHandlers = NotifyHandlers.Find(NewHandler->GetHandlerName());
 	if (!FoundHandlers)
 	{
@@ -198,7 +200,7 @@ bool FZeeNetClient::IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandl
 		return false;
 	}
 
-	checkf(ValidNotifyHandlerNames.Contains(InHandler->GetHandlerName()), TEXT("invalid notify handler name. %s"), *InHandler->GetHandlerName());
+	checkf(ValidNotifyHandlerNames.Contains(InHandler->GetHandlerName()), TEXT("invalid handler name. %s"), *InHandler->GetHandlerName());
 
 	const TArray<TWeakPtr<struct IZeeNetNotifyHandler>>* const FoundHandlers = NotifyHandlers.Find(InHandler->GetHandlerName());
 	if (!FoundHandlers)
@@ -243,6 +245,11 @@ void FZeeNetClient::CheckNotifyHandlers()
 	}
 }
 
+static bool RequestHandlersPredicate(const TWeakPtr<struct IZeeNetRequestHandler>& Lhs, const TWeakPtr<struct IZeeNetRequestHandler>& Rhs)
+{
+	return Lhs.Pin()->GetPriority() < Rhs.Pin()->GetPriority();
+}
+
 bool FZeeNetClient::RegisterRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& NewHandler)
 {
 	CheckRequestHandlers();
@@ -257,9 +264,18 @@ bool FZeeNetClient::RegisterRequestHandler(const TSharedPtr<struct IZeeNetReques
 		return true;
 	}
 
-	//TODO:: 정렬시켜서 삽입해야함.
-	// RequestHandlers.FindOrAdd(NewHandler->GetHandlerName()).Add(NewHandler);
-	
+	TArray<TWeakPtr<struct IZeeNetRequestHandler>>& Handlers = RequestHandlers.FindOrAdd(NewHandler->GetHandlerName());
+	static auto Proj = [](const TWeakPtr<struct IZeeNetRequestHandler>& Elem) { return Elem; };
+	const int32 Index = Algo::UpperBoundBy(Handlers, NewHandler.ToWeakPtr(), Proj, &RequestHandlersPredicate);
+	if (Index == INDEX_NONE)
+	{
+		Handlers.Add(NewHandler);
+	}
+	else
+	{
+		Handlers.Insert(NewHandler, Index);
+	}
+
 	return true;
 }
 
@@ -270,6 +286,8 @@ void FZeeNetClient::UnregisterRequestHandler(const TSharedPtr<struct IZeeNetRequ
 	{
 		return;
 	}
+
+	checkf(ValidRequestHandlerNames.Contains(NewHandler->GetHandlerName()), TEXT("invalid handler name. %s"), *NewHandler->GetHandlerName());
 
 	TArray<TWeakPtr<struct IZeeNetRequestHandler>>* const FoundHandlers = RequestHandlers.Find(NewHandler->GetHandlerName());
 	if (!FoundHandlers)
@@ -303,7 +321,7 @@ bool FZeeNetClient::IsInRequestHandler(const TSharedPtr<struct IZeeNetRequestHan
 		return false;
 	}
 
-	checkf(ValidRequestHandlerNames.Contains(InHandler->GetHandlerName()), TEXT("invalid Request handler name. %s"), *InHandler->GetHandlerName());
+	checkf(ValidRequestHandlerNames.Contains(InHandler->GetHandlerName()), TEXT("invalid handler name. %s"), *InHandler->GetHandlerName());
 
 	const TArray<TWeakPtr<struct IZeeNetRequestHandler>>* const FoundHandlers = RequestHandlers.Find(InHandler->GetHandlerName());
 	if (!FoundHandlers)
@@ -327,12 +345,129 @@ bool FZeeNetClient::IsInRequestHandler(const TSharedPtr<struct IZeeNetRequestHan
 	return false;
 }
 
+void FZeeNetClient::OnBeginFrame()
+{
+	// check request pending packets
+	if (bIsStop)
+	{
+		return;
+	}
+
+	{
+		for (int32 i = 0; i < RequestPendingPackets.Num();)
+		{
+			const FDateTime PacketTime = RequestPendingPackets[i].TimeTick;
+			TSharedRef<struct FZeeNetPacketSerializerBase>& Packet = RequestPendingPackets[i].Packet;
+			const FTimespan Timespan = FDateTime::Now() - PacketTime;
+			if (Timespan.GetTotalSeconds() > GetRequestTimeoutSec())
+			{
+				UE_LOG(LogZeeNet, Warning, TEXT("request message timeout."));
+				Packet->GetHeader().PacketType = EZeeNetPacketType::ResponseTimeout;
+				Response_Impl(Packet->GetPacket());
+				RequestPendingPackets.RemoveAt(i);
+			}
+			else
+			{
+				++i;
+			}
+		}
+	}
+
+	// consume pending packets..
+	TArray<FPendingPacket> TempPendingPackets;
+	{
+		FScopeLock Lock(&MtxPendingPackets);
+		TempPendingPackets = MoveTemp(PendingPackets);
+	}
+
+	for (FPendingPacket& Elem : TempPendingPackets)
+	{
+		TSharedRef<struct FZeeNetPacketSerializerBase>& Packet = Elem.Packet;
+		switch (Packet->GetHeader().PacketType)
+		{
+		case EZeeNetPacketType::Response:
+		{
+			FScopeLock Lock(&MtxCallbackMaps);
+			TFunction<void(const void*)>* Found = CallbackMaps.Find(Packet->GetHeader().Sequence);
+			check(Found != nullptr);
+			(*Found)(Packet->GetMessage());
+			CallbackMaps.Remove(Packet->GetHeader().Sequence);
+		}
+		break;
+
+		case EZeeNetPacketType::Notify:
+		{
+			if (!ConsumeNotifyMessage(Packet))
+			{
+				UE_LOG(LogZeeNet, Warning, TEXT("message not consumed."));
+			}
+		}
+		break;
+
+		case EZeeNetPacketType::Request:
+		{
+			const int32 BeginResponseDirectylySequenceCheck = Packet->GetHeader().Sequence;
+			//TODO:: 누가 소비했는지 반환하도록 해야함.
+			switch (ConsumeRequestMessage(Packet))
+			{
+			case EZeeNetRequestHandlerResponse::NoResponse:
+			{
+				Packet->GetHeader().PacketType = EZeeNetPacketType::NoResponse;
+				Response_Impl(Packet->GetPacket());
+			}
+			break;
+
+			case EZeeNetRequestHandlerResponse::ResponseDirectly:
+			{
+				//ResponseDirectly으로 반환하는 경우 바로 Response를 호출해야함.
+				checkf(ResponseDirectylySequenceCheck.IsSet() && BeginResponseDirectylySequenceCheck == ResponseDirectylySequenceCheck
+				, TEXT("handler must be called directly response when return 'ResponseDirectly'"));
+			}
+			break;
+
+			case EZeeNetRequestHandlerResponse::ResponsePending:
+			{
+				// FScopeLock Lock(&MtxRequestPendingPackets);
+				// 아직 락을 걸 이유가 없음.
+
+				RequestPendingPackets.Add({ FDateTime::Now().GetTicks(), Packet});
+			}
+			break;
+
+			default:
+				break;
+			}
+		}
+		break;
+
+		default:
+			check(0);
+			break;
+		}
+	}
+}
+
 TSet<FString> FZeeNetClient::ValidRequestHandlerNames;
 
 void FZeeNetClient::CheckRequestHandlers()
 {
-	// TODO:: 우선순위 기준 정렬
-	// RequestHandlers
+	for (auto& Elem : RequestHandlers)
+	{
+		TArray<TWeakPtr<struct IZeeNetRequestHandler>>& Handlers = Elem.Value;
+		for (int32 i = 0; i < Handlers.Num();)
+		{
+			if (!Handlers[i].IsValid())
+			{
+				Handlers.RemoveAt(i);
+			}
+			else
+			{
+				++i;
+			}
+		}
+		
+		Handlers.Sort(&RequestHandlersPredicate);
+	}
 }
 
 
@@ -341,133 +476,98 @@ void FZeeNetClient::Recv()
 	int32 HeaderSize = 0, BytesRead = 0, Offset = 0;
 	if (!Socket->Recv(InBuffer, sizeof(HeaderSize), BytesRead))
 	{
-		check(0);
+		Stop();
 		return;
 	}
 	check(sizeof(HeaderSize) == BytesRead);
 	Offset += BytesRead;
 
+	HeaderSize = *reinterpret_cast<int32*>(InBuffer);
 	if (!Socket->Recv(InBuffer + Offset, HeaderSize, BytesRead))
 	{
-		check(0);
+		Stop();
 		return;
 	}
 	check(HeaderSize == BytesRead);
-	Offset += BytesRead;
 
 	using PacketHeaderSerializerType = FZeeNetPacketSerializer<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point>;
-	PacketHeaderSerializerType PacketHeaderSerializer;
-	PacketHeaderSerializer.Deserialize(InBuffer, Offset);
+	PacketHeaderSerializerType Header;
+	Header.Deserialize(InBuffer /*+ Offset 내부에서 HeaderSize를 따로 읽음.*/, BytesRead);
+	Offset += BytesRead;
 	
-	if (!Socket->Recv(InBuffer + Offset, PacketHeaderSerializer.GetHeader().PacketSize, BytesRead))
+	if (!Socket->Recv(InBuffer + Offset, Header.GetHeader().PacketSize, BytesRead))
 	{
-		check(0);
+		Stop();
 		return;
 	}
+	check(Header.GetHeader().PacketSize == BytesRead);
 
-	check(PacketHeaderSerializer.GetHeader().PacketSize == BytesRead);
-
-	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(PacketHeaderSerializer.GetHeader().Point);
-	Packet->GetHeader() = PacketHeaderSerializer.GetHeader();
-
+	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(Header.GetHeader().Point);
+	Packet->GetHeader() = Header.GetHeader();
 	Packet->Deserialize(InBuffer + Offset, BytesRead);
+	// Offset += BytesRead; 의미없음.
 	
-	// {
-	// 	FScopeLock Lock(&MtxPendingPackets);
-	// 	PendingPackets.Add(Packet);
-	// }
-	//TODO:: 아랫 쪽 윗 주석 없애서 게임스레드에서 호출되도록 구현해야함.
-	switch (Packet->GetHeader().PacketType)
 	{
-	case EZeeNetPacketType::Response:
-		{
-			TFunction<void(const void*)>* Found = CallbackMaps.Find(Packet->GetHeader().Sequence);
-			check(Found != nullptr);
-			(*Found)(Packet->GetMessage());
-			CallbackMaps.Remove(Packet->GetHeader().Sequence);
-		}
-		break;
-
-	case EZeeNetPacketType::Notify:
-		{
-			//is not game thread..
-			ConsumeNotifyMessage(Packet);
-		}
-		break;
-
-	case EZeeNetPacketType::Request:
-		{
-			switch (ConsumeRequestMessage(Packet))
-			{
-			case EZeeNetRequestHandlerResponse::NoResponse:
-				{
-					Response_Impl(Packet->GetPacket());
-				}
-				break;
-
-			case EZeeNetRequestHandlerResponse::ResponseDirectly:
-				{
-					//do nothing..
-				}
-				break;
-
-			case EZeeNetRequestHandlerResponse::ResponsePending:
-				{
-					FScopeLock Lock(&MtxRequestPendingPackets);
-					RequestPendingPackets.Add(Packet);
-				}
-				break;
-
-			default:
-				break;
-			}
-		}
-		break;
-
-	default:
-		check(0);
-		break;
+		FScopeLock Lock(&MtxPendingPackets);
+		PendingPackets.Add({ FDateTime::Now().GetTicks(), Packet.ToSharedRef()});
 	}
 }
 
-void FZeeNetClient::Send(int32 InPoint, int32 InSequence, EZeeNetPacketType InPacketType, const void* InMessageRawPtr)
+bool FZeeNetClient::Send(int32 InPoint, int32 InSequence, EZeeNetPacketType InPacketType, const void* InMessageRawPtr)
 {
 	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(InPoint);
 	Packet->SetMessageInternal(InMessageRawPtr);
 	Packet->GetHeader().Sequence = InSequence;
 	Packet->GetHeader().PacketType = InPacketType;
-
-	const int32 BytesWrote = Packet->Serialize(OutBuffer, BufferSize);
-	int32 BytesSent = 0;
-	if (!Socket->Send(OutBuffer, BytesWrote, BytesSent))
+	
+	int32 BytesSent = 0 , BytesWritten = 0;
 	{
-		//접속 끊김?
-		//TODO:: Shutdown 이후 Close 처리.
-		return;
+		FScopeLock Lock(&MtxSocket);
+		BytesWritten = Packet->Serialize(OutBuffer, BufferSize);
+		if (!Socket->Send(OutBuffer, BytesWritten, BytesSent))
+		{
+			Stop();
+			return false;
+		}
 	}
-	check(BytesSent == BytesWrote);
+
+	check(BytesSent == BytesWritten);
+	return true;
 }
 
 EZeeNetReponseType FZeeNetClient::Response_Impl(const void* InPacketRawPtr) /* final */
 {
-	if (!Socket.IsValid())
 	{
-		return EZeeNetReponseType::SocketError;
-	}
-
-	if (Socket->GetConnectionState() != ESocketConnectionState::SCS_Connected)
-	{
-		return EZeeNetReponseType::SocketError;
+		FScopeLock Lock(&MtxSocket);
+		if (!Socket.IsValid() || Socket->GetConnectionState() != ESocketConnectionState::SCS_Connected) [[unlikely]]
+		{
+			return EZeeNetReponseType::SocketError;
+		}
 	}
 
 	const FZeeNetPacketHeader* HeaderPtr = reinterpret_cast<const FZeeNetPacketHeader*>(InPacketRawPtr);
-	check(HeaderPtr->PacketType == EZeeNetPacketType::Request);
+	check( HeaderPtr->PacketType == EZeeNetPacketType::Request 
+		|| HeaderPtr->PacketType == EZeeNetPacketType::ResponseTimeout
+		|| HeaderPtr->PacketType == EZeeNetPacketType::NoResponse
+	);
 
+	if (HeaderPtr->PacketType == EZeeNetPacketType::Request)
+	{
+		const_cast<FZeeNetPacketHeader*>(HeaderPtr)->PacketType = EZeeNetPacketType::Response;
+	}
+
+	const EZeeNetPacketType ResponseType = HeaderPtr->PacketType;
 	const int32 MsgPoint = HeaderPtr->Point;
 	const int32 MsgSequence = HeaderPtr->Sequence;
 	check(HeaderPtr->Point != TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point); //must not be packet header.
-	HeaderPtr++; //offset move.
+	++HeaderPtr; //offset move.
 
-	Send(MsgPoint, MsgSequence, EZeeNetPacketType::Response, HeaderPtr /*maybe message ptr.*/);
+	ResponseDirectylySequenceCheck = MsgSequence;
+
+	if (!Send(MsgPoint, MsgSequence, ResponseType, HeaderPtr /*maybe message ptr.*/))
+	{
+		return EZeeNetReponseType::SocketError;
+	}
+
 	return EZeeNetReponseType::Succeess;
 }

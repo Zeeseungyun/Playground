@@ -11,8 +11,10 @@ enum class EZeeNetPacketType : uint8
 { 
 	None = 0,
 	Notify = 1,
-	Response = 2,
-	Request = 3,
+	Request = 2,
+	Response = 3,
+	NoResponse = 4,
+	ResponseTimeout = 5,
 }; 
 
 USTRUCT(BlueprintType) 

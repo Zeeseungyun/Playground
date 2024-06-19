@@ -73,14 +73,16 @@ namespace Packet {
 enum Type : int {
   None = 0,
   Notify = 1,
-  Response = 2,
-  Request = 3,
+  Request = 2,
+  Response = 3,
+  NoResponse = 4,
+  ResponseTimeout = 5,
   Type_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   Type_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool Type_IsValid(int value);
 constexpr Type Type_MIN = None;
-constexpr Type Type_MAX = Request;
+constexpr Type Type_MAX = ResponseTimeout;
 constexpr int Type_ARRAYSIZE = Type_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Type_descriptor();

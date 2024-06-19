@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../Server"
+		}
+	],
+	"settings": {
+		"dotnet.defaultSolution": "Server.sln",
+		"files.associations": {
+			"*.txt": "aspnetcorerazor",
+			"thread": "cpp",
+			"xlocale": "cpp"
+		}
+	}
+}

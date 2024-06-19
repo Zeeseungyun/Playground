@@ -21,7 +21,7 @@ namespace Zee.Net.Message
 
         static public void HandleNotify(INotifyHandler h, PacketBase p)
         {
-            switch(p.Point)
+            switch(p.Header.Point)
             {
 				case 0x1001: h.OnNotify(p as Packet<Zee.Proto.Authentication.Login>); return;
 				case 0x1002: h.OnNotify(p as Packet<Zee.Proto.Authentication.Logout>); return;

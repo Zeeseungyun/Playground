@@ -62,7 +62,7 @@ namespace Zee.Net.Message
 @"
         static public void HandleNotify(INotifyHandler h, PacketBase p)
         {
-            switch(p.Point)
+            switch(p.Header.Point)
             {
 "
                     );

@@ -136,7 +136,7 @@ namespace Zee
                     }// for proto
 
                     newFile.SrcContent.Append("\r\n");
-                    newFile.SrcContent.Append("void FZeeNetClient::ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { \r\n");
+                    newFile.SrcContent.Append("bool FZeeNetClient::ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { \r\n");
                     newFile.SrcContent.Append("\tCheckNotifyHandlers(); \r\n");
                     newFile.SrcContent.Append("\tFZeeNetNotifyHandlerArray* Found = nullptr; \r\n");
                     newFile.SrcContent.Append("\r\n");
@@ -149,10 +149,11 @@ namespace Zee
                         }
 
                         newFile.SrcContent.Append($"\tFound = FindNotifyHandler_{protoFile.FileNameWithoutProto}(Packet->GetHeader().Point, NotifyHandlers); \r\n");
-                        newFile.SrcContent.Append($"\tif (Found) {{ if(Found->Num() > 0) ConsumeNotifyMessage_{protoFile.FileNameWithoutProto}(Packet, *Found); return; }} \r\n");
+                        newFile.SrcContent.Append($"\tif (Found) {{ if(Found->Num() > 0) ConsumeNotifyMessage_{protoFile.FileNameWithoutProto}(Packet, *Found); return false; }} \r\n");
                         newFile.SrcContent.Append("\r\n");
                     }// for proto
 
+                    newFile.SrcContent.Append("\treturn false;\r\n");
                     newFile.SrcContent.Append("}\r\n");
                     
                     newFile.SrcContent.Append("\r\n");

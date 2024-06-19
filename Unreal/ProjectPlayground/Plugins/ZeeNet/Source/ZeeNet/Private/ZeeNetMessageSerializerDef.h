@@ -45,7 +45,6 @@ public:
 		}
 
 		Zee::Net::Message::Convert::FromTo(ProtoMessage, GetHeader());
-
 		return HeaderSize + ReadBytes;
 	}
 
@@ -65,7 +64,7 @@ public:
 			return 0;
 		}
 
-		return HeaderSize;
+		return HeaderSize + sizeof(HeaderSize);
 	}
 
 	virtual TSharedPtr<FZeeNetPacketSerializerBase> Clone() const final
@@ -113,7 +112,7 @@ public:
 		//	ReadBytes = HeaderRead.Deserialize(InBuffer, InBufferSize);
 		//	Header = HeaderRead.Header;
 		//}
-
+		
 		ProtoType ProtoMessage;
 		if (!ProtoMessage.ParseFromArray(InBuffer, InBufferSize))
 		{

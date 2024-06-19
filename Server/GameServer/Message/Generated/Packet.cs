@@ -27,8 +27,9 @@ namespace Zee.Proto.Packet {
             "CgxQYWNrZXQucHJvdG8SEFplZS5Qcm90by5QYWNrZXQiaQoGSGVhZGVyEhIK",
             "ClBhY2tldFNpemUYASABKAUSDQoFUG9pbnQYAiABKAUSEAoIU2VxdWVuY2UY",
             "AyABKAUSKgoKUGFja2V0VHlwZRgEIAEoDjIWLlplZS5Qcm90by5QYWNrZXQu",
-            "VHlwZSo3CgRUeXBlEggKBE5vbmUQABIKCgZOb3RpZnkQARIMCghSZXNwb25z",
-            "ZRACEgsKB1JlcXVlc3QQA2IGcHJvdG8z"));
+            "VHlwZSpcCgRUeXBlEggKBE5vbmUQABIKCgZOb3RpZnkQARILCgdSZXF1ZXN0",
+            "EAISDAoIUmVzcG9uc2UQAxIOCgpOb1Jlc3BvbnNlEAQSEwoPUmVzcG9uc2VU",
+            "aW1lb3V0EAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Packet.Type), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -42,8 +43,10 @@ namespace Zee.Proto.Packet {
   public enum Type {
     [pbr::OriginalName("None")] None = 0,
     [pbr::OriginalName("Notify")] Notify = 1,
-    [pbr::OriginalName("Response")] Response = 2,
-    [pbr::OriginalName("Request")] Request = 3,
+    [pbr::OriginalName("Request")] Request = 2,
+    [pbr::OriginalName("Response")] Response = 3,
+    [pbr::OriginalName("NoResponse")] NoResponse = 4,
+    [pbr::OriginalName("ResponseTimeout")] ResponseTimeout = 5,
   }
 
   #endregion

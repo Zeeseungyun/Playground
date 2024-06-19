@@ -15,22 +15,23 @@ extern bool ConsumeNotifyMessage_Test(TSharedPtr<struct FZeeNetPacketSerializerB
 extern FZeeNetNotifyHandlerArray* FindNotifyHandler_Test2(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers); 
 extern bool ConsumeNotifyMessage_Test2(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers); 
 
-void FZeeNetClient::ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { 
+bool FZeeNetClient::ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { 
 	CheckNotifyHandlers(); 
 	FZeeNetNotifyHandlerArray* Found = nullptr; 
 
 	Found = FindNotifyHandler_Authentication(Packet->GetHeader().Point, NotifyHandlers); 
-	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Authentication(Packet, *Found); return; } 
+	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Authentication(Packet, *Found); return false; } 
 
 	Found = FindNotifyHandler_Chat(Packet->GetHeader().Point, NotifyHandlers); 
-	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Chat(Packet, *Found); return; } 
+	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Chat(Packet, *Found); return false; } 
 
 	Found = FindNotifyHandler_Test(Packet->GetHeader().Point, NotifyHandlers); 
-	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Test(Packet, *Found); return; } 
+	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Test(Packet, *Found); return false; } 
 
 	Found = FindNotifyHandler_Test2(Packet->GetHeader().Point, NotifyHandlers); 
-	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Test2(Packet, *Found); return; } 
+	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Test2(Packet, *Found); return false; } 
 
+	return false;
 }
 
 void FZeeNetClient::BuildValidNotifyHandlerNames() {

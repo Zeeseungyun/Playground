@@ -51,7 +51,7 @@ namespace Zee.Net
         {
             foreach (var client in clients)
             {
-                client.NotifyMessage(message);
+                client.Notify(message);
             }
         }
         override protected void HandleDisconnected(object? sender, TcpBase obj)

@@ -21,7 +21,7 @@ namespace Zee.Net.Message
 
         static public void HandleRequest(IResponser r, IRequestHandler h, PacketBase p)
         {
-            switch(p.Point)
+            switch(p.Header.Point)
             {
 				case 0x1001: h.OnRequest(r, p as Packet<Zee.Proto.Authentication.Login>); return;
 				case 0x1002: h.OnRequest(r, p as Packet<Zee.Proto.Authentication.Logout>); return;

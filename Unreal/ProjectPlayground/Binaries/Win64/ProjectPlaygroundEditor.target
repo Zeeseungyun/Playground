@@ -6628,6 +6628,18 @@
 		{
 			"Path": "$(ProjectDir)/Plugins/ZeeNet/Binaries/Win64/UnrealEditor.modules",
 			"Type": "RequiredResource"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/ZeeUI/Binaries/Win64/UnrealEditor-ZeeUI.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/ZeeUI/Binaries/Win64/UnrealEditor-ZeeUI.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/ZeeUI/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
 		}
 	],
 	"RuntimeDependencies": [
@@ -31732,6 +31744,10 @@
 			"Type": "UFS"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/ZeeUI/ZeeUI.uplugin",
+			"Type": "UFS"
+		},
+		{
 			"Path": "$(ProjectDir)/ProjectPlayground.uproject",
 			"Type": "UFS"
 		}
@@ -31912,7 +31928,8 @@
 		"XCodeSourceCodeAccess",
 		"XGEController",
 		"XInputDevice",
-		"ZeeNet"
+		"ZeeNet",
+		"ZeeUI"
 	],
 	"AdditionalProperties": [
 		{

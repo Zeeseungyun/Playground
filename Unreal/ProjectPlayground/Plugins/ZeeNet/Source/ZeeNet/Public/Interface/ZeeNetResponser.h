@@ -18,7 +18,7 @@ public:
 	template<CZeeNetPacketMessage T>
 	EZeeNetReponseType Response(const FZeeNetPacket<T>& InPacket)
 	{
-		Response_Impl(&InPacket);
+		return Response_Impl(&InPacket);
 	}
 
 private:

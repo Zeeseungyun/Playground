@@ -56,24 +56,24 @@ namespace Zee.Net
         virtual protected void ReceiveMessages()
         {
         }
-        virtual public void NotifyMessage(IMessage msg)
+        virtual public void Notify(IMessage msg)
         {
             var packet = new Message.PacketBase();
             packet.Message = msg;
             packet.Header.PacketType = Proto.Packet.Type.Notify;
             client!.GetStream().SerializePacket(packet);
         }
-        protected Dictionary<int, Action<IMessage>> callbackMaps = new();
-        virtual public void SendMessage<T>(T msg, Action<T> callback) where T : IMessage
+        protected Dictionary<int, Action<PacketBase>> callbackMaps = new();
+        virtual public void Request<T>(T msg, Action<Packet<T>> callback) where T : class, IMessage
         {
             var packet = new Message.PacketBase();
             packet.Message = msg;
             packet.Header.Sequence = Interlocked.Increment(ref Sequence);
             packet.Header.PacketType = Proto.Packet.Type.Request;
 
-            callbackMaps.Add(packet.Sequence, (IMessage msg)=>
+            callbackMaps.Add(packet.Header.Sequence, (PacketBase msg)=>
             {
-                callback.Invoke((T)msg);
+                callback.Invoke((Packet<T>)msg);
             });
 
             client!.GetStream().SerializePacket(packet);
@@ -90,7 +90,7 @@ namespace Zee.Net
 
         public void ProcessPacket(PacketBase packet)
         {
-            switch(packet.Type)
+            switch(packet.Header.PacketType)
             {
                 case Proto.Packet.Type.Notify:
                     foreach(var elem in notifyHandlers)
@@ -106,15 +106,22 @@ namespace Zee.Net
                     }
                 break; 
 
+                case Proto.Packet.Type.ResponseTimeout:
+                case Proto.Packet.Type.NoResponse:
                 case Proto.Packet.Type.Response:
                     {
-                        if(callbackMaps.TryGetValue(packet.Sequence, out var handler))
+                        if(callbackMaps.TryGetValue(packet.Header.Sequence, out var handler))
                         {
-                            handler.Invoke(packet.Message!);
+                            handler.Invoke(packet);
                         }
                     }
                 break;
 
+                case Proto.Packet.Type.None:
+                default:
+                    {
+                        throw new Exception("invalid packet type");
+                    }
             }
         }
     }

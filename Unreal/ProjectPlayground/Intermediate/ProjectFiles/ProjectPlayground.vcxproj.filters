@@ -13,6 +13,7 @@
     </None>
     <None Include="..\..\.vsconfig" />
     <None Include="..\..\GenerateProjectFiles.bat" />
+    <None Include="..\..\Playground.code-workspace" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -271,6 +272,45 @@
     <None Include="..\..\Plugins\ZeeNet\Resources\Icon128.png">
       <Filter>Plugins\ZeeNet\Resources</Filter>
     </None>
+    <Filter Include="Plugins\ZeeUI">
+      <UniqueIdentifier>{47F3FECF-18D9-377E-B6B5-30DED5586AF4}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeUI\ZeeUI.uplugin">
+      <Filter>Plugins\ZeeUI</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeUI\Resources">
+      <UniqueIdentifier>{84AABF07-C2C8-3472-8488-C367F7AAEB68}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeUI\Resources\Icon128.png">
+      <Filter>Plugins\ZeeUI\Resources</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeUI\Source">
+      <UniqueIdentifier>{A3CA0D36-96B0-336F-B7C5-BC89ABF0FD36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI">
+      <UniqueIdentifier>{CE99D836-A45D-35FA-A22A-CB5BAC107B09}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeUI\Source\ZeeUI\ZeeUI.Build.cs">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI</Filter>
+    </None>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private">
+      <UniqueIdentifier>{53967979-A9E6-3AD2-890A-698F81710A79}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUI.cpp">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUIBPLibrary.cpp">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private</Filter>
+    </ClCompile>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public">
+      <UniqueIdentifier>{CC5A26AA-92C5-36B1-8A7D-7E74967FD870}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUI.h">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUIBPLibrary.h">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public</Filter>
+    </ClInclude>
     <Filter Include="Source\ProjectPlayground">
       <UniqueIdentifier>{3F1F7F0B-7BA9-3525-A16E-787A0470C6C8}</UniqueIdentifier>
     </Filter>

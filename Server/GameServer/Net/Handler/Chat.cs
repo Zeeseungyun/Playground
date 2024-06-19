@@ -1,4 +1,5 @@
 using System.Data.Common;
+using System.Net.Cache;
 using Google.Protobuf;
 
 namespace Zee.Net
@@ -13,7 +14,19 @@ namespace Zee.Net
             msg.UID = UID;
             
             Console.WriteLine($"{Name}: {msg.Content}");
-            // server.BroadcastPacket(msg);
+        }
+        public void OnRequest(Message.IResponser r, Message.Packet<Zee.Proto.Chat.Speak> p) 
+        { 
+            var msg = p.ExactMessage!;
+            Console.WriteLine($"{Name}: {msg.Content}");
+            msg.Content = "good job.";
+            r.Response(p);
+            Request(p.ExactMessage!, (e)=>
+            {
+                Console.WriteLine($"{Name}: OnResponse{e.Header}");
+                msg.Content = "test finished.";
+                Notify(msg);
+            });
         }
     }
 }
