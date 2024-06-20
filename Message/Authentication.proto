@@ -1,6 +1,5 @@
 syntax = "proto3";
 package Zee.Proto.Authentication;
-import "Chat.proto";
 
 enum ReturnCode {
     RC_SUCCESSS = 0;
@@ -11,8 +10,8 @@ enum ReturnCode {
 message Login {
     ReturnCode RC = 1;
     string Id = 2;
-    int64 UID = 3;
-    Chat.Speak Speak = 4;
+    string Password = 3;
+    int64 UID = 4;
 }
 
 message Logout {

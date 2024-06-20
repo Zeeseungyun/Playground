@@ -49,25 +49,27 @@ void FZeeNetClient::TryConnect(const FString& InEndPoint)
 		FScopeLock Lock(&MtxSocket);
 		if (Socket && Socket->GetConnectionState() == ESocketConnectionState::SCS_Connected)
 		{
-			OnConnected().Broadcast(FString::Printf(TEXT("already connected [%s]"), *ClientName));
+			ExecuteConnectEvent(FString::Printf(TEXT("already connected [%s]"), *ClientName));
 			return;
 		}
 	}
 
 	if (Thread.IsValid())
 	{
-		OnConnected().Broadcast(FString::Printf(TEXT("idk [%s]"), *ClientName));
+		ExecuteConnectEvent(FString::Printf(TEXT("thread already created."), *ClientName));
 		return;
 	}
 
 	EndPoint = InEndPoint;
 	ClientName = FString::Printf(TEXT("FZeeNetClient(%s)"), *EndPoint);
 	Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateUniqueSocket(NAME_Stream, *ClientName);
+	bIsStop = false;
 	Thread = TUniquePtr<FRunnableThread>(FRunnableThread::Create(this, *ClientName));
 }
 
 void FZeeNetClient::ExecuteConnectEvent(const FString& InMessage)
 {
+	UE_LOG(LogZeeNet, Log, TEXT("ExecuteConnectEvent called. [%s]"), *InMessage);
 	AsyncTask(ENamedThreads::Type::GameThread, [=, StrongThis = AsShared()]()
 		{
 			StrongThis->OnConnected().Broadcast(InMessage);
@@ -87,6 +89,10 @@ bool FZeeNetClient::Init()
 
 uint32 FZeeNetClient::Run()
 {
+	//this 포인터가 먼저 죽으면서 소멸될 수 있음.
+	//강제로 레퍼런싱을 잡음.
+	TSharedRef<FZeeNetClient> SharedThis = AsShared();
+
 	//TryConnect 함수 호출을 통해 해당 Socket이 생성되기 전까지 대기.
 	while (!Socket) { FPlatformProcess::YieldThread(); }
 
@@ -98,20 +104,16 @@ uint32 FZeeNetClient::Run()
 		bSuccess = Socket->Connect(*EndPointv4.ToInternetAddr());
 	}
 
-	if (!bSuccess)
+	if (bSuccess)
 	{
-		{
-			FScopeLock Lock(&MtxSocket);
-			Socket->Close();
-			Socket = nullptr;
-			bIsStop = true;
-		}
-
+		ExecuteConnectEvent(TEXT(""));
+	}
+	else
+	{
+		bIsStop = true;
 		ExecuteConnectEvent(TEXT("connection failed."));
-		return -1;
 	}
 
-	ExecuteConnectEvent(TEXT(""));
 	while (!bIsStop)
 	{
 		Recv();
@@ -119,10 +121,10 @@ uint32 FZeeNetClient::Run()
 
 	{
 		FScopeLock Lock(&MtxSocket);
-		//bIsStop = true; stop is already true.
 		Socket->Shutdown(ESocketShutdownMode::ReadWrite);
 		Socket->Close();
 		Socket = nullptr;
+		//
 	}
 
 	return 0;
@@ -130,12 +132,15 @@ uint32 FZeeNetClient::Run()
 
 void FZeeNetClient::Stop()
 {
+	UE_LOG(LogZeeNet, Warning, TEXT("Stop called."));
 	bIsStop = true;
 }
 
 void FZeeNetClient::Exit()
 {
-	Stop();
+	UE_LOG(LogZeeNet, Warning, TEXT("Exit called."));
+	bIsStop = true;
+	Thread = nullptr;
 }
 
 //~end FRunnable Interface
@@ -469,7 +474,6 @@ void FZeeNetClient::CheckRequestHandlers()
 		Handlers.Sort(&RequestHandlersPredicate);
 	}
 }
-
 
 void FZeeNetClient::Recv()
 {

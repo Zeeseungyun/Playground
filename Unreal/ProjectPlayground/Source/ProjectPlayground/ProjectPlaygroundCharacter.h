@@ -33,6 +33,10 @@ private:
 
 public:
 	TSharedPtr<class FZeeNetClient> MyClient;
+	TSharedPtr<class SZeeUILobbyLogin> MyLoginWidget;
 	virtual void BeginPlay() override;
+
+private:
+	FReply OnLoginClicked();
 };
 

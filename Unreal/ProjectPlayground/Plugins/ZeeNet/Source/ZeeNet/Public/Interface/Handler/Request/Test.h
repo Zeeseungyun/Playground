@@ -11,9 +11,10 @@ struct ZEENET_API IZeeNetRequestHandler_Test
 {
 	const FString& GetHandlerName() const final { static FString Name = TEXT("Request_Test"); return Name; } 
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTestTestMessage>& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTestTestMessage>& InPacket) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
 };
+
 

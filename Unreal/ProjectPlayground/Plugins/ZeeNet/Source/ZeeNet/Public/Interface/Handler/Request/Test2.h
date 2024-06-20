@@ -11,21 +11,23 @@ struct ZEENET_API IZeeNetRequestHandler_Test2
 {
 	const FString& GetHandlerName() const final { static FString Name = TEXT("Request_Test2"); return Name; } 
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTest2TestMessage2>& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTest2TestMessage2>& InPacket) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTest2TestMessage3>& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTest2TestMessage3>& InPacket) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTest2TestMessage4>& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTest2TestMessage4>& InPacket) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTest2TestMessage5>& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetTest2TestMessage5>& InPacket) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
 };
+
+
 

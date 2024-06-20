@@ -19,6 +19,17 @@ namespace Zee.Net
         {
 
         }
+		public void OnRequest(Message.IResponser r, Message.Packet<Zee.Proto.Authentication.Login> p) 
+        { 
+            var msg = p.ExactMessage!;
+            Name = msg.Id;
+            msg.RC = Proto.Authentication.ReturnCode.RcSuccesss;
+            var rnd = new Random();
+            UID = rnd.NextInt64();
+            msg.UID = UID;
+            Console.WriteLine($"Id:{msg.Id}, PW: {msg.Password} Login.");
+            r.Response(p);
+        }
 
     }
 }

@@ -11,13 +11,14 @@ struct ZEENET_API IZeeNetRequestHandler_Authentication
 {
 	const FString& GetHandlerName() const final { static FString Name = TEXT("Request_Authentication"); return Name; } 
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetAuthenticationLogin>& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetAuthenticationLogin>& InPacket) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetAuthenticationLogout>& InMessage) { 
+	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetAuthenticationLogout>& InPacket) { 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
 };
+
 

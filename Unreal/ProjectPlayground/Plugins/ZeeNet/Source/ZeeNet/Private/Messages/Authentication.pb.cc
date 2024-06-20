@@ -23,7 +23,7 @@ namespace Authentication {
 constexpr Login::Login(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : id_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , speak_(nullptr)
+  , password_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , uid_(int64_t{0})
   , rc_(0)
 {}
@@ -67,8 +67,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Authentication_2eproto::offset
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Login, rc_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Login, id_),
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Login, password_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Login, uid_),
-  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Login, speak_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Logout, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -91,23 +91,19 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_Authentication_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\024Authentication.proto\022\030Zee.Proto.Authen"
-  "tication\032\nChat.proto\"x\n\005Login\0220\n\002RC\030\001 \001("
-  "\0162$.Zee.Proto.Authentication.ReturnCode\022"
-  "\n\n\002Id\030\002 \001(\t\022\013\n\003UID\030\003 \001(\003\022$\n\005Speak\030\004 \001(\0132"
-  "\025.Zee.Proto.Chat.Speak\"S\n\006Logout\0220\n\002RC\030\001"
-  " \001(\0162$.Zee.Proto.Authentication.ReturnCo"
-  "de\022\n\n\002Id\030\002 \001(\t\022\013\n\003UID\030\003 \001(\003*X\n\nReturnCod"
-  "e\022\017\n\013RC_SUCCESSS\020\000\022\033\n\027RC_FAILED_ALREADY_"
-  "LOGIN\020\001\022\034\n\030RC_FAILED_ALREADY_LOGOUT\020\002b\006p"
-  "roto3"
+  "tication\"d\n\005Login\0220\n\002RC\030\001 \001(\0162$.Zee.Prot"
+  "o.Authentication.ReturnCode\022\n\n\002Id\030\002 \001(\t\022"
+  "\020\n\010Password\030\003 \001(\t\022\013\n\003UID\030\004 \001(\003\"S\n\006Logout"
+  "\0220\n\002RC\030\001 \001(\0162$.Zee.Proto.Authentication."
+  "ReturnCode\022\n\n\002Id\030\002 \001(\t\022\013\n\003UID\030\003 \001(\003*X\n\nR"
+  "eturnCode\022\017\n\013RC_SUCCESSS\020\000\022\033\n\027RC_FAILED_"
+  "ALREADY_LOGIN\020\001\022\034\n\030RC_FAILED_ALREADY_LOG"
+  "OUT\020\002b\006proto3"
   ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Authentication_2eproto_deps[1] = {
-  &::descriptor_table_Chat_2eproto,
-};
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Authentication_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Authentication_2eproto = {
-  false, false, 365, descriptor_table_protodef_Authentication_2eproto, "Authentication.proto", 
-  &descriptor_table_Authentication_2eproto_once, descriptor_table_Authentication_2eproto_deps, 1, 2,
+  false, false, 333, descriptor_table_protodef_Authentication_2eproto, "Authentication.proto", 
+  &descriptor_table_Authentication_2eproto_once, nullptr, 0, 2,
   schemas, file_default_instances, TableStruct_Authentication_2eproto::offsets,
   file_level_metadata_Authentication_2eproto, file_level_enum_descriptors_Authentication_2eproto, file_level_service_descriptors_Authentication_2eproto,
 };
@@ -140,19 +136,8 @@ bool ReturnCode_IsValid(int value) {
 
 class Login::_Internal {
  public:
-  static const ::Zee::Proto::Chat::Speak& speak(const Login* msg);
 };
 
-const ::Zee::Proto::Chat::Speak&
-Login::_Internal::speak(const Login* msg) {
-  return *msg->speak_;
-}
-void Login::clear_speak() {
-  if (GetArenaForAllocation() == nullptr && speak_ != nullptr) {
-    delete speak_;
-  }
-  speak_ = nullptr;
-}
 Login::Login(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -170,10 +155,10 @@ Login::Login(const Login& from)
     id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_id(), 
       GetArenaForAllocation());
   }
-  if (from._internal_has_speak()) {
-    speak_ = new ::Zee::Proto::Chat::Speak(*from.speak_);
-  } else {
-    speak_ = nullptr;
+  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_password().empty()) {
+    password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_password(), 
+      GetArenaForAllocation());
   }
   ::memcpy(&uid_, &from.uid_,
     static_cast<size_t>(reinterpret_cast<char*>(&rc_) -
@@ -183,10 +168,11 @@ Login::Login(const Login& from)
 
 void Login::SharedCtor() {
 id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&speak_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&uid_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&rc_) -
-    reinterpret_cast<char*>(&speak_)) + sizeof(rc_));
+    reinterpret_cast<char*>(&uid_)) + sizeof(rc_));
 }
 
 Login::~Login() {
@@ -199,7 +185,7 @@ Login::~Login() {
 inline void Login::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (this != internal_default_instance()) delete speak_;
+  password_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void Login::ArenaDtor(void* object) {
@@ -219,10 +205,7 @@ void Login::Clear() {
   (void) cached_has_bits;
 
   id_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && speak_ != nullptr) {
-    delete speak_;
-  }
-  speak_ = nullptr;
+  password_.ClearToEmpty();
   ::memset(&uid_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&rc_) -
       reinterpret_cast<char*>(&uid_)) + sizeof(rc_));
@@ -254,18 +237,20 @@ const char* Login::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
         } else
           goto handle_unusual;
         continue;
-      // int64 UID = 3;
+      // string Password = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          uid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_password();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.Authentication.Login.Password"));
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .Zee.Proto.Chat.Speak Speak = 4;
+      // int64 UID = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_speak(), ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          uid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -316,18 +301,20 @@ failure:
         2, this->_internal_id(), target);
   }
 
-  // int64 UID = 3;
-  if (this->_internal_uid() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(3, this->_internal_uid(), target);
+  // string Password = 3;
+  if (!this->_internal_password().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Zee.Proto.Authentication.Login.Password");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_password(), target);
   }
 
-  // .Zee.Proto.Chat.Speak Speak = 4;
-  if (this->_internal_has_speak()) {
+  // int64 UID = 4;
+  if (this->_internal_uid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        4, _Internal::speak(this), target, stream);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(4, this->_internal_uid(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -353,14 +340,14 @@ size_t Login::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  // .Zee.Proto.Chat.Speak Speak = 4;
-  if (this->_internal_has_speak()) {
+  // string Password = 3;
+  if (!this->_internal_password().empty()) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *speak_);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_password());
   }
 
-  // int64 UID = 3;
+  // int64 UID = 4;
   if (this->_internal_uid() != 0) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_uid());
   }
@@ -396,8 +383,8 @@ void Login::MergeFrom(const Login& from) {
   if (!from._internal_id().empty()) {
     _internal_set_id(from._internal_id());
   }
-  if (from._internal_has_speak()) {
-    _internal_mutable_speak()->::Zee::Proto::Chat::Speak::MergeFrom(from._internal_speak());
+  if (!from._internal_password().empty()) {
+    _internal_set_password(from._internal_password());
   }
   if (from._internal_uid() != 0) {
     _internal_set_uid(from._internal_uid());
@@ -429,12 +416,17 @@ void Login::InternalSwap(Login* other) {
       &id_, lhs_arena,
       &other->id_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &password_, lhs_arena,
+      &other->password_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Login, rc_)
       + sizeof(Login::rc_)
-      - PROTOBUF_FIELD_OFFSET(Login, speak_)>(
-          reinterpret_cast<char*>(&speak_),
-          reinterpret_cast<char*>(&other->speak_));
+      - PROTOBUF_FIELD_OFFSET(Login, uid_)>(
+          reinterpret_cast<char*>(&uid_),
+          reinterpret_cast<char*>(&other->uid_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Login::GetMetadata() const {

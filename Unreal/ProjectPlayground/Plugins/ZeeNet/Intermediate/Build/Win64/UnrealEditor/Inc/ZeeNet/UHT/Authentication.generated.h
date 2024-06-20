@@ -14,14 +14,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ZEENET_Authentication_generated_h
 
-#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_21_GENERATED_BODY \
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_20_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics; \
 	ZEENET_API static class UScriptStruct* StaticStruct();
 
 
 template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetAuthenticationLogin>();
 
-#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_42_GENERATED_BODY \
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_41_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics; \
 	ZEENET_API static class UScriptStruct* StaticStruct();
 

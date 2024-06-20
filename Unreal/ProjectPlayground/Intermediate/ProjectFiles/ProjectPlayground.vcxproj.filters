@@ -296,20 +296,56 @@
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private">
       <UniqueIdentifier>{53967979-A9E6-3AD2-890A-698F81710A79}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeButton.cpp">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUI.cpp">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUIBPLibrary.cpp">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Private</Filter>
     </ClCompile>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private\Lobby">
+      <UniqueIdentifier>{7CEC36FE-91F5-3F81-82BE-0C480D858337}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SZeeUILobbyLogin.cpp">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private\Lobby</Filter>
+    </ClCompile>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle">
+      <UniqueIdentifier>{373F1C4F-8BC0-3E24-B122-51515890709A}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUILobbySlateStyle.cpp">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUILobbySlateStyles.cpp">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle</Filter>
+    </ClCompile>
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public">
       <UniqueIdentifier>{CC5A26AA-92C5-36B1-8A7D-7E74967FD870}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeButton.h">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUI.h">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUIBPLibrary.h">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Public</Filter>
+    </ClInclude>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public\Lobby">
+      <UniqueIdentifier>{73018DCD-D6C4-34B3-B834-96FECB8988A3}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SZeeUILobbyLogin.h">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public\Lobby</Filter>
+    </ClInclude>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle">
+      <UniqueIdentifier>{81CA5701-58DD-3231-BC4A-6E762CFA882A}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUILobbySlateStyle.h">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUILobbySlateStyles.h">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle</Filter>
     </ClInclude>
     <Filter Include="Source\ProjectPlayground">
       <UniqueIdentifier>{3F1F7F0B-7BA9-3525-A16E-787A0470C6C8}</UniqueIdentifier>

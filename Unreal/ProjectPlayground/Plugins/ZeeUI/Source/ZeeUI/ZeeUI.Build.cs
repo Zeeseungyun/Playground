@@ -29,15 +29,16 @@ public class ZeeUI : ModuleRules
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
-			
-		
-		PrivateDependencyModuleNames.AddRange(
+
+
+        PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
 				"CoreUObject",
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"Projects" 
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

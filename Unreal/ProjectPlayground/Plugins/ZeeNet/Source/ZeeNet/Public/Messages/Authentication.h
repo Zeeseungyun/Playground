@@ -4,7 +4,6 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "ZeeNet/Public/ZeeNetPacketMapping.h"
-#include "ZeeNet/Public/Messages/Chat.h"
 #include "Authentication.generated.h"
 
 UENUM(BlueprintType) 
@@ -27,10 +26,10 @@ struct FZeeNetAuthenticationLogin
 	FString Id; 
 
 	UPROPERTY(BlueprintReadWrite) 
-	int64 UID = static_cast<int64>(0); 
+	FString Password; 
 
 	UPROPERTY(BlueprintReadWrite) 
-	FZeeNetChatSpeak Speak; 
+	int64 UID = static_cast<int64>(0); 
 
 }; 
 template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogin> { static constexpr int32 Point = 0x1001; }; 

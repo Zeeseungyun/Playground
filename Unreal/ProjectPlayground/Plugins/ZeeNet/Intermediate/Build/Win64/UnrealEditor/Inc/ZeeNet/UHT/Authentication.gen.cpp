@@ -6,7 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "ZeeNet/Public/Messages/Authentication.h"
-#include "ZeeNet/Public/Messages/Chat.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAuthentication() {}
 
@@ -15,7 +14,6 @@ UPackage* Z_Construct_UPackage__Script_ZeeNet();
 ZEENET_API UEnum* Z_Construct_UEnum_ZeeNet_EZeeNetAuthenticationReturnCode();
 ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin();
 ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout();
-ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetChatSpeak();
 // End Cross Module References
 
 // Begin Enum EZeeNetAuthenticationReturnCode
@@ -101,11 +99,11 @@ struct Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics
 		{ "Category", "ZeeNetAuthenticationLogin" },
 		{ "ModuleRelativePath", "Public/Messages/Authentication.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UID_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Password_MetaData[] = {
 		{ "Category", "ZeeNetAuthenticationLogin" },
 		{ "ModuleRelativePath", "Public/Messages/Authentication.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Speak_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UID_MetaData[] = {
 		{ "Category", "ZeeNetAuthenticationLogin" },
 		{ "ModuleRelativePath", "Public/Messages/Authentication.h" },
 	};
@@ -113,8 +111,8 @@ struct Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics
 	static const UECodeGen_Private::FBytePropertyParams NewProp_RC_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_RC;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_Id;
+	static const UECodeGen_Private::FStrPropertyParams NewProp_Password;
 	static const UECodeGen_Private::FInt64PropertyParams NewProp_UID;
-	static const UECodeGen_Private::FStructPropertyParams NewProp_Speak;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static void* NewStructOps()
 	{
@@ -125,14 +123,14 @@ struct Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, RC), Z_Construct_UEnum_ZeeNet_EZeeNetAuthenticationReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 1389182516
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Id = { "Id", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, Id), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Id_MetaData), NewProp_Id_MetaData) };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Password = { "Password", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, Password), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Password_MetaData), NewProp_Password_MetaData) };
 const UECodeGen_Private::FInt64PropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_UID = { "UID", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, UID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UID_MetaData), NewProp_UID_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Speak = { "Speak", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, Speak), Z_Construct_UScriptStruct_FZeeNetChatSpeak, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Speak_MetaData), NewProp_Speak_MetaData) }; // 4037896284
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Id,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Password,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_UID,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Speak,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::StructParams = {
@@ -244,11 +242,11 @@ struct Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_
 		{ EZeeNetAuthenticationReturnCode_StaticEnum, TEXT("EZeeNetAuthenticationReturnCode"), &Z_Registration_Info_UEnum_EZeeNetAuthenticationReturnCode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1389182516U) },
 	};
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FZeeNetAuthenticationLogin::StaticStruct, Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewStructOps, TEXT("ZeeNetAuthenticationLogin"), &Z_Registration_Info_UScriptStruct_ZeeNetAuthenticationLogin, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetAuthenticationLogin), 230326271U) },
+		{ FZeeNetAuthenticationLogin::StaticStruct, Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewStructOps, TEXT("ZeeNetAuthenticationLogin"), &Z_Registration_Info_UScriptStruct_ZeeNetAuthenticationLogin, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetAuthenticationLogin), 2742683496U) },
 		{ FZeeNetAuthenticationLogout::StaticStruct, Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::NewStructOps, TEXT("ZeeNetAuthenticationLogout"), &Z_Registration_Info_UScriptStruct_ZeeNetAuthenticationLogout, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetAuthenticationLogout), 448704838U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_2446368897(TEXT("/Script/ZeeNet"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_2575780312(TEXT("/Script/ZeeNet"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics::EnumInfo));

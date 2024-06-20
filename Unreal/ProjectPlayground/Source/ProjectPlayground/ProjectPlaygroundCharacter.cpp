@@ -11,8 +11,10 @@
 #include "Materials/Material.h"
 #include "Engine/World.h"
 #include "ZeeNet/Public/ZeeNetClient.h"
-#include "ZeeNet/Public/Messages/Chat.h"
+#include "ZeeNet/Public/Messages/Authentication.h"
 #include "ProjectPlayground.h"
+#include "GameFramework/PlayerController.h"
+#include "ZeeUI/Public/Lobby/SZeeUILobbyLogin.h"
 
 AProjectPlaygroundCharacter::AProjectPlaygroundCharacter()
 {
@@ -56,24 +58,40 @@ void AProjectPlaygroundCharacter::Tick(float DeltaSeconds)
 void AProjectPlaygroundCharacter::BeginPlay() /*override*/
 {
 	Super::BeginPlay();
-	MyClient = MakeShared<FZeeNetClient>();
+	MyLoginWidget = SNew(SZeeUILobbyLogin).OnLoginClicked_UObject(this, &AProjectPlaygroundCharacter::OnLoginClicked);
+	
+	GetWorld()->GetGameViewport()->AddViewportWidgetContent(MyLoginWidget.ToSharedRef());
+	//UGameViewportClient;
 
-	MyClient->OnConnected().AddLambda([this](const FString& InMessage)
-		{
-			FZeeNetChatSpeak Msg;
-			Msg.Content = TEXT("Request Test Message");
-			UE_LOG(LogProjectPlayground, Log, TEXT("Request Test Message Responsed, %s"), *Msg.Content);
-			//UE_LOG(LogZeeNet, Log, TEXT("Request Test Message Request, %s"), *Msg.Content);
-			MyClient->Request<FZeeNetChatSpeak>(Msg, [](const FZeeNetChatSpeak& InMsg)
+}
+
+FReply AProjectPlaygroundCharacter::OnLoginClicked()
+{
+
+	if (!MyClient.IsValid())
+	{
+		MyClient = MakeShared<FZeeNetClient>();
+		MyClient->OnConnected().AddLambda([this, 
+			UserId = MyLoginWidget->GetUserID(), 
+			UserPW = MyLoginWidget->GetUserPW()](const FString& InMessage)
+			{
+				if (!InMessage.IsEmpty())
 				{
-					UE_LOG(LogProjectPlayground, Log, TEXT("Request Test Message Responsed, %s"), *InMsg.Content);
+					return;
 				}
-			);
-
-			// Msg.Content = TEXT("Notify Test Message");
-			// Temp->Notify(Msg);
-		}
-	);
+				FZeeNetAuthenticationLogin Msg;
+				Msg.Id = UserId;
+				Msg.Password = UserPW;
+				//UE_LOG(LogZeeNet, Log, TEXT("Request Test Message Request, %s"), *Msg.Content);
+				MyClient->Request<FZeeNetAuthenticationLogin>(Msg, [](const FZeeNetAuthenticationLogin& InMsg)
+					{
+						UE_LOG(LogProjectPlayground, Log, TEXT("Login, %s"), InMsg.RC == EZeeNetAuthenticationReturnCode::RC_SUCCESSS ? TEXT("Success") : TEXT("Failed."));
+					}
+				);
+			}
+		);
+	}
 
 	MyClient->TryConnect(TEXT("127.0.0.1:20500"));
+	return FReply::Handled();
 }
