@@ -48,16 +48,16 @@ namespace Zee
         static public string[] GetCleanupFiles()
         {
             var files = new List<string>();
-            files.AddRange(Directory.GetFiles(UnrealProtoMessageDir, "*.*"));
-            files.AddRange(Directory.GetFiles(UnrealMessageConvertDir, "*.*"));
-            files.AddRange(Directory.GetFiles(UnrealMessageDir, "*.*"));
+            files.AddRange(Directory.GetFiles(UnrealProtoMessageDir, "*.*", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(UnrealMessageConvertDir, "*.*", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(UnrealMessageDir, "*.*", SearchOption.AllDirectories));
             files.Add(UnrealMessageSerializerSrcFile);
-            files.AddRange(Directory.GetFiles(UnrealConsumeNotifyHandlerDir, "*.*"));
+            files.AddRange(Directory.GetFiles(UnrealConsumeNotifyHandlerDir, "*.*", SearchOption.AllDirectories));
             files.Add(UnrealConsumeNotifyFile);
-            files.AddRange(Directory.GetFiles(UnrealConsumeRequestHandlerDir, "*.*"));
+            files.AddRange(Directory.GetFiles(UnrealConsumeRequestHandlerDir, "*.*", SearchOption.AllDirectories));
             files.Add(UnrealConsumeRequestFile);
 
-            files.AddRange(Directory.GetFiles(CSharpProtoMessageDir, "*.*"));
+            files.AddRange(Directory.GetFiles(CSharpProtoMessageDir, "*.*", SearchOption.AllDirectories));
             files.Add(CSharpNotifierFile);
             files.Add(CSharpRequestHandlerFile);
             files.Add(CSharpPacketMapFile);

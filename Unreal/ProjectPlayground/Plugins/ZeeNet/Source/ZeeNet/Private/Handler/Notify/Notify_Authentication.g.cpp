@@ -9,8 +9,8 @@
 
 FZeeNetNotifyHandlerArray* FindNotifyHandler_Authentication(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers) { 
 	switch (Point) { 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogin>::Point: [[fallthrough]]; 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogout>::Point: 
+	case TZeeNetPacketTraits<FZeeNetAuthenticationLogin>::Point: [[fallthrough]]; 
+	case TZeeNetPacketTraits<FZeeNetAuthenticationLogout>::Point: 
 		return NotifyHandlers.Find(TEXT("Notify_Authentication")); 
 	default: break; 
 	}

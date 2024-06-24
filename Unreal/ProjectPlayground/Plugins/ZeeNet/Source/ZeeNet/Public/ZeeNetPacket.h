@@ -1,13 +1,13 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "ZeeNet/Public/Messages/Packet.h"
-#include "ZeeNet/Public/ZeeNetPacketMapping.h"
+#include "ZeeNet/Public/ZeeNetPacketTraits.h"
 
 template<CZeeNetPacketMessage T>
 struct ZEENET_API FZeeNetPacket
 {
 private:
-	template<int32 MessagePoint> friend struct FZeeNetPacketSerializer;
+	template<CZeeNetPacketMessage> friend struct FZeeNetPacketSerializer;
 	friend class FZeeNetClient;
 
 	FZeeNetPacketHeader Header;
@@ -15,7 +15,7 @@ private:
 public:
 	FZeeNetPacket()
 	{
-		Header.Point = TZeeNetMapping_UnrealToPoint<T>::Point;
+		Header.Point = TZeeNetPacketTraits<T>::Point;
 	}
 
 	T Message;
@@ -25,7 +25,7 @@ template<>
 struct ZEENET_API FZeeNetPacket<FZeeNetPacketHeader>
 {
 private:
-	template<int32 MessagePoint> friend struct FZeeNetPacketSerializer;
+	template<CZeeNetPacketMessage> friend struct FZeeNetPacketSerializer;
 	friend class FZeeNetClient;
 
 	FZeeNetPacketHeader Header;
@@ -33,6 +33,6 @@ private:
 public:
 	FZeeNetPacket()
 	{
-		Header.Point = TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point;
+		Header.Point = TZeeNetPacketTraits<FZeeNetPacketHeader>::Point;
 	}
 };

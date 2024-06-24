@@ -1,7 +1,7 @@
 #pragma once
 #ifndef ZEENET_CASE_CONSUME_REQUEST
 	#define ZEENET_CASE_CONSUME_REQUEST(CategoryName, MessageName) \
-	case TZeeNetMapping_UnrealToPoint<FZeeNet##CategoryName##MessageName>::Point: \
+	case TZeeNetPacketTraits<FZeeNet##CategoryName##MessageName>::Point: \
 	for (auto& Elem : RequestHandlers) { \
 		auto Pin = StaticCastSharedPtr<IZeeNetRequestHandler_##CategoryName>(Elem.Pin()); \
 		auto Ret = Pin->OnRequest(Responser, Packet->GetCastPacket<FZeeNet##CategoryName##MessageName>()); \

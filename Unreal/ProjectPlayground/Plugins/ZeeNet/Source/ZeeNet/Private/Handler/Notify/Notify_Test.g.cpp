@@ -9,7 +9,7 @@
 
 FZeeNetNotifyHandlerArray* FindNotifyHandler_Test(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers) { 
 	switch (Point) { 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetTestTestMessage>::Point: 
+	case TZeeNetPacketTraits<FZeeNetTestTestMessage>::Point: 
 		return NotifyHandlers.Find(TEXT("Notify_Test")); 
 	default: break; 
 	}

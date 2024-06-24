@@ -6,12 +6,11 @@
 #include "ZeeNet/Private/Handler/RequestDef.h"
 
 #include "ZeeNet/Public/Interface/Handler/Request/Chat.h" 
-#include "ZeeNet/Public/Interface/Handler/Request/Chat.h" 
 
 FZeeNetRequestHandlerArray* FindRequestHandler_Chat(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers) { 
 	switch (Point) { 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak1>::Point: [[fallthrough]]; 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak>::Point: 
+	case TZeeNetPacketTraits<FZeeNetChatSpeak1>::Point: [[fallthrough]]; 
+	case TZeeNetPacketTraits<FZeeNetChatSpeak>::Point: 
 		return RequestHandlers.Find(TEXT("Request_Chat")); 
 	default: break; 
 	}

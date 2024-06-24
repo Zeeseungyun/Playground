@@ -16,10 +16,10 @@ namespace Zee
                 newFile.SrcContent.Append("#include \"ZeeNet/Private/ZeeNetMessageSerializerDef.h\" \r\n");
                 newFile.SrcContent.Append("\r\n");
 
-                foreach(var protoFile in Parse().ProtoFiles)
+                foreach(var protoFile in Parse().MessagableProtoFiles)
                 {
                     newFile.SrcContent.Append($"#include \"ZeeNet/Public/Messages/{protoFile.FileNameWithoutProto}.h\" \r\n");
-                    newFile.SrcContent.Append($"#include \"ZeeNet/Private/Convert/ZeeNetMessageConvert_{protoFile.FileNameWithoutProto}.h\" \r\n");
+                    newFile.SrcContent.Append($"#include \"ZeeNet/Private/Convert/{protoFile.FileNameWithoutProto}.h\" \r\n");
                     //Header content end.
                 }
                 newFile.SrcContent.Append("\r\n");
@@ -29,12 +29,13 @@ namespace Zee
                 newFile.SrcContent.Append("\tusing namespace Zee::Net::Message::Convert; \r\n");
                 newFile.SrcContent.Append("\r\n");
                     
-                foreach(var protoFile in Parse().ProtoFiles)
+                foreach(var protoFile in Parse().MessagableProtoFiles)
                 {
                     foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        newFile.SrcContent.Append($"\tDefaultSerializers.Add(TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point, \r\n");
-                        newFile.SrcContent.Append($"\t\tMakeShared<FZeeNetPacketSerializer<TZeeNetMapping_ProtoToPoint<{msg.UnrealProtoName}>::Point>>()); \r\n");
+                        
+                        newFile.SrcContent.Append($"\tDefaultSerializers.Add(TZeeNetPacketTraits<{msg.UnrealName}>::Point, \r\n");
+                        newFile.SrcContent.Append($"\t\tMakeShared<FZeeNetPacketSerializer<{msg.UnrealName}>>()); \r\n");
                         newFile.SrcContent.Append("\r\n");
                     }
                 }

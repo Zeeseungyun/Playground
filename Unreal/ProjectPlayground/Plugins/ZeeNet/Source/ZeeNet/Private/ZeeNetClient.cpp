@@ -494,7 +494,7 @@ void FZeeNetClient::Recv()
 	}
 	check(HeaderSize == BytesRead);
 
-	using PacketHeaderSerializerType = FZeeNetPacketSerializer<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point>;
+	using PacketHeaderSerializerType = FZeeNetPacketSerializer<FZeeNetPacketHeader>;
 	PacketHeaderSerializerType Header;
 	Header.Deserialize(InBuffer /*+ Offset 내부에서 HeaderSize를 따로 읽음.*/, BytesRead);
 	Offset += BytesRead;
@@ -563,7 +563,7 @@ EZeeNetReponseType FZeeNetClient::Response_Impl(const void* InPacketRawPtr) /* f
 	const EZeeNetPacketType ResponseType = HeaderPtr->PacketType;
 	const int32 MsgPoint = HeaderPtr->Point;
 	const int32 MsgSequence = HeaderPtr->Sequence;
-	check(HeaderPtr->Point != TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point); //must not be packet header.
+	check(HeaderPtr->Point != TZeeNetPacketTraits<FZeeNetPacketHeader>::Point); //must not be packet header.
 	++HeaderPtr; //offset move.
 
 	ResponseDirectylySequenceCheck = MsgSequence;

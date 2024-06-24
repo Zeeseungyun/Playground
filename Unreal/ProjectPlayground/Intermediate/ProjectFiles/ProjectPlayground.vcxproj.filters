@@ -77,35 +77,38 @@
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Convert">
       <UniqueIdentifier>{D6BE0496-8976-3C1E-B645-0E32C59022F0}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Authentication.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Authentication.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Authentication.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Authentication.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Chat.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Chat.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Chat.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Chat.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Packet.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Packet.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Packet.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Packet.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Test.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Test.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test2.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data">
+      <UniqueIdentifier>{46A13C4D-82C7-3114-8F7C-623FF525FC7F}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\Account.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\ZeeNetMessageConvert_Test2.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\Account.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data</Filter>
     </ClInclude>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Handler">
       <UniqueIdentifier>{11AD0EE5-8F41-3160-AB4D-DF447B618ED6}</UniqueIdentifier>
@@ -134,9 +137,6 @@
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Test.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Test2.g.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify</Filter>
-    </ClCompile>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request">
       <UniqueIdentifier>{7AB35316-3968-35D5-9A41-E5A74396F24E}</UniqueIdentifier>
     </Filter>
@@ -147,9 +147,6 @@
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Test.g.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Test2.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
     </ClCompile>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Messages">
@@ -179,11 +176,14 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
     </ClInclude>
-    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test2.pb.cc">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data">
+      <UniqueIdentifier>{80FAA2D5-0F04-3D8C-A1B9-2D237D900ED7}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\Account.pb.cc">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data</Filter>
     </None>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test2.pb.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\Account.pb.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data</Filter>
     </ClInclude>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public">
       <UniqueIdentifier>{62B842B7-CD58-3C9B-921F-EE9BD1674500}</UniqueIdentifier>
@@ -197,7 +197,7 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetPacket.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetPacketMapping.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetPacketTraits.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public</Filter>
     </ClInclude>
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public\Interface">
@@ -248,20 +248,38 @@
     <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public\Messages">
       <UniqueIdentifier>{ADBBECE9-935A-35A5-93B2-37BC2ACE052F}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Authentication.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Authentication.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Chat.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Chat.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Packet.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Packet.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test2.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    <Filter Include="Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data">
+      <UniqueIdentifier>{AEAA9EF3-6B23-35AF-870A-CCB323611371}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\Account.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\Account.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data</Filter>
     </ClInclude>
     <None Include="..\..\Plugins\ZeeNet\ZeeNet.uplugin">
       <Filter>Plugins\ZeeNet</Filter>

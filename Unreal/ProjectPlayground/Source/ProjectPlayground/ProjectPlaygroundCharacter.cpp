@@ -67,7 +67,6 @@ void AProjectPlaygroundCharacter::BeginPlay() /*override*/
 
 FReply AProjectPlaygroundCharacter::OnLoginClicked()
 {
-
 	if (!MyClient.IsValid())
 	{
 		MyClient = MakeShared<FZeeNetClient>();
@@ -79,13 +78,14 @@ FReply AProjectPlaygroundCharacter::OnLoginClicked()
 				{
 					return;
 				}
+
 				FZeeNetAuthenticationLogin Msg;
-				Msg.Id = UserId;
-				Msg.Password = UserPW;
+				Msg.Account.Id = UserId;
+				Msg.Account.Password = UserPW;
 				//UE_LOG(LogZeeNet, Log, TEXT("Request Test Message Request, %s"), *Msg.Content);
 				MyClient->Request<FZeeNetAuthenticationLogin>(Msg, [](const FZeeNetAuthenticationLogin& InMsg)
 					{
-						UE_LOG(LogProjectPlayground, Log, TEXT("Login, %s"), InMsg.RC == EZeeNetAuthenticationReturnCode::RC_SUCCESSS ? TEXT("Success") : TEXT("Failed."));
+						UE_LOG(LogProjectPlayground, Log, TEXT("Login, %s"), ZeeNetIsSuccess(InMsg.RC) ? TEXT("Success") : TEXT("Failed."));
 					}
 				);
 			}

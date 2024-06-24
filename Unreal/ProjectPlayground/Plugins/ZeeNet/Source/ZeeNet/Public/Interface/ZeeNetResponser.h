@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ZeeNet/Public/ZeeNetPacketMapping.h"
+#include "ZeeNet/Public/ZeeNetPacketTraits.h"
 #include "ZeeNet/Public/ZeeNetPacket.h"
 
 enum class EZeeNetReponseType

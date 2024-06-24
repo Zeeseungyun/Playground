@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////
 #pragma once
 #include "CoreMinimal.h"
-#include "ZeeNet/Public/ZeeNetPacketMapping.h"
+#include "ZeeNet/Public/ZeeNetPacketTraits.h"
 #include "Test.generated.h"
 
 UENUM(BlueprintType) 
@@ -11,6 +11,7 @@ enum class EZeeNetTestReturnCode : uint8
 { 
 	RC_SUCCESSS = 0,
 }; 
+inline constexpr bool ZEENET_API ZeeNetIsSuccess(EZeeNetTestReturnCode Value) { return EZeeNetTestReturnCode::RC_SUCCESSS == Value; }
 
 USTRUCT(BlueprintType) 
 struct FZeeNetTestTestMessage 
@@ -30,6 +31,5 @@ struct FZeeNetTestTestMessage
 	FString Content; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetTestTestMessage> { static constexpr int32 Point = 0x4001; }; 
-template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetTestTestMessage>::Point> { using Type = FZeeNetTestTestMessage; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetTestTestMessage> { static constexpr int32 Point = 0x4001; static constexpr bool bIsData = false; }; 
 

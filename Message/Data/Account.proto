@@ -1,0 +1,9 @@
+syntax = "proto3";
+package Zee.Proto.Data;
+
+message Account
+{
+    int64 UID = 1;
+    string Id = 2;
+    string Password = 3;
+}

@@ -21,10 +21,20 @@ namespace Zee
                     SrcContent.Append(DescriptionGenerated);
                     HeaderContent.Append(DescriptionGenerated);
                 }
+                public void SrcContent_IncludeHeaderFile()
+                {
+                    SrcContent.Append($"#include \"ZeeNet/{Path.GetRelativePath(UnrealZeeNetDir, HeaderFileName).Replace("\\", "/")}\" \r\n" );
+                }
                 public void DoWrite()
                 {
                     if(HeaderFileName.Length > 0)
                     {
+                        var dirName = Path.GetDirectoryName(HeaderFileName);
+                        if(!Directory.Exists(dirName))
+                        {
+                            Directory.CreateDirectory(dirName!);
+                        }
+                        
                         using var fs = File.OpenWrite(HeaderFileName);
                         Console.WriteLine($"generate message : {HeaderFileName}");
 
@@ -34,6 +44,12 @@ namespace Zee
 
                     if(SrcFileName.Length > 0)
                     {
+                        var dirName = Path.GetDirectoryName(SrcFileName);
+                        if(!Directory.Exists(dirName))
+                        {
+                            Directory.CreateDirectory(dirName!);
+                        }
+
                         using var fs = File.OpenWrite(SrcFileName);
                         Console.WriteLine($"generate message : {SrcFileName}");
 

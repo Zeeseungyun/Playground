@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ZeeNet/Public/ZeeNetPacketMapping.h"
+#include "ZeeNet/Public/ZeeNetPacketTraits.h"
 #include "ZeeNet/Public/Messages/Packet.h"
 
 struct FZeeNetPacketSerializerBase
@@ -18,14 +18,14 @@ struct FZeeNetPacketSerializerBase
 	template<CZeeNetPacketMessage T>
 	const T& GetCastMessage() const
 	{
-		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetHeader().Point);
+		check(TZeeNetPacketTraits<T>::Point == GetHeader().Point);
 		return *reinterpret_cast<const T*>(GetMessage());
 	}
 
 	template<CZeeNetPacketMessage T>
 	void SetCastMessage(const T& InMessage) 
 	{
-		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetHeader().Point);
+		check(TZeeNetPacketTraits<T>::Point == GetHeader().Point);
 		SetMessageInternal(&InMessage);
 		return;
 	}
@@ -39,7 +39,7 @@ struct FZeeNetPacketSerializerBase
 	template<CZeeNetPacketMessage T>
 	const FZeeNetPacket<T>& GetCastPacket() const
 	{
-		check(TZeeNetMapping_UnrealToPoint<T>::Point == GetHeader().Point);
+		check(TZeeNetPacketTraits<T>::Point == GetHeader().Point);
 		return *reinterpret_cast<const FZeeNetPacket<T>*>(GetPacket());
 	}
 
@@ -71,7 +71,7 @@ protected:
 
 protected:
 	friend class FZeeNetClient;
-	template<int32 MessagePoint> friend struct FZeeNetPacketSerializer;
+	template<CZeeNetPacketMessage> friend struct FZeeNetPacketSerializer;
 
 public:
 	virtual FZeeNetPacketHeader& GetHeader() const = 0;
@@ -94,7 +94,7 @@ public:
 	static TSharedPtr<FZeeNetPacketSerializerBase>
 		CreateSerializerFromMessage(const T& InMessage)
 	{
-		TSharedPtr<FZeeNetPacketSerializerBase> Ret = CreateSerializer(TZeeNetMapping_UnrealToPoint<T>::Point);
+		TSharedPtr<FZeeNetPacketSerializerBase> Ret = CreateSerializer(TZeeNetPacketTraits<T>::Point);
 		Ret->SetCastMessage(InMessage);
 		return Ret;
 	}
@@ -103,7 +103,7 @@ public:
 	static TSharedPtr<FZeeNetPacketSerializerBase>
 		CreateSerializer()
 	{
-		return CreateSerializer(TZeeNetMapping_UnrealToPoint<T>::Point);
+		return CreateSerializer(TZeeNetPacketTraits<T>::Point);
 	}
 
 	static TSharedPtr<FZeeNetPacketSerializerBase> CreateSerializer(int32 Point);

@@ -1,13 +1,14 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
+using System.IO;
 using UnrealBuildTool;
 
 public class ProjectPlayground : ModuleRules
 {
-	public ProjectPlayground(ReadOnlyTargetRules Target) : base(Target)
+    public ProjectPlayground(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-
+        
         PublicDependencyModuleNames.AddRange(new string[] { 
             "Core", 
             "CoreUObject", 

@@ -24,17 +24,17 @@ namespace Zee.Proto.Chat {
     static ChatReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgpDaGF0LnByb3RvEg5aZWUuUHJvdG8uQ2hhdCKBAQoGU3BlYWsxEiYKAlJD",
+            "CgpDaGF0LnByb3RvEg5aZWUuUHJvdG8uQ2hhdCKCAQoGU3BlYWsxEiYKAlJD",
             "GAEgASgOMhouWmVlLlByb3RvLkNoYXQuUmV0dXJuQ29kZRILCgNVSUQYAiAB",
-            "KAMSCgoCSWQYAyABKAkSDwoHQ29udGVudBgEIAEoCRIlCgZTcGVhazEYBSAB",
-            "KAsyFS5aZWUuUHJvdG8uQ2hhdC5TcGVhayJrCgVTcGVhaxImCgJSQxgBIAEo",
-            "DjIaLlplZS5Qcm90by5DaGF0LlJldHVybkNvZGUSCwoDVUlEGAIgASgDEgoK",
-            "AklkGAMgASgJEg8KB0NvbnRlbnQYBCABKAkSEAoIQ29udGVudHMYBSADKAkq",
-            "HQoKUmV0dXJuQ29kZRIPCgtSQ19TVUNDRVNTUxAAYgZwcm90bzM="));
+            "KAMSCgoCSWQYAyABKAkSDwoHQ29udGVudBgEIAEoCRImCgdTcGVhazEyGAUg",
+            "ASgLMhUuWmVlLlByb3RvLkNoYXQuU3BlYWsiawoFU3BlYWsSJgoCUkMYASAB",
+            "KA4yGi5aZWUuUHJvdG8uQ2hhdC5SZXR1cm5Db2RlEgsKA1VJRBgCIAEoAxIK",
+            "CgJJZBgDIAEoCRIPCgdDb250ZW50GAQgASgJEhAKCENvbnRlbnRzGAUgAygJ",
+            "Kh0KClJldHVybkNvZGUSDwoLUkNfU1VDQ0VTU1MQAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Chat.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Chat.Speak1), global::Zee.Proto.Chat.Speak1.Parser, new[]{ "RC", "UID", "Id", "Content", "Speak1_" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Chat.Speak1), global::Zee.Proto.Chat.Speak1.Parser, new[]{ "RC", "UID", "Id", "Content", "Speak12" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Chat.Speak), global::Zee.Proto.Chat.Speak.Parser, new[]{ "RC", "UID", "Id", "Content", "Contents" }, null, null, null, null)
           }));
     }
@@ -87,7 +87,7 @@ namespace Zee.Proto.Chat {
       uID_ = other.uID_;
       id_ = other.id_;
       content_ = other.content_;
-      speak1_ = other.speak1_ != null ? other.speak1_.Clone() : null;
+      speak12_ = other.speak12_ != null ? other.speak12_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -148,15 +148,15 @@ namespace Zee.Proto.Chat {
       }
     }
 
-    /// <summary>Field number for the "Speak1" field.</summary>
-    public const int Speak1_FieldNumber = 5;
-    private global::Zee.Proto.Chat.Speak speak1_;
+    /// <summary>Field number for the "Speak12" field.</summary>
+    public const int Speak12FieldNumber = 5;
+    private global::Zee.Proto.Chat.Speak speak12_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Zee.Proto.Chat.Speak Speak1_ {
-      get { return speak1_; }
+    public global::Zee.Proto.Chat.Speak Speak12 {
+      get { return speak12_; }
       set {
-        speak1_ = value;
+        speak12_ = value;
       }
     }
 
@@ -179,7 +179,7 @@ namespace Zee.Proto.Chat {
       if (UID != other.UID) return false;
       if (Id != other.Id) return false;
       if (Content != other.Content) return false;
-      if (!object.Equals(Speak1_, other.Speak1_)) return false;
+      if (!object.Equals(Speak12, other.Speak12)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -191,7 +191,7 @@ namespace Zee.Proto.Chat {
       if (UID != 0L) hash ^= UID.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Content.Length != 0) hash ^= Content.GetHashCode();
-      if (speak1_ != null) hash ^= Speak1_.GetHashCode();
+      if (speak12_ != null) hash ^= Speak12.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -226,9 +226,9 @@ namespace Zee.Proto.Chat {
         output.WriteRawTag(34);
         output.WriteString(Content);
       }
-      if (speak1_ != null) {
+      if (speak12_ != null) {
         output.WriteRawTag(42);
-        output.WriteMessage(Speak1_);
+        output.WriteMessage(Speak12);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -256,9 +256,9 @@ namespace Zee.Proto.Chat {
         output.WriteRawTag(34);
         output.WriteString(Content);
       }
-      if (speak1_ != null) {
+      if (speak12_ != null) {
         output.WriteRawTag(42);
-        output.WriteMessage(Speak1_);
+        output.WriteMessage(Speak12);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -282,8 +282,8 @@ namespace Zee.Proto.Chat {
       if (Content.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Content);
       }
-      if (speak1_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Speak1_);
+      if (speak12_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Speak12);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -309,11 +309,11 @@ namespace Zee.Proto.Chat {
       if (other.Content.Length != 0) {
         Content = other.Content;
       }
-      if (other.speak1_ != null) {
-        if (speak1_ == null) {
-          Speak1_ = new global::Zee.Proto.Chat.Speak();
+      if (other.speak12_ != null) {
+        if (speak12_ == null) {
+          Speak12 = new global::Zee.Proto.Chat.Speak();
         }
-        Speak1_.MergeFrom(other.Speak1_);
+        Speak12.MergeFrom(other.Speak12);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -347,10 +347,10 @@ namespace Zee.Proto.Chat {
             break;
           }
           case 42: {
-            if (speak1_ == null) {
-              Speak1_ = new global::Zee.Proto.Chat.Speak();
+            if (speak12_ == null) {
+              Speak12 = new global::Zee.Proto.Chat.Speak();
             }
-            input.ReadMessage(Speak1_);
+            input.ReadMessage(Speak12);
             break;
           }
         }
@@ -385,10 +385,10 @@ namespace Zee.Proto.Chat {
             break;
           }
           case 42: {
-            if (speak1_ == null) {
-              Speak1_ = new global::Zee.Proto.Chat.Speak();
+            if (speak12_ == null) {
+              Speak12 = new global::Zee.Proto.Chat.Speak();
             }
-            input.ReadMessage(Speak1_);
+            input.ReadMessage(Speak12);
             break;
           }
         }

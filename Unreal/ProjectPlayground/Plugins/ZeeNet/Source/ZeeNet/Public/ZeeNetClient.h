@@ -53,7 +53,7 @@ public:
 	template<CZeeNetPacketMessage T>
 	bool Notify(const T& Msg)
 	{
-		return Send(TZeeNetMapping_UnrealToPoint<T>::Point, 0, EZeeNetPacketType::Notify, &Msg);
+		return Send(TZeeNetPacketTraits<T>::Point, 0, EZeeNetPacketType::Notify, &Msg);
 	}
 
 	template<CZeeNetPacketMessage T>
@@ -70,7 +70,7 @@ public:
 			);
 		}
 
-		return Send(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
+		return Send(TZeeNetPacketTraits<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 
 	template<CZeeNetPacketMessage T>
@@ -90,7 +90,7 @@ public:
 			);
 		}
 
-		return Send(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
+		return Send(TZeeNetPacketTraits<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 
 	template<CZeeNetPacketMessage T, typename U>
@@ -111,7 +111,7 @@ public:
 			);
 		}
 
-		return Send(TZeeNetMapping_UnrealToPoint<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
+		return Send(TZeeNetPacketTraits<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 	
 	////////////////////////////
@@ -147,7 +147,7 @@ public:
 	float GetRequestTimeoutSec() const { return RequestTimeoutSec; }
 	
 	//TODO:: 요청타임아웃 설정시키고.. 타임아웃이 지나면 자동 리스폰스
-	void SetRequestTimeoutSec(float NewRequestTimeoutSec) { }
+	void SetRequestTimeoutSec(float NewRequestTimeoutSec) { RequestTimeoutSec = NewRequestTimeoutSec; }
 
 private:
 	void OnBeginFrame();

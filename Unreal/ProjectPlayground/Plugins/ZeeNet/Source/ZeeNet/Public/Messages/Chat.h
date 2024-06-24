@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////
 #pragma once
 #include "CoreMinimal.h"
-#include "ZeeNet/Public/ZeeNetPacketMapping.h"
+#include "ZeeNet/Public/ZeeNetPacketTraits.h"
 #include "Chat.generated.h"
 
 UENUM(BlueprintType) 
@@ -11,6 +11,7 @@ enum class EZeeNetChatReturnCode : uint8
 { 
 	RC_SUCCESSS = 0,
 }; 
+inline constexpr bool ZEENET_API ZeeNetIsSuccess(EZeeNetChatReturnCode Value) { return EZeeNetChatReturnCode::RC_SUCCESSS == Value; }
 
 USTRUCT(BlueprintType) 
 struct FZeeNetChatSpeak 
@@ -33,8 +34,7 @@ struct FZeeNetChatSpeak
 	TArray<FString> Contents; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak> { static constexpr int32 Point = 0x2002; }; 
-template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak>::Point> { using Type = FZeeNetChatSpeak; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetChatSpeak> { static constexpr int32 Point = 0x2002; static constexpr bool bIsData = false; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetChatSpeak1 
@@ -54,9 +54,8 @@ struct FZeeNetChatSpeak1
 	FString Content; 
 
 	UPROPERTY(BlueprintReadWrite) 
-	FZeeNetChatSpeak Speak1; 
+	FZeeNetChatSpeak Speak12; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak1> { static constexpr int32 Point = 0x2001; }; 
-template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak1>::Point> { using Type = FZeeNetChatSpeak1; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetChatSpeak1> { static constexpr int32 Point = 0x2001; static constexpr bool bIsData = false; }; 
 

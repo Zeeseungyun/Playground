@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////
 #pragma once
 #include "CoreMinimal.h"
-#include "ZeeNet/Public/ZeeNetPacketMapping.h"
+#include "ZeeNet/Public/ZeeNetPacketTraits.h"
 #include "Packet.generated.h"
 
 UENUM(BlueprintType) 
@@ -35,6 +35,5 @@ struct FZeeNetPacketHeader
 	EZeeNetPacketType PacketType = static_cast<EZeeNetPacketType>(0); 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader> { static constexpr int32 Point = 0x3001; }; 
-template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point> { using Type = FZeeNetPacketHeader; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetPacketHeader> { static constexpr int32 Point = 0x3001; static constexpr bool bIsData = false; }; 
 

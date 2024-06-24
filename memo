@@ -1,2 +1,9 @@
-OutputEnhancer
-향상러?
+bucket list
+1. 언리얼에서 cmake로 thirdparty lib만들어보기.
+2. 언리얼로 게임 서버 프레임워크 작성하기.
+-> web host.
+-> tcp host.
+-> tcp client.
+-> db query.. etc.
+c++ to c++
+linux, win32 지원.

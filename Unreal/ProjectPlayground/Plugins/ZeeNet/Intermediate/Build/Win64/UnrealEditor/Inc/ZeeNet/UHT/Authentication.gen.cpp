@@ -6,6 +6,7 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "ZeeNet/Public/Messages/Authentication.h"
+#include "ZeeNet/Public/Messages/Data/Account.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAuthentication() {}
 
@@ -14,6 +15,7 @@ UPackage* Z_Construct_UPackage__Script_ZeeNet();
 ZEENET_API UEnum* Z_Construct_UEnum_ZeeNet_EZeeNetAuthenticationReturnCode();
 ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin();
 ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout();
+ZEENET_API UScriptStruct* Z_Construct_UScriptStruct_FZeeNetDataAccount();
 // End Cross Module References
 
 // Begin Enum EZeeNetAuthenticationReturnCode
@@ -36,15 +38,17 @@ struct Z_Construct_UEnum_ZeeNet_EZeeNetAuthenticationReturnCode_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
 		{ "ModuleRelativePath", "Public/Messages/Authentication.h" },
-		{ "RC_FAILED_ALREADY_LOGIN.Name", "EZeeNetAuthenticationReturnCode::RC_FAILED_ALREADY_LOGIN" },
-		{ "RC_FAILED_ALREADY_LOGOUT.Name", "EZeeNetAuthenticationReturnCode::RC_FAILED_ALREADY_LOGOUT" },
+		{ "RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT.Name", "EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT" },
+		{ "RC_FAILED_LOGIN_DUPLICATED.Name", "EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_DUPLICATED" },
+		{ "RC_FAILED_LOGIN_WRONG_PASSWORD.Name", "EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_WRONG_PASSWORD" },
 		{ "RC_SUCCESSS.Name", "EZeeNetAuthenticationReturnCode::RC_SUCCESSS" },
 	};
 #endif // WITH_METADATA
 	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
 		{ "EZeeNetAuthenticationReturnCode::RC_SUCCESSS", (int64)EZeeNetAuthenticationReturnCode::RC_SUCCESSS },
-		{ "EZeeNetAuthenticationReturnCode::RC_FAILED_ALREADY_LOGIN", (int64)EZeeNetAuthenticationReturnCode::RC_FAILED_ALREADY_LOGIN },
-		{ "EZeeNetAuthenticationReturnCode::RC_FAILED_ALREADY_LOGOUT", (int64)EZeeNetAuthenticationReturnCode::RC_FAILED_ALREADY_LOGOUT },
+		{ "EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_DUPLICATED", (int64)EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_DUPLICATED },
+		{ "EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_WRONG_PASSWORD", (int64)EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_WRONG_PASSWORD },
+		{ "EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT", (int64)EZeeNetAuthenticationReturnCode::RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -95,24 +99,14 @@ struct Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics
 		{ "Category", "ZeeNetAuthenticationLogin" },
 		{ "ModuleRelativePath", "Public/Messages/Authentication.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Id_MetaData[] = {
-		{ "Category", "ZeeNetAuthenticationLogin" },
-		{ "ModuleRelativePath", "Public/Messages/Authentication.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Password_MetaData[] = {
-		{ "Category", "ZeeNetAuthenticationLogin" },
-		{ "ModuleRelativePath", "Public/Messages/Authentication.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UID_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Account_MetaData[] = {
 		{ "Category", "ZeeNetAuthenticationLogin" },
 		{ "ModuleRelativePath", "Public/Messages/Authentication.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FBytePropertyParams NewProp_RC_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_RC;
-	static const UECodeGen_Private::FStrPropertyParams NewProp_Id;
-	static const UECodeGen_Private::FStrPropertyParams NewProp_Password;
-	static const UECodeGen_Private::FInt64PropertyParams NewProp_UID;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Account;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static void* NewStructOps()
 	{
@@ -121,16 +115,12 @@ struct Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics
 	static const UECodeGen_Private::FStructParams StructParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, RC), Z_Construct_UEnum_ZeeNet_EZeeNetAuthenticationReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 1389182516
-const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Id = { "Id", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, Id), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Id_MetaData), NewProp_Id_MetaData) };
-const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Password = { "Password", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, Password), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Password_MetaData), NewProp_Password_MetaData) };
-const UECodeGen_Private::FInt64PropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_UID = { "UID", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, UID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UID_MetaData), NewProp_UID_MetaData) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, RC), Z_Construct_UEnum_ZeeNet_EZeeNetAuthenticationReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 1725612782
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Account = { "Account", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogin, Account), Z_Construct_UScriptStruct_FZeeNetDataAccount, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Account_MetaData), NewProp_Account_MetaData) }; // 3164547361
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_RC,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Id,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Password,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_UID,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewProp_Account,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::StructParams = {
@@ -202,7 +192,7 @@ struct Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics
 	static const UECodeGen_Private::FStructParams StructParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::NewProp_RC_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogout, RC), Z_Construct_UEnum_ZeeNet_EZeeNetAuthenticationReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 1389182516
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogout, RC), Z_Construct_UEnum_ZeeNet_EZeeNetAuthenticationReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 1725612782
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::NewProp_Id = { "Id", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogout, Id), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Id_MetaData), NewProp_Id_MetaData) };
 const UECodeGen_Private::FInt64PropertyParams Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::NewProp_UID = { "UID", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetAuthenticationLogout, UID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UID_MetaData), NewProp_UID_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::PropPointers[] = {
@@ -239,14 +229,14 @@ UScriptStruct* Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout()
 struct Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EZeeNetAuthenticationReturnCode_StaticEnum, TEXT("EZeeNetAuthenticationReturnCode"), &Z_Registration_Info_UEnum_EZeeNetAuthenticationReturnCode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1389182516U) },
+		{ EZeeNetAuthenticationReturnCode_StaticEnum, TEXT("EZeeNetAuthenticationReturnCode"), &Z_Registration_Info_UEnum_EZeeNetAuthenticationReturnCode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1725612782U) },
 	};
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FZeeNetAuthenticationLogin::StaticStruct, Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewStructOps, TEXT("ZeeNetAuthenticationLogin"), &Z_Registration_Info_UScriptStruct_ZeeNetAuthenticationLogin, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetAuthenticationLogin), 2742683496U) },
-		{ FZeeNetAuthenticationLogout::StaticStruct, Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::NewStructOps, TEXT("ZeeNetAuthenticationLogout"), &Z_Registration_Info_UScriptStruct_ZeeNetAuthenticationLogout, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetAuthenticationLogout), 448704838U) },
+		{ FZeeNetAuthenticationLogin::StaticStruct, Z_Construct_UScriptStruct_FZeeNetAuthenticationLogin_Statics::NewStructOps, TEXT("ZeeNetAuthenticationLogin"), &Z_Registration_Info_UScriptStruct_ZeeNetAuthenticationLogin, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetAuthenticationLogin), 3674362388U) },
+		{ FZeeNetAuthenticationLogout::StaticStruct, Z_Construct_UScriptStruct_FZeeNetAuthenticationLogout_Statics::NewStructOps, TEXT("ZeeNetAuthenticationLogout"), &Z_Registration_Info_UScriptStruct_ZeeNetAuthenticationLogout, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetAuthenticationLogout), 2671530213U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_2575780312(TEXT("/Script/ZeeNet"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_4046869826(TEXT("/Script/ZeeNet"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Authentication_h_Statics::EnumInfo));

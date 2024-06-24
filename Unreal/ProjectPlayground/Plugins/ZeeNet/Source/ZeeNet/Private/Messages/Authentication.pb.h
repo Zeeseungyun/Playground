@@ -32,6 +32,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "Data/Account.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_Authentication_2eproto
@@ -76,14 +77,15 @@ namespace Authentication {
 
 enum ReturnCode : int {
   RC_SUCCESSS = 0,
-  RC_FAILED_ALREADY_LOGIN = 1,
-  RC_FAILED_ALREADY_LOGOUT = 2,
+  RC_FAILED_LOGIN_DUPLICATED = 1,
+  RC_FAILED_LOGIN_WRONG_PASSWORD = 2,
+  RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT = 3,
   ReturnCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   ReturnCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool ReturnCode_IsValid(int value);
 constexpr ReturnCode ReturnCode_MIN = RC_SUCCESSS;
-constexpr ReturnCode ReturnCode_MAX = RC_FAILED_ALREADY_LOGOUT;
+constexpr ReturnCode ReturnCode_MAX = RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT;
 constexpr int ReturnCode_ARRAYSIZE = ReturnCode_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ReturnCode_descriptor();
@@ -221,47 +223,26 @@ class Login final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kIdFieldNumber = 2,
-    kPasswordFieldNumber = 3,
-    kUIDFieldNumber = 4,
+    kAccountFieldNumber = 2,
     kRCFieldNumber = 1,
   };
-  // string Id = 2;
-  void clear_id();
-  const std::string& id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_id();
-  PROTOBUF_MUST_USE_RESULT std::string* release_id();
-  void set_allocated_id(std::string* id);
+  // .Zee.Proto.Data.Account Account = 2;
+  bool has_account() const;
   private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
-  std::string* _internal_mutable_id();
+  bool _internal_has_account() const;
   public:
-
-  // string Password = 3;
-  void clear_password();
-  const std::string& password() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_password(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_password();
-  PROTOBUF_MUST_USE_RESULT std::string* release_password();
-  void set_allocated_password(std::string* password);
+  void clear_account();
+  const ::Zee::Proto::Data::Account& account() const;
+  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::Data::Account* release_account();
+  ::Zee::Proto::Data::Account* mutable_account();
+  void set_allocated_account(::Zee::Proto::Data::Account* account);
   private:
-  const std::string& _internal_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(const std::string& value);
-  std::string* _internal_mutable_password();
+  const ::Zee::Proto::Data::Account& _internal_account() const;
+  ::Zee::Proto::Data::Account* _internal_mutable_account();
   public:
-
-  // int64 UID = 4;
-  void clear_uid();
-  ::PROTOBUF_NAMESPACE_ID::int64 uid() const;
-  void set_uid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_uid() const;
-  void _internal_set_uid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
+  void unsafe_arena_set_allocated_account(
+      ::Zee::Proto::Data::Account* account);
+  ::Zee::Proto::Data::Account* unsafe_arena_release_account();
 
   // .Zee.Proto.Authentication.ReturnCode RC = 1;
   void clear_rc();
@@ -279,9 +260,7 @@ class Login final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
-  ::PROTOBUF_NAMESPACE_ID::int64 uid_;
+  ::Zee::Proto::Data::Account* account_;
   int rc_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Authentication_2eproto;
@@ -487,116 +466,90 @@ inline void Login::set_rc(::Zee::Proto::Authentication::ReturnCode value) {
   // @@protoc_insertion_point(field_set:Zee.Proto.Authentication.Login.RC)
 }
 
-// string Id = 2;
-inline void Login::clear_id() {
-  id_.ClearToEmpty();
+// .Zee.Proto.Data.Account Account = 2;
+inline bool Login::_internal_has_account() const {
+  return this != internal_default_instance() && account_ != nullptr;
 }
-inline const std::string& Login::id() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.Authentication.Login.Id)
-  return _internal_id();
+inline bool Login::has_account() const {
+  return _internal_has_account();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Login::set_id(ArgT0&& arg0, ArgT... args) {
- 
- id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Zee.Proto.Authentication.Login.Id)
+inline const ::Zee::Proto::Data::Account& Login::_internal_account() const {
+  const ::Zee::Proto::Data::Account* p = account_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::Data::Account&>(
+      ::Zee::Proto::Data::_Account_default_instance_);
 }
-inline std::string* Login::mutable_id() {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:Zee.Proto.Authentication.Login.Id)
-  return _s;
+inline const ::Zee::Proto::Data::Account& Login::account() const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.Authentication.Login.Account)
+  return _internal_account();
 }
-inline const std::string& Login::_internal_id() const {
-  return id_.Get();
-}
-inline void Login::_internal_set_id(const std::string& value) {
-  
-  id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* Login::_internal_mutable_id() {
-  
-  return id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* Login::release_id() {
-  // @@protoc_insertion_point(field_release:Zee.Proto.Authentication.Login.Id)
-  return id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void Login::set_allocated_id(std::string* id) {
-  if (id != nullptr) {
+inline void Login::unsafe_arena_set_allocated_account(
+    ::Zee::Proto::Data::Account* account) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(account_);
+  }
+  account_ = account;
+  if (account) {
     
   } else {
     
   }
-  id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), id,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Authentication.Login.Id)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Zee.Proto.Authentication.Login.Account)
 }
-
-// string Password = 3;
-inline void Login::clear_password() {
-  password_.ClearToEmpty();
-}
-inline const std::string& Login::password() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.Authentication.Login.Password)
-  return _internal_password();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Login::set_password(ArgT0&& arg0, ArgT... args) {
- 
- password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Zee.Proto.Authentication.Login.Password)
-}
-inline std::string* Login::mutable_password() {
-  std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:Zee.Proto.Authentication.Login.Password)
-  return _s;
-}
-inline const std::string& Login::_internal_password() const {
-  return password_.Get();
-}
-inline void Login::_internal_set_password(const std::string& value) {
+inline ::Zee::Proto::Data::Account* Login::release_account() {
   
-  password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  ::Zee::Proto::Data::Account* temp = account_;
+  account_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-inline std::string* Login::_internal_mutable_password() {
+inline ::Zee::Proto::Data::Account* Login::unsafe_arena_release_account() {
+  // @@protoc_insertion_point(field_release:Zee.Proto.Authentication.Login.Account)
   
-  return password_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  ::Zee::Proto::Data::Account* temp = account_;
+  account_ = nullptr;
+  return temp;
 }
-inline std::string* Login::release_password() {
-  // @@protoc_insertion_point(field_release:Zee.Proto.Authentication.Login.Password)
-  return password_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline ::Zee::Proto::Data::Account* Login::_internal_mutable_account() {
+  
+  if (account_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Zee::Proto::Data::Account>(GetArenaForAllocation());
+    account_ = p;
+  }
+  return account_;
 }
-inline void Login::set_allocated_password(std::string* password) {
-  if (password != nullptr) {
+inline ::Zee::Proto::Data::Account* Login::mutable_account() {
+  ::Zee::Proto::Data::Account* _msg = _internal_mutable_account();
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.Authentication.Login.Account)
+  return _msg;
+}
+inline void Login::set_allocated_account(::Zee::Proto::Data::Account* account) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(account_);
+  }
+  if (account) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(account));
+    if (message_arena != submessage_arena) {
+      account = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, account, submessage_arena);
+    }
     
   } else {
     
   }
-  password_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Authentication.Login.Password)
-}
-
-// int64 UID = 4;
-inline void Login::clear_uid() {
-  uid_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Login::_internal_uid() const {
-  return uid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Login::uid() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.Authentication.Login.UID)
-  return _internal_uid();
-}
-inline void Login::_internal_set_uid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  uid_ = value;
-}
-inline void Login::set_uid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_uid(value);
-  // @@protoc_insertion_point(field_set:Zee.Proto.Authentication.Login.UID)
+  account_ = account;
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Authentication.Login.Account)
 }
 
 // -------------------------------------------------------------------

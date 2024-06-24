@@ -1,14 +1,14 @@
 #pragma once
 #include "ZeeNet/Private/ZeeNetMessageSerializer.h"
 #include "ZeeNet/Private/ZeeNetMessageConvert.h" 
-#include "ZeeNet/Public/ZeeNetPacketMapping.h" 
+#include "ZeeNet/Public/ZeeNetPacketTraits.h" 
 #include "ZeeNet/Public/ZeeNetPacket.h"
-#include "ZeeNet/Private/Convert/ZeeNetMessageConvert_Packet.h"
+#include "ZeeNet/Private/Convert/Packet.h"
 
-template<int32 MessagePoint> struct FZeeNetPacketSerializer;
+template<CZeeNetPacketMessage T> struct FZeeNetPacketSerializer;
 
 template<>
-struct FZeeNetPacketSerializer<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point> final : public FZeeNetPacketSerializerBase
+struct FZeeNetPacketSerializer<FZeeNetPacketHeader> final : public FZeeNetPacketSerializerBase
 {
 public:
 	using ProtoType = Zee::Proto::Packet::Header;
@@ -23,7 +23,10 @@ public:
 		return const_cast<FZeeNetPacketSerializer*>(this)->UnrealMessage.Header;
 	}
 
-	FZeeNetPacketSerializer() = default;
+	FZeeNetPacketSerializer()
+	{
+		UnrealMessage.Header.Point = TZeeNetPacketTraits<FZeeNetPacketHeader>::Point;
+	}
 
 public:
 	void* GetMessage() const final { return &const_cast<FZeeNetPacketSerializer*>(this)->GetHeader(); }
@@ -73,17 +76,17 @@ public:
 	}
 };
 
-template<int32 MessagePoint>
+template<CZeeNetPacketMessage T>
 struct FZeeNetPacketSerializer final
 	: public FZeeNetPacketSerializerBase
 {
 public:
-	using ProtoType = typename Zee::Net::Message::Convert::TZeeNetMapping_PointToProto<MessagePoint>::Type;
-	using UnrealType = typename TZeeNetMapping_PointToUnreal<MessagePoint>::Type;
+	using UnrealType = T;
+	using ProtoType = typename Zee::Net::Message::Convert::TZeeNetMapping_PointToProto<TZeeNetPacketTraits<UnrealType>::Point>::Type;
 	
 	FZeeNetPacketSerializer()
 	{
-		UnrealMessage.Header.Point = MessagePoint;
+		UnrealMessage.Header.Point = TZeeNetPacketTraits<UnrealType>::Point;
 	}
 
 private:
@@ -133,7 +136,7 @@ public:
 		//header write first.
 		int32 WrittenBytes = 0;
 		{
-			using HeaderType = FZeeNetPacketSerializer<TZeeNetMapping_UnrealToPoint<FZeeNetPacketHeader>::Point>;
+			using HeaderType = FZeeNetPacketSerializer<FZeeNetPacketHeader>;
 			HeaderType HeaderWrite;
 			HeaderWrite.GetHeader() = GetHeader();
 			WrittenBytes = HeaderWrite.Serialize(OutBuffer, InBufferSize);

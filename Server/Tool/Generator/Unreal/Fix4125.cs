@@ -9,7 +9,7 @@ namespace Zee
         {        
             public static void Fix4125()
             {
-                var files = Directory.GetFiles(UnrealProtoMessageDir, "*.pb.cc");
+                var files = Directory.GetFiles(UnrealProtoMessageDir, "*.pb.cc", SearchOption.AllDirectories);
                 foreach(var file in files)
                 {
                     if(!File.Exists(file))

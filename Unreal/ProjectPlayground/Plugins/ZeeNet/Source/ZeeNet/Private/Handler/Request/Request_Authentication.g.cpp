@@ -6,12 +6,11 @@
 #include "ZeeNet/Private/Handler/RequestDef.h"
 
 #include "ZeeNet/Public/Interface/Handler/Request/Authentication.h" 
-#include "ZeeNet/Public/Interface/Handler/Request/Authentication.h" 
 
 FZeeNetRequestHandlerArray* FindRequestHandler_Authentication(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers) { 
 	switch (Point) { 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogin>::Point: [[fallthrough]]; 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogout>::Point: 
+	case TZeeNetPacketTraits<FZeeNetAuthenticationLogin>::Point: [[fallthrough]]; 
+	case TZeeNetPacketTraits<FZeeNetAuthenticationLogout>::Point: 
 		return RequestHandlers.Find(TEXT("Request_Authentication")); 
 	default: break; 
 	}

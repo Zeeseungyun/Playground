@@ -12,14 +12,8 @@ namespace Zee
                 var requestHandlerRelativePath = Path.GetRelativePath(UnrealZeeNetDir, UnrealRequestHandlerFile);
                 requestHandlerRelativePath = requestHandlerRelativePath.Replace("\\", "/");
 
-                foreach(var protoFile in Parse().ProtoFiles)
+                foreach(var protoFile in Parse().MessagableProtoFiles)
                 {
-                    if(protoFile.FileNameWithoutProto == "Packet")
-                    {
-                        Console.WriteLine("packet message passed.");
-                        continue;
-                    }
-
                     var newFile = new UnrealFile();
                     newFile.NameWihtoutProto = protoFile.FileNameWithoutProto;
 
@@ -70,17 +64,14 @@ namespace Zee
 #include ""ZeeNet/Private/Handler/RequestDef.h""
 
 ");
-                    var relativeHeaderFile = Path.GetRelativePath(UnrealZeeNetDir, newFile.HeaderFileName);
-                    relativeHeaderFile = relativeHeaderFile.Replace("\\", "/");
-                    newFile.SrcContent.Append($"#include \"ZeeNet/{relativeHeaderFile}\" \r\n");
-                    newFile.SrcContent.Append($"#include \"ZeeNet/{relativeHeaderFile}\" \r\n");
+                    newFile.SrcContent_IncludeHeaderFile();
                     newFile.SrcContent.Append("\r\n");
 
                     newFile.SrcContent.Append($"FZeeNetRequestHandlerArray* FindRequestHandler_{newFile.NameWihtoutProto}(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers) {{ \r\n");
                     newFile.SrcContent.Append($"\tswitch (Point) {{ \r\n");
                     foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        newFile.SrcContent.Append($"\tcase TZeeNetMapping_UnrealToPoint<{msg.UnrealName}>::Point: ");
+                        newFile.SrcContent.Append($"\tcase TZeeNetPacketTraits<{msg.UnrealName}>::Point: ");
                         if(protoFile.NonEnumMessages.Last() != msg)
                         {
                             newFile.SrcContent.Append("[[fallthrough]]; \r\n");
@@ -129,13 +120,8 @@ namespace Zee
 
 "
 );
-                    foreach(var protoFile in Parse().ProtoFiles)
+                    foreach(var protoFile in Parse().MessagableProtoFiles)
                     {
-                        if(protoFile.FileNameWithoutProto == "Packet")
-                        {
-                            continue;
-                        }
-
                         newFile.SrcContent.Append($"extern FZeeNetRequestHandlerArray* FindRequestHandler_{protoFile.FileNameWithoutProto}(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers); \r\n");
                         newFile.SrcContent.Append($"extern EZeeNetRequestHandlerResponse ConsumeRequestMessage_{protoFile.FileNameWithoutProto}(\r\n\tTSharedPtr<IZeeNetResponser> Responser\r\n\t, TSharedPtr<struct FZeeNetPacketSerializerBase> Packet\r\n\t, FZeeNetRequestHandlerArray& RequestHandlers\r\n); \r\n");
                     }// for proto
@@ -147,13 +133,8 @@ namespace Zee
                     newFile.SrcContent.Append("\tTSharedPtr<IZeeNetResponser> Responser = StaticCastSharedPtr<IZeeNetResponser>(AsShared().ToSharedPtr()); \r\n");
                     newFile.SrcContent.Append("\r\n");
                     
-                    foreach(var protoFile in Parse().ProtoFiles)
+                    foreach(var protoFile in Parse().MessagableProtoFiles)
                     {
-                        if(protoFile.FileNameWithoutProto == "Packet")
-                        {
-                            continue;
-                        }
-
                         newFile.SrcContent.Append($"\tFound = FindRequestHandler_{protoFile.FileNameWithoutProto}(Packet->GetHeader().Point, RequestHandlers); \r\n");
                         newFile.SrcContent.Append($"\tif (Found) {{ \r\n");
                         newFile.SrcContent.Append($"\t\tif (Found->Num() > 0) return ConsumeRequestMessage_{protoFile.FileNameWithoutProto}(Responser, Packet, *Found); \r\n");
@@ -168,13 +149,8 @@ namespace Zee
                     
                     newFile.SrcContent.Append("void FZeeNetClient::BuildValidRequestHandlerNames() {\r\n");
                     
-                    foreach(var protoFile in Parse().ProtoFiles)
+                    foreach(var protoFile in Parse().MessagableProtoFiles)
                     {
-                        if(protoFile.FileNameWithoutProto == "Packet")
-                        {
-                            continue;
-                        }
-
                         newFile.SrcContent.Append($"\tValidRequestHandlerNames.Add(TEXT(\"Request_{protoFile.FileNameWithoutProto}\")); \r\n");
                     }// for proto
 

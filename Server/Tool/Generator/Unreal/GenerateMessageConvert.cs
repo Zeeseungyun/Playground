@@ -14,8 +14,8 @@ namespace Zee
                     var newFile = new UnrealFile();
 
                     newFile.NameWihtoutProto = protoFile.FileNameWithoutProto;
-                    newFile.SrcFileName = $"{UnrealMessageConvertDir}/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.cpp";
-                    newFile.HeaderFileName = $"{UnrealMessageConvertDir}/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.h";
+                    newFile.SrcFileName = $"{UnrealMessageConvertDir}/{newFile.NameWihtoutProto}.cpp";
+                    newFile.HeaderFileName = $"{UnrealMessageConvertDir}/{newFile.NameWihtoutProto}.h";
 
                     newFile.HeaderContent.Append("#pragma once \r\n");
                     newFile.HeaderContent.Append("#include \"CoreMinimal.h\" \r\n");
@@ -39,12 +39,13 @@ namespace Zee
                     newFile.HeaderContent.Append("} \r\n");
                     //Header content end.
 
-                    newFile.SrcContent.Append($"#include \"ZeeNet/Private/Convert/ZeeNetMessageConvert_{newFile.NameWihtoutProto}.h\" \r\n");
+                    newFile.SrcContent_IncludeHeaderFile();
+                    // newFile.SrcContent.Append($"#include \"ZeeNet/Private/Convert/{newFile.NameWihtoutProto}.h\" \r\n");
                     foreach(var dependency in protoFile.ProtoFileDependencies)
                     {
                         if(dependency.Proto!.Messages.Count > 0)
                         {
-                            newFile.SrcContent.Append($"#include \"ZeeNet/Private/Convert/ZeeNetMessageConvert_{dependency.Proto!.FileNameWithoutProto}.h\" \r\n");
+                            newFile.SrcContent.Append($"#include \"ZeeNet/Private/Convert/{dependency.Proto!.FileNameWithoutProto}.h\" \r\n");
                         }
                     }
                     newFile.SrcContent.Append("\r\n");

@@ -25,17 +25,18 @@ namespace Zee.Proto.Authentication {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChRBdXRoZW50aWNhdGlvbi5wcm90bxIYWmVlLlByb3RvLkF1dGhlbnRpY2F0",
-            "aW9uImQKBUxvZ2luEjAKAlJDGAEgASgOMiQuWmVlLlByb3RvLkF1dGhlbnRp",
-            "Y2F0aW9uLlJldHVybkNvZGUSCgoCSWQYAiABKAkSEAoIUGFzc3dvcmQYAyAB",
-            "KAkSCwoDVUlEGAQgASgDIlMKBkxvZ291dBIwCgJSQxgBIAEoDjIkLlplZS5Q",
-            "cm90by5BdXRoZW50aWNhdGlvbi5SZXR1cm5Db2RlEgoKAklkGAIgASgJEgsK",
-            "A1VJRBgDIAEoAypYCgpSZXR1cm5Db2RlEg8KC1JDX1NVQ0NFU1NTEAASGwoX",
-            "UkNfRkFJTEVEX0FMUkVBRFlfTE9HSU4QARIcChhSQ19GQUlMRURfQUxSRUFE",
-            "WV9MT0dPVVQQAmIGcHJvdG8z"));
+            "aW9uGhJEYXRhL0FjY291bnQucHJvdG8iYwoFTG9naW4SMAoCUkMYASABKA4y",
+            "JC5aZWUuUHJvdG8uQXV0aGVudGljYXRpb24uUmV0dXJuQ29kZRIoCgdBY2Nv",
+            "dW50GAIgASgLMhcuWmVlLlByb3RvLkRhdGEuQWNjb3VudCJTCgZMb2dvdXQS",
+            "MAoCUkMYASABKA4yJC5aZWUuUHJvdG8uQXV0aGVudGljYXRpb24uUmV0dXJu",
+            "Q29kZRIKCgJJZBgCIAEoCRILCgNVSUQYAyABKAMqigEKClJldHVybkNvZGUS",
+            "DwoLUkNfU1VDQ0VTU1MQABIeChpSQ19GQUlMRURfTE9HSU5fRFVQTElDQVRF",
+            "RBABEiIKHlJDX0ZBSUxFRF9MT0dJTl9XUk9OR19QQVNTV09SRBACEicKI1JD",
+            "X0ZBSUxFRF9MT0dJTl9DQU5UX0NSRUFURV9BQ0NPVU5UEANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
+          new pbr::FileDescriptor[] { global::Zee.Proto.Data.AccountReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Authentication.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Id", "Password", "UID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Account" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Logout), global::Zee.Proto.Authentication.Logout.Parser, new[]{ "RC", "Id", "UID" }, null, null, null, null)
           }));
     }
@@ -45,8 +46,9 @@ namespace Zee.Proto.Authentication {
   #region Enums
   public enum ReturnCode {
     [pbr::OriginalName("RC_SUCCESSS")] RcSuccesss = 0,
-    [pbr::OriginalName("RC_FAILED_ALREADY_LOGIN")] RcFailedAlreadyLogin = 1,
-    [pbr::OriginalName("RC_FAILED_ALREADY_LOGOUT")] RcFailedAlreadyLogout = 2,
+    [pbr::OriginalName("RC_FAILED_LOGIN_DUPLICATED")] RcFailedLoginDuplicated = 1,
+    [pbr::OriginalName("RC_FAILED_LOGIN_WRONG_PASSWORD")] RcFailedLoginWrongPassword = 2,
+    [pbr::OriginalName("RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT")] RcFailedLoginCantCreateAccount = 3,
   }
 
   #endregion
@@ -87,9 +89,7 @@ namespace Zee.Proto.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Login(Login other) : this() {
       rC_ = other.rC_;
-      id_ = other.id_;
-      password_ = other.password_;
-      uID_ = other.uID_;
+      account_ = other.account_ != null ? other.account_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -111,39 +111,15 @@ namespace Zee.Proto.Authentication {
       }
     }
 
-    /// <summary>Field number for the "Id" field.</summary>
-    public const int IdFieldNumber = 2;
-    private string id_ = "";
+    /// <summary>Field number for the "Account" field.</summary>
+    public const int AccountFieldNumber = 2;
+    private global::Zee.Proto.Data.Account account_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Id {
-      get { return id_; }
+    public global::Zee.Proto.Data.Account Account {
+      get { return account_; }
       set {
-        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "Password" field.</summary>
-    public const int PasswordFieldNumber = 3;
-    private string password_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Password {
-      get { return password_; }
-      set {
-        password_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "UID" field.</summary>
-    public const int UIDFieldNumber = 4;
-    private long uID_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long UID {
-      get { return uID_; }
-      set {
-        uID_ = value;
+        account_ = value;
       }
     }
 
@@ -163,9 +139,7 @@ namespace Zee.Proto.Authentication {
         return true;
       }
       if (RC != other.RC) return false;
-      if (Id != other.Id) return false;
-      if (Password != other.Password) return false;
-      if (UID != other.UID) return false;
+      if (!object.Equals(Account, other.Account)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -174,9 +148,7 @@ namespace Zee.Proto.Authentication {
     public override int GetHashCode() {
       int hash = 1;
       if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) hash ^= RC.GetHashCode();
-      if (Id.Length != 0) hash ^= Id.GetHashCode();
-      if (Password.Length != 0) hash ^= Password.GetHashCode();
-      if (UID != 0L) hash ^= UID.GetHashCode();
+      if (account_ != null) hash ^= Account.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -199,17 +171,9 @@ namespace Zee.Proto.Authentication {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
-      if (Id.Length != 0) {
+      if (account_ != null) {
         output.WriteRawTag(18);
-        output.WriteString(Id);
-      }
-      if (Password.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(Password);
-      }
-      if (UID != 0L) {
-        output.WriteRawTag(32);
-        output.WriteInt64(UID);
+        output.WriteMessage(Account);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -225,17 +189,9 @@ namespace Zee.Proto.Authentication {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
-      if (Id.Length != 0) {
+      if (account_ != null) {
         output.WriteRawTag(18);
-        output.WriteString(Id);
-      }
-      if (Password.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(Password);
-      }
-      if (UID != 0L) {
-        output.WriteRawTag(32);
-        output.WriteInt64(UID);
+        output.WriteMessage(Account);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -250,14 +206,8 @@ namespace Zee.Proto.Authentication {
       if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RC);
       }
-      if (Id.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
-      }
-      if (Password.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
-      }
-      if (UID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UID);
+      if (account_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Account);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -274,14 +224,11 @@ namespace Zee.Proto.Authentication {
       if (other.RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
         RC = other.RC;
       }
-      if (other.Id.Length != 0) {
-        Id = other.Id;
-      }
-      if (other.Password.Length != 0) {
-        Password = other.Password;
-      }
-      if (other.UID != 0L) {
-        UID = other.UID;
+      if (other.account_ != null) {
+        if (account_ == null) {
+          Account = new global::Zee.Proto.Data.Account();
+        }
+        Account.MergeFrom(other.Account);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -303,15 +250,10 @@ namespace Zee.Proto.Authentication {
             break;
           }
           case 18: {
-            Id = input.ReadString();
-            break;
-          }
-          case 26: {
-            Password = input.ReadString();
-            break;
-          }
-          case 32: {
-            UID = input.ReadInt64();
+            if (account_ == null) {
+              Account = new global::Zee.Proto.Data.Account();
+            }
+            input.ReadMessage(Account);
             break;
           }
         }
@@ -334,15 +276,10 @@ namespace Zee.Proto.Authentication {
             break;
           }
           case 18: {
-            Id = input.ReadString();
-            break;
-          }
-          case 26: {
-            Password = input.ReadString();
-            break;
-          }
-          case 32: {
-            UID = input.ReadInt64();
+            if (account_ == null) {
+              Account = new global::Zee.Proto.Data.Account();
+            }
+            input.ReadMessage(Account);
             break;
           }
         }

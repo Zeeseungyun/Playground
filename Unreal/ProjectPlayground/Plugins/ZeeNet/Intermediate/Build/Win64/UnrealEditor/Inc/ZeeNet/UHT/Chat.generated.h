@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ZEENET_Chat_generated_h
 
-#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_18_GENERATED_BODY \
+#define FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_19_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics; \
 	ZEENET_API static class UScriptStruct* StaticStruct();
 

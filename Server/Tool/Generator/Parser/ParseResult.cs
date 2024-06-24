@@ -330,19 +330,27 @@ namespace Zee
     {
         public readonly string FileFullPath;
         public readonly string FileName;
-        public string FileNameWithoutProto => FileName.Substring(0, FileName.IndexOf('.'));
+        public string FileNameWithoutProto 
+        {
+            get 
+            { 
+                return FileName.Substring(0, FileName.IndexOf('.')).Replace('\\','/');
+            }
+        }
         public readonly List<string> Scope = new();
         public readonly string ScopeString = string.Empty;
         public readonly List<ProtoFileDependency> ProtoFileDependencies = new();
         public List<Message> Messages = new();
         public List<Message> NonEnumMessages = new();
         private readonly ParseResult parseResult;
+        public bool IsData => Scope[2] == "Data";
         public void BindDependcy()
         {
             foreach(var dependency in ProtoFileDependencies)
             {
-                dependency.Proto = parseResult.ProtoFiles.Find((e)=>{
-                    return e.FileName == dependency.FileName;
+                dependency.Proto = parseResult.ProtoFiles.Find((e)=>
+                {
+                    return e.FileName.Replace('/','\\') == dependency.FileName.Replace('/', '\\');
                 });
             }
         }
@@ -497,6 +505,31 @@ namespace Zee
     public class ParseResult
     {
         public List<ProtoFile> ProtoFiles = new();
+        private List<ProtoFile> messagableProtoFiles = new();
+        public List<ProtoFile> MessagableProtoFiles 
+        {
+                get 
+                { 
+                    if(messagableProtoFiles.Count == 0)
+                    {
+                        foreach(var protoFile in ProtoFiles)
+                        {
+                            if(protoFile.FileNameWithoutProto == "Packet")
+                            {
+                                continue;
+                            }
+
+                            if(protoFile.IsData)
+                            {
+                                continue;
+                            }
+                            messagableProtoFiles.Add(protoFile);
+                        }
+                    }
+                    return messagableProtoFiles;
+                }
+        }
+
         public readonly string RootDir = string.Empty;
         public readonly string[] FilePaths;
         public ParseResult(string rootDir, string[] files)

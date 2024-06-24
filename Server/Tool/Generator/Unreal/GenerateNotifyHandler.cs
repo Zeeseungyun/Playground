@@ -12,14 +12,8 @@ namespace Zee
                 var notifyHandlerRelativePath = Path.GetRelativePath(UnrealZeeNetDir, UnrealNotifyHandlerFile);
                 notifyHandlerRelativePath = notifyHandlerRelativePath.Replace("\\", "/");
 
-                foreach(var protoFile in Parse().ProtoFiles)
+                foreach(var protoFile in Parse().MessagableProtoFiles)
                 {
-                    if(protoFile.FileNameWithoutProto == "Packet")
-                    {
-                        Console.WriteLine("packet message passed.");
-                        continue;
-                    }
-
                     var newFile = new UnrealFile();
                     newFile.NameWihtoutProto = protoFile.FileNameWithoutProto;
 
@@ -67,16 +61,14 @@ namespace Zee
 #include ""ZeeNet/Private/ZeeNetMessageSerializerDef.h""
 #include ""ZeeNet/Private/Handler/NotifyDef.h""
 ");
-                    var relativeHeaderFile = Path.GetRelativePath(UnrealZeeNetDir, newFile.HeaderFileName);
-                    relativeHeaderFile = relativeHeaderFile.Replace("\\", "/");
-                    newFile.SrcContent.Append($"#include \"ZeeNet/{relativeHeaderFile}\" \r\n");
+                    newFile.SrcContent_IncludeHeaderFile();
                     newFile.SrcContent.Append("\r\n");
 
                     newFile.SrcContent.Append($"FZeeNetNotifyHandlerArray* FindNotifyHandler_{newFile.NameWihtoutProto}(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers) {{ \r\n");
                     newFile.SrcContent.Append($"\tswitch (Point) {{ \r\n");
                     foreach(var msg in protoFile.NonEnumMessages)
                     {
-                        newFile.SrcContent.Append($"\tcase TZeeNetMapping_UnrealToPoint<{msg.UnrealName}>::Point: ");
+                        newFile.SrcContent.Append($"\tcase TZeeNetPacketTraits<{msg.UnrealName}>::Point: ");
                         if(protoFile.NonEnumMessages.Last() != msg)
                         {
                             newFile.SrcContent.Append("[[fallthrough]]; \r\n");
@@ -111,7 +103,7 @@ namespace Zee
                     newFile.SrcContent.Append("\r\n");
 
                     newFile.DoWrite(); 
-                } //for (var proto in protofiles)
+                } //for (var proto in MessagableProtoFiles)
 
                 {
                     var newFile = new UnrealFile();
@@ -124,13 +116,8 @@ namespace Zee
 
 "
 );
-                    foreach(var protoFile in Parse().ProtoFiles)
+                    foreach(var protoFile in Parse().MessagableProtoFiles)
                     {
-                        if(protoFile.FileNameWithoutProto == "Packet")
-                        {
-                            continue;
-                        }
-
                         newFile.SrcContent.Append($"extern FZeeNetNotifyHandlerArray* FindNotifyHandler_{protoFile.FileNameWithoutProto}(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers); \r\n");
                         newFile.SrcContent.Append($"extern bool ConsumeNotifyMessage_{protoFile.FileNameWithoutProto}(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers); \r\n");
                     }// for proto
@@ -141,13 +128,8 @@ namespace Zee
                     newFile.SrcContent.Append("\tFZeeNetNotifyHandlerArray* Found = nullptr; \r\n");
                     newFile.SrcContent.Append("\r\n");
                     
-                    foreach(var protoFile in Parse().ProtoFiles)
+                    foreach(var protoFile in Parse().MessagableProtoFiles)
                     {
-                        if(protoFile.FileNameWithoutProto == "Packet")
-                        {
-                            continue;
-                        }
-
                         newFile.SrcContent.Append($"\tFound = FindNotifyHandler_{protoFile.FileNameWithoutProto}(Packet->GetHeader().Point, NotifyHandlers); \r\n");
                         newFile.SrcContent.Append($"\tif (Found) {{ if(Found->Num() > 0) ConsumeNotifyMessage_{protoFile.FileNameWithoutProto}(Packet, *Found); return false; }} \r\n");
                         newFile.SrcContent.Append("\r\n");
@@ -159,13 +141,8 @@ namespace Zee
                     newFile.SrcContent.Append("\r\n");
                     newFile.SrcContent.Append("void FZeeNetClient::BuildValidNotifyHandlerNames() {\r\n");
                     
-                    foreach(var protoFile in Parse().ProtoFiles)
+                    foreach(var protoFile in Parse().MessagableProtoFiles)
                     {
-                        if(protoFile.FileNameWithoutProto == "Packet")
-                        {
-                            continue;
-                        }
-
                         newFile.SrcContent.Append($"\tValidNotifyHandlerNames.Add(TEXT(\"Notify_{protoFile.FileNameWithoutProto}\")); \r\n");
                     }// for proto
 

@@ -9,8 +9,8 @@
 
 FZeeNetNotifyHandlerArray* FindNotifyHandler_Chat(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers) { 
 	switch (Point) { 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak1>::Point: [[fallthrough]]; 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetChatSpeak>::Point: 
+	case TZeeNetPacketTraits<FZeeNetChatSpeak1>::Point: [[fallthrough]]; 
+	case TZeeNetPacketTraits<FZeeNetChatSpeak>::Point: 
 		return NotifyHandlers.Find(TEXT("Notify_Chat")); 
 	default: break; 
 	}

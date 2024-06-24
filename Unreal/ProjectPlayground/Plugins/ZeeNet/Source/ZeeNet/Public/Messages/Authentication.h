@@ -3,16 +3,19 @@
 ////////////////////////////////////////////////////////
 #pragma once
 #include "CoreMinimal.h"
-#include "ZeeNet/Public/ZeeNetPacketMapping.h"
+#include "ZeeNet/Public/ZeeNetPacketTraits.h"
+#include "ZeeNet/Public/Messages/Data/Account.h"
 #include "Authentication.generated.h"
 
 UENUM(BlueprintType) 
 enum class EZeeNetAuthenticationReturnCode : uint8 
 { 
 	RC_SUCCESSS = 0,
-	RC_FAILED_ALREADY_LOGIN = 1,
-	RC_FAILED_ALREADY_LOGOUT = 2,
+	RC_FAILED_LOGIN_DUPLICATED = 1,
+	RC_FAILED_LOGIN_WRONG_PASSWORD = 2,
+	RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT = 3,
 }; 
+inline constexpr bool ZEENET_API ZeeNetIsSuccess(EZeeNetAuthenticationReturnCode Value) { return EZeeNetAuthenticationReturnCode::RC_SUCCESSS == Value; }
 
 USTRUCT(BlueprintType) 
 struct FZeeNetAuthenticationLogin 
@@ -23,17 +26,10 @@ struct FZeeNetAuthenticationLogin
 	EZeeNetAuthenticationReturnCode RC = static_cast<EZeeNetAuthenticationReturnCode>(0); 
 
 	UPROPERTY(BlueprintReadWrite) 
-	FString Id; 
-
-	UPROPERTY(BlueprintReadWrite) 
-	FString Password; 
-
-	UPROPERTY(BlueprintReadWrite) 
-	int64 UID = static_cast<int64>(0); 
+	FZeeNetDataAccount Account; 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogin> { static constexpr int32 Point = 0x1001; }; 
-template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogin>::Point> { using Type = FZeeNetAuthenticationLogin; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetAuthenticationLogin> { static constexpr int32 Point = 0x1001; static constexpr bool bIsData = false; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetAuthenticationLogout 
@@ -50,6 +46,5 @@ struct FZeeNetAuthenticationLogout
 	int64 UID = static_cast<int64>(0); 
 
 }; 
-template<> struct TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogout> { static constexpr int32 Point = 0x1002; }; 
-template<> struct TZeeNetMapping_PointToUnreal<TZeeNetMapping_UnrealToPoint<FZeeNetAuthenticationLogout>::Point> { using Type = FZeeNetAuthenticationLogout; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetAuthenticationLogout> { static constexpr int32 Point = 0x1002; static constexpr bool bIsData = false; }; 
 

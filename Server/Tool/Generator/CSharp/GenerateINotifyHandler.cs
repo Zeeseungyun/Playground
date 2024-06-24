@@ -38,7 +38,7 @@ namespace Zee.Net.Message
 "
                     );
                     string warningMessage = "not impl packet: ";
-                    foreach(var protoFile in parseResult!.ProtoFiles)
+                    foreach(var protoFile in parseResult!.MessagableProtoFiles)
                     {
                         foreach(var message in protoFile.Messages)
                         {
@@ -67,7 +67,7 @@ namespace Zee.Net.Message
 "
                     );
 
-                    foreach(var protoFile in parseResult.ProtoFiles)
+                    foreach(var protoFile in parseResult.MessagableProtoFiles)
                     {
                         foreach(var message in protoFile.Messages)
                         {

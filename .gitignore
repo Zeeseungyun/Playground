@@ -6,6 +6,7 @@
 *.user
 *.sln.docstates
 Tool/Generator/Tool/Test/
+*.p7b
 
 # Build results
 
@@ -129,3 +130,4 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+study/ProfessionalCMake_18th_Edition_GettingStarted.pdf

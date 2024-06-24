@@ -10,7 +10,7 @@ message Speak1 {
     int64 UID = 2;
     string Id = 3;
     string Content = 4;
-    Speak Speak1 = 5;
+    Speak Speak12 = 5;
 }
 
 message Speak {

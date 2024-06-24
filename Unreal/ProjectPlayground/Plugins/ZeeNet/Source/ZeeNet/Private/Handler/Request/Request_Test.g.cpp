@@ -6,11 +6,10 @@
 #include "ZeeNet/Private/Handler/RequestDef.h"
 
 #include "ZeeNet/Public/Interface/Handler/Request/Test.h" 
-#include "ZeeNet/Public/Interface/Handler/Request/Test.h" 
 
 FZeeNetRequestHandlerArray* FindRequestHandler_Test(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers) { 
 	switch (Point) { 
-	case TZeeNetMapping_UnrealToPoint<FZeeNetTestTestMessage>::Point: 
+	case TZeeNetPacketTraits<FZeeNetTestTestMessage>::Point: 
 		return RequestHandlers.Find(TEXT("Request_Test")); 
 	default: break; 
 	}

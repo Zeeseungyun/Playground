@@ -1,16 +1,17 @@
 // Some copyright should be here...
 
+using System.IO;
 using UnrealBuildTool;
 
 public class ZeeNet : ModuleRules
 {
-	public ZeeNet(ReadOnlyTargetRules Target) : base(Target)
+    public ZeeNet(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		AddEngineThirdPartyPrivateStaticDependencies(Target, new string[] { 
-			"Protobuf"
-		});
+        AddEngineThirdPartyPrivateStaticDependencies(Target, new string[] {
+            "Protobuf"
+        });
 
         PublicIncludePaths.AddRange(
 			new string[] {
