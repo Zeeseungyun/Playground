@@ -4,7 +4,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "ZeeNet/Public/ZeeNetPacketTraits.h"
-#include "Account.generated.h"
+#include "DataAccount.generated.h"
 
 USTRUCT(BlueprintType) 
 struct FZeeNetDataAccount 
@@ -21,5 +21,5 @@ struct FZeeNetDataAccount
 	FString Password; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataAccount> { static constexpr int32 Point = 0x5001; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataAccount> { static constexpr int32 Point = 0x6001; static constexpr bool bIsData = true; }; 
 

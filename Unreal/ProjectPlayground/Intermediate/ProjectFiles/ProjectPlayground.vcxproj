@@ -25,6 +25,18 @@
       <Configuration>Debug</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Client|x64">
+      <Configuration>Debug_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Client|arm64">
+      <Configuration>Debug_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Client|arm64ec">
+      <Configuration>Debug_Client</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug_Editor|x64">
       <Configuration>Debug_Editor</Configuration>
       <Platform>x64</Platform>
@@ -35,6 +47,18 @@
     </ProjectConfiguration>
     <ProjectConfiguration Include="Debug_Editor|arm64ec">
       <Configuration>Debug_Editor</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Server|x64">
+      <Configuration>Debug_Server</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Server|arm64">
+      <Configuration>Debug_Server</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Server|arm64ec">
+      <Configuration>Debug_Server</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Android_arm64_Debug|x64">
@@ -49,6 +73,18 @@
       <Configuration>Android_arm64_Debug</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Debug_Client|x64">
+      <Configuration>Android_arm64_Debug_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Debug_Client|arm64">
+      <Configuration>Android_arm64_Debug_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Debug_Client|arm64ec">
+      <Configuration>Android_arm64_Debug_Client</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="DebugGame|x64">
       <Configuration>DebugGame</Configuration>
       <Platform>x64</Platform>
@@ -59,6 +95,18 @@
     </ProjectConfiguration>
     <ProjectConfiguration Include="DebugGame|arm64ec">
       <Configuration>DebugGame</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugGame_Client|x64">
+      <Configuration>DebugGame_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugGame_Client|arm64">
+      <Configuration>DebugGame_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugGame_Client|arm64ec">
+      <Configuration>DebugGame_Client</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="DebugGame_Editor|x64">
@@ -73,6 +121,18 @@
       <Configuration>DebugGame_Editor</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugGame_Server|x64">
+      <Configuration>DebugGame_Server</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugGame_Server|arm64">
+      <Configuration>DebugGame_Server</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugGame_Server|arm64ec">
+      <Configuration>DebugGame_Server</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Android_arm64_DebugGame|x64">
       <Configuration>Android_arm64_DebugGame</Configuration>
       <Platform>x64</Platform>
@@ -83,6 +143,18 @@
     </ProjectConfiguration>
     <ProjectConfiguration Include="Android_arm64_DebugGame|arm64ec">
       <Configuration>Android_arm64_DebugGame</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_DebugGame_Client|x64">
+      <Configuration>Android_arm64_DebugGame_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_DebugGame_Client|arm64">
+      <Configuration>Android_arm64_DebugGame_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_DebugGame_Client|arm64ec">
+      <Configuration>Android_arm64_DebugGame_Client</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Development|x64">
@@ -97,6 +169,18 @@
       <Configuration>Development</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Development_Client|x64">
+      <Configuration>Development_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development_Client|arm64">
+      <Configuration>Development_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development_Client|arm64ec">
+      <Configuration>Development_Client</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Development_Editor|x64">
       <Configuration>Development_Editor</Configuration>
       <Platform>x64</Platform>
@@ -107,6 +191,18 @@
     </ProjectConfiguration>
     <ProjectConfiguration Include="Development_Editor|arm64ec">
       <Configuration>Development_Editor</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development_Server|x64">
+      <Configuration>Development_Server</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development_Server|arm64">
+      <Configuration>Development_Server</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development_Server|arm64ec">
+      <Configuration>Development_Server</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Android_arm64_Development|x64">
@@ -121,6 +217,18 @@
       <Configuration>Android_arm64_Development</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Development_Client|x64">
+      <Configuration>Android_arm64_Development_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Development_Client|arm64">
+      <Configuration>Android_arm64_Development_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Development_Client|arm64ec">
+      <Configuration>Android_arm64_Development_Client</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Test|x64">
       <Configuration>Test</Configuration>
       <Platform>x64</Platform>
@@ -131,6 +239,30 @@
     </ProjectConfiguration>
     <ProjectConfiguration Include="Test|arm64ec">
       <Configuration>Test</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test_Client|x64">
+      <Configuration>Test_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test_Client|arm64">
+      <Configuration>Test_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test_Client|arm64ec">
+      <Configuration>Test_Client</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test_Server|x64">
+      <Configuration>Test_Server</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test_Server|arm64">
+      <Configuration>Test_Server</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test_Server|arm64ec">
+      <Configuration>Test_Server</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Android_arm64_Test|x64">
@@ -145,6 +277,18 @@
       <Configuration>Android_arm64_Test</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Test_Client|x64">
+      <Configuration>Android_arm64_Test_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Test_Client|arm64">
+      <Configuration>Android_arm64_Test_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Test_Client|arm64ec">
+      <Configuration>Android_arm64_Test_Client</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Shipping|x64">
       <Configuration>Shipping</Configuration>
       <Platform>x64</Platform>
@@ -157,6 +301,30 @@
       <Configuration>Shipping</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Shipping_Client|x64">
+      <Configuration>Shipping_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Shipping_Client|arm64">
+      <Configuration>Shipping_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Shipping_Client|arm64ec">
+      <Configuration>Shipping_Client</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Shipping_Server|x64">
+      <Configuration>Shipping_Server</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Shipping_Server|arm64">
+      <Configuration>Shipping_Server</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Shipping_Server|arm64ec">
+      <Configuration>Shipping_Server</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Android_arm64_Shipping|x64">
       <Configuration>Android_arm64_Shipping</Configuration>
       <Platform>x64</Platform>
@@ -167,6 +335,18 @@
     </ProjectConfiguration>
     <ProjectConfiguration Include="Android_arm64_Shipping|arm64ec">
       <Configuration>Android_arm64_Shipping</Configuration>
+      <Platform>arm64ec</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Shipping_Client|x64">
+      <Configuration>Android_arm64_Shipping_Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Shipping_Client|arm64">
+      <Configuration>Android_arm64_Shipping_Client</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_arm64_Shipping_Client|arm64ec">
+      <Configuration>Android_arm64_Shipping_Client</Configuration>
       <Platform>arm64ec</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -217,6 +397,39 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Debug.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Client|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Debugarm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Client|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Client|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Debugarm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Client|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Editor|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) -Target="ProjectPlaygroundEditor Win64 Debug -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) -Target="ProjectPlaygroundEditor Win64 Debug -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
@@ -250,6 +463,39 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) -Target="ProjectPlaygroundEditor Win64 Debug -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Debug.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Debugarm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Debugarm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Debug|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlayground Android Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlayground Android Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
@@ -259,6 +505,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Debug|x64'">
     <NMakeCompile>
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Android Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Debug_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Android Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Android Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Android\ProjectPlaygroundClient-Android-Debug.so</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Debug_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android Debug -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame|x64'">
@@ -294,6 +551,39 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-DebugGame.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Client|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-DebugGamearm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Client|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Client|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-DebugGamearm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Client|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Editor|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) -Target="ProjectPlaygroundEditor Win64 DebugGame -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) -Target="ProjectPlaygroundEditor Win64 DebugGame -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
@@ -327,6 +617,39 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) -Target="ProjectPlaygroundEditor Win64 DebugGame -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Server|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-DebugGame.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Server|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Server|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-DebugGamearm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Server|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Server|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-DebugGamearm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Server|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_DebugGame|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlayground Android DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlayground Android DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
@@ -336,6 +659,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_DebugGame|x64'">
     <NMakeCompile>
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Android DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_DebugGame_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Android DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Android DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Android\ProjectPlaygroundClient-Android-DebugGame.so</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_DebugGame_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android DebugGame -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
@@ -371,6 +705,39 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Client|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClientarm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development_Client|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Client|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClientarm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development_Client|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Editor|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) -Target="ProjectPlaygroundEditor Win64 Development -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) -Target="ProjectPlaygroundEditor Win64 Development -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
@@ -404,6 +771,39 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) -Target="ProjectPlaygroundEditor Win64 Development -Project=\"$(SolutionDir)ProjectPlayground.uproject\"" -Target="ShaderCompileWorker Win64 Development -Quiet" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Server|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development_Server|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Server|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServerarm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development_Server|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Server|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServerarm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development_Server|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Development|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlayground Android Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlayground Android Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
@@ -413,6 +813,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Development|x64'">
     <NMakeCompile>
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Android Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Development_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Android Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Android Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Android\ProjectPlaygroundClient.so</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Development_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android Development -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'">
@@ -448,6 +859,72 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Test.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Client|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Testarm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_Client|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Client|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Testarm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_Client|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Server|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Test.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_Server|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Server|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Testarm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_Server|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Server|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Testarm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_Server|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Test|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlayground Android Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlayground Android Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
@@ -457,6 +934,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Test|x64'">
     <NMakeCompile>
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Android Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Test_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Android Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Android Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Android\ProjectPlaygroundClient-Android-Test.so</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Test_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android Test -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping|x64'">
@@ -492,6 +980,72 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Shipping.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Client|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Shippingarm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Client|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Client|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundClient-Win64-Shippingarm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Client|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Server|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Shipping.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Server|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=x64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Server|arm64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Shippingarm64.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Server|arm64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Server|arm64ec'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Win64\ProjectPlaygroundServer-Win64-Shippingarm64ec.exe</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Server|arm64ec'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundServer Win64 Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64ec -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Shipping|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlayground Android Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlayground Android Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
@@ -501,6 +1055,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Shipping|x64'">
     <NMakeCompile>
       <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlayground Android Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Shipping_Client|x64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) ProjectPlaygroundClient Android Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) ProjectPlaygroundClient Android Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Android\ProjectPlaygroundClient-Android-Shipping.so</NMakeOutput>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_arm64_Shipping_Client|x64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) ProjectPlaygroundClient Android Shipping -Project="$(SolutionDir)ProjectPlayground.uproject" -WaitMutex -FromMsBuild -architecture=arm64 -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
   <PropertyGroup>
@@ -665,7 +1230,7 @@
     <ProjectAdditionalIncludeDirectories_158>C:\UE5\Engine\Source\ThirdParty\libSampleRate\Public</ProjectAdditionalIncludeDirectories_158>
     <ClCompile_AdditionalIncludeDirectories>$(NMakeIncludeSearchPath);..\..\Plugins\ZeeNet\Source\ZeeNet\Private;$(ProjectAdditionalIncludeDirectories_69);$(ProjectAdditionalIncludeDirectories_68);$(ProjectAdditionalIncludeDirectories_71);$(ProjectAdditionalIncludeDirectories_70);$(ProjectAdditionalIncludeDirectories_151);$(ProjectAdditionalIncludeDirectories_76);$(ProjectAdditionalIncludeDirectories_78);$(ProjectAdditionalIncludeDirectories_77);$(ProjectAdditionalIncludeDirectories_67);$(ProjectAdditionalIncludeDirectories_91);$(ProjectAdditionalIncludeDirectories_119);$(ProjectAdditionalIncludeDirectories_120);$(ProjectAdditionalIncludeDirectories_118);$(ProjectAdditionalIncludeDirectories_98);$(ProjectAdditionalIncludeDirectories_106);$(ProjectAdditionalIncludeDirectories_105);$(ProjectAdditionalIncludeDirectories_145);$(ProjectAdditionalIncludeDirectories_72);$(ProjectAdditionalIncludeDirectories_100);$(ProjectAdditionalIncludeDirectories_101);$(ProjectAdditionalIncludeDirectories_54);$(ProjectAdditionalIncludeDirectories_135);$(ProjectAdditionalIncludeDirectories_146);$(ProjectAdditionalIncludeDirectories_99);$(ProjectAdditionalIncludeDirectories_113);$(ProjectAdditionalIncludeDirectories_112);$(ProjectAdditionalIncludeDirectories_139);$(ProjectAdditionalIncludeDirectories_138);$(ProjectAdditionalIncludeDirectories_51);$(ProjectAdditionalIncludeDirectories_52);$(ProjectAdditionalIncludeDirectories_147);$(ProjectAdditionalIncludeDirectories_56);$(ProjectAdditionalIncludeDirectories_55);$(ProjectAdditionalIncludeDirectories_73);$(ProjectAdditionalIncludeDirectories_74);$(ProjectAdditionalIncludeDirectories_75);$(ProjectAdditionalIncludeDirectories_149);$(ProjectAdditionalIncludeDirectories_92);$(ProjectAdditionalIncludeDirectories_93);$(ProjectAdditionalIncludeDirectories_126);$(ProjectAdditionalIncludeDirectories_127);$(ProjectAdditionalIncludeDirectories_128);$(ProjectAdditionalIncludeDirectories_63);$(ProjectAdditionalIncludeDirectories_110);$(ProjectAdditionalIncludeDirectories_148);$(ProjectAdditionalIncludeDirectories_144);$(ProjectAdditionalIncludeDirectories_53);$(ProjectAdditionalIncludeDirectories_130);$(ProjectAdditionalIncludeDirectories_129);$(ProjectAdditionalIncludeDirectories_136);$(ProjectAdditionalIncludeDirectories_122);$(ProjectAdditionalIncludeDirectories_131);$(ProjectAdditionalIncludeDirectories_80);$(ProjectAdditionalIncludeDirectories_83);$(ProjectAdditionalIncludeDirectories_90);$(ProjectAdditionalIncludeDirectories_96);$(ProjectAdditionalIncludeDirectories_82);$(ProjectAdditionalIncludeDirectories_143);$(ProjectAdditionalIncludeDirectories_57);$(ProjectAdditionalIncludeDirectories_60);$(ProjectAdditionalIncludeDirectories_61);$(ProjectAdditionalIncludeDirectories_62);$(ProjectAdditionalIncludeDirectories_59);$(ProjectAdditionalIncludeDirectories_58);$(ProjectAdditionalIncludeDirectories_66);$(ProjectAdditionalIncludeDirectories_123);$(ProjectAdditionalIncludeDirectories_88);$(ProjectAdditionalIncludeDirectories_65);$(ProjectAdditionalIncludeDirectories_89);$(ProjectAdditionalIncludeDirectories_114);$(ProjectAdditionalIncludeDirectories_141);$(ProjectAdditionalIncludeDirectories_140);$(ProjectAdditionalIncludeDirectories_152);$(ProjectAdditionalIncludeDirectories_153);$(ProjectAdditionalIncludeDirectories_8);$(ProjectAdditionalIncludeDirectories_28);$(ProjectAdditionalIncludeDirectories_30);$(ProjectAdditionalIncludeDirectories_29);$(ProjectAdditionalIncludeDirectories_33);$(ProjectAdditionalIncludeDirectories_37);$(ProjectAdditionalIncludeDirectories_10);$(ProjectAdditionalIncludeDirectories_35);$(ProjectAdditionalIncludeDirectories_34);$(ProjectAdditionalIncludeDirectories_23);$(ProjectAdditionalIncludeDirectories_24);$(ProjectAdditionalIncludeDirectories_25);$(ProjectAdditionalIncludeDirectories_102);$(ProjectAdditionalIncludeDirectories_50);$(ProjectAdditionalIncludeDirectories_45);$(ProjectAdditionalIncludeDirectories_47);$(ProjectAdditionalIncludeDirectories_46);$(ProjectAdditionalIncludeDirectories_12);$(ProjectAdditionalIncludeDirectories_20);$(ProjectAdditionalIncludeDirectories_11);$(ProjectAdditionalIncludeDirectories_19);$(ProjectAdditionalIncludeDirectories_133);$(ProjectAdditionalIncludeDirectories_132);$(ProjectAdditionalIncludeDirectories_137);$(ProjectAdditionalIncludeDirectories_27);$(ProjectAdditionalIncludeDirectories_94);$(ProjectAdditionalIncludeDirectories_95);$(ProjectAdditionalIncludeDirectories_17);$(ProjectAdditionalIncludeDirectories_22);$(ProjectAdditionalIncludeDirectories_32);$(ProjectAdditionalIncludeDirectories_142);$(ProjectAdditionalIncludeDirectories_43);$(ProjectAdditionalIncludeDirectories_44);$(ProjectAdditionalIncludeDirectories_15);$(ProjectAdditionalIncludeDirectories_16);$(ProjectAdditionalIncludeDirectories_125);$(ProjectAdditionalIncludeDirectories_124);$(ProjectAdditionalIncludeDirectories_64);$(ProjectAdditionalIncludeDirectories_13);$(ProjectAdditionalIncludeDirectories_14);$(ProjectAdditionalIncludeDirectories_158);$(ProjectAdditionalIncludeDirectories_31);$(ProjectAdditionalIncludeDirectories_18);$(ProjectAdditionalIncludeDirectories_48);$(ProjectAdditionalIncludeDirectories_49);$(ProjectAdditionalIncludeDirectories_97);$(ProjectAdditionalIncludeDirectories_107);$(ProjectAdditionalIncludeDirectories_108);$(ProjectAdditionalIncludeDirectories_21);$(ProjectAdditionalIncludeDirectories_26);$(ProjectAdditionalIncludeDirectories_39);$(ProjectAdditionalIncludeDirectories_121);$(ProjectAdditionalIncludeDirectories_154);$(ProjectAdditionalIncludeDirectories_116);$(ProjectAdditionalIncludeDirectories_150);$(ProjectAdditionalIncludeDirectories_155);$(ProjectAdditionalIncludeDirectories_115);$(ProjectAdditionalIncludeDirectories_79);$(ProjectAdditionalIncludeDirectories_134);$(ProjectAdditionalIncludeDirectories_117);$(ProjectAdditionalIncludeDirectories_87);$(ProjectAdditionalIncludeDirectories_86);$(ProjectAdditionalIncludeDirectories_81);$(ProjectAdditionalIncludeDirectories_84);$(ProjectAdditionalIncludeDirectories_85);$(ProjectAdditionalIncludeDirectories_111);$(ProjectAdditionalIncludeDirectories_109);$(ProjectAdditionalIncludeDirectories_42);$(ProjectAdditionalIncludeDirectories_38);$(ProjectAdditionalIncludeDirectories_103);$(ProjectAdditionalIncludeDirectories_104);$(ProjectAdditionalIncludeDirectories_40);$(ProjectAdditionalIncludeDirectories_41);$(ProjectAdditionalIncludeDirectories_36);$(ProjectAdditionalIncludeDirectories_9);$(ProjectAdditionalIncludeDirectories);$(ProjectAdditionalIncludeDirectories_1);$(ProjectAdditionalIncludeDirectories_2);$(ProjectAdditionalIncludeDirectories_3);C:\UE5\Engine\Source\ThirdParty\Protobuf\3.18.0\include;C:\UE5\Engine\Source\ThirdParty\zlib\1.3\include;$(ProjectAdditionalIncludeDirectories_157);$(ProjectAdditionalIncludeDirectories_156)</ClCompile_AdditionalIncludeDirectories>
     <ClCompile_AdditionalIncludeDirectories_1>$(NMakeIncludeSearchPath);..\..\Plugins\ZeeUI\Source\ZeeUI\Private;$(ProjectAdditionalIncludeDirectories_69);$(ProjectAdditionalIncludeDirectories_68);$(ProjectAdditionalIncludeDirectories_71);$(ProjectAdditionalIncludeDirectories_70);$(ProjectAdditionalIncludeDirectories_151);$(ProjectAdditionalIncludeDirectories_76);$(ProjectAdditionalIncludeDirectories_78);$(ProjectAdditionalIncludeDirectories_77);$(ProjectAdditionalIncludeDirectories_67);$(ProjectAdditionalIncludeDirectories_91);$(ProjectAdditionalIncludeDirectories_119);$(ProjectAdditionalIncludeDirectories_120);$(ProjectAdditionalIncludeDirectories_118);$(ProjectAdditionalIncludeDirectories_98);$(ProjectAdditionalIncludeDirectories_106);$(ProjectAdditionalIncludeDirectories_105);$(ProjectAdditionalIncludeDirectories_145);$(ProjectAdditionalIncludeDirectories_72);$(ProjectAdditionalIncludeDirectories_100);$(ProjectAdditionalIncludeDirectories_101);$(ProjectAdditionalIncludeDirectories_54);$(ProjectAdditionalIncludeDirectories_135);$(ProjectAdditionalIncludeDirectories_146);$(ProjectAdditionalIncludeDirectories_99);$(ProjectAdditionalIncludeDirectories_113);$(ProjectAdditionalIncludeDirectories_112);$(ProjectAdditionalIncludeDirectories_139);$(ProjectAdditionalIncludeDirectories_138);$(ProjectAdditionalIncludeDirectories_51);$(ProjectAdditionalIncludeDirectories_52);$(ProjectAdditionalIncludeDirectories_147);$(ProjectAdditionalIncludeDirectories_56);$(ProjectAdditionalIncludeDirectories_55);$(ProjectAdditionalIncludeDirectories_73);$(ProjectAdditionalIncludeDirectories_74);$(ProjectAdditionalIncludeDirectories_75);$(ProjectAdditionalIncludeDirectories_149);$(ProjectAdditionalIncludeDirectories_92);$(ProjectAdditionalIncludeDirectories_93);$(ProjectAdditionalIncludeDirectories_126);$(ProjectAdditionalIncludeDirectories_127);$(ProjectAdditionalIncludeDirectories_128);$(ProjectAdditionalIncludeDirectories_63);$(ProjectAdditionalIncludeDirectories_110);$(ProjectAdditionalIncludeDirectories_148);$(ProjectAdditionalIncludeDirectories_144);$(ProjectAdditionalIncludeDirectories_53);$(ProjectAdditionalIncludeDirectories_130);$(ProjectAdditionalIncludeDirectories_129);$(ProjectAdditionalIncludeDirectories_136);$(ProjectAdditionalIncludeDirectories_122);$(ProjectAdditionalIncludeDirectories_131);$(ProjectAdditionalIncludeDirectories_80);$(ProjectAdditionalIncludeDirectories_83);$(ProjectAdditionalIncludeDirectories_90);$(ProjectAdditionalIncludeDirectories_96);$(ProjectAdditionalIncludeDirectories_82);$(ProjectAdditionalIncludeDirectories_143);$(ProjectAdditionalIncludeDirectories_57);$(ProjectAdditionalIncludeDirectories_60);$(ProjectAdditionalIncludeDirectories_61);$(ProjectAdditionalIncludeDirectories_62);$(ProjectAdditionalIncludeDirectories_59);$(ProjectAdditionalIncludeDirectories_58);$(ProjectAdditionalIncludeDirectories_66);$(ProjectAdditionalIncludeDirectories_123);$(ProjectAdditionalIncludeDirectories_88);$(ProjectAdditionalIncludeDirectories_65);$(ProjectAdditionalIncludeDirectories_89);$(ProjectAdditionalIncludeDirectories_114);$(ProjectAdditionalIncludeDirectories_141);$(ProjectAdditionalIncludeDirectories_140);$(ProjectAdditionalIncludeDirectories_152);$(ProjectAdditionalIncludeDirectories_153);$(ProjectAdditionalIncludeDirectories_8);$(ProjectAdditionalIncludeDirectories_28);$(ProjectAdditionalIncludeDirectories_30);$(ProjectAdditionalIncludeDirectories_29);$(ProjectAdditionalIncludeDirectories_33);$(ProjectAdditionalIncludeDirectories_37);$(ProjectAdditionalIncludeDirectories_10);$(ProjectAdditionalIncludeDirectories_35);$(ProjectAdditionalIncludeDirectories_34);$(ProjectAdditionalIncludeDirectories_23);$(ProjectAdditionalIncludeDirectories_24);$(ProjectAdditionalIncludeDirectories_25);$(ProjectAdditionalIncludeDirectories_102);$(ProjectAdditionalIncludeDirectories_50);$(ProjectAdditionalIncludeDirectories_45);$(ProjectAdditionalIncludeDirectories_47);$(ProjectAdditionalIncludeDirectories_46);$(ProjectAdditionalIncludeDirectories_12);$(ProjectAdditionalIncludeDirectories_20);$(ProjectAdditionalIncludeDirectories_11);$(ProjectAdditionalIncludeDirectories_19);$(ProjectAdditionalIncludeDirectories_133);$(ProjectAdditionalIncludeDirectories_132);$(ProjectAdditionalIncludeDirectories_137);$(ProjectAdditionalIncludeDirectories_27);$(ProjectAdditionalIncludeDirectories_94);$(ProjectAdditionalIncludeDirectories_95);$(ProjectAdditionalIncludeDirectories_17);$(ProjectAdditionalIncludeDirectories_22);$(ProjectAdditionalIncludeDirectories_32);$(ProjectAdditionalIncludeDirectories_142);$(ProjectAdditionalIncludeDirectories_43);$(ProjectAdditionalIncludeDirectories_44);$(ProjectAdditionalIncludeDirectories_15);$(ProjectAdditionalIncludeDirectories_16);$(ProjectAdditionalIncludeDirectories_125);$(ProjectAdditionalIncludeDirectories_124);$(ProjectAdditionalIncludeDirectories_64);$(ProjectAdditionalIncludeDirectories_13);$(ProjectAdditionalIncludeDirectories_14);$(ProjectAdditionalIncludeDirectories_158);$(ProjectAdditionalIncludeDirectories_31);$(ProjectAdditionalIncludeDirectories_18);$(ProjectAdditionalIncludeDirectories_48);$(ProjectAdditionalIncludeDirectories_49);$(ProjectAdditionalIncludeDirectories_97);$(ProjectAdditionalIncludeDirectories_107);$(ProjectAdditionalIncludeDirectories_108);$(ProjectAdditionalIncludeDirectories_21);$(ProjectAdditionalIncludeDirectories_26);$(ProjectAdditionalIncludeDirectories_39);$(ProjectAdditionalIncludeDirectories_121);$(ProjectAdditionalIncludeDirectories_154);$(ProjectAdditionalIncludeDirectories_116);$(ProjectAdditionalIncludeDirectories_150);$(ProjectAdditionalIncludeDirectories_155);$(ProjectAdditionalIncludeDirectories_115);$(ProjectAdditionalIncludeDirectories_79);$(ProjectAdditionalIncludeDirectories_134);$(ProjectAdditionalIncludeDirectories_117);$(ProjectAdditionalIncludeDirectories_87);$(ProjectAdditionalIncludeDirectories_86);$(ProjectAdditionalIncludeDirectories_81);$(ProjectAdditionalIncludeDirectories_84);$(ProjectAdditionalIncludeDirectories_85);$(ProjectAdditionalIncludeDirectories_111);$(ProjectAdditionalIncludeDirectories_109);$(ProjectAdditionalIncludeDirectories_42);$(ProjectAdditionalIncludeDirectories_38);$(ProjectAdditionalIncludeDirectories_103);$(ProjectAdditionalIncludeDirectories_104);$(ProjectAdditionalIncludeDirectories_40);$(ProjectAdditionalIncludeDirectories_41);$(ProjectAdditionalIncludeDirectories_36);$(ProjectAdditionalIncludeDirectories_9);$(ProjectAdditionalIncludeDirectories_4);$(ProjectAdditionalIncludeDirectories_5);$(ProjectAdditionalIncludeDirectories_6);$(ProjectAdditionalIncludeDirectories_7);$(ProjectAdditionalIncludeDirectories_157);$(ProjectAdditionalIncludeDirectories_156)</ClCompile_AdditionalIncludeDirectories_1>
-    <ClCompile_AdditionalIncludeDirectories_2>$(NMakeIncludeSearchPath);..\Build\Win64\UnrealEditor\Inc\ProjectPlayground\UHT;..\Build\Win64\UnrealEditor\Inc\ProjectPlayground\VNI;..\..\Source;$(ProjectAdditionalIncludeDirectories_71);$(ProjectAdditionalIncludeDirectories_70);$(ProjectAdditionalIncludeDirectories_151);$(ProjectAdditionalIncludeDirectories_69);$(ProjectAdditionalIncludeDirectories_68);$(ProjectAdditionalIncludeDirectories_76);$(ProjectAdditionalIncludeDirectories_78);$(ProjectAdditionalIncludeDirectories_77);$(ProjectAdditionalIncludeDirectories_67);$(ProjectAdditionalIncludeDirectories_91);$(ProjectAdditionalIncludeDirectories_119);$(ProjectAdditionalIncludeDirectories_120);$(ProjectAdditionalIncludeDirectories_118);$(ProjectAdditionalIncludeDirectories_98);$(ProjectAdditionalIncludeDirectories_106);$(ProjectAdditionalIncludeDirectories_105);$(ProjectAdditionalIncludeDirectories_145);$(ProjectAdditionalIncludeDirectories_72);$(ProjectAdditionalIncludeDirectories_100);$(ProjectAdditionalIncludeDirectories_101);$(ProjectAdditionalIncludeDirectories_54);$(ProjectAdditionalIncludeDirectories_135);$(ProjectAdditionalIncludeDirectories_146);$(ProjectAdditionalIncludeDirectories_99);$(ProjectAdditionalIncludeDirectories_113);$(ProjectAdditionalIncludeDirectories_112);$(ProjectAdditionalIncludeDirectories_139);$(ProjectAdditionalIncludeDirectories_138);$(ProjectAdditionalIncludeDirectories_51);$(ProjectAdditionalIncludeDirectories_52);$(ProjectAdditionalIncludeDirectories_147);$(ProjectAdditionalIncludeDirectories_56);$(ProjectAdditionalIncludeDirectories_55);$(ProjectAdditionalIncludeDirectories_73);$(ProjectAdditionalIncludeDirectories_74);$(ProjectAdditionalIncludeDirectories_75);$(ProjectAdditionalIncludeDirectories_149);$(ProjectAdditionalIncludeDirectories_92);$(ProjectAdditionalIncludeDirectories_93);$(ProjectAdditionalIncludeDirectories_126);$(ProjectAdditionalIncludeDirectories_127);$(ProjectAdditionalIncludeDirectories_128);$(ProjectAdditionalIncludeDirectories_63);$(ProjectAdditionalIncludeDirectories_110);$(ProjectAdditionalIncludeDirectories_148);$(ProjectAdditionalIncludeDirectories_144);$(ProjectAdditionalIncludeDirectories_53);$(ProjectAdditionalIncludeDirectories_130);$(ProjectAdditionalIncludeDirectories_129);$(ProjectAdditionalIncludeDirectories_136);$(ProjectAdditionalIncludeDirectories_122);$(ProjectAdditionalIncludeDirectories_131);$(ProjectAdditionalIncludeDirectories_80);$(ProjectAdditionalIncludeDirectories_83);$(ProjectAdditionalIncludeDirectories_90);$(ProjectAdditionalIncludeDirectories_96);$(ProjectAdditionalIncludeDirectories_82);$(ProjectAdditionalIncludeDirectories_143);$(ProjectAdditionalIncludeDirectories_57);$(ProjectAdditionalIncludeDirectories_60);$(ProjectAdditionalIncludeDirectories_61);$(ProjectAdditionalIncludeDirectories_62);$(ProjectAdditionalIncludeDirectories_59);$(ProjectAdditionalIncludeDirectories_58);$(ProjectAdditionalIncludeDirectories_66);$(ProjectAdditionalIncludeDirectories_123);$(ProjectAdditionalIncludeDirectories_88);$(ProjectAdditionalIncludeDirectories_65);$(ProjectAdditionalIncludeDirectories_89);$(ProjectAdditionalIncludeDirectories_114);$(ProjectAdditionalIncludeDirectories_141);$(ProjectAdditionalIncludeDirectories_140);$(ProjectAdditionalIncludeDirectories_152);$(ProjectAdditionalIncludeDirectories_153);$(ProjectAdditionalIncludeDirectories_8);$(ProjectAdditionalIncludeDirectories_28);$(ProjectAdditionalIncludeDirectories_30);$(ProjectAdditionalIncludeDirectories_29);$(ProjectAdditionalIncludeDirectories_33);$(ProjectAdditionalIncludeDirectories_37);$(ProjectAdditionalIncludeDirectories_10);$(ProjectAdditionalIncludeDirectories_35);$(ProjectAdditionalIncludeDirectories_34);$(ProjectAdditionalIncludeDirectories_23);$(ProjectAdditionalIncludeDirectories_24);$(ProjectAdditionalIncludeDirectories_25);$(ProjectAdditionalIncludeDirectories_102);$(ProjectAdditionalIncludeDirectories_50);$(ProjectAdditionalIncludeDirectories_45);$(ProjectAdditionalIncludeDirectories_47);$(ProjectAdditionalIncludeDirectories_46);$(ProjectAdditionalIncludeDirectories_12);$(ProjectAdditionalIncludeDirectories_20);$(ProjectAdditionalIncludeDirectories_11);$(ProjectAdditionalIncludeDirectories_19);$(ProjectAdditionalIncludeDirectories_133);$(ProjectAdditionalIncludeDirectories_132);$(ProjectAdditionalIncludeDirectories_137);$(ProjectAdditionalIncludeDirectories_27);$(ProjectAdditionalIncludeDirectories_94);$(ProjectAdditionalIncludeDirectories_95);$(ProjectAdditionalIncludeDirectories_17);$(ProjectAdditionalIncludeDirectories_22);$(ProjectAdditionalIncludeDirectories_32);$(ProjectAdditionalIncludeDirectories_142);$(ProjectAdditionalIncludeDirectories_43);$(ProjectAdditionalIncludeDirectories_44);$(ProjectAdditionalIncludeDirectories_15);$(ProjectAdditionalIncludeDirectories_16);$(ProjectAdditionalIncludeDirectories_125);$(ProjectAdditionalIncludeDirectories_124);$(ProjectAdditionalIncludeDirectories_64);$(ProjectAdditionalIncludeDirectories_13);$(ProjectAdditionalIncludeDirectories_14);$(ProjectAdditionalIncludeDirectories_158);$(ProjectAdditionalIncludeDirectories_31);$(ProjectAdditionalIncludeDirectories_18);$(ProjectAdditionalIncludeDirectories_48);$(ProjectAdditionalIncludeDirectories_49);$(ProjectAdditionalIncludeDirectories_97);$(ProjectAdditionalIncludeDirectories_107);$(ProjectAdditionalIncludeDirectories_108);$(ProjectAdditionalIncludeDirectories_21);$(ProjectAdditionalIncludeDirectories_26);$(ProjectAdditionalIncludeDirectories_39);$(ProjectAdditionalIncludeDirectories_121);$(ProjectAdditionalIncludeDirectories_154);$(ProjectAdditionalIncludeDirectories_116);$(ProjectAdditionalIncludeDirectories_150);$(ProjectAdditionalIncludeDirectories_155);$(ProjectAdditionalIncludeDirectories_115);$(ProjectAdditionalIncludeDirectories_79);$(ProjectAdditionalIncludeDirectories_134);$(ProjectAdditionalIncludeDirectories_117);$(ProjectAdditionalIncludeDirectories_87);$(ProjectAdditionalIncludeDirectories_86);$(ProjectAdditionalIncludeDirectories_81);$(ProjectAdditionalIncludeDirectories_84);$(ProjectAdditionalIncludeDirectories_85);$(ProjectAdditionalIncludeDirectories_111);$(ProjectAdditionalIncludeDirectories_109);$(ProjectAdditionalIncludeDirectories_42);$(ProjectAdditionalIncludeDirectories_38);$(ProjectAdditionalIncludeDirectories_103);$(ProjectAdditionalIncludeDirectories_104);$(ProjectAdditionalIncludeDirectories_40);$(ProjectAdditionalIncludeDirectories_41);$(ProjectAdditionalIncludeDirectories_36);$(ProjectAdditionalIncludeDirectories_9);C:\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\AIModule\UHT;C:\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\AIModule\VNI;C:\UE5\Engine\Source\Runtime\AIModule\Classes;C:\UE5\Engine\Source\Runtime\AIModule\Public;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\Niagara\UHT;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\Niagara\VNI;C:\UE5\Engine\Plugins\FX\Niagara\Source;C:\UE5\Engine\Plugins\FX\Niagara\Source\Niagara\Classes;C:\UE5\Engine\Plugins\FX\Niagara\Source\Niagara\Public;C:\UE5\Engine\Plugins\FX\Niagara\Source\Niagara\Internal;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraCore\UHT;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraCore\VNI;C:\UE5\Engine\Plugins\FX\Niagara\Source\NiagaraCore\Public;C:\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\VectorVM\UHT;C:\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\VectorVM\VNI;C:\UE5\Engine\Source\Runtime\VectorVM\Public;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraShader\UHT;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraShader\VNI;C:\UE5\Engine\Plugins\FX\Niagara\Source\NiagaraShader\Public;C:\UE5\Engine\Plugins\FX\Niagara\Source\NiagaraShader\Internal;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraVertexFactories\UHT;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraVertexFactories\VNI;C:\UE5\Engine\Plugins\FX\Niagara\Source\NiagaraVertexFactories\Public;C:\UE5\Engine\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\UHT;C:\UE5\Engine\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\VNI;C:\UE5\Engine\Plugins\EnhancedInput\Source;C:\UE5\Engine\Plugins\EnhancedInput\Source\EnhancedInput\Public;$(ProjectAdditionalIncludeDirectories);$(ProjectAdditionalIncludeDirectories_1);$(ProjectAdditionalIncludeDirectories_2);$(ProjectAdditionalIncludeDirectories_3);$(ProjectAdditionalIncludeDirectories_4);$(ProjectAdditionalIncludeDirectories_5);$(ProjectAdditionalIncludeDirectories_6);$(ProjectAdditionalIncludeDirectories_7);$(ProjectAdditionalIncludeDirectories_157);$(ProjectAdditionalIncludeDirectories_156)</ClCompile_AdditionalIncludeDirectories_2>
+    <ClCompile_AdditionalIncludeDirectories_2>$(NMakeIncludeSearchPath);$(ProjectAdditionalIncludeDirectories_76);$(ProjectAdditionalIncludeDirectories_78);$(ProjectAdditionalIncludeDirectories_77);$(ProjectAdditionalIncludeDirectories_71);$(ProjectAdditionalIncludeDirectories_70);$(ProjectAdditionalIncludeDirectories_151);$(ProjectAdditionalIncludeDirectories_67);$(ProjectAdditionalIncludeDirectories_69);$(ProjectAdditionalIncludeDirectories_68);$(ProjectAdditionalIncludeDirectories_91);$(ProjectAdditionalIncludeDirectories_119);$(ProjectAdditionalIncludeDirectories_120);$(ProjectAdditionalIncludeDirectories_118);$(ProjectAdditionalIncludeDirectories_98);$(ProjectAdditionalIncludeDirectories_106);$(ProjectAdditionalIncludeDirectories_105);$(ProjectAdditionalIncludeDirectories_145);$(ProjectAdditionalIncludeDirectories_72);$(ProjectAdditionalIncludeDirectories_100);$(ProjectAdditionalIncludeDirectories_101);$(ProjectAdditionalIncludeDirectories_54);$(ProjectAdditionalIncludeDirectories_135);$(ProjectAdditionalIncludeDirectories_146);$(ProjectAdditionalIncludeDirectories_99);$(ProjectAdditionalIncludeDirectories_113);$(ProjectAdditionalIncludeDirectories_112);$(ProjectAdditionalIncludeDirectories_139);$(ProjectAdditionalIncludeDirectories_138);$(ProjectAdditionalIncludeDirectories_51);$(ProjectAdditionalIncludeDirectories_52);$(ProjectAdditionalIncludeDirectories_147);$(ProjectAdditionalIncludeDirectories_56);$(ProjectAdditionalIncludeDirectories_55);$(ProjectAdditionalIncludeDirectories_73);$(ProjectAdditionalIncludeDirectories_74);$(ProjectAdditionalIncludeDirectories_75);$(ProjectAdditionalIncludeDirectories_149);$(ProjectAdditionalIncludeDirectories_92);$(ProjectAdditionalIncludeDirectories_93);$(ProjectAdditionalIncludeDirectories_126);$(ProjectAdditionalIncludeDirectories_127);$(ProjectAdditionalIncludeDirectories_128);$(ProjectAdditionalIncludeDirectories_63);$(ProjectAdditionalIncludeDirectories_110);$(ProjectAdditionalIncludeDirectories_148);$(ProjectAdditionalIncludeDirectories_144);$(ProjectAdditionalIncludeDirectories_53);$(ProjectAdditionalIncludeDirectories_130);$(ProjectAdditionalIncludeDirectories_129);$(ProjectAdditionalIncludeDirectories_136);$(ProjectAdditionalIncludeDirectories_122);$(ProjectAdditionalIncludeDirectories_131);$(ProjectAdditionalIncludeDirectories_80);$(ProjectAdditionalIncludeDirectories_83);$(ProjectAdditionalIncludeDirectories_90);$(ProjectAdditionalIncludeDirectories_96);$(ProjectAdditionalIncludeDirectories_82);$(ProjectAdditionalIncludeDirectories_143);$(ProjectAdditionalIncludeDirectories_57);$(ProjectAdditionalIncludeDirectories_60);$(ProjectAdditionalIncludeDirectories_61);$(ProjectAdditionalIncludeDirectories_62);$(ProjectAdditionalIncludeDirectories_59);$(ProjectAdditionalIncludeDirectories_58);$(ProjectAdditionalIncludeDirectories_66);$(ProjectAdditionalIncludeDirectories_123);$(ProjectAdditionalIncludeDirectories_88);$(ProjectAdditionalIncludeDirectories_65);$(ProjectAdditionalIncludeDirectories_89);$(ProjectAdditionalIncludeDirectories_114);$(ProjectAdditionalIncludeDirectories_141);$(ProjectAdditionalIncludeDirectories_140);$(ProjectAdditionalIncludeDirectories_152);$(ProjectAdditionalIncludeDirectories_153);$(ProjectAdditionalIncludeDirectories_8);$(ProjectAdditionalIncludeDirectories_28);$(ProjectAdditionalIncludeDirectories_30);$(ProjectAdditionalIncludeDirectories_29);$(ProjectAdditionalIncludeDirectories_33);$(ProjectAdditionalIncludeDirectories_37);$(ProjectAdditionalIncludeDirectories_10);$(ProjectAdditionalIncludeDirectories_35);$(ProjectAdditionalIncludeDirectories_34);$(ProjectAdditionalIncludeDirectories_23);$(ProjectAdditionalIncludeDirectories_24);$(ProjectAdditionalIncludeDirectories_25);$(ProjectAdditionalIncludeDirectories_102);$(ProjectAdditionalIncludeDirectories_50);$(ProjectAdditionalIncludeDirectories_45);$(ProjectAdditionalIncludeDirectories_47);$(ProjectAdditionalIncludeDirectories_46);$(ProjectAdditionalIncludeDirectories_12);$(ProjectAdditionalIncludeDirectories_20);$(ProjectAdditionalIncludeDirectories_11);$(ProjectAdditionalIncludeDirectories_19);$(ProjectAdditionalIncludeDirectories_133);$(ProjectAdditionalIncludeDirectories_132);$(ProjectAdditionalIncludeDirectories_137);$(ProjectAdditionalIncludeDirectories_27);$(ProjectAdditionalIncludeDirectories_94);$(ProjectAdditionalIncludeDirectories_95);$(ProjectAdditionalIncludeDirectories_17);$(ProjectAdditionalIncludeDirectories_22);$(ProjectAdditionalIncludeDirectories_32);$(ProjectAdditionalIncludeDirectories_142);$(ProjectAdditionalIncludeDirectories_43);$(ProjectAdditionalIncludeDirectories_44);$(ProjectAdditionalIncludeDirectories_15);$(ProjectAdditionalIncludeDirectories_16);$(ProjectAdditionalIncludeDirectories_125);$(ProjectAdditionalIncludeDirectories_124);$(ProjectAdditionalIncludeDirectories_64);$(ProjectAdditionalIncludeDirectories_13);$(ProjectAdditionalIncludeDirectories_14);$(ProjectAdditionalIncludeDirectories_158);$(ProjectAdditionalIncludeDirectories_31);$(ProjectAdditionalIncludeDirectories_18);$(ProjectAdditionalIncludeDirectories_48);$(ProjectAdditionalIncludeDirectories_49);$(ProjectAdditionalIncludeDirectories_97);$(ProjectAdditionalIncludeDirectories_107);$(ProjectAdditionalIncludeDirectories_108);$(ProjectAdditionalIncludeDirectories_21);$(ProjectAdditionalIncludeDirectories_26);$(ProjectAdditionalIncludeDirectories_39);$(ProjectAdditionalIncludeDirectories_121);$(ProjectAdditionalIncludeDirectories_154);$(ProjectAdditionalIncludeDirectories_116);$(ProjectAdditionalIncludeDirectories_150);$(ProjectAdditionalIncludeDirectories_155);$(ProjectAdditionalIncludeDirectories_115);$(ProjectAdditionalIncludeDirectories_79);$(ProjectAdditionalIncludeDirectories_134);$(ProjectAdditionalIncludeDirectories_117);$(ProjectAdditionalIncludeDirectories_87);$(ProjectAdditionalIncludeDirectories_86);$(ProjectAdditionalIncludeDirectories_81);$(ProjectAdditionalIncludeDirectories_84);$(ProjectAdditionalIncludeDirectories_85);$(ProjectAdditionalIncludeDirectories_111);$(ProjectAdditionalIncludeDirectories_109);$(ProjectAdditionalIncludeDirectories_42);$(ProjectAdditionalIncludeDirectories_38);$(ProjectAdditionalIncludeDirectories_103);$(ProjectAdditionalIncludeDirectories_104);$(ProjectAdditionalIncludeDirectories_40);$(ProjectAdditionalIncludeDirectories_41);$(ProjectAdditionalIncludeDirectories_36);$(ProjectAdditionalIncludeDirectories_9);..\Build\Win64\UnrealEditor\Inc\ProjectPlayground\UHT;..\Build\Win64\UnrealEditor\Inc\ProjectPlayground\VNI;..\..\Source;C:\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\AIModule\UHT;C:\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\AIModule\VNI;C:\UE5\Engine\Source\Runtime\AIModule\Classes;C:\UE5\Engine\Source\Runtime\AIModule\Public;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\Niagara\UHT;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\Niagara\VNI;C:\UE5\Engine\Plugins\FX\Niagara\Source;C:\UE5\Engine\Plugins\FX\Niagara\Source\Niagara\Classes;C:\UE5\Engine\Plugins\FX\Niagara\Source\Niagara\Public;C:\UE5\Engine\Plugins\FX\Niagara\Source\Niagara\Internal;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraCore\UHT;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraCore\VNI;C:\UE5\Engine\Plugins\FX\Niagara\Source\NiagaraCore\Public;C:\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\VectorVM\UHT;C:\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\VectorVM\VNI;C:\UE5\Engine\Source\Runtime\VectorVM\Public;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraShader\UHT;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraShader\VNI;C:\UE5\Engine\Plugins\FX\Niagara\Source\NiagaraShader\Public;C:\UE5\Engine\Plugins\FX\Niagara\Source\NiagaraShader\Internal;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraVertexFactories\UHT;C:\UE5\Engine\Plugins\FX\Niagara\Intermediate\Build\Win64\UnrealEditor\Inc\NiagaraVertexFactories\VNI;C:\UE5\Engine\Plugins\FX\Niagara\Source\NiagaraVertexFactories\Public;C:\UE5\Engine\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\UHT;C:\UE5\Engine\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\VNI;C:\UE5\Engine\Plugins\EnhancedInput\Source;C:\UE5\Engine\Plugins\EnhancedInput\Source\EnhancedInput\Public;$(ProjectAdditionalIncludeDirectories);$(ProjectAdditionalIncludeDirectories_1);$(ProjectAdditionalIncludeDirectories_2);$(ProjectAdditionalIncludeDirectories_3);$(ProjectAdditionalIncludeDirectories_4);$(ProjectAdditionalIncludeDirectories_5);$(ProjectAdditionalIncludeDirectories_6);$(ProjectAdditionalIncludeDirectories_7);$(ProjectAdditionalIncludeDirectories_157);$(ProjectAdditionalIncludeDirectories_156)</ClCompile_AdditionalIncludeDirectories_2>
     <ProjectForcedIncludeFiles>C:\UE5\Engine\Intermediate\Build\Win64\x64\UnrealEditorGPF\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h</ProjectForcedIncludeFiles>
     <ClCompile_ForcedIncludeFiles>$(ProjectForcedIncludeFiles);$(SolutionDir)Plugins\ZeeNet\Intermediate\Build\Win64\x64\UnrealEditorGPF\Development\ZeeNet\Definitions.ZeeNet.h</ClCompile_ForcedIncludeFiles>
     <ClCompile_ForcedIncludeFiles_1>$(ProjectForcedIncludeFiles);$(SolutionDir)Plugins\ZeeUI\Intermediate\Build\Win64\x64\UnrealEditorGPF\Development\ZeeUI\Definitions.ZeeUI.h</ClCompile_ForcedIncludeFiles_1>
@@ -674,7 +1239,10 @@
   <ItemGroup>
     <None Include="..\..\ProjectPlayground.uproject"/>
     <None Include="..\..\Source\ProjectPlayground.Target.cs"/>
+    <None Include="..\..\Source\ProjectPlaygroundClient.Target.cs"/>
     <None Include="..\..\Source\ProjectPlaygroundEditor.Target.cs"/>
+    <None Include="..\..\Source\ProjectPlaygroundServer.Target.cs"/>
+    <None Include="..\..\.gitignore"/>
     <None Include="..\..\.vsconfig"/>
     <None Include="..\..\GenerateProjectFiles.bat"/>
     <None Include="..\..\Playground.code-workspace"/>
@@ -727,11 +1295,31 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Test.h"/>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\Account.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\UserCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\Account.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\UserCharacter.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\DataAccount.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\DataAccount.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\DataCharacter.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\DataCharacter.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\DataCommon.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\DataCommon.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\DataDedicate.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Data\DataDedicate.h"/>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify.g.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -754,6 +1342,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_UserCharacter.g.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Authentication.g.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -766,6 +1358,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_UserCharacter.g.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Authentication.pb.cc"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Authentication.pb.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.cc"/>
@@ -774,8 +1370,16 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Packet.pb.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.cc"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.h"/>
-    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\Account.pb.cc"/>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\Account.pb.h"/>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\UserCharacter.pb.cc"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\UserCharacter.pb.h"/>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataAccount.pb.cc"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataAccount.pb.h"/>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataCharacter.pb.cc"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataCharacter.pb.h"/>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataCommon.pb.cc"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataCommon.pb.h"/>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataDedicate.pb.cc"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataDedicate.pb.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNet.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetClient.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\ZeeNetPacket.h"/>
@@ -784,13 +1388,17 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\ZeeNetNotifyHandler.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\ZeeNetRequestHandler.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Authentication.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Character.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Chat.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Test.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Test2.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\UserCharacter.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Authentication.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Character.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Chat.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Test.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Test2.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\UserCharacter.h"/>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Authentication.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -811,11 +1419,31 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.h"/>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\Account.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\UserCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\Account.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\UserCharacter.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\DataAccount.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\DataAccount.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\DataCharacter.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\DataCharacter.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\DataCommon.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\DataCommon.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\DataDedicate.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Data\DataDedicate.h"/>
     <None Include="..\..\Plugins\ZeeNet\ZeeNet.uplugin"/>
     <None Include="..\..\Plugins\ZeeNet\Resources\Icon128.png"/>
     <None Include="..\..\Plugins\ZeeUI\ZeeUI.uplugin"/>
@@ -830,6 +1458,22 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
     </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUIBPLibrary.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Common\SZeeUIVirtualJoystick.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Common\ZeeUITouchInputWidget.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Common\ZeeUIVirtualJoystick.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SZeeUICharacterSpot.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
     </ClCompile>
@@ -848,6 +1492,10 @@
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeButton.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUI.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUIBPLibrary.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\SZeeUIVirtualJoystick.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\ZeeUITouchInputWidget.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\ZeeUIVirtualJoystick.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SZeeUICharacterSpot.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SZeeUILobbyLogin.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUILobbySlateStyle.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUILobbySlateStyles.h"/>
@@ -872,6 +1520,47 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlaygroundPlayerController.h"/>
+    <ClInclude Include="..\..\Source\ProjectPlayground\Common\ZeeUtils.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\InGame\InGameCharacter.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\InGame\InGameCharacter.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\InGame\InGameModeBase.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\InGame\InGameModeBase.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\InGame\InGamePlayerController.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\InGame\InGamePlayerController.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\Lobby\LobbyCharacter.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\Lobby\LobbyCharacter.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\Lobby\LobbyCharacterSpot.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\Lobby\LobbyCharacterSpot.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\Lobby\LobbyGameMode.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\Lobby\LobbyGameMode.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\Lobby\LobbyPlayerController.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\Lobby\LobbyPlayerController.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\Network\ZeeNetworkClientSubsystem.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\Network\ZeeNetworkClientSubsystem.h"/>
   </ItemGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>

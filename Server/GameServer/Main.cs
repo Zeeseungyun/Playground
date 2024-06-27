@@ -2,9 +2,8 @@ using MySqlX.XDevAPI.Common;
 using Zee.Net;
 
 Zee.Net.Server server = new(port: 20500);
-//server.Start();
-var ret = Zee.Database.Account.Login("test_2", "test_1");
-Console.WriteLine(ret);
+server.Start();
+
 while(true)
 {
     var tmp = Console.ReadLine();

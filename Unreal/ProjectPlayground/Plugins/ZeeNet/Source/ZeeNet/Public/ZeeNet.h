@@ -11,4 +11,8 @@ public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
+
+	TArray<TSharedPtr<class FZeeNetClient>> ManagedClients;
+	TArray<TSharedPtr<class FZeeNetClient>> PendingKillClients;
+	
 };

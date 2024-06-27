@@ -17,7 +17,9 @@
   <Compile Include="..\..\..\..\Plugins\ZeeNet\Source\ZeeNet\ZeeNet.Build.cs"><Link>Plugins\ZeeNet\Source\ZeeNet\ZeeNet.Build.cs</Link></Compile>
   <Compile Include="..\..\..\..\Plugins\ZeeUI\Source\ZeeUI\ZeeUI.Build.cs"><Link>Plugins\ZeeUI\Source\ZeeUI\ZeeUI.Build.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\ProjectPlayground.Target.cs"><Link>Source\ProjectPlayground.Target.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Source\ProjectPlaygroundClient.Target.cs"><Link>Source\ProjectPlaygroundClient.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\ProjectPlaygroundEditor.Target.cs"><Link>Source\ProjectPlaygroundEditor.Target.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Source\ProjectPlaygroundServer.Target.cs"><Link>Source\ProjectPlaygroundServer.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\ProjectPlayground\ProjectPlayground.Build.cs"><Link>Source\ProjectPlayground\ProjectPlayground.Build.cs</Link></Compile>
   </ItemGroup>
 </Project>

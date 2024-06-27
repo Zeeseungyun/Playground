@@ -58,40 +58,11 @@ void AProjectPlaygroundCharacter::Tick(float DeltaSeconds)
 void AProjectPlaygroundCharacter::BeginPlay() /*override*/
 {
 	Super::BeginPlay();
-	MyLoginWidget = SNew(SZeeUILobbyLogin).OnLoginClicked_UObject(this, &AProjectPlaygroundCharacter::OnLoginClicked);
-	
-	GetWorld()->GetGameViewport()->AddViewportWidgetContent(MyLoginWidget.ToSharedRef());
-	//UGameViewportClient;
-
+	//MyLoginWidget = SNew(SZeeUILobbyLogin).OnLoginClicked_UObject(this, &AProjectPlaygroundCharacter::OnLoginClicked);
+	//GetWorld()->GetGameViewport()->AddViewportWidgetContent(MyLoginWidget.ToSharedRef());
 }
 
 FReply AProjectPlaygroundCharacter::OnLoginClicked()
 {
-	if (!MyClient.IsValid())
-	{
-		MyClient = MakeShared<FZeeNetClient>();
-		MyClient->OnConnected().AddLambda([this, 
-			UserId = MyLoginWidget->GetUserID(), 
-			UserPW = MyLoginWidget->GetUserPW()](const FString& InMessage)
-			{
-				if (!InMessage.IsEmpty())
-				{
-					return;
-				}
-
-				FZeeNetAuthenticationLogin Msg;
-				Msg.Account.Id = UserId;
-				Msg.Account.Password = UserPW;
-				//UE_LOG(LogZeeNet, Log, TEXT("Request Test Message Request, %s"), *Msg.Content);
-				MyClient->Request<FZeeNetAuthenticationLogin>(Msg, [](const FZeeNetAuthenticationLogin& InMsg)
-					{
-						UE_LOG(LogProjectPlayground, Log, TEXT("Login, %s"), ZeeNetIsSuccess(InMsg.RC) ? TEXT("Success") : TEXT("Failed."));
-					}
-				);
-			}
-		);
-	}
-
-	MyClient->TryConnect(TEXT("127.0.0.1:20500"));
 	return FReply::Handled();
 }

@@ -13,6 +13,9 @@ namespace Zee.Net.Message
 		void OnNotify(Packet<Zee.Proto.Chat.Speak> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak."); }
 		void OnNotify(Packet<Zee.Proto.Chat.Speak1> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak1."); }
 		void OnNotify(Packet<Zee.Proto.Test.TestMessage> p) { Logger.LogWarning("not impl packet: Zee.Proto.Test.TestMessage."); }
+		void OnNotify(Packet<Zee.Proto.UserCharacter.Create> p) { Logger.LogWarning("not impl packet: Zee.Proto.UserCharacter.Create."); }
+		void OnNotify(Packet<Zee.Proto.UserCharacter.Get> p) { Logger.LogWarning("not impl packet: Zee.Proto.UserCharacter.Get."); }
+		void OnNotify(Packet<Zee.Proto.UserCharacter.Select> p) { Logger.LogWarning("not impl packet: Zee.Proto.UserCharacter.Select."); }
 
         static public void HandleNotify(INotifyHandler h, PacketBase p)
         {
@@ -23,6 +26,9 @@ namespace Zee.Net.Message
 				case 0x2002: h.OnNotify(p as Packet<Zee.Proto.Chat.Speak>); return;
 				case 0x2001: h.OnNotify(p as Packet<Zee.Proto.Chat.Speak1>); return;
 				case 0x4001: h.OnNotify(p as Packet<Zee.Proto.Test.TestMessage>); return;
+				case 0x5001: h.OnNotify(p as Packet<Zee.Proto.UserCharacter.Create>); return;
+				case 0x5002: h.OnNotify(p as Packet<Zee.Proto.UserCharacter.Get>); return;
+				case 0x5003: h.OnNotify(p as Packet<Zee.Proto.UserCharacter.Select>); return;
               
                 default: throw new Exception("invalid message point");
             }

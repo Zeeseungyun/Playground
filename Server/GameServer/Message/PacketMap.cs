@@ -43,7 +43,7 @@ namespace Zee.Net.Message
             }
 
             PacketBase? ret = Activator.CreateInstance(type) as PacketBase;
-            ret!.Message = MakeMessage(point);
+            ret!.InternalMessage = MakeMessage(point);
             return ret;
         }
         public static Type? GetMessageType(int point)

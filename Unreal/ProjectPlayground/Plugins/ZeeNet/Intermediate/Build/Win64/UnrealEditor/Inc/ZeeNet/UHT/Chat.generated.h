@@ -33,7 +33,7 @@ template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetChatSpeak1>();
 
 
 #define FOREACH_ENUM_EZEENETCHATRETURNCODE(op) \
-	op(EZeeNetChatReturnCode::RC_SUCCESSS) 
+	op(EZeeNetChatReturnCode::RC_SUCCESS) 
 
 enum class EZeeNetChatReturnCode : uint8;
 template<> struct TIsUEnumClass<EZeeNetChatReturnCode> { enum { Value = true }; };

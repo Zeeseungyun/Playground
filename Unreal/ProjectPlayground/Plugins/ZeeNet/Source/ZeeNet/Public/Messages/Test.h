@@ -9,9 +9,9 @@
 UENUM(BlueprintType) 
 enum class EZeeNetTestReturnCode : uint8 
 { 
-	RC_SUCCESSS = 0,
+	RC_SUCCESS = 0,
 }; 
-inline constexpr bool ZEENET_API ZeeNetIsSuccess(EZeeNetTestReturnCode Value) { return EZeeNetTestReturnCode::RC_SUCCESSS == Value; }
+inline constexpr bool ZEENET_API ZeeNetIsSuccess(EZeeNetTestReturnCode Value) { return EZeeNetTestReturnCode::RC_SUCCESS == Value; }
 
 USTRUCT(BlueprintType) 
 struct FZeeNetTestTestMessage 

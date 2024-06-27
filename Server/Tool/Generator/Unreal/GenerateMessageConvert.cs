@@ -52,15 +52,19 @@ namespace Zee
                     
                     foreach(var msg in protoFile.NonEnumMessages)
                     {
+                        ////////////////////////////////////////
+                        //proto to Unreal
+                        ////////////////////////////////////////
                         newFile.SrcContent.Append($"void Zee::Net::Message::Convert::FromTo(const {msg.UnrealProtoName}& InFrom, {msg.UnrealName}& OutTo)\r\n");
                         newFile.SrcContent.Append("{\r\n");
                         foreach(var prop in msg.Properties)
                         {   
-                            if(!prop.IsArray && (prop.IsEnum || prop.IsStandardType || prop.IsStringType))
+                            if(prop.IsArray)
                             {
-                                newFile.SrcContent.Append($"\tOutTo.{prop.Name} = To<{prop.TypeToUnreal}>(InFrom.{prop.Name.ToLower()}()); \r\n");
+                                newFile.SrcContent.Append($"\tOutTo.{prop.Name}.Reserve(InFrom.{prop.Name.ToLower()}().size());\r\n");
+                                newFile.SrcContent.Append($"\tfor (const auto& Elem : InFrom.{prop.Name.ToLower()}()) {{ FromTo(Elem, OutTo.{prop.Name}.AddZeroed_GetRef()); }}\r\n");
                             }
-                            else if(prop.IsArray && prop.IsEnum)
+                            else if(prop.IsEnum || prop.IsStandardType || prop.IsStringType)
                             {
                                 newFile.SrcContent.Append($"\tOutTo.{prop.Name} = To<{prop.TypeToUnreal}>(InFrom.{prop.Name.ToLower()}()); \r\n");
                             }
@@ -71,19 +75,23 @@ namespace Zee
                         }
                         newFile.SrcContent.Append("}\r\n\r\n");
 
+                        ////////////////////////////////////////
+                        //Unreal to proto
+                        ////////////////////////////////////////
                         newFile.SrcContent.Append($"void Zee::Net::Message::Convert::FromTo(const {msg.UnrealName}& InFrom, {msg.UnrealProtoName}& OutTo)\r\n");
                         newFile.SrcContent.Append("{\r\n");
                         foreach(var prop in msg.Properties)
                         {
-                            if(!prop.IsArray && (prop.IsEnum || prop.IsStandardType || prop.IsStringType))
+                            if(prop.IsArray)
+                            {
+                                newFile.SrcContent.Append($"\tOutTo.mutable_{prop.Name.ToLower()}()->Reserve(InFrom.{prop.Name}.Num());\r\n");
+                                newFile.SrcContent.Append($"\tfor (const auto& Elem : InFrom.{prop.Name}) {{ FromTo(Elem, *OutTo.mutable_{prop.Name.ToLower()}()->Add()); }}\r\n");
+                            }
+                            else if(prop.IsEnum || prop.IsStandardType || prop.IsStringType)
                             {
                                 newFile.SrcContent.Append($"\tOutTo.set_{prop.Name.ToLower()}(To<{prop.TypeToUnrealProto}>(InFrom.{prop.Name})); \r\n");
                             }
-                            else if(prop.IsArray && prop.IsEnum)
-                            {
-                                newFile.SrcContent.Append($"\t*OutTo.mutable_{prop.Name.ToLower()}() = To<int32>(InFrom.{prop.Name}); \r\n");
-                            }
-                            else //maybe struct
+                            else
                             {
                                 newFile.SrcContent.Append($"\tFromTo(InFrom.{prop.Name}, *OutTo.mutable_{prop.Name.ToLower()}());\r\n");
                             }

@@ -4,18 +4,22 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "ZeeNet/Public/ZeeNetPacketTraits.h"
-#include "ZeeNet/Public/Messages/Data/Account.h"
+#include "ZeeNet/Public/Messages/Data/DataAccount.h"
+#include "ZeeNet/Public/Messages/Data/DataCharacter.h"
 #include "Authentication.generated.h"
 
 UENUM(BlueprintType) 
 enum class EZeeNetAuthenticationReturnCode : uint8 
 { 
-	RC_SUCCESSS = 0,
-	RC_FAILED_LOGIN_DUPLICATED = 1,
-	RC_FAILED_LOGIN_WRONG_PASSWORD = 2,
-	RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT = 3,
+	RC_SUCCESS = 0,
+	RC_FAILED_UNKNOWN = 1,
+	RC_FAILED_LOGIN_DUPLICATED = 2,
+	RC_FAILED_LOGIN_WRONG_PASSWORD = 3,
+	RC_FAILED_LOGIN_WRONG_ID = 4,
+	RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT = 5,
+	RC_FAILED_DB_CONNECTION_ERROR = 6,
 }; 
-inline constexpr bool ZEENET_API ZeeNetIsSuccess(EZeeNetAuthenticationReturnCode Value) { return EZeeNetAuthenticationReturnCode::RC_SUCCESSS == Value; }
+inline constexpr bool ZEENET_API ZeeNetIsSuccess(EZeeNetAuthenticationReturnCode Value) { return EZeeNetAuthenticationReturnCode::RC_SUCCESS == Value; }
 
 USTRUCT(BlueprintType) 
 struct FZeeNetAuthenticationLogin 
@@ -27,6 +31,9 @@ struct FZeeNetAuthenticationLogin
 
 	UPROPERTY(BlueprintReadWrite) 
 	FZeeNetDataAccount Account; 
+
+	UPROPERTY(BlueprintReadWrite) 
+	TArray<FZeeNetDataCharacter> Characters; 
 
 }; 
 template<> struct TZeeNetPacketTraits<FZeeNetAuthenticationLogin> { static constexpr int32 Point = 0x1001; static constexpr bool bIsData = false; }; 

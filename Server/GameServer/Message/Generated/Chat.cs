@@ -30,7 +30,7 @@ namespace Zee.Proto.Chat {
             "ASgLMhUuWmVlLlByb3RvLkNoYXQuU3BlYWsiawoFU3BlYWsSJgoCUkMYASAB",
             "KA4yGi5aZWUuUHJvdG8uQ2hhdC5SZXR1cm5Db2RlEgsKA1VJRBgCIAEoAxIK",
             "CgJJZBgDIAEoCRIPCgdDb250ZW50GAQgASgJEhAKCENvbnRlbnRzGAUgAygJ",
-            "Kh0KClJldHVybkNvZGUSDwoLUkNfU1VDQ0VTU1MQAGIGcHJvdG8z"));
+            "KhwKClJldHVybkNvZGUSDgoKUkNfU1VDQ0VTUxAAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Chat.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -43,7 +43,7 @@ namespace Zee.Proto.Chat {
   }
   #region Enums
   public enum ReturnCode {
-    [pbr::OriginalName("RC_SUCCESSS")] RcSuccesss = 0,
+    [pbr::OriginalName("RC_SUCCESS")] RcSuccess = 0,
   }
 
   #endregion
@@ -99,7 +99,7 @@ namespace Zee.Proto.Chat {
 
     /// <summary>Field number for the "RC" field.</summary>
     public const int RCFieldNumber = 1;
-    private global::Zee.Proto.Chat.ReturnCode rC_ = global::Zee.Proto.Chat.ReturnCode.RcSuccesss;
+    private global::Zee.Proto.Chat.ReturnCode rC_ = global::Zee.Proto.Chat.ReturnCode.RcSuccess;
     /// <summary>
     ///Comment2 
     /// </summary>
@@ -187,7 +187,7 @@ namespace Zee.Proto.Chat {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) hash ^= RC.GetHashCode();
+      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) hash ^= RC.GetHashCode();
       if (UID != 0L) hash ^= UID.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Content.Length != 0) hash ^= Content.GetHashCode();
@@ -210,7 +210,7 @@ namespace Zee.Proto.Chat {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
@@ -240,7 +240,7 @@ namespace Zee.Proto.Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
@@ -270,7 +270,7 @@ namespace Zee.Proto.Chat {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RC);
       }
       if (UID != 0L) {
@@ -297,7 +297,7 @@ namespace Zee.Proto.Chat {
       if (other == null) {
         return;
       }
-      if (other.RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) {
+      if (other.RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) {
         RC = other.RC;
       }
       if (other.UID != 0L) {
@@ -448,7 +448,7 @@ namespace Zee.Proto.Chat {
 
     /// <summary>Field number for the "RC" field.</summary>
     public const int RCFieldNumber = 1;
-    private global::Zee.Proto.Chat.ReturnCode rC_ = global::Zee.Proto.Chat.ReturnCode.RcSuccesss;
+    private global::Zee.Proto.Chat.ReturnCode rC_ = global::Zee.Proto.Chat.ReturnCode.RcSuccess;
     /// <summary>
     ///Comment2 
     /// </summary>
@@ -535,7 +535,7 @@ namespace Zee.Proto.Chat {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) hash ^= RC.GetHashCode();
+      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) hash ^= RC.GetHashCode();
       if (UID != 0L) hash ^= UID.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Content.Length != 0) hash ^= Content.GetHashCode();
@@ -558,7 +558,7 @@ namespace Zee.Proto.Chat {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
@@ -585,7 +585,7 @@ namespace Zee.Proto.Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
@@ -612,7 +612,7 @@ namespace Zee.Proto.Chat {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RC);
       }
       if (UID != 0L) {
@@ -637,7 +637,7 @@ namespace Zee.Proto.Chat {
       if (other == null) {
         return;
       }
-      if (other.RC != global::Zee.Proto.Chat.ReturnCode.RcSuccesss) {
+      if (other.RC != global::Zee.Proto.Chat.ReturnCode.RcSuccess) {
         RC = other.RC;
       }
       if (other.UID != 0L) {

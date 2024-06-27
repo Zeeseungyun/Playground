@@ -1,0 +1,27 @@
+syntax = "proto3";
+import "Data/DataCharacter.proto";
+package Zee.Proto.UserCharacter;
+
+enum ReturnCode {
+    RC_SUCCESS = 0;
+    RC_FAILED_UNKNOWN = 1;
+    RC_FAILED_CREATE_DUPLICATED_NAME = 2;
+}
+
+message Create {
+    ReturnCode RC = 1;
+    Zee.Proto.Data.Character Character = 2;
+}
+
+message Get {
+    ReturnCode RC = 1;
+    int64 User = 2;
+    repeated Zee.Proto.Data.Character Characters = 3;
+}
+
+message Select {
+    ReturnCode RC = 1;
+    int64 UID = 2;
+    int32 Id = 3;
+    string Name = 4;
+}

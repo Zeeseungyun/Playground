@@ -25,18 +25,22 @@ namespace Zee.Proto.Authentication {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChRBdXRoZW50aWNhdGlvbi5wcm90bxIYWmVlLlByb3RvLkF1dGhlbnRpY2F0",
-            "aW9uGhJEYXRhL0FjY291bnQucHJvdG8iYwoFTG9naW4SMAoCUkMYASABKA4y",
-            "JC5aZWUuUHJvdG8uQXV0aGVudGljYXRpb24uUmV0dXJuQ29kZRIoCgdBY2Nv",
-            "dW50GAIgASgLMhcuWmVlLlByb3RvLkRhdGEuQWNjb3VudCJTCgZMb2dvdXQS",
-            "MAoCUkMYASABKA4yJC5aZWUuUHJvdG8uQXV0aGVudGljYXRpb24uUmV0dXJu",
-            "Q29kZRIKCgJJZBgCIAEoCRILCgNVSUQYAyABKAMqigEKClJldHVybkNvZGUS",
-            "DwoLUkNfU1VDQ0VTU1MQABIeChpSQ19GQUlMRURfTE9HSU5fRFVQTElDQVRF",
-            "RBABEiIKHlJDX0ZBSUxFRF9MT0dJTl9XUk9OR19QQVNTV09SRBACEicKI1JD",
-            "X0ZBSUxFRF9MT0dJTl9DQU5UX0NSRUFURV9BQ0NPVU5UEANiBnByb3RvMw=="));
+            "aW9uGhZEYXRhL0RhdGFBY2NvdW50LnByb3RvGhhEYXRhL0RhdGFDaGFyYWN0",
+            "ZXIucHJvdG8ikgEKBUxvZ2luEjAKAlJDGAEgASgOMiQuWmVlLlByb3RvLkF1",
+            "dGhlbnRpY2F0aW9uLlJldHVybkNvZGUSKAoHQWNjb3VudBgCIAEoCzIXLlpl",
+            "ZS5Qcm90by5EYXRhLkFjY291bnQSLQoKQ2hhcmFjdGVycxgDIAMoCzIZLlpl",
+            "ZS5Qcm90by5EYXRhLkNoYXJhY3RlciJTCgZMb2dvdXQSMAoCUkMYASABKA4y",
+            "JC5aZWUuUHJvdG8uQXV0aGVudGljYXRpb24uUmV0dXJuQ29kZRIKCgJJZBgC",
+            "IAEoCRILCgNVSUQYAyABKAMq4QEKClJldHVybkNvZGUSDgoKUkNfU1VDQ0VT",
+            "UxAAEhUKEVJDX0ZBSUxFRF9VTktOT1dOEAESHgoaUkNfRkFJTEVEX0xPR0lO",
+            "X0RVUExJQ0FURUQQAhIiCh5SQ19GQUlMRURfTE9HSU5fV1JPTkdfUEFTU1dP",
+            "UkQQAxIcChhSQ19GQUlMRURfTE9HSU5fV1JPTkdfSUQQBBInCiNSQ19GQUlM",
+            "RURfTE9HSU5fQ0FOVF9DUkVBVEVfQUNDT1VOVBAFEiEKHVJDX0ZBSUxFRF9E",
+            "Ql9DT05ORUNUSU9OX0VSUk9SEAZiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Zee.Proto.Data.AccountReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Zee.Proto.Data.DataAccountReflection.Descriptor, global::Zee.Proto.Data.DataCharacterReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Authentication.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Account" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Account", "Characters" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Logout), global::Zee.Proto.Authentication.Logout.Parser, new[]{ "RC", "Id", "UID" }, null, null, null, null)
           }));
     }
@@ -45,10 +49,13 @@ namespace Zee.Proto.Authentication {
   }
   #region Enums
   public enum ReturnCode {
-    [pbr::OriginalName("RC_SUCCESSS")] RcSuccesss = 0,
-    [pbr::OriginalName("RC_FAILED_LOGIN_DUPLICATED")] RcFailedLoginDuplicated = 1,
-    [pbr::OriginalName("RC_FAILED_LOGIN_WRONG_PASSWORD")] RcFailedLoginWrongPassword = 2,
-    [pbr::OriginalName("RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT")] RcFailedLoginCantCreateAccount = 3,
+    [pbr::OriginalName("RC_SUCCESS")] RcSuccess = 0,
+    [pbr::OriginalName("RC_FAILED_UNKNOWN")] RcFailedUnknown = 1,
+    [pbr::OriginalName("RC_FAILED_LOGIN_DUPLICATED")] RcFailedLoginDuplicated = 2,
+    [pbr::OriginalName("RC_FAILED_LOGIN_WRONG_PASSWORD")] RcFailedLoginWrongPassword = 3,
+    [pbr::OriginalName("RC_FAILED_LOGIN_WRONG_ID")] RcFailedLoginWrongId = 4,
+    [pbr::OriginalName("RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT")] RcFailedLoginCantCreateAccount = 5,
+    [pbr::OriginalName("RC_FAILED_DB_CONNECTION_ERROR")] RcFailedDbConnectionError = 6,
   }
 
   #endregion
@@ -90,6 +97,7 @@ namespace Zee.Proto.Authentication {
     public Login(Login other) : this() {
       rC_ = other.rC_;
       account_ = other.account_ != null ? other.account_.Clone() : null;
+      characters_ = other.characters_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -101,7 +109,7 @@ namespace Zee.Proto.Authentication {
 
     /// <summary>Field number for the "RC" field.</summary>
     public const int RCFieldNumber = 1;
-    private global::Zee.Proto.Authentication.ReturnCode rC_ = global::Zee.Proto.Authentication.ReturnCode.RcSuccesss;
+    private global::Zee.Proto.Authentication.ReturnCode rC_ = global::Zee.Proto.Authentication.ReturnCode.RcSuccess;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Zee.Proto.Authentication.ReturnCode RC {
@@ -123,6 +131,17 @@ namespace Zee.Proto.Authentication {
       }
     }
 
+    /// <summary>Field number for the "Characters" field.</summary>
+    public const int CharactersFieldNumber = 3;
+    private static readonly pb::FieldCodec<global::Zee.Proto.Data.Character> _repeated_characters_codec
+        = pb::FieldCodec.ForMessage(26, global::Zee.Proto.Data.Character.Parser);
+    private readonly pbc::RepeatedField<global::Zee.Proto.Data.Character> characters_ = new pbc::RepeatedField<global::Zee.Proto.Data.Character>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Zee.Proto.Data.Character> Characters {
+      get { return characters_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -140,6 +159,7 @@ namespace Zee.Proto.Authentication {
       }
       if (RC != other.RC) return false;
       if (!object.Equals(Account, other.Account)) return false;
+      if(!characters_.Equals(other.characters_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -147,8 +167,9 @@ namespace Zee.Proto.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) hash ^= RC.GetHashCode();
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) hash ^= RC.GetHashCode();
       if (account_ != null) hash ^= Account.GetHashCode();
+      hash ^= characters_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -167,7 +188,7 @@ namespace Zee.Proto.Authentication {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
@@ -175,6 +196,7 @@ namespace Zee.Proto.Authentication {
         output.WriteRawTag(18);
         output.WriteMessage(Account);
       }
+      characters_.WriteTo(output, _repeated_characters_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -185,7 +207,7 @@ namespace Zee.Proto.Authentication {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
@@ -193,6 +215,7 @@ namespace Zee.Proto.Authentication {
         output.WriteRawTag(18);
         output.WriteMessage(Account);
       }
+      characters_.WriteTo(ref output, _repeated_characters_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -203,12 +226,13 @@ namespace Zee.Proto.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RC);
       }
       if (account_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Account);
       }
+      size += characters_.CalculateSize(_repeated_characters_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -221,7 +245,7 @@ namespace Zee.Proto.Authentication {
       if (other == null) {
         return;
       }
-      if (other.RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+      if (other.RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) {
         RC = other.RC;
       }
       if (other.account_ != null) {
@@ -230,6 +254,7 @@ namespace Zee.Proto.Authentication {
         }
         Account.MergeFrom(other.Account);
       }
+      characters_.Add(other.characters_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -256,6 +281,10 @@ namespace Zee.Proto.Authentication {
             input.ReadMessage(Account);
             break;
           }
+          case 26: {
+            characters_.AddEntriesFrom(input, _repeated_characters_codec);
+            break;
+          }
         }
       }
     #endif
@@ -280,6 +309,10 @@ namespace Zee.Proto.Authentication {
               Account = new global::Zee.Proto.Data.Account();
             }
             input.ReadMessage(Account);
+            break;
+          }
+          case 26: {
+            characters_.AddEntriesFrom(ref input, _repeated_characters_codec);
             break;
           }
         }
@@ -337,7 +370,7 @@ namespace Zee.Proto.Authentication {
 
     /// <summary>Field number for the "RC" field.</summary>
     public const int RCFieldNumber = 1;
-    private global::Zee.Proto.Authentication.ReturnCode rC_ = global::Zee.Proto.Authentication.ReturnCode.RcSuccesss;
+    private global::Zee.Proto.Authentication.ReturnCode rC_ = global::Zee.Proto.Authentication.ReturnCode.RcSuccess;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Zee.Proto.Authentication.ReturnCode RC {
@@ -396,7 +429,7 @@ namespace Zee.Proto.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) hash ^= RC.GetHashCode();
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) hash ^= RC.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (UID != 0L) hash ^= UID.GetHashCode();
       if (_unknownFields != null) {
@@ -417,7 +450,7 @@ namespace Zee.Proto.Authentication {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
@@ -439,7 +472,7 @@ namespace Zee.Proto.Authentication {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) {
         output.WriteRawTag(8);
         output.WriteEnum((int) RC);
       }
@@ -461,7 +494,7 @@ namespace Zee.Proto.Authentication {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+      if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RC);
       }
       if (Id.Length != 0) {
@@ -482,7 +515,7 @@ namespace Zee.Proto.Authentication {
       if (other == null) {
         return;
       }
-      if (other.RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccesss) {
+      if (other.RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) {
         RC = other.RC;
       }
       if (other.Id.Length != 0) {

@@ -89,12 +89,18 @@ struct Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics
 		{ "ToolTip", "Jump Input Action" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SetMoveAction_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Input" },
+		{ "ModuleRelativePath", "ProjectPlaygroundPlayerController.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ShortPressThreshold;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FXCursor;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultMappingContext;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SetDestinationClickAction;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SetDestinationTouchAction;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_SetMoveAction;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -107,12 +113,14 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProjectPlaygr
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_DefaultMappingContext = { "DefaultMappingContext", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AProjectPlaygroundPlayerController, DefaultMappingContext), Z_Construct_UClass_UInputMappingContext_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DefaultMappingContext_MetaData), NewProp_DefaultMappingContext_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_SetDestinationClickAction = { "SetDestinationClickAction", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AProjectPlaygroundPlayerController, SetDestinationClickAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SetDestinationClickAction_MetaData), NewProp_SetDestinationClickAction_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_SetDestinationTouchAction = { "SetDestinationTouchAction", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AProjectPlaygroundPlayerController, SetDestinationTouchAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SetDestinationTouchAction_MetaData), NewProp_SetDestinationTouchAction_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_SetMoveAction = { "SetMoveAction", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AProjectPlaygroundPlayerController, SetMoveAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SetMoveAction_MetaData), NewProp_SetMoveAction_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_ShortPressThreshold,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_FXCursor,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_DefaultMappingContext,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_SetDestinationClickAction,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_SetDestinationTouchAction,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::NewProp_SetMoveAction,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AProjectPlaygroundPlayerController_Statics::DependentSingletons[])() = {
@@ -155,10 +163,10 @@ AProjectPlaygroundPlayerController::~AProjectPlaygroundPlayerController() {}
 struct Z_CompiledInDeferFile_FID_ProjectPlayground_Source_ProjectPlayground_ProjectPlaygroundPlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AProjectPlaygroundPlayerController, AProjectPlaygroundPlayerController::StaticClass, TEXT("AProjectPlaygroundPlayerController"), &Z_Registration_Info_UClass_AProjectPlaygroundPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AProjectPlaygroundPlayerController), 1520712092U) },
+		{ Z_Construct_UClass_AProjectPlaygroundPlayerController, AProjectPlaygroundPlayerController::StaticClass, TEXT("AProjectPlaygroundPlayerController"), &Z_Registration_Info_UClass_AProjectPlaygroundPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AProjectPlaygroundPlayerController), 2462507611U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Source_ProjectPlayground_ProjectPlaygroundPlayerController_h_1147550676(TEXT("/Script/ProjectPlayground"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Source_ProjectPlayground_ProjectPlaygroundPlayerController_h_1950948132(TEXT("/Script/ProjectPlayground"),
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Source_ProjectPlayground_ProjectPlaygroundPlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Source_ProjectPlayground_ProjectPlaygroundPlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

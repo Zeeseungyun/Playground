@@ -71,13 +71,13 @@ namespace Proto {
 namespace Test {
 
 enum ReturnCode : int {
-  RC_SUCCESSS = 0,
+  RC_SUCCESS = 0,
   ReturnCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   ReturnCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool ReturnCode_IsValid(int value);
-constexpr ReturnCode ReturnCode_MIN = RC_SUCCESSS;
-constexpr ReturnCode ReturnCode_MAX = RC_SUCCESSS;
+constexpr ReturnCode ReturnCode_MIN = RC_SUCCESS;
+constexpr ReturnCode ReturnCode_MAX = RC_SUCCESS;
 constexpr int ReturnCode_ARRAYSIZE = ReturnCode_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ReturnCode_descriptor();

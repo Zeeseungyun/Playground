@@ -11,7 +11,23 @@ namespace Zee.Net
         , Message.IRequestHandler
     {
         private readonly Server server;
-        public Int64 UID = 0;
+        public Zee.Proto.Data.Account Account = new();
+        public Zee.Proto.Data.DedicateServer DedicateServer = new();
+        override public string Name { 
+            get {
+                if(Account.Id.Length > 0)
+                {
+                    return Account.Id;
+                }
+                
+                if(DedicateServer.IP.Length > 0)
+                {
+                    return DedicateServer.IP;
+                }
+
+                return base.Name;
+            } 
+        }
         public ClientHandler(TcpClient client, Server server)
             :base(client)
         {

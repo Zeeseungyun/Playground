@@ -1,17 +1,22 @@
 syntax = "proto3";
 package Zee.Proto.Authentication;
-import "Data/Account.proto";
+import "Data/DataAccount.proto";
+import "Data/DataCharacter.proto";
 
 enum ReturnCode {
-    RC_SUCCESSS = 0;
-    RC_FAILED_LOGIN_DUPLICATED = 1;
-    RC_FAILED_LOGIN_WRONG_PASSWORD = 2;
-    RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT = 3;
+    RC_SUCCESS = 0;
+    RC_FAILED_UNKNOWN = 1;
+    RC_FAILED_LOGIN_DUPLICATED = 2;
+    RC_FAILED_LOGIN_WRONG_PASSWORD = 3;
+    RC_FAILED_LOGIN_WRONG_ID = 4;
+    RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT = 5;
+    RC_FAILED_DB_CONNECTION_ERROR = 6;
 }
 
 message Login {
     ReturnCode RC = 1;
     Zee.Proto.Data.Account Account = 2;
+    repeated Zee.Proto.Data.Character Characters = 3;
 }
 
 message Logout {

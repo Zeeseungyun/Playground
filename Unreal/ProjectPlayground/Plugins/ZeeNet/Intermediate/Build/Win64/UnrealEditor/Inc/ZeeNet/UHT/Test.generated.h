@@ -26,7 +26,7 @@ template<> ZEENET_API UScriptStruct* StaticStruct<struct FZeeNetTestTestMessage>
 
 
 #define FOREACH_ENUM_EZEENETTESTRETURNCODE(op) \
-	op(EZeeNetTestReturnCode::RC_SUCCESSS) 
+	op(EZeeNetTestReturnCode::RC_SUCCESS) 
 
 enum class EZeeNetTestReturnCode : uint8;
 template<> struct TIsUEnumClass<EZeeNetTestReturnCode> { enum { Value = true }; };

@@ -5,16 +5,20 @@
 
 void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Test::TestMessage& InFrom, FZeeNetTestTestMessage& OutTo)
 {
-	FromTo(InFrom.rc(), OutTo.RC); 
-	OutTo.RCLists = To<EZeeNetTestReturnCode>(InFrom.rclists()); 
+	OutTo.RC.Reserve(InFrom.rc().size());
+	for (const auto& Elem : InFrom.rc()) { FromTo(Elem, OutTo.RC.AddZeroed_GetRef()); }
+	OutTo.RCLists.Reserve(InFrom.rclists().size());
+	for (const auto& Elem : InFrom.rclists()) { FromTo(Elem, OutTo.RCLists.AddZeroed_GetRef()); }
 	OutTo.Id = To<FString>(InFrom.id()); 
 	OutTo.Content = To<FString>(InFrom.content()); 
 }
 
 void Zee::Net::Message::Convert::FromTo(const FZeeNetTestTestMessage& InFrom, Zee::Proto::Test::TestMessage& OutTo)
 {
-	FromTo(InFrom.RC, *OutTo.mutable_rc());
-	*OutTo.mutable_rclists() = To<int32>(InFrom.RCLists); 
+	OutTo.mutable_rc()->Reserve(InFrom.RC.Num());
+	for (const auto& Elem : InFrom.RC) { FromTo(Elem, *OutTo.mutable_rc()->Add()); }
+	OutTo.mutable_rclists()->Reserve(InFrom.RCLists.Num());
+	for (const auto& Elem : InFrom.RCLists) { FromTo(Elem, *OutTo.mutable_rclists()->Add()); }
 	OutTo.set_id(To<std::string>(InFrom.Id)); 
 	OutTo.set_content(To<std::string>(InFrom.Content)); 
 }

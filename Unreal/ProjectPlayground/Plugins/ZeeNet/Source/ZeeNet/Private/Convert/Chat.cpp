@@ -27,7 +27,8 @@ void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Chat::Speak& InFrom, F
 	OutTo.UID = To<int64>(InFrom.uid()); 
 	OutTo.Id = To<FString>(InFrom.id()); 
 	OutTo.Content = To<FString>(InFrom.content()); 
-	FromTo(InFrom.contents(), OutTo.Contents); 
+	OutTo.Contents.Reserve(InFrom.contents().size());
+	for (const auto& Elem : InFrom.contents()) { FromTo(Elem, OutTo.Contents.AddZeroed_GetRef()); }
 }
 
 void Zee::Net::Message::Convert::FromTo(const FZeeNetChatSpeak& InFrom, Zee::Proto::Chat::Speak& OutTo)
@@ -36,6 +37,7 @@ void Zee::Net::Message::Convert::FromTo(const FZeeNetChatSpeak& InFrom, Zee::Pro
 	OutTo.set_uid(To<int64>(InFrom.UID)); 
 	OutTo.set_id(To<std::string>(InFrom.Id)); 
 	OutTo.set_content(To<std::string>(InFrom.Content)); 
-	FromTo(InFrom.Contents, *OutTo.mutable_contents());
+	OutTo.mutable_contents()->Reserve(InFrom.Contents.Num());
+	for (const auto& Elem : InFrom.Contents) { FromTo(Elem, *OutTo.mutable_contents()->Add()); }
 }
 

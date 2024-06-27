@@ -14,6 +14,3 @@ class AProjectPlaygroundGameMode : public AGameModeBase
 public:
 	AProjectPlaygroundGameMode();
 };
-
-
-

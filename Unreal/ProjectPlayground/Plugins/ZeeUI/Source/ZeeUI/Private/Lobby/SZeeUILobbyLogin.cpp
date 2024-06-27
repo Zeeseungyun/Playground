@@ -18,15 +18,6 @@
 
 #define LOCTEXT_NAMESPACE "FZeeUIModule"
 
-SLATE_IMPLEMENT_WIDGET(SZeeUILobbyLogin)
-void SZeeUILobbyLogin::PrivateRegisterAttributes(FSlateAttributeInitializer& AttributeInitializer)
-{
-	// SLATE_ADD_MEMBER_ATTRIBUTE_DEFINITION_WITH_NAME(AttributeInitializer, "SlotPadding", ChildSlot.SlotPaddingAttribute, EInvalidateWidgetReason::Layout);
-	// SLATE_ADD_MEMBER_ATTRIBUTE_DEFINITION_WITH_NAME(AttributeInitializer, "ContentScale", ContentScaleAttribute, EInvalidateWidgetReason::Layout);
-	// SLATE_ADD_MEMBER_ATTRIBUTE_DEFINITION_WITH_NAME(AttributeInitializer, "ColorAndOpacity", ColorAndOpacityAttribute, EInvalidateWidgetReason::Paint);
-	// SLATE_ADD_MEMBER_ATTRIBUTE_DEFINITION_WITH_NAME(AttributeInitializer, "ForegroundColor", ForegroundColorAttribute, EInvalidateWidgetReason::Paint);
-}
-
 void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 {
 	static int BodyRadius = 10.0;
@@ -48,7 +39,6 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 
 	const FZeeUILobbySlateStyle& MenuStyle = FZeeUILobbySlateStyles::Get().GetWidgetStyle<FZeeUILobbySlateStyle>("Style1");
 
-	OnLoginClicked = InArgs._OnLoginClicked;
 	ChildSlot
 	[
 		SNew(SOverlay)
@@ -153,7 +143,7 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 							.ButtonStyle(&MenuStyle.LoginButtonStyle)
 							.HAlign(HAlign_Center)
 							.VAlign(VAlign_Center)
-							.OnClicked(OnLoginClicked)
+							.OnClicked(InArgs._OnLoginClicked)
 							[
 								SNew(STextBlock)
 								.TextStyle(&MenuStyle.LoginButtonTextStyle)

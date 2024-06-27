@@ -32,7 +32,8 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
-#include "Data/Account.pb.h"
+#include "Data/DataAccount.pb.h"
+#include "Data/DataCharacter.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_Authentication_2eproto
@@ -76,16 +77,19 @@ namespace Proto {
 namespace Authentication {
 
 enum ReturnCode : int {
-  RC_SUCCESSS = 0,
-  RC_FAILED_LOGIN_DUPLICATED = 1,
-  RC_FAILED_LOGIN_WRONG_PASSWORD = 2,
-  RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT = 3,
+  RC_SUCCESS = 0,
+  RC_FAILED_UNKNOWN = 1,
+  RC_FAILED_LOGIN_DUPLICATED = 2,
+  RC_FAILED_LOGIN_WRONG_PASSWORD = 3,
+  RC_FAILED_LOGIN_WRONG_ID = 4,
+  RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT = 5,
+  RC_FAILED_DB_CONNECTION_ERROR = 6,
   ReturnCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   ReturnCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool ReturnCode_IsValid(int value);
-constexpr ReturnCode ReturnCode_MIN = RC_SUCCESSS;
-constexpr ReturnCode ReturnCode_MAX = RC_FAILED_LOGIN_CANT_CREATE_ACCOUNT;
+constexpr ReturnCode ReturnCode_MIN = RC_SUCCESS;
+constexpr ReturnCode ReturnCode_MAX = RC_FAILED_DB_CONNECTION_ERROR;
 constexpr int ReturnCode_ARRAYSIZE = ReturnCode_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ReturnCode_descriptor();
@@ -223,9 +227,28 @@ class Login final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kCharactersFieldNumber = 3,
     kAccountFieldNumber = 2,
     kRCFieldNumber = 1,
   };
+  // repeated .Zee.Proto.Data.Character Characters = 3;
+  int characters_size() const;
+  private:
+  int _internal_characters_size() const;
+  public:
+  void clear_characters();
+  ::Zee::Proto::Data::Character* mutable_characters(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Zee::Proto::Data::Character >*
+      mutable_characters();
+  private:
+  const ::Zee::Proto::Data::Character& _internal_characters(int index) const;
+  ::Zee::Proto::Data::Character* _internal_add_characters();
+  public:
+  const ::Zee::Proto::Data::Character& characters(int index) const;
+  ::Zee::Proto::Data::Character* add_characters();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Zee::Proto::Data::Character >&
+      characters() const;
+
   // .Zee.Proto.Data.Account Account = 2;
   bool has_account() const;
   private:
@@ -260,6 +283,7 @@ class Login final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Zee::Proto::Data::Character > characters_;
   ::Zee::Proto::Data::Account* account_;
   int rc_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -550,6 +574,43 @@ inline void Login::set_allocated_account(::Zee::Proto::Data::Account* account) {
   }
   account_ = account;
   // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Authentication.Login.Account)
+}
+
+// repeated .Zee.Proto.Data.Character Characters = 3;
+inline int Login::_internal_characters_size() const {
+  return characters_.size();
+}
+inline int Login::characters_size() const {
+  return _internal_characters_size();
+}
+inline ::Zee::Proto::Data::Character* Login::mutable_characters(int index) {
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.Authentication.Login.Characters)
+  return characters_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Zee::Proto::Data::Character >*
+Login::mutable_characters() {
+  // @@protoc_insertion_point(field_mutable_list:Zee.Proto.Authentication.Login.Characters)
+  return &characters_;
+}
+inline const ::Zee::Proto::Data::Character& Login::_internal_characters(int index) const {
+  return characters_.Get(index);
+}
+inline const ::Zee::Proto::Data::Character& Login::characters(int index) const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.Authentication.Login.Characters)
+  return _internal_characters(index);
+}
+inline ::Zee::Proto::Data::Character* Login::_internal_add_characters() {
+  return characters_.Add();
+}
+inline ::Zee::Proto::Data::Character* Login::add_characters() {
+  ::Zee::Proto::Data::Character* _add = _internal_add_characters();
+  // @@protoc_insertion_point(field_add:Zee.Proto.Authentication.Login.Characters)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Zee::Proto::Data::Character >&
+Login::characters() const {
+  // @@protoc_insertion_point(field_list:Zee.Proto.Authentication.Login.Characters)
+  return characters_;
 }
 
 // -------------------------------------------------------------------

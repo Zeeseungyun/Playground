@@ -53,6 +53,8 @@ void AProjectPlaygroundPlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Triggered, this, &AProjectPlaygroundPlayerController::OnTouchTriggered);
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Completed, this, &AProjectPlaygroundPlayerController::OnTouchReleased);
 		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Canceled, this, &AProjectPlaygroundPlayerController::OnTouchReleased);
+
+		EnhancedInputComponent->BindAction(SetMoveAction, ETriggerEvent::Triggered, this, &AProjectPlaygroundPlayerController::OnMoveAction);
 	}
 	else
 	{
@@ -62,12 +64,14 @@ void AProjectPlaygroundPlayerController::SetupInputComponent()
 
 void AProjectPlaygroundPlayerController::OnInputStarted()
 {
+	UE_LOG(LogTemplateCharacter, Warning, TEXT("ZeeLog, void AProjectPlaygroundPlayerController::OnInputStarted()"));
 	StopMovement();
 }
 
 // Triggered every frame when the input is held down
 void AProjectPlaygroundPlayerController::OnSetDestinationTriggered()
 {
+	UE_LOG(LogTemplateCharacter, Warning, TEXT("ZeeLog, void AProjectPlaygroundPlayerController::OnSetDestinationTriggered()"));
 	// We flag that the input is being pressed
 	FollowTime += GetWorld()->GetDeltaSeconds();
 	
@@ -100,6 +104,7 @@ void AProjectPlaygroundPlayerController::OnSetDestinationTriggered()
 
 void AProjectPlaygroundPlayerController::OnSetDestinationReleased()
 {
+	UE_LOG(LogTemplateCharacter, Warning, TEXT("ZeeLog, void AProjectPlaygroundPlayerController::OnSetDestinationReleased()"));
 	// If it was a short press
 	if (FollowTime <= ShortPressThreshold)
 	{
@@ -114,12 +119,19 @@ void AProjectPlaygroundPlayerController::OnSetDestinationReleased()
 // Triggered every frame when the input is held down
 void AProjectPlaygroundPlayerController::OnTouchTriggered()
 {
+	UE_LOG(LogTemplateCharacter, Warning, TEXT("ZeeLog, void AProjectPlaygroundPlayerController::OnTouchTriggered()"));
 	bIsTouch = true;
 	OnSetDestinationTriggered();
 }
 
 void AProjectPlaygroundPlayerController::OnTouchReleased()
 {
+	UE_LOG(LogTemplateCharacter, Warning, TEXT("ZeeLog, void AProjectPlaygroundPlayerController::OnTouchReleased()"));
 	bIsTouch = false;
 	OnSetDestinationReleased();
+}
+
+void AProjectPlaygroundPlayerController::OnMoveAction(const FInputActionValue& InValue)
+{
+	GetPawn()->AddMovementInput(InValue.Get<FVector>());
 }

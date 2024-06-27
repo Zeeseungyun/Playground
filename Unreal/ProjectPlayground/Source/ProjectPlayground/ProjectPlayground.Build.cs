@@ -20,6 +20,7 @@ public class ProjectPlayground : ModuleRules
             "EnhancedInput" ,
             "Slate",
             "SlateCore",
+            "UMG"
         });
         
         PublicDependencyModuleNames.AddRange(new string[] { "ZeeNet", "ZeeUI" });

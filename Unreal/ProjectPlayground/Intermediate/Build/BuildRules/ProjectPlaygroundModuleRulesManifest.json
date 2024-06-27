@@ -4,7 +4,9 @@
 		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Plugins\\ZeeNet\\Source\\ZeeNet\\ZeeNet.Build.cs",
 		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Plugins\\ZeeUI\\Source\\ZeeUI\\ZeeUI.Build.cs",
 		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Source\\ProjectPlayground.Target.cs",
-		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Source\\ProjectPlaygroundEditor.Target.cs"
+		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Source\\ProjectPlaygroundClient.Target.cs",
+		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Source\\ProjectPlaygroundEditor.Target.cs",
+		"D:\\repos\\Playground\\Unreal\\ProjectPlayground\\Source\\ProjectPlaygroundServer.Target.cs"
 	],
 	"EngineVersion": "5.4.2"
 }

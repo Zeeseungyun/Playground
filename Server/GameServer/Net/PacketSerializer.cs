@@ -7,8 +7,8 @@ namespace Zee.Net.Message
     {
         static public void SerializePacket(this Stream stream, PacketBase p)
         {
-            p.Header.PacketSize = p.Message!.CalculateSize();
-            p.Header.Point = PacketMap.GetMessagePoint(p.Message.GetType());
+            p.Header.PacketSize = p.InternalMessage!.CalculateSize();
+            p.Header.Point = PacketMap.GetMessagePoint(p.InternalMessage.GetType());
             if(p.Header.PacketType == Proto.Packet.Type.None)
             {
                 throw new InvalidDataException("must be set packet type.");
@@ -16,7 +16,7 @@ namespace Zee.Net.Message
 
             stream.Write(BitConverter.GetBytes(p.Header.CalculateSize()), 0, sizeof(Int32));
             p.Header.WriteTo(stream);
-            p.Message.WriteTo(stream);
+            p.InternalMessage.WriteTo(stream);
             stream.Flush();
         }
 
@@ -35,7 +35,7 @@ namespace Zee.Net.Message
             if(Header.PacketSize != readBytes) throw new InvalidDataException("invalid packet size.");
             var ret = PacketMap.MakePacket(Header.Point);
             ret!.Header = Header;
-            ret.Message.MergeFrom(buffer, 0, Header.PacketSize);
+            ret.InternalMessage.MergeFrom(buffer, 0, Header.PacketSize);
             return ret;
         }
     }
@@ -45,11 +45,19 @@ namespace Zee.Net.Message
         //이건 수정해야하지만, 일단 남겨둠.
         public Zee.Proto.Packet.Header Header = new();
         public int Point => Header.Point;
-        public IMessage? Message;
+        public IMessage? InternalMessage;
     }
     public class Packet<T> : PacketBase
         where T : class, IMessage
     {
-        public T? ExactMessage => Message as T;
+        public T Message 
+        {
+            get {
+               return (T)InternalMessage!;
+            }
+            set {
+                InternalMessage = value;
+            }
+        }
     }
 }

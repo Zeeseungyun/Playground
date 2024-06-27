@@ -22,7 +22,8 @@ namespace Proto {
 namespace Authentication {
 constexpr Login::Login(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : account_(nullptr)
+  : characters_()
+  , account_(nullptr)
   , rc_(0)
 {}
 struct LoginDefaultTypeInternal {
@@ -65,6 +66,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Authentication_2eproto::offset
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Login, rc_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Login, account_),
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Login, characters_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Authentication::Logout, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -77,7 +79,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Authentication_2eproto::offset
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Zee::Proto::Authentication::Login)},
-  { 8, -1, -1, sizeof(::Zee::Proto::Authentication::Logout)},
+  { 9, -1, -1, sizeof(::Zee::Proto::Authentication::Logout)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -87,24 +89,29 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_Authentication_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\024Authentication.proto\022\030Zee.Proto.Authen"
-  "tication\032\022Data/Account.proto\"c\n\005Login\0220\n"
-  "\002RC\030\001 \001(\0162$.Zee.Proto.Authentication.Ret"
-  "urnCode\022(\n\007Account\030\002 \001(\0132\027.Zee.Proto.Dat"
-  "a.Account\"S\n\006Logout\0220\n\002RC\030\001 \001(\0162$.Zee.Pr"
-  "oto.Authentication.ReturnCode\022\n\n\002Id\030\002 \001("
-  "\t\022\013\n\003UID\030\003 \001(\003*\212\001\n\nReturnCode\022\017\n\013RC_SUCC"
-  "ESSS\020\000\022\036\n\032RC_FAILED_LOGIN_DUPLICATED\020\001\022\""
-  "\n\036RC_FAILED_LOGIN_WRONG_PASSWORD\020\002\022\'\n#RC"
-  "_FAILED_LOGIN_CANT_CREATE_ACCOUNT\020\003b\006pro"
-  "to3"
+  "tication\032\026Data/DataAccount.proto\032\030Data/D"
+  "ataCharacter.proto\"\222\001\n\005Login\0220\n\002RC\030\001 \001(\016"
+  "2$.Zee.Proto.Authentication.ReturnCode\022("
+  "\n\007Account\030\002 \001(\0132\027.Zee.Proto.Data.Account"
+  "\022-\n\nCharacters\030\003 \003(\0132\031.Zee.Proto.Data.Ch"
+  "aracter\"S\n\006Logout\0220\n\002RC\030\001 \001(\0162$.Zee.Prot"
+  "o.Authentication.ReturnCode\022\n\n\002Id\030\002 \001(\t\022"
+  "\013\n\003UID\030\003 \001(\003*\341\001\n\nReturnCode\022\016\n\nRC_SUCCES"
+  "S\020\000\022\025\n\021RC_FAILED_UNKNOWN\020\001\022\036\n\032RC_FAILED_"
+  "LOGIN_DUPLICATED\020\002\022\"\n\036RC_FAILED_LOGIN_WR"
+  "ONG_PASSWORD\020\003\022\034\n\030RC_FAILED_LOGIN_WRONG_"
+  "ID\020\004\022\'\n#RC_FAILED_LOGIN_CANT_CREATE_ACCO"
+  "UNT\020\005\022!\n\035RC_FAILED_DB_CONNECTION_ERROR\020\006"
+  "b\006proto3"
   ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Authentication_2eproto_deps[1] = {
-  &::descriptor_table_Data_2fAccount_2eproto,
+static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Authentication_2eproto_deps[2] = {
+  &::descriptor_table_Data_2fDataAccount_2eproto,
+  &::descriptor_table_Data_2fDataCharacter_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Authentication_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Authentication_2eproto = {
-  false, false, 403, descriptor_table_protodef_Authentication_2eproto, "Authentication.proto", 
-  &descriptor_table_Authentication_2eproto_once, descriptor_table_Authentication_2eproto_deps, 1, 2,
+  false, false, 568, descriptor_table_protodef_Authentication_2eproto, "Authentication.proto", 
+  &descriptor_table_Authentication_2eproto_once, descriptor_table_Authentication_2eproto_deps, 2, 2,
   schemas, file_default_instances, TableStruct_Authentication_2eproto::offsets,
   file_level_metadata_Authentication_2eproto, file_level_enum_descriptors_Authentication_2eproto, file_level_service_descriptors_Authentication_2eproto,
 };
@@ -127,6 +134,9 @@ bool ReturnCode_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+    case 4:
+    case 5:
+    case 6:
       return true;
     default:
       return false;
@@ -151,9 +161,13 @@ void Login::clear_account() {
   }
   account_ = nullptr;
 }
+void Login::clear_characters() {
+  characters_.Clear();
+}
 Login::Login(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  characters_(arena) {
   SharedCtor();
   if (!is_message_owned) {
     RegisterArenaDtor(arena);
@@ -161,7 +175,8 @@ Login::Login(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   // @@protoc_insertion_point(arena_constructor:Zee.Proto.Authentication.Login)
 }
 Login::Login(const Login& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      characters_(from.characters_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_account()) {
     account_ = new ::Zee::Proto::Data::Account(*from.account_);
@@ -207,6 +222,7 @@ void Login::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  characters_.Clear();
   if (GetArenaForAllocation() == nullptr && account_ != nullptr) {
     delete account_;
   }
@@ -235,6 +251,19 @@ const char* Login::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_account(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .Zee.Proto.Data.Character Characters = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_characters(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -282,6 +311,14 @@ failure:
         2, _Internal::account(this), target, stream);
   }
 
+  // repeated .Zee.Proto.Data.Character Characters = 3;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_characters_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, this->_internal_characters(i), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -297,6 +334,13 @@ size_t Login::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated .Zee.Proto.Data.Character Characters = 3;
+  total_size += 1UL * this->_internal_characters_size();
+  for (const auto& msg : this->characters_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
 
   // .Zee.Proto.Data.Account Account = 2;
   if (this->_internal_has_account()) {
@@ -333,6 +377,7 @@ void Login::MergeFrom(const Login& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  characters_.MergeFrom(from.characters_);
   if (from._internal_has_account()) {
     _internal_mutable_account()->::Zee::Proto::Data::Account::MergeFrom(from._internal_account());
   }
@@ -356,6 +401,7 @@ bool Login::IsInitialized() const {
 void Login::InternalSwap(Login* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  characters_.InternalSwap(&other->characters_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Login, rc_)
       + sizeof(Login::rc_)

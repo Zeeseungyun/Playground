@@ -1,0 +1,21 @@
+syntax = "proto3";
+package Zee.Proto.Data;
+
+message Vector {
+    float X = 1;
+    float Y = 2;
+    float Z = 3;
+}
+
+message Rotator {
+    float Yaw = 1;
+    float Pitch = 2;
+    float Roll = 3;
+}
+
+message Position {
+    int64 UID = 1;
+    string MapName = 2;
+    Vector Pos = 3;
+    Rotator Rot = 4;
+}

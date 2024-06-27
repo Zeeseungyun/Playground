@@ -68,12 +68,12 @@ const char descriptor_table_protodef_Test_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\n\nTest.proto\022\016Zee.Proto.Test\"c\n\013TestMess"
   "age\022\n\n\002RC\030\001 \003(\005\022+\n\007RCLists\030\002 \003(\0162\032.Zee.P"
   "roto.Test.ReturnCode\022\n\n\002Id\030\003 \001(\t\022\017\n\007Cont"
-  "ent\030\004 \001(\t*\035\n\nReturnCode\022\017\n\013RC_SUCCESSS\020\000"
-  "b\006proto3"
+  "ent\030\004 \001(\t*\034\n\nReturnCode\022\016\n\nRC_SUCCESS\020\000b"
+  "\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Test_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Test_2eproto = {
-  false, false, 168, descriptor_table_protodef_Test_2eproto, "Test.proto", 
+  false, false, 167, descriptor_table_protodef_Test_2eproto, "Test.proto", 
   &descriptor_table_Test_2eproto_once, nullptr, 0, 1,
   schemas, file_default_instances, TableStruct_Test_2eproto::offsets,
   file_level_metadata_Test_2eproto, file_level_enum_descriptors_Test_2eproto, file_level_service_descriptors_Test_2eproto,

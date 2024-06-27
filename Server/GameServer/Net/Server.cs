@@ -13,6 +13,15 @@ namespace Zee.Net
             this.port = port;
             tcpListener = new(IPAddress.Parse("127.0.0.1"), port);
         }
+        public ClientHandler? FindDedi(string mapName)
+        {
+            ClientHandler? ret = null;
+            foreach(var client in clients)
+            {
+                
+            }
+            return ret;
+        }
         override public void Start()
         {
             new Thread(this.start).Start();
@@ -65,7 +74,6 @@ namespace Zee.Net
 
             client.Disconnected -= HandleDisconnected;
             _ = clients.Remove(client);
-            Logger.LogInformation("client disconnected.");
         }
     }
 }

@@ -52,7 +52,7 @@ namespace Zee
                             //return code 예외.
                             if(msg.UnrealName.IndexOf("ReturnCode")!= -1)
                             {
-                                newFile.HeaderContent.Append($"inline constexpr bool ZEENET_API ZeeNetIsSuccess({msg.UnrealName} Value) {{ return {msg.UnrealName}::RC_SUCCESSS == Value; }}\r\n\r\n");
+                                newFile.HeaderContent.Append($"inline constexpr bool ZEENET_API ZeeNetIsSuccess({msg.UnrealName} Value) {{ return {msg.UnrealName}::RC_SUCCESS == Value; }}\r\n\r\n");
                             }
                             else
                             {

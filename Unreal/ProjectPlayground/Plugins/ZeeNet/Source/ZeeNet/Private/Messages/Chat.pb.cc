@@ -102,12 +102,12 @@ const char descriptor_table_protodef_Chat_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\t\022&\n\007Speak12\030\005 \001(\0132\025.Zee.Proto.Chat.Spea"
   "k\"k\n\005Speak\022&\n\002RC\030\001 \001(\0162\032.Zee.Proto.Chat."
   "ReturnCode\022\013\n\003UID\030\002 \001(\003\022\n\n\002Id\030\003 \001(\t\022\017\n\007C"
-  "ontent\030\004 \001(\t\022\020\n\010Contents\030\005 \003(\t*\035\n\nReturn"
-  "Code\022\017\n\013RC_SUCCESSS\020\000b\006proto3"
+  "ontent\030\004 \001(\t\022\020\n\010Contents\030\005 \003(\t*\034\n\nReturn"
+  "Code\022\016\n\nRC_SUCCESS\020\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Chat_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Chat_2eproto = {
-  false, false, 309, descriptor_table_protodef_Chat_2eproto, "Chat.proto", 
+  false, false, 308, descriptor_table_protodef_Chat_2eproto, "Chat.proto", 
   &descriptor_table_Chat_2eproto_once, nullptr, 0, 2,
   schemas, file_default_instances, TableStruct_Chat_2eproto::offsets,
   file_level_metadata_Chat_2eproto, file_level_enum_descriptors_Chat_2eproto, file_level_service_descriptors_Chat_2eproto,

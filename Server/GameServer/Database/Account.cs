@@ -4,38 +4,70 @@ namespace Zee.Database
 {
     public static class Account
     {
-        public static Zee.Proto.Authentication.ReturnCode newAccount(string id, string pw, int d = 0)
+        private static Zee.Proto.Data.Account? createAccount(string id, string pw)
         {
             Common.ConnectIfNot();
-            if(d == 5)
+            Zee.Proto.Data.Account? ret = null;
+            if(Common.connection == null)
             {
-                return Zee.Proto.Authentication.ReturnCode.RcFailedLoginCantCreateAccount;
+                return ret;
             }
+
+            using var transaction = Common.connection.BeginTransaction();
             try
             {
-                using (var cmd = new MySqlCommand("INSERT INTO account (uid, id, pw) VALUES (@uid, @id, @pw);", Common.connection))
+                using (var cmd = new MySqlCommand("INSERT INTO account (uid, id, pw) VALUES (@uid, @id, @pw);", Common.connection!))
                 {
+                    Int64 uid = Common.CreateUID;
                     cmd.Parameters.AddWithValue("id", id);
                     cmd.Parameters.AddWithValue("pw", pw);
-                    cmd.Parameters.AddWithValue("uid", Common.CreateUID);
-                    int numAffected = cmd.ExecuteNonQuery();
-                    if(numAffected == 1)
+                    cmd.Parameters.AddWithValue("uid", uid);
+                    if(cmd.ExecuteNonQuery() == 1)
                     {
-                        return Zee.Proto.Authentication.ReturnCode.RcSuccesss;
+                        transaction.Commit();
+                        ret = new();
+                        ret.UID = uid;
+                        ret.Id = id;
+                        ret.Password = pw;
+                        return ret;
                     }
+
                 }
             }
             catch(MySqlException e)
             {
                 Logger.LogWarning(e.Message);
             }
-            
-            return newAccount(id, pw, d+1);
+            finally
+            {
+                transaction.Rollback();
+            }
+
+            return ret;
+        } 
+
+        public static Zee.Proto.Data.Account? CreateAccount(string id, string pw)
+        {
+            Zee.Proto.Data.Account? ret = null;
+            //5번만 반복해서 만들어봄.
+            for(int i = 0 ; i != 5; ++i)
+            {
+                ret = createAccount(id, pw);
+                if(ret != null)
+                {
+                    return ret;
+                }
+            }
+
+            return ret;//maybe failed.
         }
 
-        public static Zee.Proto.Authentication.ReturnCode Login(string id, string pw)
+        public static Zee.Proto.Authentication.Login Login(string id, string pw)
         {
             Common.ConnectIfNot();
+            Zee.Proto.Authentication.Login ret = new();
+            ret.RC = Proto.Authentication.ReturnCode.RcFailedUnknown;
+
             using (var cmd = new MySqlCommand("SELECT * FROM account WHERE id = @id;", Common.connection))
             {
                 cmd.Parameters.AddWithValue("id", id);
@@ -44,16 +76,29 @@ namespace Zee.Database
                 {
                     var readId = reader["id"].ToString();
                     var readPw = reader["pw"].ToString();
-                    if(readPw != pw)
+                    var uid = (Int64)reader["uid"];
+                    if(readPw == pw)
                     {
-                        return Zee.Proto.Authentication.ReturnCode.RcFailedLoginWrongPassword;
+                        ret.Account = new();
+                        ret.Account.UID = uid;
+                        ret.Account.Id = id;
+                        ret.Account.Password = pw;
+                        ret.RC = Proto.Authentication.ReturnCode.RcSuccess;
+                        return ret;
                     }
 
-                    return Zee.Proto.Authentication.ReturnCode.RcSuccesss;
+                    ret.RC = Proto.Authentication.ReturnCode.RcFailedLoginWrongPassword;
+                    return ret;
                 }
             }
 
-            return newAccount(id, pw);
+            var newAccount = CreateAccount(id, pw);
+            if(newAccount == null)
+            {
+                ret.RC = Proto.Authentication.ReturnCode.RcFailedLoginCantCreateAccount;
+            }
+
+            return ret;
         }
     }
 }

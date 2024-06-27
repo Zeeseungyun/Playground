@@ -9,7 +9,7 @@ namespace Zee.Net
     public abstract class TcpBase
     {
         public event EventHandler<TcpBase>? Disconnected;
-        public string Name = "Noname";
+        virtual public string Name { get {return "noname";} }
         public TcpBase()
         {
             Message.PacketMap.Start();

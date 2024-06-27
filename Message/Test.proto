@@ -2,7 +2,7 @@ syntax = "proto3";
 package Zee.Proto.Test;
 
 enum ReturnCode {
-    RC_SUCCESSS = 0;
+    RC_SUCCESS = 0;
 }
 
 message TestMessage {

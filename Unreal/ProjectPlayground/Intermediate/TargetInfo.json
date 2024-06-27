@@ -6,9 +6,19 @@
 			"Type": "Game"
 		},
 		{
+			"Name": "ProjectPlaygroundClient",
+			"Path": "..\\Source\\ProjectPlaygroundClient.Target.cs",
+			"Type": "Client"
+		},
+		{
 			"Name": "ProjectPlaygroundEditor",
 			"Path": "..\\Source\\ProjectPlaygroundEditor.Target.cs",
 			"Type": "Editor"
+		},
+		{
+			"Name": "ProjectPlaygroundServer",
+			"Path": "..\\Source\\ProjectPlaygroundServer.Target.cs",
+			"Type": "Server"
 		}
 	]
 }

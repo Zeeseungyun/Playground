@@ -17,22 +17,38 @@ class ZEENET_API FZeeNetClient
 {
 public:
 	static constexpr size_t BufferSize = 1024;
-	[[nodiscard]] static TSharedPtr<FZeeNetClient> MakeClient(const FString& InEndPoint);
+	[[nodiscard]] static TSharedPtr<FZeeNetClient> MakeClient();
 
-public: //TODO:: to private. only use sharedptr
+private:
+	//only use MakeClient
 	FZeeNetClient();
+
+public:
 	~FZeeNetClient();
 
 	void TryConnect(const FString& InEndPoint);
 	DECLARE_EVENT_OneParam(FZeeNetClient, FOnConnected, const FString& /*message if empty is success.*/);
 	FOnConnected& OnConnected() { return EventConnected; }
-	//TODO:: Disconnected.
-	//FOnConnected& OnDisconnected() { return EventDisconnected; }
-	//FOnConnected EventDisconnected;
+
+	DECLARE_EVENT(FZeeNetClient, FOnDisconnected);
+	FOnDisconnected& OnDisconnected() { return EventDisconnected; }
+
+private:
+	FOnDisconnected EventDisconnected;
+	void ExecuteDisconnectedEvent();
+
+public:
+	bool IsConnected() const;
 
 private:
 	void ExecuteConnectEvent(const FString& Message);
 	FOnConnected EventConnected;
+
+public:
+	void Shutdown();
+
+private:
+	void ShutdownSocket();
 
 private:
 	FZeeNetClient(const FZeeNetClient&) = delete;
@@ -93,13 +109,13 @@ public:
 		return Send(TZeeNetPacketTraits<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
 
-	template<CZeeNetPacketMessage T, typename U>
-	bool Request(const T& Msg, TSharedPtr<U> SharedPtr, TFunction<void(const T&)>&& Callback)
+	template<CZeeNetPacketMessage T, typename ClassT>
+	bool Request(const T& Msg, TSharedPtr<ClassT> SharedPtr, TFunction<void(const T&)>&& Callback)
 	{
 		const int32 CurSequence = IncrementSequence();
 
 		{
-			TWeakPtr<U> WeakPtr = SharedPtr;
+			TWeakPtr<ClassT> WeakPtr = SharedPtr;
 			FScopeLock Lock(&MtxCallbackMaps);
 			CallbackMaps.Add(CurSequence, [WeakPtr, Callback_ = MoveTemp(Callback)](const void* Data)
 				{
@@ -113,7 +129,50 @@ public:
 
 		return Send(TZeeNetPacketTraits<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
 	}
-	
+
+	template<CZeeNetPacketMessage T, typename ClassT>
+	bool Request(const T& Msg, ClassT* ObjectPtr, void(ClassT::* MemberFuncPtr)(const T&))
+	{
+		const int32 CurSequence = IncrementSequence();
+
+		{
+			FScopeLock Lock(&MtxCallbackMaps);
+			TWeakObjectPtr<ClassT> WeakPtr = ObjectPtr;
+			CallbackMaps.Add(CurSequence, [WeakPtr, MemberFuncPtr](const void* Data)
+				{
+					if (WeakPtr.IsValid())
+					{
+						(WeakPtr.Get()->*MemberFuncPtr)(*reinterpret_cast<const T*>(Data));
+					}
+				}
+			);
+		}
+
+		return Send(TZeeNetPacketTraits<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
+	}
+
+	template<CZeeNetPacketMessage T, typename ClassT>
+	bool Request(const T& Msg, TSharedPtr<ClassT> ObjectPtr, void(ClassT::* MemberFuncPtr)(const T&))
+	{
+		const int32 CurSequence = IncrementSequence();
+
+		{
+			FScopeLock Lock(&MtxCallbackMaps);
+			TWeakPtr<ClassT> WeakPtr = ObjectPtr;
+			CallbackMaps.Add(CurSequence, [WeakPtr, MemberFuncPtr](const void* Data)
+				{
+					TSharedPtr<ClassT> StrongPtr = WeakPtr.Pin();
+					if (StrongPtr.IsValid())
+					{
+						(StrongPtr.Get()->*MemberFuncPtr)(*reinterpret_cast<const T*>(Data));
+					}
+				}
+			);
+		}
+
+		return Send(TZeeNetPacketTraits<T>::Point, CurSequence, EZeeNetPacketType::Request, &Msg);
+	}
+
 	////////////////////////////
 	// begin NotifyHandler
 	////////////////////////////
@@ -150,7 +209,7 @@ public:
 	void SetRequestTimeoutSec(float NewRequestTimeoutSec) { RequestTimeoutSec = NewRequestTimeoutSec; }
 
 private:
-	void OnBeginFrame();
+	void ConsumeMessages();
 	FDelegateHandle BeginFrameDelegate;
 
 private:
@@ -171,7 +230,7 @@ private:
 	////////////////////////////
 
 private:
-	void Recv();
+	void DoRecv();
 	bool Send(int32 InPoint, int32 InSequecne, EZeeNetPacketType InPacketType, const void* InMessageRawPtr);
 	EZeeNetReponseType Response_Impl(const void* InPacketRawPtr) final;
 
@@ -180,8 +239,9 @@ private:
 	uint8 OutBuffer[BufferSize];
 
 	TUniquePtr<class FRunnableThread> Thread;
-	TAtomic<bool> bIsStop = false;
 
+	TAtomic<bool> bIsThreadDone;
+	TAtomic<bool> bIsDeadThis;
 	mutable FCriticalSection MtxSocket;
 	FUniqueSocket Socket;
 	

@@ -36,11 +36,11 @@ struct Z_Construct_UEnum_ZeeNet_EZeeNetChatReturnCode_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
 		{ "ModuleRelativePath", "Public/Messages/Chat.h" },
-		{ "RC_SUCCESSS.Name", "EZeeNetChatReturnCode::RC_SUCCESSS" },
+		{ "RC_SUCCESS.Name", "EZeeNetChatReturnCode::RC_SUCCESS" },
 	};
 #endif // WITH_METADATA
 	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
-		{ "EZeeNetChatReturnCode::RC_SUCCESSS", (int64)EZeeNetChatReturnCode::RC_SUCCESSS },
+		{ "EZeeNetChatReturnCode::RC_SUCCESS", (int64)EZeeNetChatReturnCode::RC_SUCCESS },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -123,7 +123,7 @@ struct Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics
 	static const UECodeGen_Private::FStructParams StructParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics::NewProp_RC_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak, RC), Z_Construct_UEnum_ZeeNet_EZeeNetChatReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 2668431788
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak, RC), Z_Construct_UEnum_ZeeNet_EZeeNetChatReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 2979381384
 const UECodeGen_Private::FInt64PropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics::NewProp_UID = { "UID", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak, UID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UID_MetaData), NewProp_UID_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics::NewProp_Id = { "Id", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak, Id), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Id_MetaData), NewProp_Id_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics::NewProp_Content = { "Content", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak, Content), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Content_MetaData), NewProp_Content_MetaData) };
@@ -218,11 +218,11 @@ struct Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics
 	static const UECodeGen_Private::FStructParams StructParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_RC_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak1, RC), Z_Construct_UEnum_ZeeNet_EZeeNetChatReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 2668431788
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_RC = { "RC", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak1, RC), Z_Construct_UEnum_ZeeNet_EZeeNetChatReturnCode, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RC_MetaData), NewProp_RC_MetaData) }; // 2979381384
 const UECodeGen_Private::FInt64PropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_UID = { "UID", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak1, UID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UID_MetaData), NewProp_UID_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_Id = { "Id", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak1, Id), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Id_MetaData), NewProp_Id_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_Content = { "Content", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak1, Content), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Content_MetaData), NewProp_Content_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_Speak12 = { "Speak12", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak1, Speak12), Z_Construct_UScriptStruct_FZeeNetChatSpeak, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Speak12_MetaData), NewProp_Speak12_MetaData) }; // 4037896284
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_Speak12 = { "Speak12", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FZeeNetChatSpeak1, Speak12), Z_Construct_UScriptStruct_FZeeNetChatSpeak, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Speak12_MetaData), NewProp_Speak12_MetaData) }; // 2143140844
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_RC_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewProp_RC,
@@ -259,14 +259,14 @@ UScriptStruct* Z_Construct_UScriptStruct_FZeeNetChatSpeak1()
 struct Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EZeeNetChatReturnCode_StaticEnum, TEXT("EZeeNetChatReturnCode"), &Z_Registration_Info_UEnum_EZeeNetChatReturnCode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2668431788U) },
+		{ EZeeNetChatReturnCode_StaticEnum, TEXT("EZeeNetChatReturnCode"), &Z_Registration_Info_UEnum_EZeeNetChatReturnCode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2979381384U) },
 	};
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FZeeNetChatSpeak::StaticStruct, Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics::NewStructOps, TEXT("ZeeNetChatSpeak"), &Z_Registration_Info_UScriptStruct_ZeeNetChatSpeak, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetChatSpeak), 4037896284U) },
-		{ FZeeNetChatSpeak1::StaticStruct, Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewStructOps, TEXT("ZeeNetChatSpeak1"), &Z_Registration_Info_UScriptStruct_ZeeNetChatSpeak1, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetChatSpeak1), 1902014750U) },
+		{ FZeeNetChatSpeak::StaticStruct, Z_Construct_UScriptStruct_FZeeNetChatSpeak_Statics::NewStructOps, TEXT("ZeeNetChatSpeak"), &Z_Registration_Info_UScriptStruct_ZeeNetChatSpeak, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetChatSpeak), 2143140844U) },
+		{ FZeeNetChatSpeak1::StaticStruct, Z_Construct_UScriptStruct_FZeeNetChatSpeak1_Statics::NewStructOps, TEXT("ZeeNetChatSpeak1"), &Z_Registration_Info_UScriptStruct_ZeeNetChatSpeak1, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeNetChatSpeak1), 1141897491U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_1715026165(TEXT("/Script/ZeeNet"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_3668272505(TEXT("/Script/ZeeNet"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeNet_Source_ZeeNet_Public_Messages_Chat_h_Statics::EnumInfo));

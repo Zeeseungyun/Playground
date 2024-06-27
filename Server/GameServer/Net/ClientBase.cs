@@ -59,7 +59,7 @@ namespace Zee.Net
         virtual public void Notify(IMessage msg)
         {
             var packet = new Message.PacketBase();
-            packet.Message = msg;
+            packet.InternalMessage = msg;
             packet.Header.PacketType = Proto.Packet.Type.Notify;
             client!.GetStream().SerializePacket(packet);
         }
@@ -67,7 +67,7 @@ namespace Zee.Net
         virtual public void Request<T>(T msg, Action<Packet<T>> callback) where T : class, IMessage
         {
             var packet = new Message.PacketBase();
-            packet.Message = msg;
+            packet.InternalMessage = msg;
             packet.Header.Sequence = Interlocked.Increment(ref Sequence);
             packet.Header.PacketType = Proto.Packet.Type.Request;
 

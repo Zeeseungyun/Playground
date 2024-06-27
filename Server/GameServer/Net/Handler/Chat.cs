@@ -8,20 +8,17 @@ namespace Zee.Net
     {
         public void OnNotify(Message.Packet<Proto.Chat.Speak> packet)
         {
-            var msg = packet.ExactMessage!;
-            msg.RC = Proto.Chat.ReturnCode.RcSuccesss;
-            msg.Id = Name;
-            msg.UID = UID;
-            
+            var msg = packet.Message!;
             Console.WriteLine($"{Name}: {msg.Content}");
         }
+
         public void OnRequest(Message.IResponser r, Message.Packet<Zee.Proto.Chat.Speak> p) 
         { 
-            var msg = p.ExactMessage!;
+            var msg = p.Message!;
             Console.WriteLine($"{Name}: {msg.Content}");
             msg.Content = "good job.";
             r.Response(p);
-            Request(p.ExactMessage!, (e)=>
+            Request(p.Message!, (e)=>
             {
                 Console.WriteLine($"{Name}: OnResponse{e.Header}");
                 msg.Content = "test finished.";

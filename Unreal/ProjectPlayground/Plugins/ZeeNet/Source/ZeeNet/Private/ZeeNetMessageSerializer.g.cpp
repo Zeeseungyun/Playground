@@ -10,6 +10,8 @@
 #include "ZeeNet/Private/Convert/Chat.h" 
 #include "ZeeNet/Public/Messages/Test.h" 
 #include "ZeeNet/Private/Convert/Test.h" 
+#include "ZeeNet/Public/Messages/UserCharacter.h" 
+#include "ZeeNet/Private/Convert/UserCharacter.h" 
 
 void FZeeNetPacketSerializerMap::BuildPacketSerializer() 
 { 
@@ -29,6 +31,15 @@ void FZeeNetPacketSerializerMap::BuildPacketSerializer()
 
 	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetTestTestMessage>::Point, 
 		MakeShared<FZeeNetPacketSerializer<FZeeNetTestTestMessage>>()); 
+
+	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetUserCharacterCreate>::Point, 
+		MakeShared<FZeeNetPacketSerializer<FZeeNetUserCharacterCreate>>()); 
+
+	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetUserCharacterGet>::Point, 
+		MakeShared<FZeeNetPacketSerializer<FZeeNetUserCharacterGet>>()); 
+
+	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetUserCharacterSelect>::Point, 
+		MakeShared<FZeeNetPacketSerializer<FZeeNetUserCharacterSelect>>()); 
 
 } 
 

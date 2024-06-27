@@ -25,6 +25,12 @@ extern EZeeNetRequestHandlerResponse ConsumeRequestMessage_Test(
 	, TSharedPtr<struct FZeeNetPacketSerializerBase> Packet
 	, FZeeNetRequestHandlerArray& RequestHandlers
 ); 
+extern FZeeNetRequestHandlerArray* FindRequestHandler_UserCharacter(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers); 
+extern EZeeNetRequestHandlerResponse ConsumeRequestMessage_UserCharacter(
+	TSharedPtr<IZeeNetResponser> Responser
+	, TSharedPtr<struct FZeeNetPacketSerializerBase> Packet
+	, FZeeNetRequestHandlerArray& RequestHandlers
+); 
 
 EZeeNetRequestHandlerResponse FZeeNetClient::ConsumeRequestMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { 
 	CheckRequestHandlers(); 
@@ -49,6 +55,12 @@ EZeeNetRequestHandlerResponse FZeeNetClient::ConsumeRequestMessage(TSharedPtr<st
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
+	Found = FindRequestHandler_UserCharacter(Packet->GetHeader().Point, RequestHandlers); 
+	if (Found) { 
+		if (Found->Num() > 0) return ConsumeRequestMessage_UserCharacter(Responser, Packet, *Found); 
+		return EZeeNetRequestHandlerResponse::NoResponse; 
+	}
+
 	return EZeeNetRequestHandlerResponse::NoResponse;
 }
 
@@ -56,6 +68,7 @@ void FZeeNetClient::BuildValidRequestHandlerNames() {
 	ValidRequestHandlerNames.Add(TEXT("Request_Authentication")); 
 	ValidRequestHandlerNames.Add(TEXT("Request_Chat")); 
 	ValidRequestHandlerNames.Add(TEXT("Request_Test")); 
+	ValidRequestHandlerNames.Add(TEXT("Request_UserCharacter")); 
 
 }
 

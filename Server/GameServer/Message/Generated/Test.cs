@@ -26,8 +26,8 @@ namespace Zee.Proto.Test {
           string.Concat(
             "CgpUZXN0LnByb3RvEg5aZWUuUHJvdG8uVGVzdCJjCgtUZXN0TWVzc2FnZRIK",
             "CgJSQxgBIAMoBRIrCgdSQ0xpc3RzGAIgAygOMhouWmVlLlByb3RvLlRlc3Qu",
-            "UmV0dXJuQ29kZRIKCgJJZBgDIAEoCRIPCgdDb250ZW50GAQgASgJKh0KClJl",
-            "dHVybkNvZGUSDwoLUkNfU1VDQ0VTU1MQAGIGcHJvdG8z"));
+            "UmV0dXJuQ29kZRIKCgJJZBgDIAEoCRIPCgdDb250ZW50GAQgASgJKhwKClJl",
+            "dHVybkNvZGUSDgoKUkNfU1VDQ0VTUxAAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Test.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -39,7 +39,7 @@ namespace Zee.Proto.Test {
   }
   #region Enums
   public enum ReturnCode {
-    [pbr::OriginalName("RC_SUCCESSS")] RcSuccesss = 0,
+    [pbr::OriginalName("RC_SUCCESS")] RcSuccess = 0,
   }
 
   #endregion

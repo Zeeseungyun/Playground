@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{EC7A1B74-42A5-F538-4AF9-3381AEC0A33F}",
+	"EngineAssociation": "{A84E8736-4247-31E3-1ECF-4D820EBA9C90}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "ProjectPlayground",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
