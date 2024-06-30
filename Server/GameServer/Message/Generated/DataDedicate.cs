@@ -25,12 +25,12 @@ namespace Zee.Proto.Data {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChdEYXRhL0RhdGFEZWRpY2F0ZS5wcm90bxIOWmVlLlByb3RvLkRhdGEiOwoO",
-            "RGVkaWNhdGVTZXJ2ZXISCgoCSVAYASABKAkSDAoEUG9ydBgCIAEoCRIPCgdN",
+            "RGVkaWNhdGVTZXJ2ZXISCgoCSXAYASABKAkSDAoEUG9ydBgCIAEoBRIPCgdN",
             "YXBOYW1lGAMgASgJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Data.DedicateServer), global::Zee.Proto.Data.DedicateServer.Parser, new[]{ "IP", "Port", "MapName" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Data.DedicateServer), global::Zee.Proto.Data.DedicateServer.Parser, new[]{ "Ip", "Port", "MapName" }, null, null, null, null)
           }));
     }
     #endregion
@@ -71,7 +71,7 @@ namespace Zee.Proto.Data {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public DedicateServer(DedicateServer other) : this() {
-      iP_ = other.iP_;
+      ip_ = other.ip_;
       port_ = other.port_;
       mapName_ = other.mapName_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -83,27 +83,27 @@ namespace Zee.Proto.Data {
       return new DedicateServer(this);
     }
 
-    /// <summary>Field number for the "IP" field.</summary>
-    public const int IPFieldNumber = 1;
-    private string iP_ = "";
+    /// <summary>Field number for the "Ip" field.</summary>
+    public const int IpFieldNumber = 1;
+    private string ip_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string IP {
-      get { return iP_; }
+    public string Ip {
+      get { return ip_; }
       set {
-        iP_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        ip_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     /// <summary>Field number for the "Port" field.</summary>
     public const int PortFieldNumber = 2;
-    private string port_ = "";
+    private int port_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Port {
+    public int Port {
       get { return port_; }
       set {
-        port_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        port_ = value;
       }
     }
 
@@ -134,7 +134,7 @@ namespace Zee.Proto.Data {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (IP != other.IP) return false;
+      if (Ip != other.Ip) return false;
       if (Port != other.Port) return false;
       if (MapName != other.MapName) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -144,8 +144,8 @@ namespace Zee.Proto.Data {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (IP.Length != 0) hash ^= IP.GetHashCode();
-      if (Port.Length != 0) hash ^= Port.GetHashCode();
+      if (Ip.Length != 0) hash ^= Ip.GetHashCode();
+      if (Port != 0) hash ^= Port.GetHashCode();
       if (MapName.Length != 0) hash ^= MapName.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -165,13 +165,13 @@ namespace Zee.Proto.Data {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (IP.Length != 0) {
+      if (Ip.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(IP);
+        output.WriteString(Ip);
       }
-      if (Port.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Port);
+      if (Port != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Port);
       }
       if (MapName.Length != 0) {
         output.WriteRawTag(26);
@@ -187,13 +187,13 @@ namespace Zee.Proto.Data {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (IP.Length != 0) {
+      if (Ip.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(IP);
+        output.WriteString(Ip);
       }
-      if (Port.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Port);
+      if (Port != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Port);
       }
       if (MapName.Length != 0) {
         output.WriteRawTag(26);
@@ -209,11 +209,11 @@ namespace Zee.Proto.Data {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (IP.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(IP);
+      if (Ip.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Ip);
       }
-      if (Port.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Port);
+      if (Port != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Port);
       }
       if (MapName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(MapName);
@@ -230,10 +230,10 @@ namespace Zee.Proto.Data {
       if (other == null) {
         return;
       }
-      if (other.IP.Length != 0) {
-        IP = other.IP;
+      if (other.Ip.Length != 0) {
+        Ip = other.Ip;
       }
-      if (other.Port.Length != 0) {
+      if (other.Port != 0) {
         Port = other.Port;
       }
       if (other.MapName.Length != 0) {
@@ -255,11 +255,11 @@ namespace Zee.Proto.Data {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            IP = input.ReadString();
+            Ip = input.ReadString();
             break;
           }
-          case 18: {
-            Port = input.ReadString();
+          case 16: {
+            Port = input.ReadInt32();
             break;
           }
           case 26: {
@@ -282,11 +282,11 @@ namespace Zee.Proto.Data {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            IP = input.ReadString();
+            Ip = input.ReadString();
             break;
           }
-          case 18: {
-            Port = input.ReadString();
+          case 16: {
+            Port = input.ReadInt32();
             break;
           }
           case 26: {

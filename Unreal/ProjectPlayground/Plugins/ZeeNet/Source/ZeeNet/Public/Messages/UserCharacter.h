@@ -28,7 +28,7 @@ struct FZeeNetUserCharacterCreate
 	FZeeNetDataCharacter Character; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetUserCharacterCreate> { static constexpr int32 Point = 0x5001; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetUserCharacterCreate> { static constexpr int32 Point = 0x6001; static constexpr bool bIsData = false; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetUserCharacterGet 
@@ -45,25 +45,5 @@ struct FZeeNetUserCharacterGet
 	TArray<FZeeNetDataCharacter> Characters; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetUserCharacterGet> { static constexpr int32 Point = 0x5002; static constexpr bool bIsData = false; }; 
-
-USTRUCT(BlueprintType) 
-struct FZeeNetUserCharacterSelect 
-{ 
-	GENERATED_BODY()
-
-	UPROPERTY(BlueprintReadWrite) 
-	EZeeNetUserCharacterReturnCode RC = static_cast<EZeeNetUserCharacterReturnCode>(0); 
-
-	UPROPERTY(BlueprintReadWrite) 
-	int64 UID = static_cast<int64>(0); 
-
-	UPROPERTY(BlueprintReadWrite) 
-	int32 Id = static_cast<int32>(0); 
-
-	UPROPERTY(BlueprintReadWrite) 
-	FString Name; 
-
-}; 
-template<> struct TZeeNetPacketTraits<FZeeNetUserCharacterSelect> { static constexpr int32 Point = 0x5003; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetUserCharacterGet> { static constexpr int32 Point = 0x6002; static constexpr bool bIsData = false; }; 
 

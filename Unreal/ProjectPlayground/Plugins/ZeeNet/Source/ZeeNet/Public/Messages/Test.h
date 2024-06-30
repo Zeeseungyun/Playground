@@ -31,5 +31,5 @@ struct FZeeNetTestTestMessage
 	FString Content; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetTestTestMessage> { static constexpr int32 Point = 0x4001; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetTestTestMessage> { static constexpr int32 Point = 0x5001; static constexpr bool bIsData = false; }; 
 

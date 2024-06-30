@@ -99,6 +99,47 @@ namespace Zee
                                 
                                 newFile.HeaderContent.Append("\r\n");
                             }
+                            
+                            switch(msg.UnrealName)
+                            {
+                                case "FZeeNetDataVector":
+                                newFile.HeaderContent.AppendLine(
+@"  ///for convert FVector
+	operator FVector() const { return FVector{ X,Y,Z }; }
+	FZeeNetDataVector& operator=(const FVector& InValue) { X = InValue.X; Y = InValue.Y; Z = InValue.Z; return *this; }
+
+	FZeeNetDataVector& operator=(const FZeeNetDataVector&) = default;
+	FZeeNetDataVector& operator=(FZeeNetDataVector&&) = default;
+    FZeeNetDataVector(const FZeeNetDataVector&) = default;
+	FZeeNetDataVector(FZeeNetDataVector&&) = default;
+	FZeeNetDataVector(const FVector& InValue) : X(InValue.X), Y(InValue.Y), Z(InValue.Z) { }
+	FZeeNetDataVector(FVector&& InValue): FZeeNetDataVector(InValue) { }
+	FZeeNetDataVector() = default;
+	~FZeeNetDataVector() = default;
+"    
+                                );
+                                break;
+
+                                case "FZeeNetDataRotator":
+                                newFile.HeaderContent.AppendLine(
+@"  ///for convert FRotator
+	operator FRotator() const { return FRotator{ Pitch, Yaw, Roll }; }
+	operator FQuat() const { return FQuat(FRotator{ Pitch, Yaw, Roll }); }
+	FZeeNetDataRotator& operator=(const FRotator& InValue) { Pitch = InValue.Pitch; Yaw = InValue.Yaw; Roll = InValue.Roll; return *this; }
+
+	FZeeNetDataRotator& operator=(const FZeeNetDataRotator&) = default;
+	FZeeNetDataRotator& operator=(FZeeNetDataRotator&&) = default;
+	FZeeNetDataRotator(const FRotator& InValue) : Pitch(InValue.Pitch), Yaw(InValue.Yaw), Roll(InValue.Roll) { }
+	FZeeNetDataRotator(FRotator&& InValue) : FZeeNetDataRotator(InValue) { }
+	FZeeNetDataRotator(const FZeeNetDataRotator&) = default; 
+	FZeeNetDataRotator(FZeeNetDataRotator&&) = default;
+	FZeeNetDataRotator() = default;
+	~FZeeNetDataRotator() = default;
+"    
+                                );
+                                break;
+                            }
+
                             newFile.HeaderContent.Append("}; \r\n");
                             var isData = protoFile.IsData ? "true" : "false";
                             newFile.HeaderContent.Append($"template<> struct TZeeNetPacketTraits<{msg.UnrealName}> {{ static constexpr int32 Point = 0x{msg.Point.ToString("X")}; static constexpr bool bIsData = {isData}; }}; \r\n");

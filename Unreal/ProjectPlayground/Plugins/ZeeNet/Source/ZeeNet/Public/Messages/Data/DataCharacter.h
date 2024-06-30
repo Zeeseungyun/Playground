@@ -27,5 +27,5 @@ struct FZeeNetDataCharacter
 	FString Name; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataCharacter> { static constexpr int32 Point = 0x7001; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataCharacter> { static constexpr int32 Point = 0x8001; static constexpr bool bIsData = true; }; 
 

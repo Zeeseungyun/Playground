@@ -14,9 +14,6 @@ class AProjectPlaygroundCharacter : public ACharacter
 public:
 	AProjectPlaygroundCharacter();
 
-	// Called every frame.
-	virtual void Tick(float DeltaSeconds) override;
-
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
 	/** Returns CameraBoom subobject **/
@@ -31,12 +28,5 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
 
-public:
-	TSharedPtr<class FZeeNetClient> MyClient;
-	TSharedPtr<class SZeeUILobbyLogin> MyLoginWidget;
-	virtual void BeginPlay() override;
-
-private:
-	FReply OnLoginClicked();
 };
 

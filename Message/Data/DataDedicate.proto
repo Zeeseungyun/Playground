@@ -2,7 +2,7 @@ syntax = "proto3";
 package Zee.Proto.Data;
 
 message DedicateServer {
-    string IP = 1;
-    string Port = 2;
+    string Ip = 1;
+    int32 Port = 2;
     string MapName = 3;
 }

@@ -2,7 +2,7 @@
 
 #include "SlateBasics.h"
 
-class FZeeUILobbySlateStyles
+class ZEEUI_API FZeeUILobbySlateStyles
 {
 public:
 	// Initializes the value of MenuStyleInstance and registers it with the Slate Style Registry.
@@ -22,6 +22,5 @@ private:
 	static TSharedRef<class FSlateStyleSet> Create();
 
 	// Singleton instance used for our Style Set.
-	static TSharedPtr<class FSlateStyleSet> MenuStyleInstance;
-
+	static TSharedPtr<class FSlateStyleSet>& GetMenuStyleInstance();
 };

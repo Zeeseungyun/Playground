@@ -117,7 +117,6 @@ void FZeeNetClient::Shutdown()
 
 void FZeeNetClient::ShutdownSocket()
 {
-	FScopeLock Lock(&MtxSocket);
 	if (Socket.IsValid())
 	{
 		Socket->Shutdown(ESocketShutdownMode::ReadWrite);
@@ -177,7 +176,7 @@ uint32 FZeeNetClient::Run()
 
 	{
 		FScopeLock Lock(&MtxSocket);
-		Socket->Close();
+		ShutdownSocket();
 		Socket = nullptr;
 	}
 
@@ -192,7 +191,7 @@ uint32 FZeeNetClient::Run()
 
 void FZeeNetClient::Stop()
 {
-	UE_LOG(LogZeeNet, Warning, TEXT("Stop called."));
+	ShutdownSocket();
 }
 
 void FZeeNetClient::Exit()
@@ -534,7 +533,7 @@ void FZeeNetClient::DoRecv()
 	{
 		if (!Socket->Recv(InBuffer, sizeof(HeaderSize), BytesRead))
 		{
-			Stop();
+			ShutdownSocket();
 			return;
 		}
 	}
@@ -545,7 +544,7 @@ void FZeeNetClient::DoRecv()
 	HeaderSize = *reinterpret_cast<int32*>(InBuffer);
 	if (!Socket->Recv(InBuffer + Offset, HeaderSize, BytesRead))
 	{
-		Stop();
+		ShutdownSocket();
 		return;
 	}
 	check(HeaderSize == BytesRead);
@@ -557,7 +556,7 @@ void FZeeNetClient::DoRecv()
 	
 	if (!Socket->Recv(InBuffer + Offset, Header.GetHeader().PacketSize, BytesRead))
 	{
-		Stop();
+		ShutdownSocket();
 		return;
 	}
 	check(Header.GetHeader().PacketSize == BytesRead);
@@ -589,9 +588,14 @@ bool FZeeNetClient::Send(int32 InPoint, int32 InSequence, EZeeNetPacketType InPa
 		}
 
 		FScopeLock Lock(&MtxSocket);
+		if (!Socket.IsValid())
+		{
+			return false;
+		}
+
 		if (!Socket->Send(OutBuffer, BytesWritten, BytesSent))
 		{
-			Stop();
+			ShutdownSocket();
 			return false;
 		}
 	}

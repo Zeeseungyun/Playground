@@ -16,7 +16,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define FID_ProjectPlayground_Plugins_ZeeUI_Source_ZeeUI_Public_Lobby_SlateStyle_ZeeUILobbySlateStyle_h_9_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FZeeUILobbySlateStyle_Statics; \
-	ZEEUI_API static class UScriptStruct* StaticStruct(); \
+	static class UScriptStruct* StaticStruct(); \
 	typedef FSlateWidgetStyle Super;
 
 

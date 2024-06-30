@@ -19,15 +19,15 @@ void Zee::Net::Message::Convert::FromTo(const FZeeNetDataVector& InFrom, Zee::Pr
 
 void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Data::Rotator& InFrom, FZeeNetDataRotator& OutTo)
 {
-	OutTo.Yaw = To<float>(InFrom.yaw()); 
 	OutTo.Pitch = To<float>(InFrom.pitch()); 
+	OutTo.Yaw = To<float>(InFrom.yaw()); 
 	OutTo.Roll = To<float>(InFrom.roll()); 
 }
 
 void Zee::Net::Message::Convert::FromTo(const FZeeNetDataRotator& InFrom, Zee::Proto::Data::Rotator& OutTo)
 {
-	OutTo.set_yaw(To<float>(InFrom.Yaw)); 
 	OutTo.set_pitch(To<float>(InFrom.Pitch)); 
+	OutTo.set_yaw(To<float>(InFrom.Yaw)); 
 	OutTo.set_roll(To<float>(InFrom.Roll)); 
 }
 

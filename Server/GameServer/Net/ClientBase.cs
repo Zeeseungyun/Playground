@@ -64,7 +64,7 @@ namespace Zee.Net
             client!.GetStream().SerializePacket(packet);
         }
         protected Dictionary<int, Action<PacketBase>> callbackMaps = new();
-        virtual public void Request<T>(T msg, Action<Packet<T>> callback) where T : class, IMessage
+        virtual public void Request<T>(T msg, Action<Packet<T>> callback) where T : class, IMessage, new()
         {
             var packet = new Message.PacketBase();
             packet.InternalMessage = msg;

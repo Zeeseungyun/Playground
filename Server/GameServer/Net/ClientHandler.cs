@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Google.Protobuf;
@@ -13,6 +14,8 @@ namespace Zee.Net
         private readonly Server server;
         public Zee.Proto.Data.Account Account = new();
         public Zee.Proto.Data.DedicateServer DedicateServer = new();
+        public EndPoint RemoteEndPoint => client!.Client.RemoteEndPoint!;
+        public string RemoteIp => RemoteEndPoint.ToString()!.Substring(0, RemoteEndPoint.ToString()!.IndexOf(':'));
         override public string Name { 
             get {
                 if(Account.Id.Length > 0)
@@ -20,12 +23,12 @@ namespace Zee.Net
                     return Account.Id;
                 }
                 
-                if(DedicateServer.IP.Length > 0)
+                if(DedicateServer.MapName.Length > 0)
                 {
-                    return DedicateServer.IP;
+                    return DedicateServer.MapName;
                 }
 
-                return base.Name;
+                return "Noname";
             } 
         }
         public ClientHandler(TcpClient client, Server server)

@@ -48,8 +48,12 @@ namespace Zee.Net.Message
         public IMessage? InternalMessage;
     }
     public class Packet<T> : PacketBase
-        where T : class, IMessage
+        where T : class, IMessage, new()
     {
+        public Packet()
+        {
+            InternalMessage = new T();
+        }
         public T Message 
         {
             get {

@@ -15,12 +15,15 @@ namespace Zee.Net
         }
         public ClientHandler? FindDedi(string mapName)
         {
-            ClientHandler? ret = null;
             foreach(var client in clients)
             {
-                
+                if(client.DedicateServer.MapName == mapName)
+                {
+                    return client;
+                }
             }
-            return ret;
+
+            return null;
         }
         override public void Start()
         {

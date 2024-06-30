@@ -18,7 +18,7 @@ namespace Zee.Net.Message
                 startMapping();
             }
         }
-        private static void mapping<T>(int point) where T : class, IMessage
+        private static void mapping<T>(int point) where T : class, IMessage, new()
         {
             pointToMessageType.Add(point, typeof(T)); 
             pointToPacketType.Add(point, typeof(Packet<T>));

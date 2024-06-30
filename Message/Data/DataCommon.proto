@@ -8,8 +8,8 @@ message Vector {
 }
 
 message Rotator {
-    float Yaw = 1;
-    float Pitch = 2;
+    float Pitch = 1;
+    float Yaw = 2;
     float Roll = 3;
 }
 

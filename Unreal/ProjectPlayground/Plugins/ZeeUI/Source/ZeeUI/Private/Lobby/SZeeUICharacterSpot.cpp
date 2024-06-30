@@ -19,7 +19,7 @@
 void SZeeUICharacterSpot::Construct( const FArguments& InArgs )
 {
 	const FZeeUILobbySlateStyle& MenuStyle = FZeeUILobbySlateStyles::Get().GetWidgetStyle<FZeeUILobbySlateStyle>("Style1");
-
+	
 	ChildSlot
 	[
 		SNew(SOverlay)

@@ -16,15 +16,22 @@ class PROJECTPLAYGROUND_API ALobbyPlayerController : public APlayerController
 public:
 	virtual void BeginPlay() override;
 
+	void ShowLoginWidget(bool bVisible);
+	void ShowCreateCharacterWidget(bool bVisible, int32 Slot);
+
 private:
 	FReply OnLoginClicked();
 	void OnConnected(const FString& InMessage);
+	void OnCharacterSpotButtonClicked(int32 Slot);
+	void OnCreateCharacterConfirm(const FString& InCharacterName, int32 Slot);
 
 private:
-	TSharedPtr<class SZeeUILobbyLogin> MyLoginWidget;
+	TSharedPtr<class SZeeUILobbyLogin> LoginWidget;
 	TArray<TWeakObjectPtr<class ALobbyCharacterSpot>> LobbyCharacterSpots;
-	TArray<TWeakObjectPtr<class ALobbyCharacter>> LobbyCharacters;
 	FDelegateHandle DelConnected;
 
 	void ResponseLogin(const struct FZeeNetAuthenticationLogin& InRes);
+
+private:
+	TSharedPtr<class SZeeUICreateCharacter> CreateCharacterWidget;
 };

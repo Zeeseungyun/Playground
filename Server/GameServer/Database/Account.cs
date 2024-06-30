@@ -38,10 +38,6 @@ namespace Zee.Database
             {
                 Logger.LogWarning(e.Message);
             }
-            finally
-            {
-                transaction.Rollback();
-            }
 
             return ret;
         } 
@@ -84,6 +80,10 @@ namespace Zee.Database
                         ret.Account.Id = id;
                         ret.Account.Password = pw;
                         ret.RC = Proto.Authentication.ReturnCode.RcSuccess;
+                        cmd.Dispose();
+
+                        var characterGet = Character.Get(uid);
+                        ret.Characters.AddRange(characterGet.Characters);
                         return ret;
                     }
 

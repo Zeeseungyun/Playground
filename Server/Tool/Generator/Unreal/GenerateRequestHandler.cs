@@ -56,7 +56,7 @@ namespace Zee
                     ///source
                     ////////////////////////
 
-                    newFile.SrcFileName = $"{UnrealConsumeRequestHandlerDir}/Request_{newFile.NameWihtoutProto}.g.cpp"; 
+                    newFile.SrcFileName = $"{UnrealConsumeRequestHandlerPrivateDir}/Request_{newFile.NameWihtoutProto}.g.cpp"; 
                     
                     newFile.SrcContent.Append(
 @"#include ""ZeeNetClient.h""
@@ -110,7 +110,7 @@ namespace Zee
 
                 {
                     var newFile = new UnrealFile();
-                    newFile.SrcFileName = UnrealConsumeRequestFile;
+                    newFile.SrcFileName = UnrealConsumeRequestPrivateFile;
                     newFile.SrcContent.Append(
 @"#include ""ZeeNetClient.h""
 #include ""ZeeNet/Public/Messages/Packet.h""

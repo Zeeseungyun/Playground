@@ -13,6 +13,5 @@ struct ZEENET_API IZeeNetNotifyHandler_UserCharacter
 
 	virtual void OnNotify(const FZeeNetUserCharacterCreate& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetUserCharacterCreate'")); } 
 	virtual void OnNotify(const FZeeNetUserCharacterGet& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetUserCharacterGet'")); } 
-	virtual void OnNotify(const FZeeNetUserCharacterSelect& InMessage) { UE_LOG(LogZeeNet, Warning, TEXT("OnNotify is not impl: 'FZeeNetUserCharacterSelect'")); } 
 };
 

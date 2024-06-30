@@ -23,8 +23,8 @@ namespace Data {
 constexpr DedicateServer::DedicateServer(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : ip_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , port_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , mapname_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+  , mapname_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , port_(0){}
 struct DedicateServerDefaultTypeInternal {
   constexpr DedicateServerDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -62,8 +62,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_Data_2fDataDedicate_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\027Data/DataDedicate.proto\022\016Zee.Proto.Dat"
-  "a\";\n\016DedicateServer\022\n\n\002IP\030\001 \001(\t\022\014\n\004Port\030"
-  "\002 \001(\t\022\017\n\007MapName\030\003 \001(\tb\006proto3"
+  "a\";\n\016DedicateServer\022\n\n\002Ip\030\001 \001(\t\022\014\n\004Port\030"
+  "\002 \001(\005\022\017\n\007MapName\030\003 \001(\tb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Data_2fDataDedicate_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Data_2fDataDedicate_2eproto = {
@@ -105,23 +105,19 @@ DedicateServer::DedicateServer(const DedicateServer& from)
     ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_ip(), 
       GetArenaForAllocation());
   }
-  port_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_port().empty()) {
-    port_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_port(), 
-      GetArenaForAllocation());
-  }
   mapname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_mapname().empty()) {
     mapname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_mapname(), 
       GetArenaForAllocation());
   }
+  port_ = from.port_;
   // @@protoc_insertion_point(copy_constructor:Zee.Proto.Data.DedicateServer)
 }
 
 void DedicateServer::SharedCtor() {
 ip_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-port_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 mapname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+port_ = 0;
 }
 
 DedicateServer::~DedicateServer() {
@@ -134,7 +130,6 @@ DedicateServer::~DedicateServer() {
 inline void DedicateServer::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   ip_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  port_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   mapname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -155,8 +150,8 @@ void DedicateServer::Clear() {
   (void) cached_has_bits;
 
   ip_.ClearToEmpty();
-  port_.ClearToEmpty();
   mapname_.ClearToEmpty();
+  port_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -166,22 +161,20 @@ const char* DedicateServer::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string IP = 1;
+      // string Ip = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           auto str = _internal_mutable_ip();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.Data.DedicateServer.IP"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.Data.DedicateServer.Ip"));
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // string Port = 2;
+      // int32 Port = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_port();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.Data.DedicateServer.Port"));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          port_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -225,24 +218,20 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string IP = 1;
+  // string Ip = 1;
   if (!this->_internal_ip().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_ip().data(), static_cast<int>(this->_internal_ip().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Zee.Proto.Data.DedicateServer.IP");
+      "Zee.Proto.Data.DedicateServer.Ip");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_ip(), target);
   }
 
-  // string Port = 2;
-  if (!this->_internal_port().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_port().data(), static_cast<int>(this->_internal_port().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Zee.Proto.Data.DedicateServer.Port");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_port(), target);
+  // int32 Port = 2;
+  if (this->_internal_port() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_port(), target);
   }
 
   // string MapName = 3;
@@ -271,18 +260,11 @@ size_t DedicateServer::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string IP = 1;
+  // string Ip = 1;
   if (!this->_internal_ip().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_ip());
-  }
-
-  // string Port = 2;
-  if (!this->_internal_port().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_port());
   }
 
   // string MapName = 3;
@@ -290,6 +272,11 @@ size_t DedicateServer::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_mapname());
+  }
+
+  // int32 Port = 2;
+  if (this->_internal_port() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_port());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -317,11 +304,11 @@ void DedicateServer::MergeFrom(const DedicateServer& from) {
   if (!from._internal_ip().empty()) {
     _internal_set_ip(from._internal_ip());
   }
-  if (!from._internal_port().empty()) {
-    _internal_set_port(from._internal_port());
-  }
   if (!from._internal_mapname().empty()) {
     _internal_set_mapname(from._internal_mapname());
+  }
+  if (from._internal_port() != 0) {
+    _internal_set_port(from._internal_port());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -349,14 +336,10 @@ void DedicateServer::InternalSwap(DedicateServer* other) {
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &port_, lhs_arena,
-      &other->port_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       &mapname_, lhs_arena,
       &other->mapname_, rhs_arena
   );
+  swap(port_, other->port_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DedicateServer::GetMetadata() const {

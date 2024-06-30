@@ -5,6 +5,30 @@ namespace Zee.Database
 {
     public static class Character
     {
+        public static Zee.Proto.UserCharacter.Get Get(Int64 userId)
+        {
+            Common.ConnectIfNot();
+            Zee.Proto.UserCharacter.Get ret = new();
+            ret.User = userId;
+            
+            using (var cmd = new MySqlCommand("SELECT * FROM zee_database_1.character WHERE user = @user;", Common.connection))
+            {
+                cmd.Parameters.AddWithValue("user", userId);
+                var reader = cmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    var character = new Zee.Proto.Data.Character();
+                    character.User = userId;
+                    character.UID = (Int64)reader["uid"];
+                    character.Name = reader["name"].ToString();
+                    character.Id = (Int32)reader["id"];
+                    character.Slot = (Int32)reader["slot"];
+                    ret.Characters.Add(character);
+                }
+            }
+
+            return ret;
+        }
         public static Zee.Proto.UserCharacter.Create Create(Zee.Proto.UserCharacter.Create req)
         {
             Common.ConnectIfNot();
@@ -18,7 +42,7 @@ namespace Zee.Database
             using var transaction = Common.connection.BeginTransaction();
             try
             {
-                using (var cmd = new MySqlCommand("INSERT INTO character (uid, user, id, name, slot) VALUES (@uid, @user, @id, @name, @slot);", Common.connection))
+                using (var cmd = new MySqlCommand("INSERT INTO zee_database_1.character (uid, user, id, name, slot) VALUES (@uid, @user, @id, @name, @slot);", Common.connection))
                 {
                     Int64 uid = Common.CreateUID;
                     cmd.Parameters.AddWithValue("user", req.Character.User);
@@ -34,8 +58,6 @@ namespace Zee.Database
                         ret.RC = Proto.UserCharacter.ReturnCode.RcSuccess;
                         return ret;
                     }
-
-                    transaction.Rollback();
                 }
             }
             catch (MySqlException e)
@@ -49,10 +71,6 @@ namespace Zee.Database
                         ret.RC = Proto.UserCharacter.ReturnCode.RcFailedCreateDuplicatedName;
                     }
                 }
-            }
-            finally
-            {
-                transaction.Rollback();
             }
 
             return ret;

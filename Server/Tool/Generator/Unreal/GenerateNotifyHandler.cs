@@ -53,7 +53,7 @@ namespace Zee
                     ///source
                     ////////////////////////
 
-                    newFile.SrcFileName = $"{UnrealConsumeNotifyHandlerDir}/Notify_{newFile.NameWihtoutProto}.g.cpp"; 
+                    newFile.SrcFileName = $"{UnrealConsumeNotifyHandlerPrivateDir}/Notify_{newFile.NameWihtoutProto}.g.cpp"; 
                     
                     newFile.SrcContent.Append(
 @"#include ""ZeeNetClient.h""
@@ -107,7 +107,7 @@ namespace Zee
 
                 {
                     var newFile = new UnrealFile();
-                    newFile.SrcFileName = UnrealConsumeNotifyFile;
+                    newFile.SrcFileName = UnrealConsumeNotifyPrivateFile;
                     newFile.SrcContent.Append(
 @"#include ""ZeeNetClient.h""
 #include ""ZeeNet/Private/ZeeNetMessageSerializerDef.h""

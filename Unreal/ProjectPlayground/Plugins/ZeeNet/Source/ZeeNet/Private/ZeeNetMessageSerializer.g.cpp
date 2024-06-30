@@ -8,6 +8,8 @@
 #include "ZeeNet/Private/Convert/Authentication.h" 
 #include "ZeeNet/Public/Messages/Chat.h" 
 #include "ZeeNet/Private/Convert/Chat.h" 
+#include "ZeeNet/Public/Messages/Dedicate.h" 
+#include "ZeeNet/Private/Convert/Dedicate.h" 
 #include "ZeeNet/Public/Messages/Test.h" 
 #include "ZeeNet/Private/Convert/Test.h" 
 #include "ZeeNet/Public/Messages/UserCharacter.h" 
@@ -29,6 +31,15 @@ void FZeeNetPacketSerializerMap::BuildPacketSerializer()
 	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetChatSpeak>::Point, 
 		MakeShared<FZeeNetPacketSerializer<FZeeNetChatSpeak>>()); 
 
+	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetDedicateLogin>::Point, 
+		MakeShared<FZeeNetPacketSerializer<FZeeNetDedicateLogin>>()); 
+
+	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetDedicateMove>::Point, 
+		MakeShared<FZeeNetPacketSerializer<FZeeNetDedicateMove>>()); 
+
+	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetDedicateLeave>::Point, 
+		MakeShared<FZeeNetPacketSerializer<FZeeNetDedicateLeave>>()); 
+
 	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetTestTestMessage>::Point, 
 		MakeShared<FZeeNetPacketSerializer<FZeeNetTestTestMessage>>()); 
 
@@ -37,9 +48,6 @@ void FZeeNetPacketSerializerMap::BuildPacketSerializer()
 
 	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetUserCharacterGet>::Point, 
 		MakeShared<FZeeNetPacketSerializer<FZeeNetUserCharacterGet>>()); 
-
-	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetUserCharacterSelect>::Point, 
-		MakeShared<FZeeNetPacketSerializer<FZeeNetUserCharacterSelect>>()); 
 
 } 
 

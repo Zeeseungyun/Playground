@@ -26,7 +26,7 @@ namespace Zee.Proto.Data {
           string.Concat(
             "ChVEYXRhL0RhdGFDb21tb24ucHJvdG8SDlplZS5Qcm90by5EYXRhIikKBlZl",
             "Y3RvchIJCgFYGAEgASgCEgkKAVkYAiABKAISCQoBWhgDIAEoAiIzCgdSb3Rh",
-            "dG9yEgsKA1lhdxgBIAEoAhINCgVQaXRjaBgCIAEoAhIMCgRSb2xsGAMgASgC",
+            "dG9yEg0KBVBpdGNoGAEgASgCEgsKA1lhdxgCIAEoAhIMCgRSb2xsGAMgASgC",
             "InMKCFBvc2l0aW9uEgsKA1VJRBgBIAEoAxIPCgdNYXBOYW1lGAIgASgJEiMK",
             "A1BvcxgDIAEoCzIWLlplZS5Qcm90by5EYXRhLlZlY3RvchIkCgNSb3QYBCAB",
             "KAsyFy5aZWUuUHJvdG8uRGF0YS5Sb3RhdG9yYgZwcm90bzM="));
@@ -34,7 +34,7 @@ namespace Zee.Proto.Data {
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Data.Vector), global::Zee.Proto.Data.Vector.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Data.Rotator), global::Zee.Proto.Data.Rotator.Parser, new[]{ "Yaw", "Pitch", "Roll" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Data.Rotator), global::Zee.Proto.Data.Rotator.Parser, new[]{ "Pitch", "Yaw", "Roll" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Data.Position), global::Zee.Proto.Data.Position.Parser, new[]{ "UID", "MapName", "Pos", "Rot" }, null, null, null, null)
           }));
     }
@@ -339,8 +339,8 @@ namespace Zee.Proto.Data {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Rotator(Rotator other) : this() {
-      yaw_ = other.yaw_;
       pitch_ = other.pitch_;
+      yaw_ = other.yaw_;
       roll_ = other.roll_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -351,20 +351,8 @@ namespace Zee.Proto.Data {
       return new Rotator(this);
     }
 
-    /// <summary>Field number for the "Yaw" field.</summary>
-    public const int YawFieldNumber = 1;
-    private float yaw_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float Yaw {
-      get { return yaw_; }
-      set {
-        yaw_ = value;
-      }
-    }
-
     /// <summary>Field number for the "Pitch" field.</summary>
-    public const int PitchFieldNumber = 2;
+    public const int PitchFieldNumber = 1;
     private float pitch_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -372,6 +360,18 @@ namespace Zee.Proto.Data {
       get { return pitch_; }
       set {
         pitch_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Yaw" field.</summary>
+    public const int YawFieldNumber = 2;
+    private float yaw_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Yaw {
+      get { return yaw_; }
+      set {
+        yaw_ = value;
       }
     }
 
@@ -402,8 +402,8 @@ namespace Zee.Proto.Data {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Yaw, other.Yaw)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Pitch, other.Pitch)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Yaw, other.Yaw)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Roll, other.Roll)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -412,8 +412,8 @@ namespace Zee.Proto.Data {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Yaw != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Yaw);
       if (Pitch != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Pitch);
+      if (Yaw != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Yaw);
       if (Roll != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Roll);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -433,13 +433,13 @@ namespace Zee.Proto.Data {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Yaw != 0F) {
-        output.WriteRawTag(13);
-        output.WriteFloat(Yaw);
-      }
       if (Pitch != 0F) {
-        output.WriteRawTag(21);
+        output.WriteRawTag(13);
         output.WriteFloat(Pitch);
+      }
+      if (Yaw != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(Yaw);
       }
       if (Roll != 0F) {
         output.WriteRawTag(29);
@@ -455,13 +455,13 @@ namespace Zee.Proto.Data {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Yaw != 0F) {
-        output.WriteRawTag(13);
-        output.WriteFloat(Yaw);
-      }
       if (Pitch != 0F) {
-        output.WriteRawTag(21);
+        output.WriteRawTag(13);
         output.WriteFloat(Pitch);
+      }
+      if (Yaw != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(Yaw);
       }
       if (Roll != 0F) {
         output.WriteRawTag(29);
@@ -477,10 +477,10 @@ namespace Zee.Proto.Data {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Yaw != 0F) {
+      if (Pitch != 0F) {
         size += 1 + 4;
       }
-      if (Pitch != 0F) {
+      if (Yaw != 0F) {
         size += 1 + 4;
       }
       if (Roll != 0F) {
@@ -498,11 +498,11 @@ namespace Zee.Proto.Data {
       if (other == null) {
         return;
       }
-      if (other.Yaw != 0F) {
-        Yaw = other.Yaw;
-      }
       if (other.Pitch != 0F) {
         Pitch = other.Pitch;
+      }
+      if (other.Yaw != 0F) {
+        Yaw = other.Yaw;
       }
       if (other.Roll != 0F) {
         Roll = other.Roll;
@@ -523,11 +523,11 @@ namespace Zee.Proto.Data {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 13: {
-            Yaw = input.ReadFloat();
+            Pitch = input.ReadFloat();
             break;
           }
           case 21: {
-            Pitch = input.ReadFloat();
+            Yaw = input.ReadFloat();
             break;
           }
           case 29: {
@@ -550,11 +550,11 @@ namespace Zee.Proto.Data {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 13: {
-            Yaw = input.ReadFloat();
+            Pitch = input.ReadFloat();
             break;
           }
           case 21: {
-            Pitch = input.ReadFloat();
+            Yaw = input.ReadFloat();
             break;
           }
           case 29: {

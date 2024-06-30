@@ -36,8 +36,8 @@ struct VectorDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT VectorDefaultTypeInternal _Vector_default_instance_;
 constexpr Rotator::Rotator(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : yaw_(0)
-  , pitch_(0)
+  : pitch_(0)
+  , yaw_(0)
   , roll_(0){}
 struct RotatorDefaultTypeInternal {
   constexpr RotatorDefaultTypeInternal()
@@ -86,8 +86,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Data_2fDataCommon_2eproto::off
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Data::Rotator, yaw_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Data::Rotator, pitch_),
+  PROTOBUF_FIELD_OFFSET(::Zee::Proto::Data::Rotator, yaw_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Data::Rotator, roll_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::Data::Position, _internal_metadata_),
@@ -115,7 +115,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 const char descriptor_table_protodef_Data_2fDataCommon_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\025Data/DataCommon.proto\022\016Zee.Proto.Data\""
   ")\n\006Vector\022\t\n\001X\030\001 \001(\002\022\t\n\001Y\030\002 \001(\002\022\t\n\001Z\030\003 \001"
-  "(\002\"3\n\007Rotator\022\013\n\003Yaw\030\001 \001(\002\022\r\n\005Pitch\030\002 \001("
+  "(\002\"3\n\007Rotator\022\r\n\005Pitch\030\001 \001(\002\022\013\n\003Yaw\030\002 \001("
   "\002\022\014\n\004Roll\030\003 \001(\002\"s\n\010Position\022\013\n\003UID\030\001 \001(\003"
   "\022\017\n\007MapName\030\002 \001(\t\022#\n\003Pos\030\003 \001(\0132\026.Zee.Pro"
   "to.Data.Vector\022$\n\003Rot\030\004 \001(\0132\027.Zee.Proto."
@@ -390,17 +390,17 @@ Rotator::Rotator(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 Rotator::Rotator(const Rotator& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&yaw_, &from.yaw_,
+  ::memcpy(&pitch_, &from.pitch_,
     static_cast<size_t>(reinterpret_cast<char*>(&roll_) -
-    reinterpret_cast<char*>(&yaw_)) + sizeof(roll_));
+    reinterpret_cast<char*>(&pitch_)) + sizeof(roll_));
   // @@protoc_insertion_point(copy_constructor:Zee.Proto.Data.Rotator)
 }
 
 void Rotator::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&yaw_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&pitch_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&roll_) -
-    reinterpret_cast<char*>(&yaw_)) + sizeof(roll_));
+    reinterpret_cast<char*>(&pitch_)) + sizeof(roll_));
 }
 
 Rotator::~Rotator() {
@@ -430,9 +430,9 @@ void Rotator::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&yaw_, 0, static_cast<size_t>(
+  ::memset(&pitch_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&roll_) -
-      reinterpret_cast<char*>(&yaw_)) + sizeof(roll_));
+      reinterpret_cast<char*>(&pitch_)) + sizeof(roll_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -442,18 +442,18 @@ const char* Rotator::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // float Yaw = 1;
+      // float Pitch = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
-          yaw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          pitch_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
-      // float Pitch = 2;
+      // float Yaw = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
-          pitch_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          yaw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -495,16 +495,16 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // float Yaw = 1;
-  if (!(this->_internal_yaw() <= 0 && this->_internal_yaw() >= 0)) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_yaw(), target);
-  }
-
-  // float Pitch = 2;
+  // float Pitch = 1;
   if (!(this->_internal_pitch() <= 0 && this->_internal_pitch() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_pitch(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_pitch(), target);
+  }
+
+  // float Yaw = 2;
+  if (!(this->_internal_yaw() <= 0 && this->_internal_yaw() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_yaw(), target);
   }
 
   // float Roll = 3;
@@ -529,13 +529,13 @@ size_t Rotator::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // float Yaw = 1;
-  if (!(this->_internal_yaw() <= 0 && this->_internal_yaw() >= 0)) {
+  // float Pitch = 1;
+  if (!(this->_internal_pitch() <= 0 && this->_internal_pitch() >= 0)) {
     total_size += 1 + 4;
   }
 
-  // float Pitch = 2;
-  if (!(this->_internal_pitch() <= 0 && this->_internal_pitch() >= 0)) {
+  // float Yaw = 2;
+  if (!(this->_internal_yaw() <= 0 && this->_internal_yaw() >= 0)) {
     total_size += 1 + 4;
   }
 
@@ -566,11 +566,11 @@ void Rotator::MergeFrom(const Rotator& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!(from._internal_yaw() <= 0 && from._internal_yaw() >= 0)) {
-    _internal_set_yaw(from._internal_yaw());
-  }
   if (!(from._internal_pitch() <= 0 && from._internal_pitch() >= 0)) {
     _internal_set_pitch(from._internal_pitch());
+  }
+  if (!(from._internal_yaw() <= 0 && from._internal_yaw() >= 0)) {
+    _internal_set_yaw(from._internal_yaw());
   }
   if (!(from._internal_roll() <= 0 && from._internal_roll() >= 0)) {
     _internal_set_roll(from._internal_roll());
@@ -595,9 +595,9 @@ void Rotator::InternalSwap(Rotator* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Rotator, roll_)
       + sizeof(Rotator::roll_)
-      - PROTOBUF_FIELD_OFFSET(Rotator, yaw_)>(
-          reinterpret_cast<char*>(&yaw_),
-          reinterpret_cast<char*>(&other->yaw_));
+      - PROTOBUF_FIELD_OFFSET(Rotator, pitch_)>(
+          reinterpret_cast<char*>(&pitch_),
+          reinterpret_cast<char*>(&other->pitch_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Rotator::GetMetadata() const {

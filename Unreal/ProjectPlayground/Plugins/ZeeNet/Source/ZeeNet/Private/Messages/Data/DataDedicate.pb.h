@@ -190,11 +190,11 @@ class DedicateServer final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kIPFieldNumber = 1,
-    kPortFieldNumber = 2,
+    kIpFieldNumber = 1,
     kMapNameFieldNumber = 3,
+    kPortFieldNumber = 2,
   };
-  // string IP = 1;
+  // string Ip = 1;
   void clear_ip();
   const std::string& ip() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -206,20 +206,6 @@ class DedicateServer final :
   const std::string& _internal_ip() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_ip(const std::string& value);
   std::string* _internal_mutable_ip();
-  public:
-
-  // string Port = 2;
-  void clear_port();
-  const std::string& port() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_port(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_port();
-  PROTOBUF_MUST_USE_RESULT std::string* release_port();
-  void set_allocated_port(std::string* port);
-  private:
-  const std::string& _internal_port() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_port(const std::string& value);
-  std::string* _internal_mutable_port();
   public:
 
   // string MapName = 3;
@@ -236,6 +222,15 @@ class DedicateServer final :
   std::string* _internal_mutable_mapname();
   public:
 
+  // int32 Port = 2;
+  void clear_port();
+  ::PROTOBUF_NAMESPACE_ID::int32 port() const;
+  void set_port(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_port() const;
+  void _internal_set_port(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Zee.Proto.Data.DedicateServer)
  private:
   class _Internal;
@@ -244,8 +239,8 @@ class DedicateServer final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ip_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr port_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mapname_;
+  ::PROTOBUF_NAMESPACE_ID::int32 port_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Data_2fDataDedicate_2eproto;
 };
@@ -260,12 +255,12 @@ class DedicateServer final :
 #endif  // __GNUC__
 // DedicateServer
 
-// string IP = 1;
+// string Ip = 1;
 inline void DedicateServer::clear_ip() {
   ip_.ClearToEmpty();
 }
 inline const std::string& DedicateServer::ip() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.Data.DedicateServer.IP)
+  // @@protoc_insertion_point(field_get:Zee.Proto.Data.DedicateServer.Ip)
   return _internal_ip();
 }
 template <typename ArgT0, typename... ArgT>
@@ -273,11 +268,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void DedicateServer::set_ip(ArgT0&& arg0, ArgT... args) {
  
  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Zee.Proto.Data.DedicateServer.IP)
+  // @@protoc_insertion_point(field_set:Zee.Proto.Data.DedicateServer.Ip)
 }
 inline std::string* DedicateServer::mutable_ip() {
   std::string* _s = _internal_mutable_ip();
-  // @@protoc_insertion_point(field_mutable:Zee.Proto.Data.DedicateServer.IP)
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.Data.DedicateServer.Ip)
   return _s;
 }
 inline const std::string& DedicateServer::_internal_ip() const {
@@ -292,7 +287,7 @@ inline std::string* DedicateServer::_internal_mutable_ip() {
   return ip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* DedicateServer::release_ip() {
-  // @@protoc_insertion_point(field_release:Zee.Proto.Data.DedicateServer.IP)
+  // @@protoc_insertion_point(field_release:Zee.Proto.Data.DedicateServer.Ip)
   return ip_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void DedicateServer::set_allocated_ip(std::string* ip) {
@@ -303,53 +298,27 @@ inline void DedicateServer::set_allocated_ip(std::string* ip) {
   }
   ip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ip,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Data.DedicateServer.IP)
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Data.DedicateServer.Ip)
 }
 
-// string Port = 2;
+// int32 Port = 2;
 inline void DedicateServer::clear_port() {
-  port_.ClearToEmpty();
+  port_ = 0;
 }
-inline const std::string& DedicateServer::port() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 DedicateServer::_internal_port() const {
+  return port_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DedicateServer::port() const {
   // @@protoc_insertion_point(field_get:Zee.Proto.Data.DedicateServer.Port)
   return _internal_port();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void DedicateServer::set_port(ArgT0&& arg0, ArgT... args) {
- 
- port_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline void DedicateServer::_internal_set_port(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  port_ = value;
+}
+inline void DedicateServer::set_port(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_port(value);
   // @@protoc_insertion_point(field_set:Zee.Proto.Data.DedicateServer.Port)
-}
-inline std::string* DedicateServer::mutable_port() {
-  std::string* _s = _internal_mutable_port();
-  // @@protoc_insertion_point(field_mutable:Zee.Proto.Data.DedicateServer.Port)
-  return _s;
-}
-inline const std::string& DedicateServer::_internal_port() const {
-  return port_.Get();
-}
-inline void DedicateServer::_internal_set_port(const std::string& value) {
-  
-  port_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* DedicateServer::_internal_mutable_port() {
-  
-  return port_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* DedicateServer::release_port() {
-  // @@protoc_insertion_point(field_release:Zee.Proto.Data.DedicateServer.Port)
-  return port_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void DedicateServer::set_allocated_port(std::string* port) {
-  if (port != nullptr) {
-    
-  } else {
-    
-  }
-  port_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), port,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.Data.DedicateServer.Port)
 }
 
 // string MapName = 3;

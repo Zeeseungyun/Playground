@@ -22,17 +22,19 @@ namespace Zee.Net.Message
 			mapping<Zee.Proto.Authentication.Logout>(0x1002);
 			mapping<Zee.Proto.Chat.Speak>(0x2002);
 			mapping<Zee.Proto.Chat.Speak1>(0x2001);
-			mapping<Zee.Proto.Packet.Header>(0x3001);
-			mapping<Zee.Proto.Test.TestMessage>(0x4001);
-			mapping<Zee.Proto.UserCharacter.Create>(0x5001);
-			mapping<Zee.Proto.UserCharacter.Get>(0x5002);
-			mapping<Zee.Proto.UserCharacter.Select>(0x5003);
-			mapping<Zee.Proto.Data.Account>(0x6001);
-			mapping<Zee.Proto.Data.Character>(0x7001);
-			mapping<Zee.Proto.Data.Vector>(0x8001);
-			mapping<Zee.Proto.Data.Rotator>(0x8002);
-			mapping<Zee.Proto.Data.Position>(0x8003);
-			mapping<Zee.Proto.Data.DedicateServer>(0x9001);
+			mapping<Zee.Proto.Dedicate.Login>(0x3001);
+			mapping<Zee.Proto.Dedicate.Move>(0x3002);
+			mapping<Zee.Proto.Dedicate.Leave>(0x3003);
+			mapping<Zee.Proto.Packet.Header>(0x4001);
+			mapping<Zee.Proto.Test.TestMessage>(0x5001);
+			mapping<Zee.Proto.UserCharacter.Create>(0x6001);
+			mapping<Zee.Proto.UserCharacter.Get>(0x6002);
+			mapping<Zee.Proto.Data.Account>(0x7001);
+			mapping<Zee.Proto.Data.Character>(0x8001);
+			mapping<Zee.Proto.Data.Vector>(0x9001);
+			mapping<Zee.Proto.Data.Rotator>(0x9002);
+			mapping<Zee.Proto.Data.Position>(0x9003);
+			mapping<Zee.Proto.Data.DedicateServer>(0xA001);
 
         }
     }

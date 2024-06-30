@@ -18,10 +18,3 @@ message Get {
     int64 User = 2;
     repeated Zee.Proto.Data.Character Characters = 3;
 }
-
-message Select {
-    ReturnCode RC = 1;
-    int64 UID = 2;
-    int32 Id = 3;
-    string Name = 4;
-}

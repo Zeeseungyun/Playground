@@ -32,19 +32,3 @@ void Zee::Net::Message::Convert::FromTo(const FZeeNetUserCharacterGet& InFrom, Z
 	for (const auto& Elem : InFrom.Characters) { FromTo(Elem, *OutTo.mutable_characters()->Add()); }
 }
 
-void Zee::Net::Message::Convert::FromTo(const Zee::Proto::UserCharacter::Select& InFrom, FZeeNetUserCharacterSelect& OutTo)
-{
-	OutTo.RC = To<EZeeNetUserCharacterReturnCode>(InFrom.rc()); 
-	OutTo.UID = To<int64>(InFrom.uid()); 
-	OutTo.Id = To<int32>(InFrom.id()); 
-	OutTo.Name = To<FString>(InFrom.name()); 
-}
-
-void Zee::Net::Message::Convert::FromTo(const FZeeNetUserCharacterSelect& InFrom, Zee::Proto::UserCharacter::Select& OutTo)
-{
-	OutTo.set_rc(To<Zee::Proto::UserCharacter::ReturnCode>(InFrom.RC)); 
-	OutTo.set_uid(To<int64>(InFrom.UID)); 
-	OutTo.set_id(To<int32>(InFrom.Id)); 
-	OutTo.set_name(To<std::string>(InFrom.Name)); 
-}
-

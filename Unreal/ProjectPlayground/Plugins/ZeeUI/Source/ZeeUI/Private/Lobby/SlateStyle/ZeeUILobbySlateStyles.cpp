@@ -1,22 +1,20 @@
 #include "ZeeUI/Public/Lobby/SlateStyle/ZeeUILobbySlateStyles.h"
 #include "Slate/SlateGameResources.h"
 
-TSharedPtr<FSlateStyleSet> FZeeUILobbySlateStyles::MenuStyleInstance;
-
 void FZeeUILobbySlateStyles::Initialize()
 {
-	if (!MenuStyleInstance.IsValid())
+	if (!GetMenuStyleInstance().IsValid())
 	{
-		MenuStyleInstance = Create();
-		FSlateStyleRegistry::RegisterSlateStyle(*MenuStyleInstance);
+		GetMenuStyleInstance() = Create();
+		FSlateStyleRegistry::RegisterSlateStyle(*GetMenuStyleInstance());
 	}
 }
 
 void FZeeUILobbySlateStyles::Shutdown()
 {
-	FSlateStyleRegistry::UnRegisterSlateStyle(*MenuStyleInstance);
-	ensure(MenuStyleInstance.IsUnique());
-	MenuStyleInstance.Reset();
+	FSlateStyleRegistry::UnRegisterSlateStyle(*GetMenuStyleInstance());
+	ensure(GetMenuStyleInstance().IsUnique());
+	GetMenuStyleInstance().Reset();
 }
 
 FName FZeeUILobbySlateStyles::GetStyleSetName()
@@ -30,7 +28,14 @@ TSharedRef<FSlateStyleSet> FZeeUILobbySlateStyles::Create()
 	return FSlateGameResources::New(FZeeUILobbySlateStyles::GetStyleSetName(), "/ZeeUI/Styles/", "/ZeeUI/Styles/");
 }
 
+TSharedPtr<class FSlateStyleSet>& FZeeUILobbySlateStyles::GetMenuStyleInstance()
+{
+	static TSharedPtr<class FSlateStyleSet> MenuStyleInstance;
+	return MenuStyleInstance;
+}
+
 const ISlateStyle& FZeeUILobbySlateStyles::Get()
 {
-	return *MenuStyleInstance;
+	Initialize();
+	return *GetMenuStyleInstance();
 }

@@ -21,5 +21,5 @@ struct FZeeNetDataAccount
 	FString Password; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataAccount> { static constexpr int32 Point = 0x6001; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataAccount> { static constexpr int32 Point = 0x7001; static constexpr bool bIsData = true; }; 
 

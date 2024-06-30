@@ -129,7 +129,7 @@ const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FZeeUILobbySlat
 	sizeof(FZeeUILobbySlateStyle),
 	alignof(FZeeUILobbySlateStyle),
 	RF_Public|RF_Transient|RF_MarkAsNative,
-	EStructFlags(0x00000001),
+	EStructFlags(0x00000201),
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FZeeUILobbySlateStyle_Statics::Struct_MetaDataParams), Z_Construct_UScriptStruct_FZeeUILobbySlateStyle_Statics::Struct_MetaDataParams)
 };
 UScriptStruct* Z_Construct_UScriptStruct_FZeeUILobbySlateStyle()
@@ -185,7 +185,7 @@ struct Z_Construct_UClass_UZeeUILobbySlateStyleContainer_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UZeeUILobbySlateStyleContainer_Statics::NewProp_LobbySlateStyle = { "LobbySlateStyle", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UZeeUILobbySlateStyleContainer, LobbySlateStyle), Z_Construct_UScriptStruct_FZeeUILobbySlateStyle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LobbySlateStyle_MetaData), NewProp_LobbySlateStyle_MetaData) }; // 3868751147
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UZeeUILobbySlateStyleContainer_Statics::NewProp_LobbySlateStyle = { "LobbySlateStyle", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UZeeUILobbySlateStyleContainer, LobbySlateStyle), Z_Construct_UScriptStruct_FZeeUILobbySlateStyle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LobbySlateStyle_MetaData), NewProp_LobbySlateStyle_MetaData) }; // 2876797660
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UZeeUILobbySlateStyleContainer_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UZeeUILobbySlateStyleContainer_Statics::NewProp_LobbySlateStyle,
 };
@@ -231,13 +231,13 @@ UZeeUILobbySlateStyleContainer::~UZeeUILobbySlateStyleContainer() {}
 struct Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeUI_Source_ZeeUI_Public_Lobby_SlateStyle_ZeeUILobbySlateStyle_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FZeeUILobbySlateStyle::StaticStruct, Z_Construct_UScriptStruct_FZeeUILobbySlateStyle_Statics::NewStructOps, TEXT("ZeeUILobbySlateStyle"), &Z_Registration_Info_UScriptStruct_ZeeUILobbySlateStyle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeUILobbySlateStyle), 3868751147U) },
+		{ FZeeUILobbySlateStyle::StaticStruct, Z_Construct_UScriptStruct_FZeeUILobbySlateStyle_Statics::NewStructOps, TEXT("ZeeUILobbySlateStyle"), &Z_Registration_Info_UScriptStruct_ZeeUILobbySlateStyle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FZeeUILobbySlateStyle), 2876797660U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UZeeUILobbySlateStyleContainer, UZeeUILobbySlateStyleContainer::StaticClass, TEXT("UZeeUILobbySlateStyleContainer"), &Z_Registration_Info_UClass_UZeeUILobbySlateStyleContainer, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UZeeUILobbySlateStyleContainer), 1221905329U) },
+		{ Z_Construct_UClass_UZeeUILobbySlateStyleContainer, UZeeUILobbySlateStyleContainer::StaticClass, TEXT("UZeeUILobbySlateStyleContainer"), &Z_Registration_Info_UClass_UZeeUILobbySlateStyleContainer, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UZeeUILobbySlateStyleContainer), 2082997506U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeUI_Source_ZeeUI_Public_Lobby_SlateStyle_ZeeUILobbySlateStyle_h_3215329433(TEXT("/Script/ZeeUI"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeUI_Source_ZeeUI_Public_Lobby_SlateStyle_ZeeUILobbySlateStyle_h_2089538098(TEXT("/Script/ZeeUI"),
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeUI_Source_ZeeUI_Public_Lobby_SlateStyle_ZeeUILobbySlateStyle_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeUI_Source_ZeeUI_Public_Lobby_SlateStyle_ZeeUILobbySlateStyle_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeUI_Source_ZeeUI_Public_Lobby_SlateStyle_ZeeUILobbySlateStyle_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ProjectPlayground_Plugins_ZeeUI_Source_ZeeUI_Public_Lobby_SlateStyle_ZeeUILobbySlateStyle_h_Statics::ScriptStructInfo),
 	nullptr, 0);

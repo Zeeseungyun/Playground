@@ -14,15 +14,10 @@ namespace Zee.Net
                 r.Response(p);
             }
 
-            p.Message.Character.UID = Account.UID;
+            p.Message.Character.User = Account.UID;
             p.Message = Database.Character.Create(p.Message);
             r.Response(p); 
         }
 
-        public void OnRequest(Message.IResponser r, Message.Packet<Zee.Proto.UserCharacter.Select> p)
-        {
-            //need to server travel
-            r.Response(p);
-        }
     }
 }

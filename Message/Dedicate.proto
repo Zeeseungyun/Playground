@@ -1,0 +1,29 @@
+syntax = "proto3";
+package Zee.Proto.Dedicate;
+import "Data/DataDedicate.proto";
+import "Data/DataCharacter.proto";
+import "Data/DataCommon.proto";
+
+enum ReturnCode {
+    RC_SUCCESS = 0;
+    RC_FAILED_UNKNOWN = 1;
+    RC_FAILED_DEDI_NOT_FOUND = 2;
+}
+
+message Login {
+    ReturnCode RC = 1;
+    Zee.Proto.Data.DedicateServer DedicateServer = 2;
+}
+
+message Move {
+    ReturnCode RC = 1;
+    Zee.Proto.Data.Character Character = 2;
+    Zee.Proto.Data.DedicateServer ToServer = 3;
+    Zee.Proto.Data.Position Position = 4;
+    string UserIp = 5;
+}
+
+message Leave {
+    Zee.Proto.Data.Character Character = 1;
+    Zee.Proto.Data.Position Position = 2;
+}

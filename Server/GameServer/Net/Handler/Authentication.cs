@@ -4,14 +4,6 @@ namespace Zee.Net
 {
     public partial class ClientHandler
     {
-        public void OnNotify(Message.Packet<Proto.Authentication.Login> packet)
-        {
-        }
-
-        public void OnNotify(Message.Packet<Proto.Authentication.Logout> packet)
-        {
-        }
-
 		public void OnRequest(Message.IResponser r, Message.Packet<Zee.Proto.Authentication.Login> p) 
         { 
             if(p.Message.Account.Id.Length == 0)
@@ -32,6 +24,7 @@ namespace Zee.Net
             if(p.Message.RC == Proto.Authentication.ReturnCode.RcSuccess)
             {
                 Account = p.Message.Account;
+                Logger.LogInformation($"[{Account.Id} logged in.]");
             }
 
             r.Response(p);

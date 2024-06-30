@@ -5,15 +5,15 @@
 
 void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Data::DedicateServer& InFrom, FZeeNetDataDedicateServer& OutTo)
 {
-	OutTo.IP = To<FString>(InFrom.ip()); 
-	OutTo.Port = To<FString>(InFrom.port()); 
+	OutTo.Ip = To<FString>(InFrom.ip()); 
+	OutTo.Port = To<int32>(InFrom.port()); 
 	OutTo.MapName = To<FString>(InFrom.mapname()); 
 }
 
 void Zee::Net::Message::Convert::FromTo(const FZeeNetDataDedicateServer& InFrom, Zee::Proto::Data::DedicateServer& OutTo)
 {
-	OutTo.set_ip(To<std::string>(InFrom.IP)); 
-	OutTo.set_port(To<std::string>(InFrom.Port)); 
+	OutTo.set_ip(To<std::string>(InFrom.Ip)); 
+	OutTo.set_port(To<int32>(InFrom.Port)); 
 	OutTo.set_mapname(To<std::string>(InFrom.MapName)); 
 }
 

@@ -363,26 +363,26 @@ class Rotator final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kYawFieldNumber = 1,
-    kPitchFieldNumber = 2,
+    kPitchFieldNumber = 1,
+    kYawFieldNumber = 2,
     kRollFieldNumber = 3,
   };
-  // float Yaw = 1;
-  void clear_yaw();
-  float yaw() const;
-  void set_yaw(float value);
-  private:
-  float _internal_yaw() const;
-  void _internal_set_yaw(float value);
-  public:
-
-  // float Pitch = 2;
+  // float Pitch = 1;
   void clear_pitch();
   float pitch() const;
   void set_pitch(float value);
   private:
   float _internal_pitch() const;
   void _internal_set_pitch(float value);
+  public:
+
+  // float Yaw = 2;
+  void clear_yaw();
+  float yaw() const;
+  void set_yaw(float value);
+  private:
+  float _internal_yaw() const;
+  void _internal_set_yaw(float value);
   public:
 
   // float Roll = 3;
@@ -401,8 +401,8 @@ class Rotator final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  float yaw_;
   float pitch_;
+  float yaw_;
   float roll_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Data_2fDataCommon_2eproto;
@@ -681,27 +681,7 @@ inline void Vector::set_z(float value) {
 
 // Rotator
 
-// float Yaw = 1;
-inline void Rotator::clear_yaw() {
-  yaw_ = 0;
-}
-inline float Rotator::_internal_yaw() const {
-  return yaw_;
-}
-inline float Rotator::yaw() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.Data.Rotator.Yaw)
-  return _internal_yaw();
-}
-inline void Rotator::_internal_set_yaw(float value) {
-  
-  yaw_ = value;
-}
-inline void Rotator::set_yaw(float value) {
-  _internal_set_yaw(value);
-  // @@protoc_insertion_point(field_set:Zee.Proto.Data.Rotator.Yaw)
-}
-
-// float Pitch = 2;
+// float Pitch = 1;
 inline void Rotator::clear_pitch() {
   pitch_ = 0;
 }
@@ -719,6 +699,26 @@ inline void Rotator::_internal_set_pitch(float value) {
 inline void Rotator::set_pitch(float value) {
   _internal_set_pitch(value);
   // @@protoc_insertion_point(field_set:Zee.Proto.Data.Rotator.Pitch)
+}
+
+// float Yaw = 2;
+inline void Rotator::clear_yaw() {
+  yaw_ = 0;
+}
+inline float Rotator::_internal_yaw() const {
+  return yaw_;
+}
+inline float Rotator::yaw() const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.Data.Rotator.Yaw)
+  return _internal_yaw();
+}
+inline void Rotator::_internal_set_yaw(float value) {
+  
+  yaw_ = value;
+}
+inline void Rotator::set_yaw(float value) {
+  _internal_set_yaw(value);
+  // @@protoc_insertion_point(field_set:Zee.Proto.Data.Rotator.Yaw)
 }
 
 // float Roll = 3;

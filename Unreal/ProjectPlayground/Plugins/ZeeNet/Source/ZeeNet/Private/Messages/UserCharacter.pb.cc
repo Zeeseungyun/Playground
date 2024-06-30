@@ -49,26 +49,10 @@ struct GetDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GetDefaultTypeInternal _Get_default_instance_;
-constexpr Select::Select(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , uid_(int64_t{0})
-  , rc_(0)
-
-  , id_(0){}
-struct SelectDefaultTypeInternal {
-  constexpr SelectDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~SelectDefaultTypeInternal() {}
-  union {
-    Select _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SelectDefaultTypeInternal _Select_default_instance_;
 }  // namespace UserCharacter
 }  // namespace Proto
 }  // namespace Zee
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_UserCharacter_2eproto[3];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_UserCharacter_2eproto[2];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_UserCharacter_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_UserCharacter_2eproto = nullptr;
 
@@ -90,27 +74,15 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_UserCharacter_2eproto::offsets
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::UserCharacter::Get, rc_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::UserCharacter::Get, user_),
   PROTOBUF_FIELD_OFFSET(::Zee::Proto::UserCharacter::Get, characters_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::Zee::Proto::UserCharacter::Select, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Zee::Proto::UserCharacter::Select, rc_),
-  PROTOBUF_FIELD_OFFSET(::Zee::Proto::UserCharacter::Select, uid_),
-  PROTOBUF_FIELD_OFFSET(::Zee::Proto::UserCharacter::Select, id_),
-  PROTOBUF_FIELD_OFFSET(::Zee::Proto::UserCharacter::Select, name_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Zee::Proto::UserCharacter::Create)},
   { 8, -1, -1, sizeof(::Zee::Proto::UserCharacter::Get)},
-  { 17, -1, -1, sizeof(::Zee::Proto::UserCharacter::Select)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Zee::Proto::UserCharacter::_Create_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Zee::Proto::UserCharacter::_Get_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Zee::Proto::UserCharacter::_Select_default_instance_),
 };
 
 const char descriptor_table_protodef_UserCharacter_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -121,20 +93,17 @@ const char descriptor_table_protodef_UserCharacter_2eproto[] PROTOBUF_SECTION_VA
   "to.Data.Character\"s\n\003Get\022/\n\002RC\030\001 \001(\0162#.Z"
   "ee.Proto.UserCharacter.ReturnCode\022\014\n\004Use"
   "r\030\002 \001(\003\022-\n\nCharacters\030\003 \003(\0132\031.Zee.Proto."
-  "Data.Character\"`\n\006Select\022/\n\002RC\030\001 \001(\0162#.Z"
-  "ee.Proto.UserCharacter.ReturnCode\022\013\n\003UID"
-  "\030\002 \001(\003\022\n\n\002Id\030\003 \001(\005\022\014\n\004Name\030\004 \001(\t*Y\n\nRetu"
-  "rnCode\022\016\n\nRC_SUCCESS\020\000\022\025\n\021RC_FAILED_UNKN"
-  "OWN\020\001\022$\n RC_FAILED_CREATE_DUPLICATED_NAM"
-  "E\020\002b\006proto3"
+  "Data.Character*Y\n\nReturnCode\022\016\n\nRC_SUCCE"
+  "SS\020\000\022\025\n\021RC_FAILED_UNKNOWN\020\001\022$\n RC_FAILED"
+  "_CREATE_DUPLICATED_NAME\020\002b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_UserCharacter_2eproto_deps[1] = {
   &::descriptor_table_Data_2fDataCharacter_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_UserCharacter_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_UserCharacter_2eproto = {
-  false, false, 491, descriptor_table_protodef_UserCharacter_2eproto, "UserCharacter.proto", 
-  &descriptor_table_UserCharacter_2eproto_once, descriptor_table_UserCharacter_2eproto_deps, 1, 3,
+  false, false, 393, descriptor_table_protodef_UserCharacter_2eproto, "UserCharacter.proto", 
+  &descriptor_table_UserCharacter_2eproto_once, descriptor_table_UserCharacter_2eproto_deps, 1, 2,
   schemas, file_default_instances, TableStruct_UserCharacter_2eproto::offsets,
   file_level_metadata_UserCharacter_2eproto, file_level_enum_descriptors_UserCharacter_2eproto, file_level_service_descriptors_UserCharacter_2eproto,
 };
@@ -650,288 +619,6 @@ void Get::InternalSwap(Get* other) {
       file_level_metadata_UserCharacter_2eproto[1]);
 }
 
-// ===================================================================
-
-class Select::_Internal {
- public:
-};
-
-Select::Select(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
-  // @@protoc_insertion_point(arena_constructor:Zee.Proto.UserCharacter.Select)
-}
-Select::Select(const Select& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_name().empty()) {
-    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
-      GetArenaForAllocation());
-  }
-  ::memcpy(&uid_, &from.uid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&id_) -
-    reinterpret_cast<char*>(&uid_)) + sizeof(id_));
-  // @@protoc_insertion_point(copy_constructor:Zee.Proto.UserCharacter.Select)
-}
-
-void Select::SharedCtor() {
-name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&uid_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&id_) -
-    reinterpret_cast<char*>(&uid_)) + sizeof(id_));
-}
-
-Select::~Select() {
-  // @@protoc_insertion_point(destructor:Zee.Proto.UserCharacter.Select)
-  if (GetArenaForAllocation() != nullptr) return;
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-inline void Select::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void Select::ArenaDtor(void* object) {
-  Select* _this = reinterpret_cast< Select* >(object);
-  (void)_this;
-}
-void Select::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void Select::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void Select::Clear() {
-// @@protoc_insertion_point(message_clear_start:Zee.Proto.UserCharacter.Select)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  name_.ClearToEmpty();
-  ::memset(&uid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&id_) -
-      reinterpret_cast<char*>(&uid_)) + sizeof(id_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* Select::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .Zee.Proto.UserCharacter.ReturnCode RC = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_rc(static_cast<::Zee::Proto::UserCharacter::ReturnCode>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 UID = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          uid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 Id = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string Name = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          auto str = _internal_mutable_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "Zee.Proto.UserCharacter.Select.Name"));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* Select::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Zee.Proto.UserCharacter.Select)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .Zee.Proto.UserCharacter.ReturnCode RC = 1;
-  if (this->_internal_rc() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_rc(), target);
-  }
-
-  // int64 UID = 2;
-  if (this->_internal_uid() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(2, this->_internal_uid(), target);
-  }
-
-  // int32 Id = 3;
-  if (this->_internal_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_id(), target);
-  }
-
-  // string Name = 4;
-  if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Zee.Proto.UserCharacter.Select.Name");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_name(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Zee.Proto.UserCharacter.Select)
-  return target;
-}
-
-size_t Select::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Zee.Proto.UserCharacter.Select)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string Name = 4;
-  if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
-  }
-
-  // int64 UID = 2;
-  if (this->_internal_uid() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_uid());
-  }
-
-  // .Zee.Proto.UserCharacter.ReturnCode RC = 1;
-  if (this->_internal_rc() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_rc());
-  }
-
-  // int32 Id = 3;
-  if (this->_internal_id() != 0) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_id());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Select::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    Select::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Select::GetClassData() const { return &_class_data_; }
-
-void Select::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Select *>(to)->MergeFrom(
-      static_cast<const Select &>(from));
-}
-
-
-void Select::MergeFrom(const Select& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:Zee.Proto.UserCharacter.Select)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
-  }
-  if (from._internal_uid() != 0) {
-    _internal_set_uid(from._internal_uid());
-  }
-  if (from._internal_rc() != 0) {
-    _internal_set_rc(from._internal_rc());
-  }
-  if (from._internal_id() != 0) {
-    _internal_set_id(from._internal_id());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void Select::CopyFrom(const Select& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Zee.Proto.UserCharacter.Select)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Select::IsInitialized() const {
-  return true;
-}
-
-void Select::InternalSwap(Select* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Select, id_)
-      + sizeof(Select::id_)
-      - PROTOBUF_FIELD_OFFSET(Select, uid_)>(
-          reinterpret_cast<char*>(&uid_),
-          reinterpret_cast<char*>(&other->uid_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata Select::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
-      &descriptor_table_UserCharacter_2eproto_getter, &descriptor_table_UserCharacter_2eproto_once,
-      file_level_metadata_UserCharacter_2eproto[2]);
-}
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace UserCharacter
 }  // namespace Proto
@@ -942,9 +629,6 @@ template<> PROTOBUF_NOINLINE ::Zee::Proto::UserCharacter::Create* Arena::CreateM
 }
 template<> PROTOBUF_NOINLINE ::Zee::Proto::UserCharacter::Get* Arena::CreateMaybeMessage< ::Zee::Proto::UserCharacter::Get >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Zee::Proto::UserCharacter::Get >(arena);
-}
-template<> PROTOBUF_NOINLINE ::Zee::Proto::UserCharacter::Select* Arena::CreateMaybeMessage< ::Zee::Proto::UserCharacter::Select >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::Zee::Proto::UserCharacter::Select >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

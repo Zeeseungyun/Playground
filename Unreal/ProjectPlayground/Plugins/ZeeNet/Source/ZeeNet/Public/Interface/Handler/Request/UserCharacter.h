@@ -19,9 +19,5 @@ struct ZEENET_API IZeeNetRequestHandler_UserCharacter
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
-	[[nodiscard]] virtual EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetUserCharacterSelect>& InPacket) { 
-		return EZeeNetRequestHandlerResponse::NoResponse; 
-	}
-
 };
 

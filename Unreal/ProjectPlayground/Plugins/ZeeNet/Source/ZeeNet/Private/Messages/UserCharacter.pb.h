@@ -48,7 +48,7 @@ struct TableStruct_UserCharacter_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -64,16 +64,12 @@ extern CreateDefaultTypeInternal _Create_default_instance_;
 class Get;
 struct GetDefaultTypeInternal;
 extern GetDefaultTypeInternal _Get_default_instance_;
-class Select;
-struct SelectDefaultTypeInternal;
-extern SelectDefaultTypeInternal _Select_default_instance_;
 }  // namespace UserCharacter
 }  // namespace Proto
 }  // namespace Zee
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Zee::Proto::UserCharacter::Create* Arena::CreateMaybeMessage<::Zee::Proto::UserCharacter::Create>(Arena*);
 template<> ::Zee::Proto::UserCharacter::Get* Arena::CreateMaybeMessage<::Zee::Proto::UserCharacter::Get>(Arena*);
-template<> ::Zee::Proto::UserCharacter::Select* Arena::CreateMaybeMessage<::Zee::Proto::UserCharacter::Select>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Zee {
 namespace Proto {
@@ -442,187 +438,6 @@ class Get final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserCharacter_2eproto;
 };
-// -------------------------------------------------------------------
-
-class Select final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Zee.Proto.UserCharacter.Select) */ {
- public:
-  inline Select() : Select(nullptr) {}
-  ~Select() override;
-  explicit constexpr Select(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  Select(const Select& from);
-  Select(Select&& from) noexcept
-    : Select() {
-    *this = ::std::move(from);
-  }
-
-  inline Select& operator=(const Select& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Select& operator=(Select&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Select& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Select* internal_default_instance() {
-    return reinterpret_cast<const Select*>(
-               &_Select_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(Select& a, Select& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Select* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Select* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline Select* New() const final {
-    return new Select();
-  }
-
-  Select* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Select>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Select& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const Select& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Select* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Zee.Proto.UserCharacter.Select";
-  }
-  protected:
-  explicit Select(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kNameFieldNumber = 4,
-    kUIDFieldNumber = 2,
-    kRCFieldNumber = 1,
-    kIdFieldNumber = 3,
-  };
-  // string Name = 4;
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_MUST_USE_RESULT std::string* release_name();
-  void set_allocated_name(std::string* name);
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
-  public:
-
-  // int64 UID = 2;
-  void clear_uid();
-  ::PROTOBUF_NAMESPACE_ID::int64 uid() const;
-  void set_uid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_uid() const;
-  void _internal_set_uid(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // .Zee.Proto.UserCharacter.ReturnCode RC = 1;
-  void clear_rc();
-  ::Zee::Proto::UserCharacter::ReturnCode rc() const;
-  void set_rc(::Zee::Proto::UserCharacter::ReturnCode value);
-  private:
-  ::Zee::Proto::UserCharacter::ReturnCode _internal_rc() const;
-  void _internal_set_rc(::Zee::Proto::UserCharacter::ReturnCode value);
-  public:
-
-  // int32 Id = 3;
-  void clear_id();
-  ::PROTOBUF_NAMESPACE_ID::int32 id() const;
-  void set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_id() const;
-  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:Zee.Proto.UserCharacter.Select)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::int64 uid_;
-  int rc_;
-  ::PROTOBUF_NAMESPACE_ID::int32 id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_UserCharacter_2eproto;
-};
 // ===================================================================
 
 
@@ -821,121 +636,9 @@ Get::characters() const {
   return characters_;
 }
 
-// -------------------------------------------------------------------
-
-// Select
-
-// .Zee.Proto.UserCharacter.ReturnCode RC = 1;
-inline void Select::clear_rc() {
-  rc_ = 0;
-}
-inline ::Zee::Proto::UserCharacter::ReturnCode Select::_internal_rc() const {
-  return static_cast< ::Zee::Proto::UserCharacter::ReturnCode >(rc_);
-}
-inline ::Zee::Proto::UserCharacter::ReturnCode Select::rc() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.RC)
-  return _internal_rc();
-}
-inline void Select::_internal_set_rc(::Zee::Proto::UserCharacter::ReturnCode value) {
-  
-  rc_ = value;
-}
-inline void Select::set_rc(::Zee::Proto::UserCharacter::ReturnCode value) {
-  _internal_set_rc(value);
-  // @@protoc_insertion_point(field_set:Zee.Proto.UserCharacter.Select.RC)
-}
-
-// int64 UID = 2;
-inline void Select::clear_uid() {
-  uid_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Select::_internal_uid() const {
-  return uid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Select::uid() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.UID)
-  return _internal_uid();
-}
-inline void Select::_internal_set_uid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  uid_ = value;
-}
-inline void Select::set_uid(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_uid(value);
-  // @@protoc_insertion_point(field_set:Zee.Proto.UserCharacter.Select.UID)
-}
-
-// int32 Id = 3;
-inline void Select::clear_id() {
-  id_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 Select::_internal_id() const {
-  return id_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 Select::id() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.Id)
-  return _internal_id();
-}
-inline void Select::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  id_ = value;
-}
-inline void Select::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:Zee.Proto.UserCharacter.Select.Id)
-}
-
-// string Name = 4;
-inline void Select::clear_name() {
-  name_.ClearToEmpty();
-}
-inline const std::string& Select::name() const {
-  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.Name)
-  return _internal_name();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Select::set_name(ArgT0&& arg0, ArgT... args) {
- 
- name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Zee.Proto.UserCharacter.Select.Name)
-}
-inline std::string* Select::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:Zee.Proto.UserCharacter.Select.Name)
-  return _s;
-}
-inline const std::string& Select::_internal_name() const {
-  return name_.Get();
-}
-inline void Select::_internal_set_name(const std::string& value) {
-  
-  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* Select::_internal_mutable_name() {
-  
-  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* Select::release_name() {
-  // @@protoc_insertion_point(field_release:Zee.Proto.UserCharacter.Select.Name)
-  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void Select::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
-    
-  } else {
-    
-  }
-  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.UserCharacter.Select.Name)
-}
-
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 

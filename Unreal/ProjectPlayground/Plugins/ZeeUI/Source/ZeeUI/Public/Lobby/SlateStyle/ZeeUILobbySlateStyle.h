@@ -4,7 +4,7 @@
 #include "ZeeUILobbySlateStyle.generated.h" 
 
 USTRUCT()
-struct FZeeUILobbySlateStyle : public FSlateWidgetStyle
+struct ZEEUI_API FZeeUILobbySlateStyle : public FSlateWidgetStyle
 {
 	GENERATED_BODY()
 public:

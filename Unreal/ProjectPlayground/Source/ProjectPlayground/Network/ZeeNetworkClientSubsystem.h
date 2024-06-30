@@ -21,6 +21,8 @@ public:
 	/** Implement this for deinitialization of instances of the system */
 	void Deinitialize() override;
 
+	bool IsDedicatedServerInstance() const;
+
 protected:
 	TSharedPtr<class FZeeNetClient> MyClient;
 
@@ -32,5 +34,10 @@ protected:
 public:
 	void ConnectToGameServer();
 	TSharedPtr<class FZeeNetClient> GetClient() const { return MyClient; }
+	
+	//server only
+	FString DedicatedServerMapName;
 
+	//client only
+	int64 UserId = 0;
 };

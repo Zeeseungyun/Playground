@@ -12,14 +12,14 @@ struct FZeeNetDataDedicateServer
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite) 
-	FString IP; 
+	FString Ip; 
 
 	UPROPERTY(BlueprintReadWrite) 
-	FString Port; 
+	int32 Port = static_cast<int32>(0); 
 
 	UPROPERTY(BlueprintReadWrite) 
 	FString MapName; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataDedicateServer> { static constexpr int32 Point = 0x9001; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataDedicateServer> { static constexpr int32 Point = 0xA001; static constexpr bool bIsData = true; }; 
 

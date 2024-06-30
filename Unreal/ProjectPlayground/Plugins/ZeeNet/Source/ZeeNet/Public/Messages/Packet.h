@@ -35,5 +35,5 @@ struct FZeeNetPacketHeader
 	EZeeNetPacketType PacketType = static_cast<EZeeNetPacketType>(0); 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetPacketHeader> { static constexpr int32 Point = 0x3001; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetPacketHeader> { static constexpr int32 Point = 0x4001; static constexpr bool bIsData = false; }; 
 

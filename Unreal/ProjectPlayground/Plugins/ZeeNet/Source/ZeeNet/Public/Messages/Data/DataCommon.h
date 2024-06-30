@@ -20,8 +20,21 @@ struct FZeeNetDataVector
 	UPROPERTY(BlueprintReadWrite) 
 	float Z = static_cast<float>(0); 
 
+  ///for convert FVector
+	operator FVector() const { return FVector{ X,Y,Z }; }
+	FZeeNetDataVector& operator=(const FVector& InValue) { X = InValue.X; Y = InValue.Y; Z = InValue.Z; return *this; }
+
+	FZeeNetDataVector& operator=(const FZeeNetDataVector&) = default;
+	FZeeNetDataVector& operator=(FZeeNetDataVector&&) = default;
+    FZeeNetDataVector(const FZeeNetDataVector&) = default;
+	FZeeNetDataVector(FZeeNetDataVector&&) = default;
+	FZeeNetDataVector(const FVector& InValue) : X(InValue.X), Y(InValue.Y), Z(InValue.Z) { }
+	FZeeNetDataVector(FVector&& InValue): FZeeNetDataVector(InValue) { }
+	FZeeNetDataVector() = default;
+	~FZeeNetDataVector() = default;
+
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataVector> { static constexpr int32 Point = 0x8001; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataVector> { static constexpr int32 Point = 0x9001; static constexpr bool bIsData = true; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetDataRotator 
@@ -29,16 +42,30 @@ struct FZeeNetDataRotator
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite) 
-	float Yaw = static_cast<float>(0); 
+	float Pitch = static_cast<float>(0); 
 
 	UPROPERTY(BlueprintReadWrite) 
-	float Pitch = static_cast<float>(0); 
+	float Yaw = static_cast<float>(0); 
 
 	UPROPERTY(BlueprintReadWrite) 
 	float Roll = static_cast<float>(0); 
 
+  ///for convert FRotator
+	operator FRotator() const { return FRotator{ Pitch, Yaw, Roll }; }
+	operator FQuat() const { return FQuat(FRotator{ Pitch, Yaw, Roll }); }
+	FZeeNetDataRotator& operator=(const FRotator& InValue) { Pitch = InValue.Pitch; Yaw = InValue.Yaw; Roll = InValue.Roll; return *this; }
+
+	FZeeNetDataRotator& operator=(const FZeeNetDataRotator&) = default;
+	FZeeNetDataRotator& operator=(FZeeNetDataRotator&&) = default;
+	FZeeNetDataRotator(const FRotator& InValue) : Pitch(InValue.Pitch), Yaw(InValue.Yaw), Roll(InValue.Roll) { }
+	FZeeNetDataRotator(FRotator&& InValue) : FZeeNetDataRotator(InValue) { }
+	FZeeNetDataRotator(const FZeeNetDataRotator&) = default; 
+	FZeeNetDataRotator(FZeeNetDataRotator&&) = default;
+	FZeeNetDataRotator() = default;
+	~FZeeNetDataRotator() = default;
+
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataRotator> { static constexpr int32 Point = 0x8002; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataRotator> { static constexpr int32 Point = 0x9002; static constexpr bool bIsData = true; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetDataPosition 
@@ -58,5 +85,5 @@ struct FZeeNetDataPosition
 	FZeeNetDataRotator Rot; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataPosition> { static constexpr int32 Point = 0x8003; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataPosition> { static constexpr int32 Point = 0x9003; static constexpr bool bIsData = true; }; 
 

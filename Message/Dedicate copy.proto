@@ -1,0 +1,20 @@
+syntax = "proto3";
+package Zee.Proto.Collection;
+
+enum ReturnCode {
+    RC_SUCCESS = 0;
+    RC_FAILED_UNKNOWN = 1;
+    
+}
+
+message Collect {
+    ReturnCode RC = 1;
+    int64 User = 2;
+    int32 Id = 3;
+}
+
+message Get {
+    ReturnCode RC = 1;
+    int64 User = 2;
+    repeated int32 Ids = 3;
+}

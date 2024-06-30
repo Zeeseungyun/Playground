@@ -2,18 +2,26 @@
 #include "Camera/CameraActor.h"
 #include "EngineUtils.h"
 #include "Engine/GameInstance.h"
+#include "Widgets/DeclarativeSyntaxSupport.h"
+#include "Kismet/GameplayStatics.h"
+
 #include "ZeeUI/Public/Lobby/SZeeUILobbyLogin.h"
+#include "ZeeUI/Public/Common/Alarm/SZeeUIPopup.h"
+#include "ZeeUI/Public/Lobby/SZeeUICharacterSpot.h"
+#include "ZeeUI/Public/Lobby/SZeeUICreateCharacter.h"
+
 #include "ZeeNet/Public/Messages/Authentication.h" 
+#include "ZeeNet/Public/Messages/UserCharacter.h" 
+#include "ZeeNet/Public/Messages/Dedicate.h" 
+
 #include "ProjectPlayground/Lobby/LobbyCharacterSpot.h"
 #include "ProjectPlayground/Lobby/LobbyCharacter.h"
 #include "ProjectPlayground/Network/ZeeNetworkClientSubsystem.h"
 #include "ProjectPlayground/Common/ZeeUtils.h"
-#include "ZeeUI/Public/Lobby/SZeeUICharacterSpot.h"
 
 void ALobbyPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-
 	TSubclassOf<ACameraActor> ClassToFind;
 	for (TActorIterator<ACameraActor> It(GetWorld()); It; ++It)
 	{
@@ -33,20 +41,62 @@ void ALobbyPlayerController::BeginPlay()
 		}
 	);
 
-	auto GetLobbyCharacter = [](class ALobbyCharacterSpot* Spot)
-		{
-			TArray<AActor*> AttachedActors;
-			Spot->GetAttachedActors(AttachedActors);
-			return Cast<ALobbyCharacter>(AttachedActors[0]);
-		};
-
-	for (const TWeakObjectPtr<class ALobbyCharacterSpot>& Elem : LobbyCharacterSpots)
+	for (int32 i = 0; i != LobbyCharacterSpots.Num(); ++i)
 	{
-		LobbyCharacters.Add(GetLobbyCharacter(Elem.Get()));
+		LobbyCharacterSpots[i]->OnWidgetButtonClicked.AddUObject(this, &ALobbyPlayerController::OnCharacterSpotButtonClicked, i + 1);
 	}
 
-	MyLoginWidget = SNew(SZeeUILobbyLogin).OnLoginClicked_UObject(this, &ALobbyPlayerController::OnLoginClicked);
-	GetWorld()->GetGameViewport()->AddViewportWidgetContent(MyLoginWidget.ToSharedRef());
+	ShowLoginWidget(true);
+}
+
+void ALobbyPlayerController::ShowLoginWidget(bool bVisible)
+{
+	if (bVisible)
+	{
+		if (!LoginWidget.IsValid())
+		{
+			LoginWidget = SNew(SZeeUILobbyLogin).OnLoginClicked_UObject(this, &ALobbyPlayerController::OnLoginClicked);
+		}
+		GetWorld()->GetGameViewport()->AddViewportWidgetContent(LoginWidget.ToSharedRef());
+	}
+	else
+	{
+		if (LoginWidget.IsValid())
+		{
+			GetWorld()->GetGameViewport()->RemoveViewportWidgetContent(LoginWidget.ToSharedRef());
+		}
+	}
+}
+
+void ALobbyPlayerController::ShowCreateCharacterWidget(bool bVisible, int32 Slot)
+{
+	if (bVisible)
+	{
+		if (!CreateCharacterWidget.IsValid())
+		{
+			CreateCharacterWidget =
+			SNew(SZeeUICreateCharacter)
+			.OnCancel(SZeeUICreateCharacter::FDel_OnCancel::CreateLambda([WeakThis = TWeakObjectPtr<ALobbyPlayerController>(this)]()
+				{
+					if (WeakThis.IsValid())
+					{
+						WeakThis->ShowCreateCharacterWidget(false, 0);
+					}
+				}
+			));
+		}
+
+		CreateCharacterWidget->DelConfirm = SZeeUICreateCharacter::FDel_OnConfirm::CreateUObject(this, &ALobbyPlayerController::OnCreateCharacterConfirm, Slot);
+
+		GetWorld()->GetGameViewport()->AddViewportWidgetContent(CreateCharacterWidget.ToSharedRef());
+	}
+	else
+	{
+		if (CreateCharacterWidget.IsValid())
+		{
+			GetWorld()->GetGameViewport()->RemoveViewportWidgetContent(CreateCharacterWidget.ToSharedRef());
+		}
+	}
 }
 
 FReply ALobbyPlayerController::OnLoginClicked()
@@ -71,20 +121,25 @@ FReply ALobbyPlayerController::OnLoginClicked()
 
 void ALobbyPlayerController::OnConnected(const FString& InMessage)
 {
-	UZeeNetworkClientSubsystem* NetworkSubsystem = UZeeNetworkClientSubsystem::Get(this);
+	UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
+	if (!::IsValid(NetworkClientSubsystem))
+	{
+		return;
+	}
+
 	if (InMessage.Len() == 0)
 	{
 		if (DelConnected.IsValid()) [[likely]]
 		{
-			NetworkSubsystem->GetClient()->OnConnected().Remove(DelConnected);
+				NetworkClientSubsystem->GetClient()->OnConnected().Remove(DelConnected);
 			DelConnected.Reset();
 		}
 
 		FZeeNetAuthenticationLogin Msg;
-		Msg.Account.Id = MyLoginWidget->GetUserID();
-		Msg.Account.Password = MyLoginWidget->GetUserPW();
+		Msg.Account.Id = LoginWidget->GetUserID();
+		Msg.Account.Password = LoginWidget->GetUserPW();
 
-		NetworkSubsystem->GetClient()->Request<FZeeNetAuthenticationLogin>(Msg, this, &ALobbyPlayerController::ResponseLogin);
+		NetworkClientSubsystem->GetClient()->Request<FZeeNetAuthenticationLogin>(Msg, this, &ALobbyPlayerController::ResponseLogin);
 	}
 	else
 	{
@@ -92,22 +147,98 @@ void ALobbyPlayerController::OnConnected(const FString& InMessage)
 	}
 }
 
+void ALobbyPlayerController::OnCharacterSpotButtonClicked(int32 Slot)
+{
+	if (LobbyCharacterSpots[Slot - 1]->GetCharacterData().UID == 0)
+	{
+		ShowCreateCharacterWidget(true, Slot);
+	}
+	else
+	{
+		UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
+		if (!::IsValid(NetworkClientSubsystem))
+		{
+			return;
+		}
+
+		FZeeNetDedicateMove ReqMsg;
+		ReqMsg.Character.Slot = Slot;
+		NetworkClientSubsystem->GetClient()->Request<FZeeNetDedicateMove>(ReqMsg, this, [this](const FZeeNetDedicateMove& InRes)
+			{
+				const FString Options = FString::Printf(TEXT("Id=%lld"), UZeeNetworkClientSubsystem::Get(this)->UserId);
+				UGameplayStatics::OpenLevel(this, *FString::Printf(TEXT("%s:%d"), *InRes.ToServer.Ip, InRes.ToServer.Port), true, Options);
+			}
+		);
+	}
+}
+
+void ALobbyPlayerController::OnCreateCharacterConfirm(const FString& InCharacterName, int32 Slot)
+{
+	UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
+	if (!::IsValid(NetworkClientSubsystem))
+	{
+		return;
+	}
+
+	FZeeNetUserCharacterCreate Req;
+	Req.Character.Slot = Slot;
+	Req.Character.Name = InCharacterName;
+
+	NetworkClientSubsystem->GetClient()->Request<FZeeNetUserCharacterCreate>(Req, this, [this](const FZeeNetUserCharacterCreate& InRes) 
+		{
+			UGameViewportClient* ViewportClient = GetWorld()->GetGameViewport();
+			if (!::IsValid(ViewportClient))
+			{
+				return;
+			}
+
+			if (ZeeNetIsSuccess(InRes.RC))
+			{
+				LobbyCharacterSpots[InRes.Character.Slot - 1]->SetCharacterData(InRes.Character);
+				ShowCreateCharacterWidget(false, 0);
+			}
+			else
+			{
+				ViewportClient->AddViewportWidgetContent(
+					SNew(SZeeUIPopup)
+					.ViewportClient(ViewportClient)
+					.Message(ZeeEnumToString(InRes.RC))
+				);
+			}
+		}
+	);
+}
+
 void ALobbyPlayerController::ResponseLogin(const struct FZeeNetAuthenticationLogin& InRes)
 {
 	if (ZeeNetIsSuccess(InRes.RC))
 	{
+		static auto FindCharacterDataBySlot = [](const TArray<FZeeNetDataCharacter>& Datas, int32 Slot) -> const FZeeNetDataCharacter*
+			{
+				for (const auto& Elem : Datas)
+				{
+					if (Elem.Slot == Slot)
+					{
+						return &Elem;
+					}
+				}
+
+				return nullptr;
+			};
+
+		UZeeNetworkClientSubsystem::Get(this)->UserId = InRes.Account.UID;
+
 		const int32 Num = 3; //LobbyCharacterSpots.Num();
 		for (int32 i = 0; i != Num; ++i)
 		{
 			if (ensure(LobbyCharacterSpots[i].IsValid())) [[likely]]
 			{
-				FString CharacterName = InRes.Characters.IsValidIndex(i) ? InRes.Characters[i].Name : TEXT("");
-				LobbyCharacterSpots[i]->GetSpotWidget()->SetCharacterName(CharacterName);
+				const FZeeNetDataCharacter* FoundData = FindCharacterDataBySlot(InRes.Characters, i + 1);
+				LobbyCharacterSpots[i]->SetCharacterData(FoundData ? *FoundData : FZeeNetDataCharacter{});
 			}
 		}
 
-		GetWorld()->GetGameViewport()->RemoveViewportWidgetContent(MyLoginWidget.ToSharedRef());
-		MyLoginWidget = nullptr;
+		ShowLoginWidget(false);
 	}
 	else
 	{

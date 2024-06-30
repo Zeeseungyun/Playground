@@ -10,11 +10,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
-#include "ZeeNet/Public/ZeeNetClient.h"
-#include "ZeeNet/Public/Messages/Authentication.h"
 #include "ProjectPlayground.h"
 #include "GameFramework/PlayerController.h"
-#include "ZeeUI/Public/Lobby/SZeeUILobbyLogin.h"
 
 AProjectPlaygroundCharacter::AProjectPlaygroundCharacter()
 {
@@ -48,21 +45,4 @@ AProjectPlaygroundCharacter::AProjectPlaygroundCharacter()
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = true;
-}
-
-void AProjectPlaygroundCharacter::Tick(float DeltaSeconds)
-{
-    Super::Tick(DeltaSeconds);
-}
-
-void AProjectPlaygroundCharacter::BeginPlay() /*override*/
-{
-	Super::BeginPlay();
-	//MyLoginWidget = SNew(SZeeUILobbyLogin).OnLoginClicked_UObject(this, &AProjectPlaygroundCharacter::OnLoginClicked);
-	//GetWorld()->GetGameViewport()->AddViewportWidgetContent(MyLoginWidget.ToSharedRef());
-}
-
-FReply AProjectPlaygroundCharacter::OnLoginClicked()
-{
-	return FReply::Handled();
 }
