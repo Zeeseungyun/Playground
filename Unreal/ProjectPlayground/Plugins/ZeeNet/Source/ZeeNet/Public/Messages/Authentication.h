@@ -35,6 +35,9 @@ struct FZeeNetAuthenticationLogin
 	UPROPERTY(BlueprintReadWrite) 
 	TArray<FZeeNetDataCharacter> Characters; 
 
+	UPROPERTY(BlueprintReadWrite) 
+	TArray<int32> CollectionIds; 
+
 }; 
 template<> struct TZeeNetPacketTraits<FZeeNetAuthenticationLogin> { static constexpr int32 Point = 0x1001; static constexpr bool bIsData = false; }; 
 

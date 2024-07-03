@@ -63,41 +63,53 @@ namespace Zee.Database
             Common.ConnectIfNot();
             Zee.Proto.Authentication.Login ret = new();
             ret.RC = Proto.Authentication.ReturnCode.RcFailedUnknown;
-
-            using (var cmd = new MySqlCommand("SELECT * FROM account WHERE id = @id;", Common.connection))
+            Int64 uid = 0;
             {
-                cmd.Parameters.AddWithValue("id", id);
-                var reader = cmd.ExecuteReader();
-                if(reader.Read())
+                using (var cmd = new MySqlCommand("SELECT * FROM account WHERE id = @id;", Common.connection))
                 {
-                    var readId = reader["id"].ToString();
-                    var readPw = reader["pw"].ToString();
-                    var uid = (Int64)reader["uid"];
-                    if(readPw == pw)
+                    cmd.Parameters.AddWithValue("id", id);
+                    var reader = cmd.ExecuteReader();
+                    if(reader.Read())
                     {
-                        ret.Account = new();
-                        ret.Account.UID = uid;
-                        ret.Account.Id = id;
-                        ret.Account.Password = pw;
-                        ret.RC = Proto.Authentication.ReturnCode.RcSuccess;
-                        cmd.Dispose();
-
-                        var characterGet = Character.Get(uid);
-                        ret.Characters.AddRange(characterGet.Characters);
-                        return ret;
+                        var readId = reader.GetString("id");
+                        var readPw = reader.GetString("pw");
+                        uid = reader.GetInt64("uid");
+                        if(readPw == pw)
+                        {
+                            ret.Account = new();
+                            ret.Account.UID = uid;
+                            ret.Account.Id = id;
+                            ret.Account.Password = pw;
+                            ret.RC = Proto.Authentication.ReturnCode.RcSuccess;
+                        }
+                        else
+                        {
+                            ret.RC = Proto.Authentication.ReturnCode.RcFailedLoginWrongPassword;
+                            return ret;
+                        }
                     }
-
-                    ret.RC = Proto.Authentication.ReturnCode.RcFailedLoginWrongPassword;
-                    return ret;
                 }
             }
-
-            var newAccount = CreateAccount(id, pw);
-            if(newAccount == null)
+            
+            if(uid != 0)
             {
-                ret.RC = Proto.Authentication.ReturnCode.RcFailedLoginCantCreateAccount;
+                var characterGet = Character.Get(uid);
+                ret.Characters.AddRange(characterGet.Characters);
             }
-
+            else
+            {
+                var newAccount = CreateAccount(id, pw);
+                if(newAccount != null)
+                {
+                    ret.RC = Proto.Authentication.ReturnCode.RcSuccess;
+                    ret.Account = newAccount;
+                }
+                else
+                {
+                    ret.RC = Proto.Authentication.ReturnCode.RcFailedLoginCantCreateAccount;
+                }
+            }
+            
             return ret;
         }
     }

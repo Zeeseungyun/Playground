@@ -25,19 +25,26 @@ namespace Zee.Proto.UserCharacter {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChNVc2VyQ2hhcmFjdGVyLnByb3RvEhdaZWUuUHJvdG8uVXNlckNoYXJhY3Rl",
-            "choYRGF0YS9EYXRhQ2hhcmFjdGVyLnByb3RvImcKBkNyZWF0ZRIvCgJSQxgB",
-            "IAEoDjIjLlplZS5Qcm90by5Vc2VyQ2hhcmFjdGVyLlJldHVybkNvZGUSLAoJ",
-            "Q2hhcmFjdGVyGAIgASgLMhkuWmVlLlByb3RvLkRhdGEuQ2hhcmFjdGVyInMK",
-            "A0dldBIvCgJSQxgBIAEoDjIjLlplZS5Qcm90by5Vc2VyQ2hhcmFjdGVyLlJl",
-            "dHVybkNvZGUSDAoEVXNlchgCIAEoAxItCgpDaGFyYWN0ZXJzGAMgAygLMhku",
-            "WmVlLlByb3RvLkRhdGEuQ2hhcmFjdGVyKlkKClJldHVybkNvZGUSDgoKUkNf",
-            "U1VDQ0VTUxAAEhUKEVJDX0ZBSUxFRF9VTktOT1dOEAESJAogUkNfRkFJTEVE",
-            "X0NSRUFURV9EVVBMSUNBVEVEX05BTUUQAmIGcHJvdG8z"));
+            "choYRGF0YS9EYXRhQ2hhcmFjdGVyLnByb3RvGhdEYXRhL0RhdGFEZWRpY2F0",
+            "ZS5wcm90bxoVRGF0YS9EYXRhQ29tbW9uLnByb3RvImcKBkNyZWF0ZRIvCgJS",
+            "QxgBIAEoDjIjLlplZS5Qcm90by5Vc2VyQ2hhcmFjdGVyLlJldHVybkNvZGUS",
+            "LAoJQ2hhcmFjdGVyGAIgASgLMhkuWmVlLlByb3RvLkRhdGEuQ2hhcmFjdGVy",
+            "InMKA0dldBIvCgJSQxgBIAEoDjIjLlplZS5Qcm90by5Vc2VyQ2hhcmFjdGVy",
+            "LlJldHVybkNvZGUSDAoEVXNlchgCIAEoAxItCgpDaGFyYWN0ZXJzGAMgAygL",
+            "MhkuWmVlLlByb3RvLkRhdGEuQ2hhcmFjdGVyItUBCgZTZWxlY3QSLwoCUkMY",
+            "ASABKA4yIy5aZWUuUHJvdG8uVXNlckNoYXJhY3Rlci5SZXR1cm5Db2RlEiwK",
+            "CUNoYXJhY3RlchgCIAEoCzIZLlplZS5Qcm90by5EYXRhLkNoYXJhY3RlchIw",
+            "CghUb1NlcnZlchgDIAEoCzIeLlplZS5Qcm90by5EYXRhLkRlZGljYXRlU2Vy",
+            "dmVyEioKCFBvc2l0aW9uGAQgASgLMhguWmVlLlByb3RvLkRhdGEuUG9zaXRp",
+            "b24SDgoGVXNlcklwGAUgASgJKlkKClJldHVybkNvZGUSDgoKUkNfU1VDQ0VT",
+            "UxAAEhUKEVJDX0ZBSUxFRF9VTktOT1dOEAESJAogUkNfRkFJTEVEX0NSRUFU",
+            "RV9EVVBMSUNBVEVEX05BTUUQAmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Zee.Proto.Data.DataCharacterReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Zee.Proto.Data.DataCharacterReflection.Descriptor, global::Zee.Proto.Data.DataDedicateReflection.Descriptor, global::Zee.Proto.Data.DataCommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.UserCharacter.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.UserCharacter.Create), global::Zee.Proto.UserCharacter.Create.Parser, new[]{ "RC", "Character" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.UserCharacter.Get), global::Zee.Proto.UserCharacter.Get.Parser, new[]{ "RC", "User", "Characters" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.UserCharacter.Get), global::Zee.Proto.UserCharacter.Get.Parser, new[]{ "RC", "User", "Characters" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.UserCharacter.Select), global::Zee.Proto.UserCharacter.Select.Parser, new[]{ "RC", "Character", "ToServer", "Position", "UserIp" }, null, null, null, null)
           }));
     }
     #endregion
@@ -531,6 +538,370 @@ namespace Zee.Proto.UserCharacter {
           }
           case 26: {
             characters_.AddEntriesFrom(ref input, _repeated_characters_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class Select : pb::IMessage<Select>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Select> _parser = new pb::MessageParser<Select>(() => new Select());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Select> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Zee.Proto.UserCharacter.UserCharacterReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Select() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Select(Select other) : this() {
+      rC_ = other.rC_;
+      character_ = other.character_ != null ? other.character_.Clone() : null;
+      toServer_ = other.toServer_ != null ? other.toServer_.Clone() : null;
+      position_ = other.position_ != null ? other.position_.Clone() : null;
+      userIp_ = other.userIp_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Select Clone() {
+      return new Select(this);
+    }
+
+    /// <summary>Field number for the "RC" field.</summary>
+    public const int RCFieldNumber = 1;
+    private global::Zee.Proto.UserCharacter.ReturnCode rC_ = global::Zee.Proto.UserCharacter.ReturnCode.RcSuccess;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Zee.Proto.UserCharacter.ReturnCode RC {
+      get { return rC_; }
+      set {
+        rC_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Character" field.</summary>
+    public const int CharacterFieldNumber = 2;
+    private global::Zee.Proto.Data.Character character_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Zee.Proto.Data.Character Character {
+      get { return character_; }
+      set {
+        character_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ToServer" field.</summary>
+    public const int ToServerFieldNumber = 3;
+    private global::Zee.Proto.Data.DedicateServer toServer_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Zee.Proto.Data.DedicateServer ToServer {
+      get { return toServer_; }
+      set {
+        toServer_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Position" field.</summary>
+    public const int PositionFieldNumber = 4;
+    private global::Zee.Proto.Data.Position position_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Zee.Proto.Data.Position Position {
+      get { return position_; }
+      set {
+        position_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "UserIp" field.</summary>
+    public const int UserIpFieldNumber = 5;
+    private string userIp_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string UserIp {
+      get { return userIp_; }
+      set {
+        userIp_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Select);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Select other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (RC != other.RC) return false;
+      if (!object.Equals(Character, other.Character)) return false;
+      if (!object.Equals(ToServer, other.ToServer)) return false;
+      if (!object.Equals(Position, other.Position)) return false;
+      if (UserIp != other.UserIp) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (RC != global::Zee.Proto.UserCharacter.ReturnCode.RcSuccess) hash ^= RC.GetHashCode();
+      if (character_ != null) hash ^= Character.GetHashCode();
+      if (toServer_ != null) hash ^= ToServer.GetHashCode();
+      if (position_ != null) hash ^= Position.GetHashCode();
+      if (UserIp.Length != 0) hash ^= UserIp.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (RC != global::Zee.Proto.UserCharacter.ReturnCode.RcSuccess) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) RC);
+      }
+      if (character_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Character);
+      }
+      if (toServer_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ToServer);
+      }
+      if (position_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Position);
+      }
+      if (UserIp.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(UserIp);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RC != global::Zee.Proto.UserCharacter.ReturnCode.RcSuccess) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) RC);
+      }
+      if (character_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Character);
+      }
+      if (toServer_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ToServer);
+      }
+      if (position_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Position);
+      }
+      if (UserIp.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(UserIp);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (RC != global::Zee.Proto.UserCharacter.ReturnCode.RcSuccess) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RC);
+      }
+      if (character_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Character);
+      }
+      if (toServer_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ToServer);
+      }
+      if (position_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
+      }
+      if (UserIp.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserIp);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Select other) {
+      if (other == null) {
+        return;
+      }
+      if (other.RC != global::Zee.Proto.UserCharacter.ReturnCode.RcSuccess) {
+        RC = other.RC;
+      }
+      if (other.character_ != null) {
+        if (character_ == null) {
+          Character = new global::Zee.Proto.Data.Character();
+        }
+        Character.MergeFrom(other.Character);
+      }
+      if (other.toServer_ != null) {
+        if (toServer_ == null) {
+          ToServer = new global::Zee.Proto.Data.DedicateServer();
+        }
+        ToServer.MergeFrom(other.ToServer);
+      }
+      if (other.position_ != null) {
+        if (position_ == null) {
+          Position = new global::Zee.Proto.Data.Position();
+        }
+        Position.MergeFrom(other.Position);
+      }
+      if (other.UserIp.Length != 0) {
+        UserIp = other.UserIp;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            RC = (global::Zee.Proto.UserCharacter.ReturnCode) input.ReadEnum();
+            break;
+          }
+          case 18: {
+            if (character_ == null) {
+              Character = new global::Zee.Proto.Data.Character();
+            }
+            input.ReadMessage(Character);
+            break;
+          }
+          case 26: {
+            if (toServer_ == null) {
+              ToServer = new global::Zee.Proto.Data.DedicateServer();
+            }
+            input.ReadMessage(ToServer);
+            break;
+          }
+          case 34: {
+            if (position_ == null) {
+              Position = new global::Zee.Proto.Data.Position();
+            }
+            input.ReadMessage(Position);
+            break;
+          }
+          case 42: {
+            UserIp = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            RC = (global::Zee.Proto.UserCharacter.ReturnCode) input.ReadEnum();
+            break;
+          }
+          case 18: {
+            if (character_ == null) {
+              Character = new global::Zee.Proto.Data.Character();
+            }
+            input.ReadMessage(Character);
+            break;
+          }
+          case 26: {
+            if (toServer_ == null) {
+              ToServer = new global::Zee.Proto.Data.DedicateServer();
+            }
+            input.ReadMessage(ToServer);
+            break;
+          }
+          case 34: {
+            if (position_ == null) {
+              Position = new global::Zee.Proto.Data.Position();
+            }
+            input.ReadMessage(Position);
+            break;
+          }
+          case 42: {
+            UserIp = input.ReadString();
             break;
           }
         }

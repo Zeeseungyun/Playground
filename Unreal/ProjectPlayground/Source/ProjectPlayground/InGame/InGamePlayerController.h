@@ -51,9 +51,8 @@ protected:
 
 	virtual void SetupInputComponent() override;
 
-	// To add mapping context
-	virtual void BeginPlay();
-
+	virtual void BeginPlay() override;
+	virtual void EndPlay(EEndPlayReason::Type InReason) override;
 	/** Input handlers for SetDestination action. */
 	void OnInputStarted();
 	void OnSetDestinationTriggered();
@@ -76,4 +75,7 @@ public:
 
 	virtual void PawnPendingDestroy(APawn* InPawn) override;
 	void UpdatePosition();
+
+private:
+	TSharedPtr<class SWidget> SelectCharacterWidget;
 };

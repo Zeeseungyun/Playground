@@ -10,7 +10,8 @@
 FZeeNetNotifyHandlerArray* FindNotifyHandler_UserCharacter(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers) { 
 	switch (Point) { 
 	case TZeeNetPacketTraits<FZeeNetUserCharacterCreate>::Point: [[fallthrough]]; 
-	case TZeeNetPacketTraits<FZeeNetUserCharacterGet>::Point: 
+	case TZeeNetPacketTraits<FZeeNetUserCharacterGet>::Point: [[fallthrough]]; 
+	case TZeeNetPacketTraits<FZeeNetUserCharacterSelect>::Point: 
 		return NotifyHandlers.Find(TEXT("Notify_UserCharacter")); 
 	default: break; 
 	}
@@ -23,6 +24,7 @@ bool ConsumeNotifyMessage_UserCharacter(TSharedPtr<struct FZeeNetPacketSerialize
 	switch (PacketPoint) { 
 		ZEENET_CASE_CONSUME_NOTIFY(UserCharacter, Create);
 		ZEENET_CASE_CONSUME_NOTIFY(UserCharacter, Get);
+		ZEENET_CASE_CONSUME_NOTIFY(UserCharacter, Select);
 	default: break; 
 	} 
 

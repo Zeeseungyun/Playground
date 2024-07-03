@@ -26,21 +26,22 @@ namespace Zee.Proto.Authentication {
           string.Concat(
             "ChRBdXRoZW50aWNhdGlvbi5wcm90bxIYWmVlLlByb3RvLkF1dGhlbnRpY2F0",
             "aW9uGhZEYXRhL0RhdGFBY2NvdW50LnByb3RvGhhEYXRhL0RhdGFDaGFyYWN0",
-            "ZXIucHJvdG8ikgEKBUxvZ2luEjAKAlJDGAEgASgOMiQuWmVlLlByb3RvLkF1",
+            "ZXIucHJvdG8iqQEKBUxvZ2luEjAKAlJDGAEgASgOMiQuWmVlLlByb3RvLkF1",
             "dGhlbnRpY2F0aW9uLlJldHVybkNvZGUSKAoHQWNjb3VudBgCIAEoCzIXLlpl",
             "ZS5Qcm90by5EYXRhLkFjY291bnQSLQoKQ2hhcmFjdGVycxgDIAMoCzIZLlpl",
-            "ZS5Qcm90by5EYXRhLkNoYXJhY3RlciJTCgZMb2dvdXQSMAoCUkMYASABKA4y",
-            "JC5aZWUuUHJvdG8uQXV0aGVudGljYXRpb24uUmV0dXJuQ29kZRIKCgJJZBgC",
-            "IAEoCRILCgNVSUQYAyABKAMq4QEKClJldHVybkNvZGUSDgoKUkNfU1VDQ0VT",
-            "UxAAEhUKEVJDX0ZBSUxFRF9VTktOT1dOEAESHgoaUkNfRkFJTEVEX0xPR0lO",
-            "X0RVUExJQ0FURUQQAhIiCh5SQ19GQUlMRURfTE9HSU5fV1JPTkdfUEFTU1dP",
-            "UkQQAxIcChhSQ19GQUlMRURfTE9HSU5fV1JPTkdfSUQQBBInCiNSQ19GQUlM",
-            "RURfTE9HSU5fQ0FOVF9DUkVBVEVfQUNDT1VOVBAFEiEKHVJDX0ZBSUxFRF9E",
-            "Ql9DT05ORUNUSU9OX0VSUk9SEAZiBnByb3RvMw=="));
+            "ZS5Qcm90by5EYXRhLkNoYXJhY3RlchIVCg1Db2xsZWN0aW9uSWRzGAQgAygF",
+            "IlMKBkxvZ291dBIwCgJSQxgBIAEoDjIkLlplZS5Qcm90by5BdXRoZW50aWNh",
+            "dGlvbi5SZXR1cm5Db2RlEgoKAklkGAIgASgJEgsKA1VJRBgDIAEoAyrhAQoK",
+            "UmV0dXJuQ29kZRIOCgpSQ19TVUNDRVNTEAASFQoRUkNfRkFJTEVEX1VOS05P",
+            "V04QARIeChpSQ19GQUlMRURfTE9HSU5fRFVQTElDQVRFRBACEiIKHlJDX0ZB",
+            "SUxFRF9MT0dJTl9XUk9OR19QQVNTV09SRBADEhwKGFJDX0ZBSUxFRF9MT0dJ",
+            "Tl9XUk9OR19JRBAEEicKI1JDX0ZBSUxFRF9MT0dJTl9DQU5UX0NSRUFURV9B",
+            "Q0NPVU5UEAUSIQodUkNfRkFJTEVEX0RCX0NPTk5FQ1RJT05fRVJST1IQBmIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zee.Proto.Data.DataAccountReflection.Descriptor, global::Zee.Proto.Data.DataCharacterReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zee.Proto.Authentication.ReturnCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Account", "Characters" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Login), global::Zee.Proto.Authentication.Login.Parser, new[]{ "RC", "Account", "Characters", "CollectionIds" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zee.Proto.Authentication.Logout), global::Zee.Proto.Authentication.Logout.Parser, new[]{ "RC", "Id", "UID" }, null, null, null, null)
           }));
     }
@@ -98,6 +99,7 @@ namespace Zee.Proto.Authentication {
       rC_ = other.rC_;
       account_ = other.account_ != null ? other.account_.Clone() : null;
       characters_ = other.characters_.Clone();
+      collectionIds_ = other.collectionIds_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -142,6 +144,17 @@ namespace Zee.Proto.Authentication {
       get { return characters_; }
     }
 
+    /// <summary>Field number for the "CollectionIds" field.</summary>
+    public const int CollectionIdsFieldNumber = 4;
+    private static readonly pb::FieldCodec<int> _repeated_collectionIds_codec
+        = pb::FieldCodec.ForInt32(34);
+    private readonly pbc::RepeatedField<int> collectionIds_ = new pbc::RepeatedField<int>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> CollectionIds {
+      get { return collectionIds_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -160,6 +173,7 @@ namespace Zee.Proto.Authentication {
       if (RC != other.RC) return false;
       if (!object.Equals(Account, other.Account)) return false;
       if(!characters_.Equals(other.characters_)) return false;
+      if(!collectionIds_.Equals(other.collectionIds_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -170,6 +184,7 @@ namespace Zee.Proto.Authentication {
       if (RC != global::Zee.Proto.Authentication.ReturnCode.RcSuccess) hash ^= RC.GetHashCode();
       if (account_ != null) hash ^= Account.GetHashCode();
       hash ^= characters_.GetHashCode();
+      hash ^= collectionIds_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -197,6 +212,7 @@ namespace Zee.Proto.Authentication {
         output.WriteMessage(Account);
       }
       characters_.WriteTo(output, _repeated_characters_codec);
+      collectionIds_.WriteTo(output, _repeated_collectionIds_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -216,6 +232,7 @@ namespace Zee.Proto.Authentication {
         output.WriteMessage(Account);
       }
       characters_.WriteTo(ref output, _repeated_characters_codec);
+      collectionIds_.WriteTo(ref output, _repeated_collectionIds_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -233,6 +250,7 @@ namespace Zee.Proto.Authentication {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Account);
       }
       size += characters_.CalculateSize(_repeated_characters_codec);
+      size += collectionIds_.CalculateSize(_repeated_collectionIds_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -255,6 +273,7 @@ namespace Zee.Proto.Authentication {
         Account.MergeFrom(other.Account);
       }
       characters_.Add(other.characters_);
+      collectionIds_.Add(other.collectionIds_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -285,6 +304,11 @@ namespace Zee.Proto.Authentication {
             characters_.AddEntriesFrom(input, _repeated_characters_codec);
             break;
           }
+          case 34:
+          case 32: {
+            collectionIds_.AddEntriesFrom(input, _repeated_collectionIds_codec);
+            break;
+          }
         }
       }
     #endif
@@ -313,6 +337,11 @@ namespace Zee.Proto.Authentication {
           }
           case 26: {
             characters_.AddEntriesFrom(ref input, _repeated_characters_codec);
+            break;
+          }
+          case 34:
+          case 32: {
+            collectionIds_.AddEntriesFrom(ref input, _repeated_collectionIds_codec);
             break;
           }
         }

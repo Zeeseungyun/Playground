@@ -19,4 +19,9 @@ namespace Zee::Net::Message::Convert
 	FORCEINLINE void FromTo(const Zee::Proto::UserCharacter::Get& InFrom, FZeeNetUserCharacterGet& OutTo);
 	FORCEINLINE void FromTo(const FZeeNetUserCharacterGet& InFrom, Zee::Proto::UserCharacter::Get& OutTo);
 
+	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::UserCharacter::Select> { static constexpr int32 Point = 0x6003; }; 
+	template<> struct TZeeNetMapping_PointToProto<TZeeNetMapping_ProtoToPoint<Zee::Proto::UserCharacter::Select>::Point> { using Type = Zee::Proto::UserCharacter::Select; }; 
+	FORCEINLINE void FromTo(const Zee::Proto::UserCharacter::Select& InFrom, FZeeNetUserCharacterSelect& OutTo);
+	FORCEINLINE void FromTo(const FZeeNetUserCharacterSelect& InFrom, Zee::Proto::UserCharacter::Select& OutTo);
+
 } 

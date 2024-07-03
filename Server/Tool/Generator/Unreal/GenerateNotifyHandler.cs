@@ -124,7 +124,7 @@ namespace Zee
 
                     newFile.SrcContent.Append("\r\n");
                     newFile.SrcContent.Append("bool FZeeNetClient::ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { \r\n");
-                    newFile.SrcContent.Append("\tCheckNotifyHandlers(); \r\n");
+                    newFile.SrcContent.Append("\tValidateNotifyHandlers(); \r\n");
                     newFile.SrcContent.Append("\tFZeeNetNotifyHandlerArray* Found = nullptr; \r\n");
                     newFile.SrcContent.Append("\r\n");
                     

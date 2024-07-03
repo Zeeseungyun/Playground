@@ -1,23 +1,22 @@
 #include "ProjectPlayground/InGame/InGameModeBase.h"
 #include "Engine/NetConnection.h"
 #include "Kismet/GameplayStatics.h"
+#include "EngineUtils.h"
 
 #include "ZeeNet/Public/Interface/Handler/Request/Dedicate.h"
+#include "ZeeNet/Public/Interface/Handler/Request/UserCharacter.h"
 #include "ProjectPlayground/InGame/InGamePlayerController.h"
 #include "ProjectPlayground/InGame/InGameCharacter.h"
 #include "ProjectPlayground/Network/ZeeNetworkClientSubsystem.h"
+#include "ProjectPlayground/InGame/InGameMoveTown.h"
 
-class FInGameRequestHandler : public IZeeNetRequestHandler_Dedicate
+class FInGameRequestHandler_Dedicate 
+	: public IZeeNetRequestHandler_Dedicate
 {
 public:
 	TWeakObjectPtr<class AInGameModeBase> Owner;
 
-	[[nodiscard]] EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetDedicateLogin>& InPacket) override
-	{
-		return EZeeNetRequestHandlerResponse::NoResponse;
-	}
-
-	[[nodiscard]] EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetDedicateMove>& InPacket)  override
+	[[nodiscard]] EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetDedicateMove>& InPacket) final
 	{
 		if (!Owner.IsValid())
 		{
@@ -25,7 +24,14 @@ public:
 		}
 
 		const FZeeNetDedicateMove& Msg = InPacket.Message;
-		Owner->DedicateMoveToUIDs.Add(FString::Printf(TEXT("%s%lld"), *Msg.UserIp, Msg.Character.User), Msg);
+
+		AInGameModeBase::FPassport Passport;
+		Passport.bIsMoveTown = true;
+		Passport.UserIp = Msg.UserIp;
+		Passport.Character = Msg.Character;
+		Passport.MapName = Msg.ToServer.MapName;
+
+		Owner->Passports.Add(FString::Printf(TEXT("%s%lld"), *Msg.UserIp, Msg.Character.User), Passport);
 
 		//copy header.
 		FZeeNetPacket<FZeeNetDedicateMove> ResPacket = InPacket;
@@ -37,20 +43,55 @@ public:
 	}
 };
 
+class FInGameRequestHandler_UserCharacter
+	: public IZeeNetRequestHandler_UserCharacter
+{
+public:
+	TWeakObjectPtr<class AInGameModeBase> Owner;
+
+	[[nodiscard]] EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetUserCharacterSelect>& InPacket) final 
+	{
+		if (!Owner.IsValid())
+		{
+			return EZeeNetRequestHandlerResponse::NoResponse;
+		}
+
+		const FZeeNetUserCharacterSelect& Msg = InPacket.Message;
+		AInGameModeBase::FPassport Passport;
+		Passport.bIsMoveTown = false;
+		Passport.UserIp = Msg.UserIp;
+		Passport.Character = Msg.Character;
+		Passport.Pos = Msg.Position.Pos;
+		Passport.Rot = Msg.Position.Rot;
+		Passport.MapName = Msg.Position.MapName;
+
+		Owner->Passports.Add(FString::Printf(TEXT("%s%lld"), *Msg.UserIp, Msg.Character.User), Passport);
+
+		//copy header.
+		FZeeNetPacket<FZeeNetUserCharacterSelect> ResPacket = InPacket;
+		ResPacket.Message = {};
+		ResPacket.Message.Character = Msg.Character;
+		InResponser->Response(ResPacket);
+
+		return EZeeNetRequestHandlerResponse::ResponseDirectly;
+	}
+
+};
+
 AInGameModeBase::AInGameModeBase()
 {
 	// use our custom PlayerController class
 	PlayerControllerClass = AInGamePlayerController::StaticClass();
 
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/TopDown/Blueprints/BP_TopDownCharacter"));
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/InGame/Blueprints/BP_InGameCharacter"));
 	if (PlayerPawnBPClass.Class != nullptr)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 
 	// set default controller to our Blueprinted controller
-	static ConstructorHelpers::FClassFinder<APlayerController> PlayerControllerBPClass(TEXT("/Game/TopDown/Blueprints/BP_TopDownPlayerController"));
+	static ConstructorHelpers::FClassFinder<APlayerController> PlayerControllerBPClass(TEXT("/Game/InGame/Blueprints/BP_InGamePlayerController"));
 	if (PlayerControllerBPClass.Class != NULL)
 	{
 		PlayerControllerClass = PlayerControllerBPClass.Class;
@@ -63,39 +104,51 @@ void AInGameModeBase::BeginPlay()
 	UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
 	if (NetworkClientSubsystem)
 	{
-		RequestHandler = MakeShared<FInGameRequestHandler>();
-		RequestHandler->Owner = this;
-		NetworkClientSubsystem->GetClient()->RegisterRequestHandler(RequestHandler);
+		RequestHandler_Dedicate = MakeShared<FInGameRequestHandler_Dedicate>();
+		RequestHandler_Dedicate->Owner = this;
+		NetworkClientSubsystem->GetClient()->RegisterRequestHandler(RequestHandler_Dedicate);
+
+		RequestHandler_UserCharacter = MakeShared<FInGameRequestHandler_UserCharacter>();
+		RequestHandler_UserCharacter->Owner = this;
+		NetworkClientSubsystem->GetClient()->RegisterRequestHandler(RequestHandler_UserCharacter);
+	}
+
+	for (TActorIterator<AInGameMoveTown> Iter(GetWorld()); Iter; ++Iter)
+	{
+		const FTransform Transform = Iter->GetMoveTownTransform();
+		MoveTownDestPos = Transform.GetLocation();
+		MoveTownDestRot = FRotator(Transform.GetRotation());
 	}
 }
 
 void AInGameModeBase::PreLogin(const FString& Options, const FString& Address, const FUniqueNetIdRepl& UniqueId, FString& ErrorMessage)
 {
 	Super::PreLogin(Options, Address, UniqueId, ErrorMessage);
-	UE_LOG(LogTemp, Log, TEXT("ZeeLog, PreLogin Options[%s]."), *Options);
+	UE_LOG(LogGameMode, Log, TEXT("ZeeLog, PreLogin Options[%s]."), *Options);
 	if (!ErrorMessage.IsEmpty())
 	{
-		UE_LOG(LogTemp, Log, TEXT("ZeeLog, PreLogin Failed[%s]."), *ErrorMessage);
+		UE_LOG(LogGameMode, Log, TEXT("ZeeLog, PreLogin Failed[%s]."), *ErrorMessage);
 		return;
 	}
-
+	
 	const FString UserId = UGameplayStatics::ParseOption(Options, TEXT("Id"));
-	if (!DedicateMoveToUIDs.Contains(FString::Printf(TEXT("%s%s"), *Address, *UserId)))
+	const FString Key = FString::Printf(TEXT("%s%s"), *Address, *UserId);
+	if (!Passports.Contains(Key))
 	{
-		ErrorMessage = FString::Printf(TEXT("InvalidAddress[%s%s]"), *Address, *UserId);
-		UE_LOG(LogTemp, Log, TEXT("ZeeLog, PreLogin Failed[%s]."), *ErrorMessage);
+		ErrorMessage = FString::Printf(TEXT("InvalidKey[%s]"), *Key);
+		UE_LOG(LogGameMode, Log, TEXT("ZeeLog, PreLogin Failed[%s]."), *ErrorMessage);
 		return;
 	}
 
 	//Pass.
-	UE_LOG(LogTemp, Log, TEXT("ZeeLog, PreLogin Succeed."));
+	UE_LOG(LogGameMode, Log, TEXT("ZeeLog, PreLogin Succeed."));
 }
 
 APlayerController* AInGameModeBase::Login(UPlayer* NewPlayer, ENetRole InRemoteRole, const FString& Portal, const FString& Options, const FUniqueNetIdRepl& UniqueId, FString& ErrorMessage)
 {
 	if (!ErrorMessage.IsEmpty())
 	{
-		UE_LOG(LogTemp, Log, TEXT("ZeeLog, Login Failed[%s]."), *ErrorMessage);
+		UE_LOG(LogGameMode, Log, TEXT("ZeeLog, Login Failed[%s]."), *ErrorMessage);
 		return nullptr;
 	}
 
@@ -103,25 +156,40 @@ APlayerController* AInGameModeBase::Login(UPlayer* NewPlayer, ENetRole InRemoteR
 	if (!::IsValid(NewPlayerConnection))
 	{
 		ErrorMessage = TEXT("if (!::IsValid(NewPlayerConnection))");
-		UE_LOG(LogTemp, Log, TEXT("ZeeLog, Login Failed[%s]."), *ErrorMessage);
+		UE_LOG(LogGameMode, Log, TEXT("ZeeLog, Login Failed[%s]."), *ErrorMessage);
 		return nullptr;
 	}
 
 	const FString UserId = UGameplayStatics::ParseOption(Options, TEXT("Id"));
 	const FString Key = FString::Printf(TEXT("%s%s"), *NewPlayerConnection->LowLevelGetRemoteAddress(), *UserId);
-	const FZeeNetDedicateMove* const Found = DedicateMoveToUIDs.Find(Key);
+	const FPassport* const Found = Passports.Find(Key);
+
 	if (!Found)
 	{
 		ErrorMessage = FString::Printf(TEXT("Invalid User Address[%s]"), *Key);
-		UE_LOG(LogTemp, Log, TEXT("ZeeLog, Login Failed[%s]."), *ErrorMessage);
+		UE_LOG(LogGameMode, Log, TEXT("ZeeLog, Login Failed[%s]."), *ErrorMessage);
 		return nullptr;
 	}
 
+
 	AInGamePlayerController* PlayerController = Cast<AInGamePlayerController>(Super::Login(NewPlayer, InRemoteRole, Portal, Options, UniqueId, ErrorMessage));
 	PlayerController->DataCharacter = Found->Character;
-	PlayerController->DataPosition = Found->Position;
+	PlayerController->DataPosition.UID = Found->Character.UID;
+	PlayerController->DataPosition.MapName = Found->MapName;
+
+	if (Found->bIsMoveTown)
+	{
+		PlayerController->DataPosition.Pos = MoveTownDestPos;
+		PlayerController->DataPosition.Rot = MoveTownDestRot;
+	}
+	else
+	{
+		PlayerController->DataPosition.Pos = Found->Pos;
+		PlayerController->DataPosition.Rot = Found->Rot;
+	}
 	
-	UE_LOG(LogTemp, Log, TEXT("ZeeLog, Login Succeeded."));
+	Passports.Remove(Key);
+	UE_LOG(LogGameMode, Log, TEXT("ZeeLog, Login Succeeded."));
 	return PlayerController;
 }
 
@@ -140,7 +208,8 @@ APawn* AInGameModeBase::SpawnDefaultPawnFor_Implementation(AController* NewPlaye
 	AInGameCharacter* ResultPawn = GetWorld()->SpawnActor<AInGameCharacter>(PawnClass, SpawnTransform, SpawnInfo);
 	if (!ResultPawn)
 	{
-		UE_LOG(LogGameMode, Warning, TEXT("SpawnDefaultPawnAtTransform: Couldn't spawn Pawn of type %s at %s"), *GetNameSafe(PawnClass), *SpawnTransform.ToHumanReadableString());
+		UE_LOG(LogGameMode, Fatal, TEXT("SpawnDefaultPawnAtTransform: Couldn't spawn Pawn of type %s at %s"), *GetNameSafe(PawnClass), *SpawnTransform.ToHumanReadableString());
+		return nullptr;
 	}
 	
 	ResultPawn->CharacterName = PC->DataCharacter.Name;

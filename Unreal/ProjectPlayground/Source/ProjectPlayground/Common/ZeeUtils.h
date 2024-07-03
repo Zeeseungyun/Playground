@@ -2,9 +2,9 @@
 #include "CoreMinimal.h"
 
 template<typename T>
-concept TPPIsEnum = std::is_enum_v<T>;
+concept TZeeIsEnum = std::is_enum_v<T>;
 
-template<TPPIsEnum EnumType>
+template<TZeeIsEnum EnumType>
 FString ZeeEnumToString(EnumType EnumValue)
 {
 	if (UEnum* EnumPtr = StaticEnum<EnumType>())
@@ -14,7 +14,7 @@ FString ZeeEnumToString(EnumType EnumValue)
 	return TEXT("");
 }
 
-template<TPPIsEnum EnumType>
+template<TZeeIsEnum EnumType>
 EnumType ZeeStringToEnum(const FString& Value)
 {
 	if (UEnum* EnumPtr = StaticEnum<EnumType>())

@@ -1285,6 +1285,11 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Chat.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Collection.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Collection.h"/>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Dedicate.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -1295,11 +1300,6 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Packet.h"/>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Test.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Test.h"/>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\UserCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -1343,11 +1343,11 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Dedicate.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Collection.g.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Test.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Dedicate.g.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
@@ -1363,11 +1363,11 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Dedicate.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Collection.g.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Test.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Dedicate.g.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
@@ -1379,12 +1379,12 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Authentication.pb.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.cc"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.h"/>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Collection.pb.cc"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Collection.pb.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Dedicate.pb.cc"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Dedicate.pb.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Packet.pb.cc"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Packet.pb.h"/>
-    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.cc"/>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\UserCharacter.pb.cc"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\UserCharacter.pb.h"/>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Data\DataAccount.pb.cc"/>
@@ -1404,13 +1404,13 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\ZeeNetRequestHandler.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Authentication.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Chat.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Collection.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Dedicate.h"/>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Test.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\UserCharacter.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Authentication.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Chat.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Collection.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Dedicate.h"/>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Test.h"/>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\UserCharacter.h"/>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Authentication.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1422,6 +1422,11 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Chat.h"/>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Collection.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Collection.h"/>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Dedicate.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -1432,11 +1437,6 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Packet.h"/>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.h"/>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\UserCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -1467,15 +1467,11 @@
     <None Include="..\..\Plugins\ZeeUI\ZeeUI.uplugin"/>
     <None Include="..\..\Plugins\ZeeUI\Resources\Icon128.png"/>
     <None Include="..\..\Plugins\ZeeUI\Source\ZeeUI\ZeeUI.Build.cs"/>
-    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeButton.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
-    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUI.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUIBPLibrary.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUISlateStyles.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
     </ClCompile>
@@ -1495,6 +1491,14 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
     </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Common\SlateStyle\ZeeUISlateStyle_Common.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\InGame\SlateStyle\ZeeUISlateStyle_InGame.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
+    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SZeeUICharacterSpot.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
@@ -1507,47 +1511,33 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUILobbySlateStyle.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUISlateStyle_Character.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUILobbySlateStyles.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUISlateStyle_Login.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_1)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_1)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeButton.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUI.h"/>
-    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUIBPLibrary.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUISlateStyles.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\SZeeUIVirtualJoystick.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\ZeeUITouchInputWidget.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\ZeeUIVirtualJoystick.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\Alarm\SZeeUIPopup.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\SlateStyle\ZeeUISlateStyle_Common.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\InGame\SlateStyle\ZeeUISlateStyle_InGame.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SZeeUICharacterSpot.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SZeeUICreateCharacter.h"/>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SZeeUILobbyLogin.h"/>
-    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUILobbySlateStyle.h"/>
-    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUILobbySlateStyles.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUISlateStyle_Character.h"/>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUISlateStyle_Login.h"/>
     <None Include="..\..\Source\ProjectPlayground\ProjectPlayground.Build.cs"/>
     <ClCompile Include="..\..\Source\ProjectPlayground\ProjectPlayground.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlayground.h"/>
-    <ClCompile Include="..\..\Source\ProjectPlayground\ProjectPlaygroundCharacter.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlaygroundCharacter.h"/>
-    <ClCompile Include="..\..\Source\ProjectPlayground\ProjectPlaygroundGameMode.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlaygroundGameMode.h"/>
-    <ClCompile Include="..\..\Source\ProjectPlayground\ProjectPlaygroundPlayerController.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlaygroundPlayerController.h"/>
     <ClInclude Include="..\..\Source\ProjectPlayground\Common\ZeeUtils.h"/>
     <ClCompile Include="..\..\Source\ProjectPlayground\InGame\InGameCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
@@ -1564,6 +1554,11 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="..\..\Source\ProjectPlayground\InGame\InGameModeBase.h"/>
+    <ClCompile Include="..\..\Source\ProjectPlayground\InGame\InGameMoveTown.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\InGame\InGameMoveTown.h"/>
     <ClCompile Include="..\..\Source\ProjectPlayground\InGame\InGamePlayerController.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_2)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_2)</ForcedIncludeFiles>

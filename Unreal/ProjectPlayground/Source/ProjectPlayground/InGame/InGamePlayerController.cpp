@@ -1,4 +1,4 @@
-#include "InGamePlayerController.h"
+#include "ProjectPlayground/InGame/InGamePlayerController.h"
 
 #include "GameFramework/Pawn.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
@@ -9,9 +9,15 @@
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
+#include "Kismet/GameplayStatics.h"
 
 #include "ProjectPlayground/Network/ZeeNetworkClientSubsystem.h"
 #include "ZeeNet/Public/Messages/Dedicate.h"
+
+#include "ZeeUI/Public/ZeeUISlateStyles.h"
+#include "ZeeUI/Public/InGame/SlateStyle/ZeeUISlateStyle_InGame.h"
+
+#define LOCTEXT_NAMESPACE "InGamePlayerController"
 
 AInGamePlayerController::AInGamePlayerController()
 {
@@ -19,14 +25,52 @@ AInGamePlayerController::AInGamePlayerController()
 	DefaultMouseCursor = EMouseCursor::Default;
 	CachedDestination = FVector::ZeroVector;
 	FollowTime = 0.f;
-
-	// DataPosition.Pos = { .X = 1000.0f, .Y = 1810.0f, .Z = 92.1f };
 }
 
 void AInGamePlayerController::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+	if (!HasAuthority())
+	{
+		const FZeeUISlateStyle_InGame& Style = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_InGame>("InGame/InGame");
+		GetWorld()->GetGameViewport()->AddViewportWidgetContent(
+			SAssignNew(SelectCharacterWidget, SOverlay)
+			+ SOverlay::Slot()
+			.VAlign(VAlign_Top)
+			.HAlign(HAlign_Left)
+			[
+				SNew(SButton)
+				.ButtonStyle(&Style.InGameButtonStyle)
+				.OnClicked(FOnClicked::CreateLambda([WeakThis = TWeakObjectPtr<AActor>(this)]() ->FReply
+					{
+						if (WeakThis.IsValid())
+						{
+							UGameplayStatics::OpenLevel(WeakThis.Get(), TEXT("/Game/Lobby/Maps/ZeeClientEntry"));
+						}
+						return FReply::Handled();
+					}
+				))
+				[
+					SNew(STextBlock)
+					.TextStyle(&Style.InGameTextStyle)
+					.Text(LOCTEXT("Select Character", "Select Character"))
+				]
+			]
+		);
+	}
+}
+
+void AInGamePlayerController::EndPlay(EEndPlayReason::Type InReason)
+{
+	if (!HasAuthority())
+	{
+		if (SelectCharacterWidget.IsValid())
+		{
+			GetWorld()->GetGameViewport()->RemoveViewportWidgetContent(SelectCharacterWidget.ToSharedRef());
+		}
+	}
+	Super::EndPlay(InReason);
 }
 
 void AInGamePlayerController::SetupInputComponent()

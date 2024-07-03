@@ -182,6 +182,7 @@ public:
 	bool IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& InHandler) const;
 
 private:
+	//TODO:: mtx 필요함
 	TMap<FString, TArray<TWeakPtr<struct IZeeNetNotifyHandler>>> NotifyHandlers;
 	static TSet<FString> ValidNotifyHandlerNames;
 
@@ -213,6 +214,7 @@ private:
 	FDelegateHandle BeginFrameDelegate;
 
 private:
+	//TODO:: mtx 필요함
 	TMap<FString, TArray<TWeakPtr<struct IZeeNetRequestHandler>>> RequestHandlers;
 	static TSet<FString> ValidRequestHandlerNames;
 	float RequestTimeoutSec = 10.0f;

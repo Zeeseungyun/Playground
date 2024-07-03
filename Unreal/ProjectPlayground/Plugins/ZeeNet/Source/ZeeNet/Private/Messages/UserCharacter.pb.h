@@ -33,6 +33,8 @@
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "Data/DataCharacter.pb.h"
+#include "Data/DataDedicate.pb.h"
+#include "Data/DataCommon.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_UserCharacter_2eproto
@@ -48,7 +50,7 @@ struct TableStruct_UserCharacter_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -64,12 +66,16 @@ extern CreateDefaultTypeInternal _Create_default_instance_;
 class Get;
 struct GetDefaultTypeInternal;
 extern GetDefaultTypeInternal _Get_default_instance_;
+class Select;
+struct SelectDefaultTypeInternal;
+extern SelectDefaultTypeInternal _Select_default_instance_;
 }  // namespace UserCharacter
 }  // namespace Proto
 }  // namespace Zee
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Zee::Proto::UserCharacter::Create* Arena::CreateMaybeMessage<::Zee::Proto::UserCharacter::Create>(Arena*);
 template<> ::Zee::Proto::UserCharacter::Get* Arena::CreateMaybeMessage<::Zee::Proto::UserCharacter::Get>(Arena*);
+template<> ::Zee::Proto::UserCharacter::Select* Arena::CreateMaybeMessage<::Zee::Proto::UserCharacter::Select>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Zee {
 namespace Proto {
@@ -438,6 +444,225 @@ class Get final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_UserCharacter_2eproto;
 };
+// -------------------------------------------------------------------
+
+class Select final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Zee.Proto.UserCharacter.Select) */ {
+ public:
+  inline Select() : Select(nullptr) {}
+  ~Select() override;
+  explicit constexpr Select(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Select(const Select& from);
+  Select(Select&& from) noexcept
+    : Select() {
+    *this = ::std::move(from);
+  }
+
+  inline Select& operator=(const Select& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Select& operator=(Select&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Select& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Select* internal_default_instance() {
+    return reinterpret_cast<const Select*>(
+               &_Select_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(Select& a, Select& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Select* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Select* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Select* New() const final {
+    return new Select();
+  }
+
+  Select* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Select>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Select& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Select& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Select* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Zee.Proto.UserCharacter.Select";
+  }
+  protected:
+  explicit Select(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserIpFieldNumber = 5,
+    kCharacterFieldNumber = 2,
+    kToServerFieldNumber = 3,
+    kPositionFieldNumber = 4,
+    kRCFieldNumber = 1,
+  };
+  // string UserIp = 5;
+  void clear_userip();
+  const std::string& userip() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_userip(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_userip();
+  PROTOBUF_MUST_USE_RESULT std::string* release_userip();
+  void set_allocated_userip(std::string* userip);
+  private:
+  const std::string& _internal_userip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_userip(const std::string& value);
+  std::string* _internal_mutable_userip();
+  public:
+
+  // .Zee.Proto.Data.Character Character = 2;
+  bool has_character() const;
+  private:
+  bool _internal_has_character() const;
+  public:
+  void clear_character();
+  const ::Zee::Proto::Data::Character& character() const;
+  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::Data::Character* release_character();
+  ::Zee::Proto::Data::Character* mutable_character();
+  void set_allocated_character(::Zee::Proto::Data::Character* character);
+  private:
+  const ::Zee::Proto::Data::Character& _internal_character() const;
+  ::Zee::Proto::Data::Character* _internal_mutable_character();
+  public:
+  void unsafe_arena_set_allocated_character(
+      ::Zee::Proto::Data::Character* character);
+  ::Zee::Proto::Data::Character* unsafe_arena_release_character();
+
+  // .Zee.Proto.Data.DedicateServer ToServer = 3;
+  bool has_toserver() const;
+  private:
+  bool _internal_has_toserver() const;
+  public:
+  void clear_toserver();
+  const ::Zee::Proto::Data::DedicateServer& toserver() const;
+  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::Data::DedicateServer* release_toserver();
+  ::Zee::Proto::Data::DedicateServer* mutable_toserver();
+  void set_allocated_toserver(::Zee::Proto::Data::DedicateServer* toserver);
+  private:
+  const ::Zee::Proto::Data::DedicateServer& _internal_toserver() const;
+  ::Zee::Proto::Data::DedicateServer* _internal_mutable_toserver();
+  public:
+  void unsafe_arena_set_allocated_toserver(
+      ::Zee::Proto::Data::DedicateServer* toserver);
+  ::Zee::Proto::Data::DedicateServer* unsafe_arena_release_toserver();
+
+  // .Zee.Proto.Data.Position Position = 4;
+  bool has_position() const;
+  private:
+  bool _internal_has_position() const;
+  public:
+  void clear_position();
+  const ::Zee::Proto::Data::Position& position() const;
+  PROTOBUF_MUST_USE_RESULT ::Zee::Proto::Data::Position* release_position();
+  ::Zee::Proto::Data::Position* mutable_position();
+  void set_allocated_position(::Zee::Proto::Data::Position* position);
+  private:
+  const ::Zee::Proto::Data::Position& _internal_position() const;
+  ::Zee::Proto::Data::Position* _internal_mutable_position();
+  public:
+  void unsafe_arena_set_allocated_position(
+      ::Zee::Proto::Data::Position* position);
+  ::Zee::Proto::Data::Position* unsafe_arena_release_position();
+
+  // .Zee.Proto.UserCharacter.ReturnCode RC = 1;
+  void clear_rc();
+  ::Zee::Proto::UserCharacter::ReturnCode rc() const;
+  void set_rc(::Zee::Proto::UserCharacter::ReturnCode value);
+  private:
+  ::Zee::Proto::UserCharacter::ReturnCode _internal_rc() const;
+  void _internal_set_rc(::Zee::Proto::UserCharacter::ReturnCode value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Zee.Proto.UserCharacter.Select)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userip_;
+  ::Zee::Proto::Data::Character* character_;
+  ::Zee::Proto::Data::DedicateServer* toserver_;
+  ::Zee::Proto::Data::Position* position_;
+  int rc_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_UserCharacter_2eproto;
+};
 // ===================================================================
 
 
@@ -636,9 +861,339 @@ Get::characters() const {
   return characters_;
 }
 
+// -------------------------------------------------------------------
+
+// Select
+
+// .Zee.Proto.UserCharacter.ReturnCode RC = 1;
+inline void Select::clear_rc() {
+  rc_ = 0;
+}
+inline ::Zee::Proto::UserCharacter::ReturnCode Select::_internal_rc() const {
+  return static_cast< ::Zee::Proto::UserCharacter::ReturnCode >(rc_);
+}
+inline ::Zee::Proto::UserCharacter::ReturnCode Select::rc() const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.RC)
+  return _internal_rc();
+}
+inline void Select::_internal_set_rc(::Zee::Proto::UserCharacter::ReturnCode value) {
+  
+  rc_ = value;
+}
+inline void Select::set_rc(::Zee::Proto::UserCharacter::ReturnCode value) {
+  _internal_set_rc(value);
+  // @@protoc_insertion_point(field_set:Zee.Proto.UserCharacter.Select.RC)
+}
+
+// .Zee.Proto.Data.Character Character = 2;
+inline bool Select::_internal_has_character() const {
+  return this != internal_default_instance() && character_ != nullptr;
+}
+inline bool Select::has_character() const {
+  return _internal_has_character();
+}
+inline const ::Zee::Proto::Data::Character& Select::_internal_character() const {
+  const ::Zee::Proto::Data::Character* p = character_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::Data::Character&>(
+      ::Zee::Proto::Data::_Character_default_instance_);
+}
+inline const ::Zee::Proto::Data::Character& Select::character() const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.Character)
+  return _internal_character();
+}
+inline void Select::unsafe_arena_set_allocated_character(
+    ::Zee::Proto::Data::Character* character) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(character_);
+  }
+  character_ = character;
+  if (character) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Zee.Proto.UserCharacter.Select.Character)
+}
+inline ::Zee::Proto::Data::Character* Select::release_character() {
+  
+  ::Zee::Proto::Data::Character* temp = character_;
+  character_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::Zee::Proto::Data::Character* Select::unsafe_arena_release_character() {
+  // @@protoc_insertion_point(field_release:Zee.Proto.UserCharacter.Select.Character)
+  
+  ::Zee::Proto::Data::Character* temp = character_;
+  character_ = nullptr;
+  return temp;
+}
+inline ::Zee::Proto::Data::Character* Select::_internal_mutable_character() {
+  
+  if (character_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Zee::Proto::Data::Character>(GetArenaForAllocation());
+    character_ = p;
+  }
+  return character_;
+}
+inline ::Zee::Proto::Data::Character* Select::mutable_character() {
+  ::Zee::Proto::Data::Character* _msg = _internal_mutable_character();
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.UserCharacter.Select.Character)
+  return _msg;
+}
+inline void Select::set_allocated_character(::Zee::Proto::Data::Character* character) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(character_);
+  }
+  if (character) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(character));
+    if (message_arena != submessage_arena) {
+      character = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, character, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  character_ = character;
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.UserCharacter.Select.Character)
+}
+
+// .Zee.Proto.Data.DedicateServer ToServer = 3;
+inline bool Select::_internal_has_toserver() const {
+  return this != internal_default_instance() && toserver_ != nullptr;
+}
+inline bool Select::has_toserver() const {
+  return _internal_has_toserver();
+}
+inline const ::Zee::Proto::Data::DedicateServer& Select::_internal_toserver() const {
+  const ::Zee::Proto::Data::DedicateServer* p = toserver_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::Data::DedicateServer&>(
+      ::Zee::Proto::Data::_DedicateServer_default_instance_);
+}
+inline const ::Zee::Proto::Data::DedicateServer& Select::toserver() const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.ToServer)
+  return _internal_toserver();
+}
+inline void Select::unsafe_arena_set_allocated_toserver(
+    ::Zee::Proto::Data::DedicateServer* toserver) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(toserver_);
+  }
+  toserver_ = toserver;
+  if (toserver) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Zee.Proto.UserCharacter.Select.ToServer)
+}
+inline ::Zee::Proto::Data::DedicateServer* Select::release_toserver() {
+  
+  ::Zee::Proto::Data::DedicateServer* temp = toserver_;
+  toserver_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::Zee::Proto::Data::DedicateServer* Select::unsafe_arena_release_toserver() {
+  // @@protoc_insertion_point(field_release:Zee.Proto.UserCharacter.Select.ToServer)
+  
+  ::Zee::Proto::Data::DedicateServer* temp = toserver_;
+  toserver_ = nullptr;
+  return temp;
+}
+inline ::Zee::Proto::Data::DedicateServer* Select::_internal_mutable_toserver() {
+  
+  if (toserver_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Zee::Proto::Data::DedicateServer>(GetArenaForAllocation());
+    toserver_ = p;
+  }
+  return toserver_;
+}
+inline ::Zee::Proto::Data::DedicateServer* Select::mutable_toserver() {
+  ::Zee::Proto::Data::DedicateServer* _msg = _internal_mutable_toserver();
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.UserCharacter.Select.ToServer)
+  return _msg;
+}
+inline void Select::set_allocated_toserver(::Zee::Proto::Data::DedicateServer* toserver) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(toserver_);
+  }
+  if (toserver) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(toserver));
+    if (message_arena != submessage_arena) {
+      toserver = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, toserver, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  toserver_ = toserver;
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.UserCharacter.Select.ToServer)
+}
+
+// .Zee.Proto.Data.Position Position = 4;
+inline bool Select::_internal_has_position() const {
+  return this != internal_default_instance() && position_ != nullptr;
+}
+inline bool Select::has_position() const {
+  return _internal_has_position();
+}
+inline const ::Zee::Proto::Data::Position& Select::_internal_position() const {
+  const ::Zee::Proto::Data::Position* p = position_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Zee::Proto::Data::Position&>(
+      ::Zee::Proto::Data::_Position_default_instance_);
+}
+inline const ::Zee::Proto::Data::Position& Select::position() const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.Position)
+  return _internal_position();
+}
+inline void Select::unsafe_arena_set_allocated_position(
+    ::Zee::Proto::Data::Position* position) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(position_);
+  }
+  position_ = position;
+  if (position) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Zee.Proto.UserCharacter.Select.Position)
+}
+inline ::Zee::Proto::Data::Position* Select::release_position() {
+  
+  ::Zee::Proto::Data::Position* temp = position_;
+  position_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::Zee::Proto::Data::Position* Select::unsafe_arena_release_position() {
+  // @@protoc_insertion_point(field_release:Zee.Proto.UserCharacter.Select.Position)
+  
+  ::Zee::Proto::Data::Position* temp = position_;
+  position_ = nullptr;
+  return temp;
+}
+inline ::Zee::Proto::Data::Position* Select::_internal_mutable_position() {
+  
+  if (position_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Zee::Proto::Data::Position>(GetArenaForAllocation());
+    position_ = p;
+  }
+  return position_;
+}
+inline ::Zee::Proto::Data::Position* Select::mutable_position() {
+  ::Zee::Proto::Data::Position* _msg = _internal_mutable_position();
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.UserCharacter.Select.Position)
+  return _msg;
+}
+inline void Select::set_allocated_position(::Zee::Proto::Data::Position* position) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(position_);
+  }
+  if (position) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(position));
+    if (message_arena != submessage_arena) {
+      position = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, position, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  position_ = position;
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.UserCharacter.Select.Position)
+}
+
+// string UserIp = 5;
+inline void Select::clear_userip() {
+  userip_.ClearToEmpty();
+}
+inline const std::string& Select::userip() const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.UserCharacter.Select.UserIp)
+  return _internal_userip();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Select::set_userip(ArgT0&& arg0, ArgT... args) {
+ 
+ userip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Zee.Proto.UserCharacter.Select.UserIp)
+}
+inline std::string* Select::mutable_userip() {
+  std::string* _s = _internal_mutable_userip();
+  // @@protoc_insertion_point(field_mutable:Zee.Proto.UserCharacter.Select.UserIp)
+  return _s;
+}
+inline const std::string& Select::_internal_userip() const {
+  return userip_.Get();
+}
+inline void Select::_internal_set_userip(const std::string& value) {
+  
+  userip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* Select::_internal_mutable_userip() {
+  
+  return userip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* Select::release_userip() {
+  // @@protoc_insertion_point(field_release:Zee.Proto.UserCharacter.Select.UserIp)
+  return userip_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void Select::set_allocated_userip(std::string* userip) {
+  if (userip != nullptr) {
+    
+  } else {
+    
+  }
+  userip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), userip,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Zee.Proto.UserCharacter.Select.UserIp)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

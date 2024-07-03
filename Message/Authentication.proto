@@ -17,6 +17,7 @@ message Login {
     ReturnCode RC = 1;
     Zee.Proto.Data.Account Account = 2;
     repeated Zee.Proto.Data.Character Characters = 3;
+    repeated int32 CollectionIds = 4;
 }
 
 message Logout {

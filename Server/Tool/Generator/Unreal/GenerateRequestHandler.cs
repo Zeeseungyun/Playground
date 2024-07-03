@@ -128,7 +128,7 @@ namespace Zee
 
                     newFile.SrcContent.Append("\r\n");
                     newFile.SrcContent.Append("EZeeNetRequestHandlerResponse FZeeNetClient::ConsumeRequestMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { \r\n");
-                    newFile.SrcContent.Append("\tCheckRequestHandlers(); \r\n");
+                    newFile.SrcContent.Append("\tValidateRequestHandlers(); \r\n");
                     newFile.SrcContent.Append("\tFZeeNetRequestHandlerArray* Found = nullptr; \r\n");
                     newFile.SrcContent.Append("\tTSharedPtr<IZeeNetResponser> Responser = StaticCastSharedPtr<IZeeNetResponser>(AsShared().ToSharedPtr()); \r\n");
                     newFile.SrcContent.Append("\r\n");

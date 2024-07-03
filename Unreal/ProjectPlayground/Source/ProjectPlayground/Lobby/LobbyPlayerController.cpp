@@ -46,7 +46,15 @@ void ALobbyPlayerController::BeginPlay()
 		LobbyCharacterSpots[i]->OnWidgetButtonClicked.AddUObject(this, &ALobbyPlayerController::OnCharacterSpotButtonClicked, i + 1);
 	}
 
-	ShowLoginWidget(true);
+	UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
+	bool bShowLoginWidget = true;
+	if (::IsValid(NetworkClientSubsystem))
+	{
+		bShowLoginWidget &= NetworkClientSubsystem->UserId == 0;
+		SettingCharacters(NetworkClientSubsystem->Characters);
+	}
+
+	ShowLoginWidget(bShowLoginWidget);
 }
 
 void ALobbyPlayerController::ShowLoginWidget(bool bVisible)
@@ -161,12 +169,16 @@ void ALobbyPlayerController::OnCharacterSpotButtonClicked(int32 Slot)
 			return;
 		}
 
-		FZeeNetDedicateMove ReqMsg;
-		ReqMsg.Character.Slot = Slot;
-		NetworkClientSubsystem->GetClient()->Request<FZeeNetDedicateMove>(ReqMsg, this, [this](const FZeeNetDedicateMove& InRes)
+		FZeeNetUserCharacterSelect Req;
+		Req.Character.Slot = Slot;
+		NetworkClientSubsystem->GetClient()->Request<FZeeNetUserCharacterSelect>(Req, this, [this, NetworkClientSubsystem](const FZeeNetUserCharacterSelect& InRes)
 			{
-				const FString Options = FString::Printf(TEXT("Id=%lld"), UZeeNetworkClientSubsystem::Get(this)->UserId);
-				UGameplayStatics::OpenLevel(this, *FString::Printf(TEXT("%s:%d"), *InRes.ToServer.Ip, InRes.ToServer.Port), true, Options);
+				if (ZeeNetIsSuccess(InRes.RC))
+				{
+					NetworkClientSubsystem->CharacterId = InRes.Character.UID;
+					const FString Options = FString::Printf(TEXT("Id=%lld"), NetworkClientSubsystem->UserId);
+					UGameplayStatics::OpenLevel(this, *FString::Printf(TEXT("%s:%d"), *InRes.ToServer.Ip, InRes.ToServer.Port), true, Options);
+				}
 			}
 		);
 	}
@@ -184,7 +196,7 @@ void ALobbyPlayerController::OnCreateCharacterConfirm(const FString& InCharacter
 	Req.Character.Slot = Slot;
 	Req.Character.Name = InCharacterName;
 
-	NetworkClientSubsystem->GetClient()->Request<FZeeNetUserCharacterCreate>(Req, this, [this](const FZeeNetUserCharacterCreate& InRes) 
+	NetworkClientSubsystem->GetClient()->Request<FZeeNetUserCharacterCreate>(Req, this, [this, NetworkClientSubsystem](const FZeeNetUserCharacterCreate& InRes)
 		{
 			UGameViewportClient* ViewportClient = GetWorld()->GetGameViewport();
 			if (!::IsValid(ViewportClient))
@@ -195,6 +207,7 @@ void ALobbyPlayerController::OnCreateCharacterConfirm(const FString& InCharacter
 			if (ZeeNetIsSuccess(InRes.RC))
 			{
 				LobbyCharacterSpots[InRes.Character.Slot - 1]->SetCharacterData(InRes.Character);
+				NetworkClientSubsystem->Characters.Add(InRes.Character);
 				ShowCreateCharacterWidget(false, 0);
 			}
 			else
@@ -209,35 +222,42 @@ void ALobbyPlayerController::OnCreateCharacterConfirm(const FString& InCharacter
 	);
 }
 
-void ALobbyPlayerController::ResponseLogin(const struct FZeeNetAuthenticationLogin& InRes)
+void ALobbyPlayerController::SettingCharacters(const TArray<struct FZeeNetDataCharacter>& Characters)
+{
+	static auto FindCharacterDataBySlot = [](const TArray<FZeeNetDataCharacter>& Datas, int32 Slot) -> const FZeeNetDataCharacter*
+		{
+			for (const auto& Elem : Datas)
+			{
+				if (Elem.Slot == Slot)
+				{
+					return &Elem;
+				}
+			}
+
+			return nullptr;
+		};
+
+
+	const int32 Num = 3; //LobbyCharacterSpots.Num();
+	for (int32 i = 0; i != Num; ++i)
+	{
+		if (ensure(LobbyCharacterSpots[i].IsValid())) [[likely]]
+			{
+				const FZeeNetDataCharacter* FoundData = FindCharacterDataBySlot(Characters, i + 1);
+				LobbyCharacterSpots[i]->SetCharacterData(FoundData ? *FoundData : FZeeNetDataCharacter{});
+			}
+	}
+}
+
+void ALobbyPlayerController::ResponseLogin(const FZeeNetAuthenticationLogin& InRes)
 {
 	if (ZeeNetIsSuccess(InRes.RC))
 	{
-		static auto FindCharacterDataBySlot = [](const TArray<FZeeNetDataCharacter>& Datas, int32 Slot) -> const FZeeNetDataCharacter*
-			{
-				for (const auto& Elem : Datas)
-				{
-					if (Elem.Slot == Slot)
-					{
-						return &Elem;
-					}
-				}
-
-				return nullptr;
-			};
-
-		UZeeNetworkClientSubsystem::Get(this)->UserId = InRes.Account.UID;
-
-		const int32 Num = 3; //LobbyCharacterSpots.Num();
-		for (int32 i = 0; i != Num; ++i)
-		{
-			if (ensure(LobbyCharacterSpots[i].IsValid())) [[likely]]
-			{
-				const FZeeNetDataCharacter* FoundData = FindCharacterDataBySlot(InRes.Characters, i + 1);
-				LobbyCharacterSpots[i]->SetCharacterData(FoundData ? *FoundData : FZeeNetDataCharacter{});
-			}
-		}
-
+		UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
+		NetworkClientSubsystem->UserId = InRes.Account.UID;
+		NetworkClientSubsystem->Characters = InRes.Characters;
+		NetworkClientSubsystem->CollectionIds = InRes.CollectionIds;
+		SettingCharacters(NetworkClientSubsystem->Characters);
 		ShowLoginWidget(false);
 	}
 	else

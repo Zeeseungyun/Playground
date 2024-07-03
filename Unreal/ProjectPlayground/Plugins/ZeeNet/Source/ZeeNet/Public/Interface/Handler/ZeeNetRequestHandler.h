@@ -23,6 +23,7 @@ struct ZEENET_API IZeeNetRequestHandler
 public:
 	virtual ~IZeeNetRequestHandler() = default;
 	virtual const FString& GetHandlerName() const = 0;
+	virtual TArray<FString> GetHandlerNames() const { return { GetHandlerName() }; }
 	//응답 우선 순위 숫자가 작을 수록 우선 순위가 올라감.
 	virtual int32 GetPriority() const { return 0; }
 };

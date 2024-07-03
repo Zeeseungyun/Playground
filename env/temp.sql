@@ -1,0 +1,9 @@
+-- SELECT * FROM zee_database_1.account;
+-- SELECT * FROM zee_database_1.character;
+-- SELECT * FROM zee_database_1.position;
+-- INSERT INTO zee_database_1.account (uid, id, pw) VALUES (RAND(), 'test2', 'test_char_name');
+-- truncate zee_database_1.position;
+-- ALTER TABLE `zee_database_1`.`account` CHANGE COLUMN `uid` `uid` BIGINT GENERATED ALWAYS AS VIRTUAL;
+-- INSERT INTO zee_database_1.collection (uid, id) VALUES (1, 2);
+-- truncate zee_database_1.collection;
+-- select * from zee_database_1.collection;

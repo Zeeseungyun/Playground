@@ -13,8 +13,10 @@
 #include "Styling/SlateTypes.h"
 #include "Styling/AppStyle.h"
 #include "Styling/CoreStyle.h"
-#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUILobbySlateStyles.h"
-#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUILobbySlateStyle.h"
+
+#include "ZeeUI/Public/ZeeUISlateStyles.h"
+#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUISlateStyle_Login.h"
+#include "ZeeUI/Public/Common/SlateStyle/ZeeUISlateStyle_Common.h"
 
 #define LOCTEXT_NAMESPACE "FZeeUIModule"
 
@@ -37,7 +39,8 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 		FVector4(20, 20, 20, 20)
 	);
 
-	const FZeeUILobbySlateStyle& MenuStyle = FZeeUILobbySlateStyles::Get().GetWidgetStyle<FZeeUILobbySlateStyle>("Style1");
+	const FZeeUISlateStyle_Login& LoginMenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Login>("Lobby/Login");
+	const FZeeUISlateStyle_Common& CommonMenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Common>("Common/Common");
 
 	ChildSlot
 	[
@@ -59,7 +62,7 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 			.VAlign(VAlign_Center)
 			[
 				SNew(STextBlock)
-				.TextStyle(&MenuStyle.LoginTitleTextStyle)
+				.TextStyle(&LoginMenuStyle.LoginTitleTextStyle)
 				.Text(LOCTEXT("Zee's Playground","Zee's Playground"))
 			]
 			+ SGridPanel::Slot(0, 1)
@@ -72,7 +75,7 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 				+ SGridPanel::Slot(1, 0)
 				[
 					SNew(SBorder)
-					.BorderImage(&RoundedSlateBrush)
+					.BorderImage(&CommonMenuStyle.CommonBorderBrush)
 					[
 						SNew(SGridPanel)
 						.FillRow(0, 2.0f)
@@ -83,7 +86,7 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 						.Padding(20)
 						[
 							SNew(SBorder)
-							.BorderImage(&SlateBrush_IDPW2)
+							.BorderImage(&CommonMenuStyle.CommonBorderBrush)
 							.Padding(15)
 							[
 								SNew(SGridPanel)
@@ -96,13 +99,13 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 								.VAlign(VAlign_Center)
 								[
 									SNew(STextBlock)
-									.TextStyle(&MenuStyle.LoginBoxTextStyle)
+									.TextStyle(&LoginMenuStyle.LoginBoxTextStyle)
 									.Text(LOCTEXT("ID", "ID"))
 								]
 								+ SGridPanel::Slot(1, 0)
 								[
 									SAssignNew(EditableTextBox_ID, SEditableTextBox)
-									.Style(&MenuStyle.LoginBoxEditableTextBoxStyle)
+									.Style(&LoginMenuStyle.LoginBoxEditableTextBoxStyle)
 									.ForegroundColor(FSlateColor(FLinearColor(0, 0, 0, 1)))
 								]
 							]
@@ -111,7 +114,7 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 						.Padding(20)
 						[
 							SNew(SBorder)
-							.BorderImage(&SlateBrush_IDPW2)
+							.BorderImage(&CommonMenuStyle.CommonBorderBrush)
 							.Padding(15)
 							[
 								SNew(SGridPanel)
@@ -124,13 +127,13 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 								.VAlign(VAlign_Center)
 								[
 									SNew(STextBlock)
-									.TextStyle(&MenuStyle.LoginBoxTextStyle)
+									.TextStyle(&LoginMenuStyle.LoginBoxTextStyle)
 									.Text(LOCTEXT("PW", "PW"))
 								]
 								+ SGridPanel::Slot(1, 0)
 								[
 									SAssignNew(EditableTextBox_PW, SEditableTextBox)
-									.Style(&MenuStyle.LoginBoxEditableTextBoxStyle)
+									.Style(&LoginMenuStyle.LoginBoxEditableTextBoxStyle)
 									.IsPassword(true)
 									.ForegroundColor(FSlateColor(FLinearColor(0,0,0,1)))
 								]
@@ -140,13 +143,13 @@ void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 						.Padding(20)
 						[
 							SNew(SButton)
-							.ButtonStyle(&MenuStyle.LoginButtonStyle)
+							.ButtonStyle(&LoginMenuStyle.LoginButtonStyle)
 							.HAlign(HAlign_Center)
 							.VAlign(VAlign_Center)
 							.OnClicked(InArgs._OnLoginClicked)
 							[
 								SNew(STextBlock)
-								.TextStyle(&MenuStyle.LoginButtonTextStyle)
+								.TextStyle(&LoginMenuStyle.LoginButtonTextStyle)
 								.Text(LOCTEXT("Login", "Login"))
 							]
 						]

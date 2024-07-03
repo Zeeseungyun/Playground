@@ -10,7 +10,8 @@
 FZeeNetRequestHandlerArray* FindRequestHandler_UserCharacter(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers) { 
 	switch (Point) { 
 	case TZeeNetPacketTraits<FZeeNetUserCharacterCreate>::Point: [[fallthrough]]; 
-	case TZeeNetPacketTraits<FZeeNetUserCharacterGet>::Point: 
+	case TZeeNetPacketTraits<FZeeNetUserCharacterGet>::Point: [[fallthrough]]; 
+	case TZeeNetPacketTraits<FZeeNetUserCharacterSelect>::Point: 
 		return RequestHandlers.Find(TEXT("Request_UserCharacter")); 
 	default: break; 
 	}
@@ -25,6 +26,7 @@ EZeeNetRequestHandlerResponse ConsumeRequestMessage_UserCharacter(TSharedPtr<IZe
 	switch (PacketPoint) { 
 		ZEENET_CASE_CONSUME_REQUEST(UserCharacter, Create);
 		ZEENET_CASE_CONSUME_REQUEST(UserCharacter, Get);
+		ZEENET_CASE_CONSUME_REQUEST(UserCharacter, Select);
 	default: break; 
 	} 
 

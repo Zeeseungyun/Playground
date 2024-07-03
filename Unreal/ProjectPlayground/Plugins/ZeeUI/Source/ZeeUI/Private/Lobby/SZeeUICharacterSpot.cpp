@@ -11,14 +11,14 @@
 #include "Styling/AppStyle.h"
 #include "Styling/CoreStyle.h"
 
-#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUILobbySlateStyles.h"
-#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUILobbySlateStyle.h"
+#include "ZeeUI/Public/ZeeUISlateStyles.h"
+#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUISlateStyle_Login.h"
 
 #define LOCTEXT_NAMESPACE "FZeeUIModule"
 
 void SZeeUICharacterSpot::Construct( const FArguments& InArgs )
 {
-	const FZeeUILobbySlateStyle& MenuStyle = FZeeUILobbySlateStyles::Get().GetWidgetStyle<FZeeUILobbySlateStyle>("Style1");
+	const FZeeUISlateStyle_Login& MenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Login>("Lobby/Login");
 	
 	ChildSlot
 	[

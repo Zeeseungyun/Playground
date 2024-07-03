@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "ZeeNet/Public/Messages/Dedicate.h"
+#include "ZeeNet/Public/Messages/UserCharacter.h"
 #include "InGameModeBase.generated.h"
 
 UCLASS()
@@ -21,9 +22,21 @@ public:
 	virtual void Logout(AController* Exiting) override;
 
 private:
-	TSharedPtr<class FInGameRequestHandler> RequestHandler;
+	TSharedPtr<class FInGameRequestHandler_Dedicate> RequestHandler_Dedicate;
+	TSharedPtr<class FInGameRequestHandler_UserCharacter> RequestHandler_UserCharacter;
 
 public:
-	UPROPERTY(transient)
-	TMap<FString, FZeeNetDedicateMove> DedicateMoveToUIDs;
+	struct FPassport {
+		FZeeNetDataCharacter Character;
+		FString UserIp;
+		FString MapName;
+		bool bIsMoveTown = false;
+		FVector Pos;
+		FRotator Rot;
+	};
+
+	TMap<FString, FPassport> Passports;
+
+	FVector MoveTownDestPos;
+	FRotator MoveTownDestRot;
 };

@@ -16,9 +16,26 @@ namespace Zee.Net
 		public void OnRequest(Message.IResponser r, Message.Packet<Zee.Proto.Dedicate.Login> p) 
         { 
             p.Message.RC = Proto.Dedicate.ReturnCode.RcSuccess;
-            DedicateServer.MapName = "/Game/InGame/Maps/TopDownMap";
-            DedicateServer.Port = 20499;
+            Console.WriteLine(p.Message.DedicateServer.Port);
+            
+            switch(p.Message.DedicateServer.Port)
+            {
+                case 20499:
+                    DedicateServer.MapName = "/Game/InGame/Maps/MapFirst";
+                break;
+
+                case 20498:
+                    DedicateServer.MapName = "/Game/InGame/Maps/MapSecond";
+                break;
+
+                default:
+                    p.Message.RC = Proto.Dedicate.ReturnCode.RcFailedUnknown;
+                break;
+            }
+
+            DedicateServer.Port = p.Message.DedicateServer.Port;
             DedicateServer.Ip = RemoteIp;
+
             Logger.LogInformation($"dedicated server login {DedicateServer}");
             p.Message.DedicateServer = DedicateServer;
             r.Response(p);
@@ -31,7 +48,7 @@ namespace Zee.Net
             var characterGet = Database.Character.Get(Account.UID);
             foreach(var character in characterGet.Characters)
             {
-                if(character.Slot == p.Message.Character.Slot)
+                if(character.UID == p.Message.Character.UID)
                 {
                     p.Message.Character = character;
                     bFound = true;
@@ -47,10 +64,9 @@ namespace Zee.Net
                 return;
             }
             
-            p.Message.Position = Database.Position.Get(p.Message.Character.UID);
             p.Message.UserIp = RemoteIp;
 
-            ClientHandler? foundDedi = server.FindDedi(p.Message.Position.MapName);
+            ClientHandler? foundDedi = server.FindDedi(p.Message.ToServer.MapName);
             if( foundDedi == null)
             {
                 p.Message.RC = Proto.Dedicate.ReturnCode.RcFailedDediNotFound;
@@ -64,8 +80,8 @@ namespace Zee.Net
                 newPacket.Header = p.Header;
                 if(res.Message.RC == Proto.Dedicate.ReturnCode.RcSuccess)
                 {
-                    //로케이션 조회한 뒤 로케이션 보내줘야함.
                     newPacket.Message.ToServer = foundDedi.DedicateServer;
+                    newPacket.Message.Character = p.Message.Character;
                     r.Response(newPacket);
                 }
                 else

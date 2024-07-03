@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "ZeeNet/Public/ZeeNetClient.h"
+#include "ZeeNet/Public/Messages/Data/DataCharacter.h"
 #include "ZeeNetworkClientSubsystem.generated.h"
 
 UCLASS()
@@ -40,4 +41,7 @@ public:
 
 	//client only
 	int64 UserId = 0;
+	int64 CharacterId = 0;
+	TArray<FZeeNetDataCharacter> Characters;
+	TArray<int32> CollectionIds;
 };

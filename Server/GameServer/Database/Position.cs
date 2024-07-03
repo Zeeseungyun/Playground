@@ -80,7 +80,7 @@ namespace Zee.Database
                 }
             }
 
-            return false;
+            return true;
         }
     }
 }

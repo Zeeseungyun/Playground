@@ -16,6 +16,7 @@ namespace Zee.Net
         public Zee.Proto.Data.DedicateServer DedicateServer = new();
         public EndPoint RemoteEndPoint => client!.Client.RemoteEndPoint!;
         public string RemoteIp => RemoteEndPoint.ToString()!.Substring(0, RemoteEndPoint.ToString()!.IndexOf(':'));
+        public int RemotePort => int.Parse(RemoteEndPoint.ToString()!.Substring(RemoteEndPoint.ToString()!.IndexOf(':')+1));
         override public string Name { 
             get {
                 if(Account.Id.Length > 0)
@@ -41,22 +42,17 @@ namespace Zee.Net
 
         override protected void ReceiveMessages()
         {
-            try
+            var stream = client!.GetStream();
+            while (client.Connected)
             {
-                var stream = client!.GetStream();
-                while (client.Connected)
+                var packet = stream.DeserializePacket(buffer, buffer.Length);
+                if(packet == null)
                 {
-                    ProcessPacket(stream.DeserializePacket(buffer, buffer.Length));
+                    break;
                 }
+                ProcessPacket(packet);
             }
-            catch (Exception ex)
-            {
-                Logger.LogInformation($"exception occured: [{Name}] {ex.Message}.");
-            }
-            finally
-            {
-                ReceiveMessagesFinished();
-            }
+            ReceiveMessagesFinished();
         }
 
         protected override void ReceiveMessagesFinished()

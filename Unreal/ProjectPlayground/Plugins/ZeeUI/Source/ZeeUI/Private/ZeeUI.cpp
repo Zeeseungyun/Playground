@@ -1,26 +1,21 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ZeeUI.h"
-#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUILobbySlateStyles.h"
+#include "ZeeUI/Public/ZeeUISlateStyles.h"
 
 #define LOCTEXT_NAMESPACE "FZeeUIModule"
 
 void FZeeUIModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
-	FSlateStyleRegistry::UnRegisterSlateStyle(FZeeUILobbySlateStyles::GetStyleSetName());
-	UE_LOG(LogTemp, Warning, TEXT("ZeeUI FZeeUIModule::StartupModule"));
-	FZeeUILobbySlateStyles::Initialize();
+	FZeeUISlateStyles::Initialize();
 }
 
 void FZeeUIModule::ShutdownModule()
 {
-	UE_LOG(LogTemp, Warning, TEXT("ZeeUI FZeeUIModule::ShutdownModule"));
-
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
-	FZeeUILobbySlateStyles::Shutdown();
-	
+	FZeeUISlateStyles::Shutdown();
 }
 
 #undef LOCTEXT_NAMESPACE

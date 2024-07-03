@@ -24,6 +24,7 @@ private:
 	void OnConnected(const FString& InMessage);
 	void OnCharacterSpotButtonClicked(int32 Slot);
 	void OnCreateCharacterConfirm(const FString& InCharacterName, int32 Slot);
+	void SettingCharacters(const TArray<struct FZeeNetDataCharacter>& Characters);
 
 private:
 	TSharedPtr<class SZeeUILobbyLogin> LoginWidget;

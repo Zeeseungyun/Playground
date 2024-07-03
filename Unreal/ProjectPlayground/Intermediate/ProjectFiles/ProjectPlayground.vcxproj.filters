@@ -96,6 +96,12 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Chat.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Collection.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Collection.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Dedicate.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClCompile>
@@ -106,12 +112,6 @@
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Packet.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Test.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Test.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\UserCharacter.cpp">
@@ -171,10 +171,10 @@
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Chat.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Dedicate.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Collection.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Test.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Dedicate.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_UserCharacter.g.cpp">
@@ -189,10 +189,10 @@
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Chat.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Dedicate.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Collection.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Test.g.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Dedicate.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_UserCharacter.g.cpp">
@@ -213,6 +213,12 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
     </ClInclude>
+    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Collection.pb.cc">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
+    </None>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Collection.pb.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
+    </ClInclude>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Dedicate.pb.cc">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
     </None>
@@ -223,12 +229,6 @@
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
     </None>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Packet.pb.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
-    </ClInclude>
-    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.cc">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
-    </None>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Test.pb.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
     </ClInclude>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\UserCharacter.pb.cc">
@@ -303,10 +303,10 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Chat.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Dedicate.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Collection.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Test.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Dedicate.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\UserCharacter.h">
@@ -321,10 +321,10 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Chat.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Dedicate.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Collection.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Test.h">
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Dedicate.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\UserCharacter.h">
@@ -345,6 +345,12 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Chat.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Collection.cpp">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Collection.h">
+      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Dedicate.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClCompile>
@@ -355,12 +361,6 @@
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Packet.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Test.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\UserCharacter.cpp">
@@ -429,13 +429,10 @@
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private">
       <UniqueIdentifier>{53967979-A9E6-3AD2-890A-698F81710A79}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeButton.cpp">
-      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUI.cpp">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUIBPLibrary.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\ZeeUISlateStyles.cpp">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Private</Filter>
     </ClCompile>
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private\Common">
@@ -456,6 +453,21 @@
     <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Common\Alarm\SZeeUIPopup.cpp">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Private\Common\Alarm</Filter>
     </ClCompile>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private\Common\SlateStyle">
+      <UniqueIdentifier>{02DED975-762D-38C3-8B31-F8D3850006CC}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Common\SlateStyle\ZeeUISlateStyle_Common.cpp">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private\Common\SlateStyle</Filter>
+    </ClCompile>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private\InGame">
+      <UniqueIdentifier>{99FA795A-B35E-3C74-B068-40AF7CC298B4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private\InGame\SlateStyle">
+      <UniqueIdentifier>{2ACAA91B-BA3D-3267-B8AF-D528F3701095}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\InGame\SlateStyle\ZeeUISlateStyle_InGame.cpp">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Private\InGame\SlateStyle</Filter>
+    </ClCompile>
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private\Lobby">
       <UniqueIdentifier>{7CEC36FE-91F5-3F81-82BE-0C480D858337}</UniqueIdentifier>
     </Filter>
@@ -471,22 +483,19 @@
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle">
       <UniqueIdentifier>{373F1C4F-8BC0-3E24-B122-51515890709A}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUILobbySlateStyle.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUISlateStyle_Character.cpp">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUILobbySlateStyles.cpp">
+    <ClCompile Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle\ZeeUISlateStyle_Login.cpp">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Private\Lobby\SlateStyle</Filter>
     </ClCompile>
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public">
       <UniqueIdentifier>{CC5A26AA-92C5-36B1-8A7D-7E74967FD870}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeButton.h">
-      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUI.h">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Public</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUIBPLibrary.h">
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\ZeeUISlateStyles.h">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Public</Filter>
     </ClInclude>
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public\Common">
@@ -507,6 +516,21 @@
     <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\Alarm\SZeeUIPopup.h">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Public\Common\Alarm</Filter>
     </ClInclude>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public\Common\SlateStyle">
+      <UniqueIdentifier>{A7E99C2B-D273-3B56-A310-6B8CD602502F}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Common\SlateStyle\ZeeUISlateStyle_Common.h">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public\Common\SlateStyle</Filter>
+    </ClInclude>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public\InGame">
+      <UniqueIdentifier>{1790D973-716B-3DEE-AE97-8F9E6C1ACB5E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public\InGame\SlateStyle">
+      <UniqueIdentifier>{98A5AC16-5B40-3E74-8972-73518746D994}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\InGame\SlateStyle\ZeeUISlateStyle_InGame.h">
+      <Filter>Plugins\ZeeUI\Source\ZeeUI\Public\InGame\SlateStyle</Filter>
+    </ClInclude>
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public\Lobby">
       <UniqueIdentifier>{73018DCD-D6C4-34B3-B834-96FECB8988A3}</UniqueIdentifier>
     </Filter>
@@ -522,10 +546,10 @@
     <Filter Include="Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle">
       <UniqueIdentifier>{81CA5701-58DD-3231-BC4A-6E762CFA882A}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUILobbySlateStyle.h">
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUISlateStyle_Character.h">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUILobbySlateStyles.h">
+    <ClInclude Include="..\..\Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle\ZeeUISlateStyle_Login.h">
       <Filter>Plugins\ZeeUI\Source\ZeeUI\Public\Lobby\SlateStyle</Filter>
     </ClInclude>
     <Filter Include="Source\ProjectPlayground">
@@ -538,24 +562,6 @@
       <Filter>Source\ProjectPlayground</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlayground.h">
-      <Filter>Source\ProjectPlayground</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\ProjectPlayground\ProjectPlaygroundCharacter.cpp">
-      <Filter>Source\ProjectPlayground</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlaygroundCharacter.h">
-      <Filter>Source\ProjectPlayground</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\ProjectPlayground\ProjectPlaygroundGameMode.cpp">
-      <Filter>Source\ProjectPlayground</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlaygroundGameMode.h">
-      <Filter>Source\ProjectPlayground</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\ProjectPlayground\ProjectPlaygroundPlayerController.cpp">
-      <Filter>Source\ProjectPlayground</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\ProjectPlayground\ProjectPlaygroundPlayerController.h">
       <Filter>Source\ProjectPlayground</Filter>
     </ClInclude>
     <Filter Include="Source\ProjectPlayground\Common">
@@ -583,6 +589,12 @@
       <Filter>Source\ProjectPlayground\InGame</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\ProjectPlayground\InGame\InGameModeBase.h">
+      <Filter>Source\ProjectPlayground\InGame</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ProjectPlayground\InGame\InGameMoveTown.cpp">
+      <Filter>Source\ProjectPlayground\InGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ProjectPlayground\InGame\InGameMoveTown.h">
       <Filter>Source\ProjectPlayground\InGame</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\ProjectPlayground\InGame\InGamePlayerController.cpp">

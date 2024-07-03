@@ -12,12 +12,14 @@ namespace Zee.Net.Message
 		void OnNotify(Packet<Zee.Proto.Authentication.Logout> p) { Logger.LogWarning("not impl packet: Zee.Proto.Authentication.Logout."); }
 		void OnNotify(Packet<Zee.Proto.Chat.Speak> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak."); }
 		void OnNotify(Packet<Zee.Proto.Chat.Speak1> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak1."); }
+		void OnNotify(Packet<Zee.Proto.Collection.Collect> p) { Logger.LogWarning("not impl packet: Zee.Proto.Collection.Collect."); }
+		void OnNotify(Packet<Zee.Proto.Collection.Get> p) { Logger.LogWarning("not impl packet: Zee.Proto.Collection.Get."); }
 		void OnNotify(Packet<Zee.Proto.Dedicate.Login> p) { Logger.LogWarning("not impl packet: Zee.Proto.Dedicate.Login."); }
 		void OnNotify(Packet<Zee.Proto.Dedicate.Move> p) { Logger.LogWarning("not impl packet: Zee.Proto.Dedicate.Move."); }
 		void OnNotify(Packet<Zee.Proto.Dedicate.Leave> p) { Logger.LogWarning("not impl packet: Zee.Proto.Dedicate.Leave."); }
-		void OnNotify(Packet<Zee.Proto.Test.TestMessage> p) { Logger.LogWarning("not impl packet: Zee.Proto.Test.TestMessage."); }
 		void OnNotify(Packet<Zee.Proto.UserCharacter.Create> p) { Logger.LogWarning("not impl packet: Zee.Proto.UserCharacter.Create."); }
 		void OnNotify(Packet<Zee.Proto.UserCharacter.Get> p) { Logger.LogWarning("not impl packet: Zee.Proto.UserCharacter.Get."); }
+		void OnNotify(Packet<Zee.Proto.UserCharacter.Select> p) { Logger.LogWarning("not impl packet: Zee.Proto.UserCharacter.Select."); }
 
         static public void HandleNotify(INotifyHandler h, PacketBase p)
         {
@@ -27,12 +29,14 @@ namespace Zee.Net.Message
 				case 0x1002: h.OnNotify(p as Packet<Zee.Proto.Authentication.Logout>); return;
 				case 0x2002: h.OnNotify(p as Packet<Zee.Proto.Chat.Speak>); return;
 				case 0x2001: h.OnNotify(p as Packet<Zee.Proto.Chat.Speak1>); return;
-				case 0x3001: h.OnNotify(p as Packet<Zee.Proto.Dedicate.Login>); return;
-				case 0x3002: h.OnNotify(p as Packet<Zee.Proto.Dedicate.Move>); return;
-				case 0x3003: h.OnNotify(p as Packet<Zee.Proto.Dedicate.Leave>); return;
-				case 0x5001: h.OnNotify(p as Packet<Zee.Proto.Test.TestMessage>); return;
+				case 0x3001: h.OnNotify(p as Packet<Zee.Proto.Collection.Collect>); return;
+				case 0x3002: h.OnNotify(p as Packet<Zee.Proto.Collection.Get>); return;
+				case 0x4001: h.OnNotify(p as Packet<Zee.Proto.Dedicate.Login>); return;
+				case 0x4002: h.OnNotify(p as Packet<Zee.Proto.Dedicate.Move>); return;
+				case 0x4003: h.OnNotify(p as Packet<Zee.Proto.Dedicate.Leave>); return;
 				case 0x6001: h.OnNotify(p as Packet<Zee.Proto.UserCharacter.Create>); return;
 				case 0x6002: h.OnNotify(p as Packet<Zee.Proto.UserCharacter.Get>); return;
+				case 0x6003: h.OnNotify(p as Packet<Zee.Proto.UserCharacter.Select>); return;
               
                 default: throw new Exception("invalid message point");
             }

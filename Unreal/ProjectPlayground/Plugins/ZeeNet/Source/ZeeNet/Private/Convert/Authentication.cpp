@@ -11,6 +11,8 @@ void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Authentication::Login&
 	FromTo(InFrom.account(), OutTo.Account); 
 	OutTo.Characters.Reserve(InFrom.characters().size());
 	for (const auto& Elem : InFrom.characters()) { FromTo(Elem, OutTo.Characters.AddZeroed_GetRef()); }
+	OutTo.CollectionIds.Reserve(InFrom.collectionids().size());
+	for (const auto& Elem : InFrom.collectionids()) { FromTo(Elem, OutTo.CollectionIds.AddZeroed_GetRef()); }
 }
 
 void Zee::Net::Message::Convert::FromTo(const FZeeNetAuthenticationLogin& InFrom, Zee::Proto::Authentication::Login& OutTo)
@@ -19,6 +21,8 @@ void Zee::Net::Message::Convert::FromTo(const FZeeNetAuthenticationLogin& InFrom
 	FromTo(InFrom.Account, *OutTo.mutable_account());
 	OutTo.mutable_characters()->Reserve(InFrom.Characters.Num());
 	for (const auto& Elem : InFrom.Characters) { FromTo(Elem, *OutTo.mutable_characters()->Add()); }
+	OutTo.mutable_collectionids()->Reserve(InFrom.CollectionIds.Num());
+	for (const auto& Elem : InFrom.CollectionIds) { FromTo(Elem, *OutTo.mutable_collectionids()->Add()); }
 }
 
 void Zee::Net::Message::Convert::FromTo(const Zee::Proto::Authentication::Logout& InFrom, FZeeNetAuthenticationLogout& OutTo)

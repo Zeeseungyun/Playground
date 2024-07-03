@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "ZeeNet/Public/ZeeNetPacketTraits.h"
 #include "ZeeNet/Public/Messages/Data/DataCharacter.h"
+#include "ZeeNet/Public/Messages/Data/DataDedicate.h"
+#include "ZeeNet/Public/Messages/Data/DataCommon.h"
 #include "UserCharacter.generated.h"
 
 UENUM(BlueprintType) 
@@ -46,4 +48,27 @@ struct FZeeNetUserCharacterGet
 
 }; 
 template<> struct TZeeNetPacketTraits<FZeeNetUserCharacterGet> { static constexpr int32 Point = 0x6002; static constexpr bool bIsData = false; }; 
+
+USTRUCT(BlueprintType) 
+struct FZeeNetUserCharacterSelect 
+{ 
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite) 
+	EZeeNetUserCharacterReturnCode RC = static_cast<EZeeNetUserCharacterReturnCode>(0); 
+
+	UPROPERTY(BlueprintReadWrite) 
+	FZeeNetDataCharacter Character; 
+
+	UPROPERTY(BlueprintReadWrite) 
+	FZeeNetDataDedicateServer ToServer; 
+
+	UPROPERTY(BlueprintReadWrite) 
+	FZeeNetDataPosition Position; 
+
+	UPROPERTY(BlueprintReadWrite) 
+	FString UserIp; 
+
+}; 
+template<> struct TZeeNetPacketTraits<FZeeNetUserCharacterSelect> { static constexpr int32 Point = 0x6003; static constexpr bool bIsData = false; }; 
 

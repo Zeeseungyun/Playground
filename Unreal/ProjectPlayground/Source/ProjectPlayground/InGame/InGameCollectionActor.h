@@ -10,12 +10,17 @@ class PROJECTPLAYGROUND_API AInGameCollectionActor : public AStaticMeshActor
 
 	AInGameCollectionActor(const FObjectInitializer& ObjectInitializer);
 
-public:
-	// Called every frame
-	// virtual void Tick(float DeltaTime) override;
-	// virtual void BeginPlay() override;
+private:
+	UFUNCTION()	void BeginOverlap(AActor* InOverlappedActor, AActor* InOtherActor);
+	UFUNCTION()	void EndOverlap(AActor* InOverlappedActor, AActor* InOtherActor);
+
+	FReply OnCollect();
 
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Appearance, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UWidgetComponent> WidgetComponent;
+
+private:
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = Collection, meta = (AllowPrivateAccess = "true"))
+	int32 CollectionId = -1;
 };

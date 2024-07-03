@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "InGameCharacter.h"
+#include "ProjectPlayground/InGame/InGameCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Camera/CameraComponent.h"
 #include "Components/DecalComponent.h"
@@ -16,8 +16,8 @@
 #include "Net/UnrealNetwork.h"
 #include "Components/WidgetComponent.h"
 
-#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUILobbySlateStyles.h"
-#include "ZeeUI/Public/Lobby/SlateStyle/ZeeUILobbySlateStyle.h"
+#include "ZeeUI/Public/ZeeUISlateStyles.h"
+#include "ZeeUI/Public/InGame/SlateStyle/ZeeUISlateStyle_InGame.h"
 
 AInGameCharacter::AInGameCharacter()
 {
@@ -67,21 +67,16 @@ void AInGameCharacter::BeginPlay()
 	Super::BeginPlay();
 	if (!HasAuthority())
 	{
-		const FZeeUILobbySlateStyle& MenuStyle = FZeeUILobbySlateStyles::Get().GetWidgetStyle<FZeeUILobbySlateStyle>("Style1");
-
-		static FSlateBrush RoundedSlateBrush = FSlateRoundedBoxBrush(
-			FLinearColor(0.03125f, 0.03125f, 0.03125f, 1.0f),
-			FVector4(10.f, 10.f, 10.f, 10.f)
-		);
+		const FZeeUISlateStyle_InGame& Style = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_InGame>("InGame/InGame");
 
 		CharacterNameComponent->SetSlateWidget(
 			SNew(SBorder).Padding(20.0f)
 			.HAlign(HAlign_Center)
 			.VAlign(VAlign_Center)
-			.BorderImage(&RoundedSlateBrush)
+			.BorderImage(&Style.InGameBorderBrush)
 			[
 				SNew(STextBlock)
-				.TextStyle(&MenuStyle.LoginBoxTextStyle)
+				.TextStyle(&Style.InGameTextStyle)
 				.Text(FText::FromString(CharacterName))
 			]
 		);

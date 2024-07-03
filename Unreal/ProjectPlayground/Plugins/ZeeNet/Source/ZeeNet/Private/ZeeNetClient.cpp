@@ -21,6 +21,7 @@ FZeeNetClient::FZeeNetClient()
 	: InBuffer {}
 	, OutBuffer {}
 {
+	bIsDeadThis = false;
 	bIsThreadDone = true;
 	if (ValidNotifyHandlerNames.Num() == 0)
 	{
@@ -37,7 +38,7 @@ FZeeNetClient::FZeeNetClient()
 FZeeNetClient::~FZeeNetClient()
 {
 	bIsDeadThis = true;
-	ShutdownSocket();
+	Shutdown();
 	if (Thread.IsValid())
 	{
 		Thread->WaitForCompletion();
@@ -112,16 +113,17 @@ void FZeeNetClient::ExecuteConnectEvent(const FString& InMessage)
 
 void FZeeNetClient::Shutdown()
 {
-	ShutdownSocket();
-}
-
-void FZeeNetClient::ShutdownSocket()
-{
 	if (Socket.IsValid())
 	{
 		Socket->Shutdown(ESocketShutdownMode::ReadWrite);
 		Socket->Close();
 	}
+}
+
+void FZeeNetClient::ShutdownSocket()
+{
+	UE_LOG(LogTemp, Warning, TEXT("ZeeLog, Last Socket Error[%s]"), ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->GetSocketError());
+	Shutdown();
 }
 
 //~begin FRunnable Interface
@@ -166,7 +168,10 @@ uint32 FZeeNetClient::Run()
 		return -1;
 	}
 
-	while (IsConnected()) DoRecv();
+	while (IsConnected())
+	{
+		DoRecv();
+	}
 
 	if (BeginFrameDelegate.IsValid())
 	{
@@ -191,7 +196,7 @@ uint32 FZeeNetClient::Run()
 
 void FZeeNetClient::Stop()
 {
-	ShutdownSocket();
+	Shutdown();
 }
 
 void FZeeNetClient::Exit()
@@ -530,12 +535,10 @@ void FZeeNetClient::CheckRequestHandlers()
 void FZeeNetClient::DoRecv()
 {
 	int32 HeaderSize = 0, BytesRead = 0, Offset = 0;
+	if (!Socket->Recv(InBuffer, sizeof(HeaderSize), BytesRead))
 	{
-		if (!Socket->Recv(InBuffer, sizeof(HeaderSize), BytesRead))
-		{
-			ShutdownSocket();
-			return;
-		}
+		ShutdownSocket();
+		return;
 	}
 
 	check(sizeof(HeaderSize) == BytesRead);
@@ -553,18 +556,21 @@ void FZeeNetClient::DoRecv()
 	PacketHeaderSerializerType Header;
 	Header.Deserialize(InBuffer /*+ Offset 내부에서 HeaderSize를 따로 읽음.*/, BytesRead);
 	Offset += BytesRead;
-	
-	if (!Socket->Recv(InBuffer + Offset, Header.GetHeader().PacketSize, BytesRead))
-	{
-		ShutdownSocket();
-		return;
-	}
-	check(Header.GetHeader().PacketSize == BytesRead);
 
 	TSharedPtr<FZeeNetPacketSerializerBase> Packet = FZeeNetPacketSerializerMap::CreateSerializer(Header.GetHeader().Point);
 	Packet->GetHeader() = Header.GetHeader();
-	Packet->Deserialize(InBuffer + Offset, BytesRead);
-	// Offset += BytesRead; 의미없음.
+
+	if (Header.GetHeader().PacketSize > 0)
+	{
+		if (!Socket->Recv(InBuffer + Offset, Header.GetHeader().PacketSize, BytesRead))
+		{
+			ShutdownSocket();
+			return;
+		}
+		check(Header.GetHeader().PacketSize == BytesRead);
+
+		Packet->Deserialize(InBuffer + Offset, BytesRead);
+	}
 	
 	{
 		FScopeLock Lock(&MtxPendingPackets);

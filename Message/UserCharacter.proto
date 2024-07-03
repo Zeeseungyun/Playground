@@ -1,6 +1,8 @@
 syntax = "proto3";
-import "Data/DataCharacter.proto";
 package Zee.Proto.UserCharacter;
+import "Data/DataCharacter.proto";
+import "Data/DataDedicate.proto";
+import "Data/DataCommon.proto";
 
 enum ReturnCode {
     RC_SUCCESS = 0;
@@ -17,4 +19,12 @@ message Get {
     ReturnCode RC = 1;
     int64 User = 2;
     repeated Zee.Proto.Data.Character Characters = 3;
+}
+
+message Select {
+    ReturnCode RC = 1;
+    Zee.Proto.Data.Character Character = 2;
+    Zee.Proto.Data.DedicateServer ToServer = 3;
+    Zee.Proto.Data.Position Position = 4;
+    string UserIp = 5;
 }

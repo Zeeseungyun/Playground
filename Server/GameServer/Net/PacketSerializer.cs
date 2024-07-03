@@ -20,23 +20,34 @@ namespace Zee.Net.Message
             stream.Flush();
         }
 
-        static public PacketBase DeserializePacket(this Stream stream, byte[] buffer, Int32 bufferSize)
+        static public PacketBase? DeserializePacket(this Stream stream, byte[] buffer, Int32 bufferSize)
         {
-            int readBytes = stream.Read(buffer, 0, sizeof(Int32));
-            if(sizeof(Int32) != readBytes) throw new InvalidDataException("invalid data.");       
-            Proto.Packet.Header Header = new();
-            
-            int headerSize = BitConverter.ToInt32(buffer);
-            readBytes = stream.Read(buffer, 0, headerSize);
-            if(headerSize != readBytes) throw new InvalidDataException("invalid header size.");
-            Header.MergeFrom(buffer, 0, headerSize);
-            
-            readBytes = stream.Read(buffer, 0, Header.PacketSize);
-            if(Header.PacketSize != readBytes) throw new InvalidDataException("invalid packet size.");
-            var ret = PacketMap.MakePacket(Header.Point);
-            ret!.Header = Header;
-            ret.InternalMessage.MergeFrom(buffer, 0, Header.PacketSize);
-            return ret;
+            try
+            {
+                int readBytes = stream.Read(buffer, 0, sizeof(Int32));
+                if(sizeof(Int32) != readBytes) throw new InvalidDataException("invalid data.");       
+                Proto.Packet.Header Header = new();
+
+                int headerSize = BitConverter.ToInt32(buffer);
+                readBytes = stream.Read(buffer, 0, headerSize);
+                if(headerSize != readBytes) throw new InvalidDataException("invalid header size.");
+                Header.MergeFrom(buffer, 0, headerSize);
+                var ret = PacketMap.MakePacket(Header.Point);
+                ret!.Header = Header;
+                if(Header.PacketSize > 0)
+                {
+                    readBytes = stream.Read(buffer, 0, Header.PacketSize);
+                    if(Header.PacketSize != readBytes) throw new InvalidDataException("invalid packet size.");
+                    ret.InternalMessage.MergeFrom(buffer, 0, Header.PacketSize);
+                }
+
+                return ret;
+            }
+            catch(Exception ex)
+            {
+                Logger.LogWarning($"deserialize packet {ex.Message}");
+                return null;
+            }
         }
     }
     public class PacketBase

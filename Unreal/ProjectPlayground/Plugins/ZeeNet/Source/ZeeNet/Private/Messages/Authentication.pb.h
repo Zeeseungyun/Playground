@@ -228,6 +228,7 @@ class Login final :
 
   enum : int {
     kCharactersFieldNumber = 3,
+    kCollectionIdsFieldNumber = 4,
     kAccountFieldNumber = 2,
     kRCFieldNumber = 1,
   };
@@ -248,6 +249,28 @@ class Login final :
   ::Zee::Proto::Data::Character* add_characters();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Zee::Proto::Data::Character >&
       characters() const;
+
+  // repeated int32 CollectionIds = 4;
+  int collectionids_size() const;
+  private:
+  int _internal_collectionids_size() const;
+  public:
+  void clear_collectionids();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_collectionids(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_collectionids() const;
+  void _internal_add_collectionids(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_collectionids();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int32 collectionids(int index) const;
+  void set_collectionids(int index, ::PROTOBUF_NAMESPACE_ID::int32 value);
+  void add_collectionids(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      collectionids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_collectionids();
 
   // .Zee.Proto.Data.Account Account = 2;
   bool has_account() const;
@@ -284,6 +307,8 @@ class Login final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Zee::Proto::Data::Character > characters_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > collectionids_;
+  mutable std::atomic<int> _collectionids_cached_byte_size_;
   ::Zee::Proto::Data::Account* account_;
   int rc_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -611,6 +636,53 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Zee::Proto::Data::Char
 Login::characters() const {
   // @@protoc_insertion_point(field_list:Zee.Proto.Authentication.Login.Characters)
   return characters_;
+}
+
+// repeated int32 CollectionIds = 4;
+inline int Login::_internal_collectionids_size() const {
+  return collectionids_.size();
+}
+inline int Login::collectionids_size() const {
+  return _internal_collectionids_size();
+}
+inline void Login::clear_collectionids() {
+  collectionids_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Login::_internal_collectionids(int index) const {
+  return collectionids_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Login::collectionids(int index) const {
+  // @@protoc_insertion_point(field_get:Zee.Proto.Authentication.Login.CollectionIds)
+  return _internal_collectionids(index);
+}
+inline void Login::set_collectionids(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
+  collectionids_.Set(index, value);
+  // @@protoc_insertion_point(field_set:Zee.Proto.Authentication.Login.CollectionIds)
+}
+inline void Login::_internal_add_collectionids(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  collectionids_.Add(value);
+}
+inline void Login::add_collectionids(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_add_collectionids(value);
+  // @@protoc_insertion_point(field_add:Zee.Proto.Authentication.Login.CollectionIds)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+Login::_internal_collectionids() const {
+  return collectionids_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+Login::collectionids() const {
+  // @@protoc_insertion_point(field_list:Zee.Proto.Authentication.Login.CollectionIds)
+  return _internal_collectionids();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+Login::_internal_mutable_collectionids() {
+  return &collectionids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+Login::mutable_collectionids() {
+  // @@protoc_insertion_point(field_mutable_list:Zee.Proto.Authentication.Login.CollectionIds)
+  return _internal_mutable_collectionids();
 }
 
 // -------------------------------------------------------------------
