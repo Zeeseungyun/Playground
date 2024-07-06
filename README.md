@@ -46,14 +46,15 @@
 - Ubuntu 
 - Android 
 
-## Tools
+## Development Environment
 
-![Unreal Engine](https://img.icons8.com/color/48/000000/unreal-engine.png) ![Visual Studio](https://img.icons8.com/color/48/000000/visual-studio.png) ![VS Code](https://img.icons8.com/color/48/000000/visual-studio-code-2019.png) ![MySQL](https://img.icons8.com/color/48/000000/mysql-logo.png)
+![Unreal Engine](https://img.icons8.com/color/48/000000/unreal-engine.png) ![Visual Studio](https://img.icons8.com/color/48/000000/visual-studio.png) ![VS Code](https://img.icons8.com/color/48/000000/visual-studio-code-2019.png) ![MySQL](https://img.icons8.com/color/48/000000/mysql-logo.png) ![AWS](https://img.icons8.com/color/48/000000/amazon-web-services.png)
 
 - Unreal Engine 5.4.2
 - Visual Studio 2022
 - Visual Studio Code
 - MySQL Workbench 8.0 CE
+- AWS
 
 ## Languages
 
