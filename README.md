@@ -33,10 +33,7 @@
 
 ## Motivation
 
-- **Objective:** 전 회사에서 근무하며 작업 했던 내용을 바탕으로 동작가능한 적당한 코드를 작성한다.
-- **Portfolio:** 해당 포트폴리오는 Carrieverse 프로젝트를 진행 했을 때 작업했던 내용들이 일반적인 클라이언트 프로그래머가 하지 않는 일이라 그 일에 대한 리마인드의 성격을 띈다.
-- **Server Integration & Unreal Slate UI:** 서버 연동 작업과 Unreal Slate UI에 대한 이해도를 나타내기 위함이다.
-  - 회사에 재직하는 동안 WidgetBlueprint를 많이 사용 했기에 자주 쓰지 않았던 Slate를 주로 이용.
+- 해당 포트폴리오는 Carrieverse 프로젝트를 진행하면서 일반적인 클라이언트 프로그래머의 역할을 넘어선 업무들을 수행했던 경험을 되짚어보는 데 중점을 두고 있습니다. 특히, 서버 연동 작업과 Unreal Slate UI 개발을 통해 클라이언트-서버 통신과 UI 기술을 강조하고자 합니다.
 
 ## Platforms
 
