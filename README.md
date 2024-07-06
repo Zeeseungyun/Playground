@@ -80,7 +80,7 @@
 
 ## Game Flow Chart
 
-![Game Flow Chart](link_to_your_image)
+![Game Flow Chart](flowchart.png)
 
 ## Server Arch
 
