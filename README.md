@@ -1,4 +1,4 @@
-# Project Portfolio
+# Portfolio
 
 ![Unreal Engine](https://img.icons8.com/color/48/000000/unreal-engine.png) ![C++](https://img.icons8.com/color/48/000000/c-plus-plus-logo.png) ![C#](https://img.icons8.com/color/48/000000/c-sharp-logo.png) ![Visual Studio](https://img.icons8.com/color/48/000000/visual-studio.png) ![MySQL](https://img.icons8.com/color/48/000000/mysql-logo.png)
 
@@ -56,7 +56,7 @@
 ## Languages
 
 - C++
-- C#
+- C# 
 
 ## Objectives
 
