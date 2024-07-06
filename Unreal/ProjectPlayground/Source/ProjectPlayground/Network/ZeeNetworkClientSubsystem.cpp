@@ -55,11 +55,11 @@ void UZeeNetworkClientSubsystem::ConnectToGameServer()
 #elif UE_BUILD_DEVELOPMENT
 	if (GIsEditor)
 	{
-		Connect(GameServerEndPointDevelopment);
+		Connect(GameServerEndPointPIE);
 	}
 	else
 	{
-		Connect(GameServerEndPointPIE);
+		Connect(GameServerEndPointDevelopment);
 	}
 #endif
 }

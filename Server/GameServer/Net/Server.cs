@@ -11,7 +11,12 @@ namespace Zee.Net
         public Server(int port)
         {
             this.port = port;
-            tcpListener = new(IPAddress.Parse("0.0.0.0"), port);
+            string ip = "0.0.0.0";
+            #if DEBUG
+                ip= "127.0.0.1";
+            #endif
+            Logger.LogInformation($"start listen[{ip}:{port}]");
+            tcpListener = new(IPAddress.Parse(ip), port);
         }
         public ClientHandler? FindDedi(string mapName)
         {
