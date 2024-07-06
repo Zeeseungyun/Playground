@@ -11,7 +11,7 @@ namespace Zee.Net
         public Server(int port)
         {
             this.port = port;
-            tcpListener = new(IPAddress.Parse("127.0.0.1"), port);
+            tcpListener = new(IPAddress.Parse("0.0.0.0"), port);
         }
         public ClientHandler? FindDedi(string mapName)
         {

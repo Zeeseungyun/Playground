@@ -22,18 +22,8 @@
 
 void SZeeUICreateCharacter::Construct( const FArguments& InArgs )
 {
-	const FZeeUISlateStyle_Common& CommonMenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Common>("Common/Common");
-	const FZeeUISlateStyle_Login& MenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Login>("Lobby/Login");
-
-	static FSlateBrush SlateBrush_IDPW = FSlateRoundedBoxBrush(
-		FLinearColor(1, 0, 0, 1),
-		FVector4(20, 20, 20, 20)
-	);
-
-	static FSlateBrush SlateBrush_IDPW2 = FSlateRoundedBoxBrush(
-		FLinearColor(0, 0, 0, 1),
-		FVector4(20, 20, 20, 20)
-	);
+	const FZeeUISlateStyle_Common& CommonStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Common>("Common/Common");
+	const FZeeUISlateStyle_Login& LoginStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Login>("Lobby/Login");
 
 	DelCancel = InArgs._OnCancel;
 	DelConfirm = InArgs._OnConfirm;
@@ -53,7 +43,7 @@ void SZeeUICreateCharacter::Construct( const FArguments& InArgs )
 		.VAlign(VAlign_Center)
 		[
 			SNew(SBorder)
-			.BorderImage(&CommonMenuStyle.CommonBorderBrush) //todo load from style set.
+			.BorderImage(&CommonStyle.CommonBorderBrush) //todo load from style set.
 			.Padding(10.0f)
 			.HAlign(HAlign_Fill)
 			.VAlign(VAlign_Fill)
@@ -65,7 +55,7 @@ void SZeeUICreateCharacter::Construct( const FArguments& InArgs )
 				[
 					SNew(STextBlock)
 					.Text(LOCTEXT("Enter character name", "Enter character name"))
-					.TextStyle(&MenuStyle.LoginBoxTextStyle)
+					.TextStyle(&LoginStyle.LoginBoxTextStyle)
 				]
 				+ SVerticalBox::Slot()
 				.FillHeight(20.0f)
@@ -77,7 +67,7 @@ void SZeeUICreateCharacter::Construct( const FArguments& InArgs )
 					.HeightOverride(150.0f)
 					[
 						SAssignNew(ETB_CharacterName, SEditableTextBox)
-						.Style(&MenuStyle.LoginBoxEditableTextBoxStyle)
+						.Style(&LoginStyle.LoginBoxEditableTextBoxStyle)
 						.ForegroundColor(FSlateColor(FLinearColor(0, 0, 0, 1)))
 					]
 				]
@@ -96,12 +86,12 @@ void SZeeUICreateCharacter::Construct( const FArguments& InArgs )
 						.HAlign(HAlign_Center)
 						.VAlign(VAlign_Center)
 						.OnClicked(this, &SZeeUICreateCharacter::OnOK)
-						.ButtonStyle(&CommonMenuStyle.CommonButtonStyle)
+						.ButtonStyle(&CommonStyle.CommonButtonStyle)
 						.ContentPadding(10.0f)
 						[
 							SNew(STextBlock)
 							.Text(LOCTEXT("OK", "OK"))
-							.TextStyle(&MenuStyle.LoginBoxTextStyle)
+							.TextStyle(&LoginStyle.LoginBoxTextStyle)
 						]
 					]
 					+ SHorizontalBox::Slot()
@@ -112,13 +102,13 @@ void SZeeUICreateCharacter::Construct( const FArguments& InArgs )
 						SNew(SButton)
 						.HAlign(HAlign_Center)
 						.VAlign(VAlign_Center)
-						.ButtonStyle(&CommonMenuStyle.CommonButtonStyle)
+						.ButtonStyle(&CommonStyle.CommonButtonStyle)
 						.OnClicked(this, &SZeeUICreateCharacter::OnCancel)
 						.ContentPadding(10.0f)
 						[
 							SNew(STextBlock)
 							.Text(LOCTEXT("Cancel", "Cancel"))
-							.TextStyle(&MenuStyle.LoginBoxTextStyle)
+							.TextStyle(&LoginStyle.LoginBoxTextStyle)
 						]
 					]
 				]

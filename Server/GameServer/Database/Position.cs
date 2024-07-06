@@ -1,20 +1,20 @@
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
+using Zee.Net;
 
 namespace Zee.Database
 {
     public static class Position
     {
-        public static Zee.Proto.Data.Position Get(Int64 characterUID)
+        public static Zee.Proto.Data.Position GetPosition(this ClientHandler Handler, Int64 characterUID)
         {
-            Common.ConnectIfNot();
             Zee.Proto.Data.Position ret = new();
             ret.UID = characterUID;
 
             {         
                 bool bFound = false;
                 //first. select 
-                using (var cmd = new MySqlCommand("SELECT * FROM zee_database_1.position WHERE uid = @characterUID;", Common.connection))
+                using (var cmd = new MySqlCommand("SELECT * FROM zee_database_1.position WHERE uid = @characterUID;", Handler.DbConnection))
                 {
                     cmd.Parameters.AddWithValue("characterUID", characterUID);
                     var reader = cmd.ExecuteReader();
@@ -37,7 +37,7 @@ namespace Zee.Database
                 {
                     ret = Common.DefaultPosition.Clone();
                     ret.UID = characterUID;
-                    if(!Update(ret))
+                    if(!Handler.UpdatePosition(ret))
                     {
                         Logger.LogWarning($"'{characterUID}' can't update but return default position. maybe invalid UID.");
                     }
@@ -46,18 +46,17 @@ namespace Zee.Database
 
             return ret;
         }
-        public static bool Update(Zee.Proto.Data.Position position)
+        public static bool UpdatePosition(this ClientHandler Handler, Zee.Proto.Data.Position position)
         {
-            Common.ConnectIfNot();
             {
-                using var transaction = Common.connection!.BeginTransaction();
+                using var transaction = Handler.DbConnection!.BeginTransaction();
                 try
                 {
                     var cmdText = "INSERT INTO zee_database_1.position (uid, map_name, pos_x, pos_y, pos_z, rot_yaw, rot_pitch, rot_roll) " 
                     + "VALUES(@uid, @map_name, @pos_x, @pos_y, @pos_z, @rot_yaw, @rot_pitch, @rot_roll) "
                     + "ON DUPLICATE KEY UPDATE uid = @uid, map_name = @map_name, pos_x = @pos_x, pos_y = @pos_y, pos_z = @pos_z, rot_yaw = @rot_yaw, rot_pitch = @rot_pitch, rot_roll = @rot_roll;";
 
-                    using (var cmd = new MySqlCommand(cmdText, Common.connection))
+                    using (var cmd = new MySqlCommand(cmdText, Handler.DbConnection))
                     {
                         cmd.Parameters.AddWithValue("uid", position.UID);
                         cmd.Parameters.AddWithValue("map_name", position.MapName);

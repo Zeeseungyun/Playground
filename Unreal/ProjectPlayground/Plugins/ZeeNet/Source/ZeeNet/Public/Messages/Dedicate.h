@@ -30,7 +30,7 @@ struct FZeeNetDedicateLogin
 	FZeeNetDataDedicateServer DedicateServer; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDedicateLogin> { static constexpr int32 Point = 0x4001; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDedicateLogin> { static constexpr int32 Point = 0x3001; static constexpr bool bIsData = false; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetDedicateMove 
@@ -53,7 +53,7 @@ struct FZeeNetDedicateMove
 	FString UserIp; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDedicateMove> { static constexpr int32 Point = 0x4002; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDedicateMove> { static constexpr int32 Point = 0x3002; static constexpr bool bIsData = false; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetDedicateLeave 
@@ -67,5 +67,5 @@ struct FZeeNetDedicateLeave
 	FZeeNetDataPosition Position; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDedicateLeave> { static constexpr int32 Point = 0x4003; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDedicateLeave> { static constexpr int32 Point = 0x3003; static constexpr bool bIsData = false; }; 
 

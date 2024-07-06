@@ -31,6 +31,7 @@ CommandLineArg usernameArg  = new (new []{"-username", "-user", "-u"});
 CommandLineArg pemArg       = new (new []{"-pem", "-p"});
 CommandLineArg srcDirArg    = new (new []{"-srcdir", "-srcd"});
 CommandLineArg destDirArg   = new (new []{"-destdir", "-destd"});
+CommandLineArg subProcessArg   = new (new []{"-subprocess"});
 
 string host = hostArg.Value;
 string username = usernameArg.Value;
@@ -44,6 +45,20 @@ try
 {
     switch(process)
     {   
+        case "start":
+            switch(subProcessArg.Value)
+            {
+                case "gameserver":
+                    using (var client = new SshClient(connectionInfo))
+                    {
+                        client.Connect();
+                        //client.RunCommand($"mkdir -p '{directoryPath}'");
+                        client.Disconnect();
+                    }
+                break;
+            }
+        break;
+
         case "ftp":
             string srcDirPath = srcDirArg.Value;
             string destDirPath = destDirArg.Value;

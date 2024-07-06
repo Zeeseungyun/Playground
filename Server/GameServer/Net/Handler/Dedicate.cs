@@ -1,5 +1,6 @@
 using System.Net;
 using Google.Protobuf;
+using Zee.Database;
 
 namespace Zee.Net
 {
@@ -7,7 +8,7 @@ namespace Zee.Net
     {
         public void OnNotify(Message.Packet<Zee.Proto.Dedicate.Leave> p) 
         { 
-            if(!Database.Position.Update(p.Message.Position))
+            if(!this.UpdatePosition(p.Message.Position))
             {
                 Logger.LogWarning($"position update failed.{p.Message.Position}");
             }
@@ -45,7 +46,7 @@ namespace Zee.Net
         { 
             p.Message.RC = Proto.Dedicate.ReturnCode.RcSuccess;
             bool bFound = false;
-            var characterGet = Database.Character.Get(Account.UID);
+            var characterGet = this.GetCharacter(Account.UID);
             foreach(var character in characterGet.Characters)
             {
                 if(character.UID == p.Message.Character.UID)

@@ -90,12 +90,6 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Authentication.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Chat.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Chat.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Convert\Collection.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Convert</Filter>
     </ClCompile>
@@ -168,9 +162,6 @@
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Authentication.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Chat.g.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify\Notify_Collection.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Notify</Filter>
     </ClCompile>
@@ -184,9 +175,6 @@
       <UniqueIdentifier>{7AB35316-3968-35D5-9A41-E5A74396F24E}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Authentication.g.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Chat.g.cpp">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Handler\Request\Request_Collection.g.cpp">
@@ -205,12 +193,6 @@
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
     </None>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Authentication.pb.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
-    </ClInclude>
-    <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.cc">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
-    </None>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Chat.pb.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Private\Messages</Filter>
     </ClInclude>
     <None Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Private\Messages\Collection.pb.cc">
@@ -300,9 +282,6 @@
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Authentication.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Chat.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify\Collection.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Notify</Filter>
     </ClInclude>
@@ -316,9 +295,6 @@
       <UniqueIdentifier>{7E32780F-45F8-3B47-9F32-369D1003044B}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Authentication.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Chat.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Interface\Handler\Request\Collection.h">
@@ -337,12 +313,6 @@
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Authentication.h">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Chat.cpp">
-      <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Chat.h">
       <Filter>Plugins\ZeeNet\Source\ZeeNet\Public\Messages</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Plugins\ZeeNet\Source\ZeeNet\Public\Messages\Collection.cpp">

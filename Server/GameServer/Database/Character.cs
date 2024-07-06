@@ -1,17 +1,17 @@
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
+using Zee.Net;
 
 namespace Zee.Database
 {
     public static class Character
     {
-        public static Zee.Proto.UserCharacter.Get Get(Int64 userId)
+        public static Zee.Proto.UserCharacter.Get GetCharacter(this ClientHandler Handler,Int64 userId)
         {
-            Common.ConnectIfNot();
             Zee.Proto.UserCharacter.Get ret = new();
             ret.User = userId;
             
-            using (var cmd = new MySqlCommand("SELECT * FROM zee_database_1.character WHERE user = @user;", Common.connection))
+            using (var cmd = new MySqlCommand("SELECT * FROM zee_database_1.character WHERE user = @user;", Handler.DbConnection))
             {
                 cmd.Parameters.AddWithValue("user", userId);
                 var reader = cmd.ExecuteReader();
@@ -29,20 +29,13 @@ namespace Zee.Database
 
             return ret;
         }
-        public static Zee.Proto.UserCharacter.Create Create(Zee.Proto.UserCharacter.Create req)
+        public static Zee.Proto.UserCharacter.Create CreateCharacter(this ClientHandler Handler, Zee.Proto.UserCharacter.Create req)
         {
-            Common.ConnectIfNot();
             Zee.Proto.UserCharacter.Create ret = new();
-            if(Common.connection == null)
-            {
-                ret.RC = Proto.UserCharacter.ReturnCode.RcFailedUnknown;
-                return ret;
-            }
-
-            using var transaction = Common.connection.BeginTransaction();
+            using var transaction = Handler.DbConnection!.BeginTransaction();
             try
             {
-                using (var cmd = new MySqlCommand("INSERT INTO zee_database_1.character (uid, user, id, name, slot) VALUES (@uid, @user, @id, @name, @slot);", Common.connection))
+                using (var cmd = new MySqlCommand("INSERT INTO zee_database_1.character (uid, user, id, name, slot) VALUES (@uid, @user, @id, @name, @slot);", Handler.DbConnection!))
                 {
                     Int64 uid = Common.CreateUID;
                     cmd.Parameters.AddWithValue("user", req.Character.User);

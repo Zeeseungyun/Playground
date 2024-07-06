@@ -22,6 +22,20 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "[Release] GameServer",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "--configuration",
+                "Release",
+                "-o",
+                "${workspaceFolder}/Output/Release/GameServer",
+                "${workspaceFolder}/Server/GameServer/GameServer.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "[Release] Client",
             "command": "dotnet",
             "type": "process",
@@ -56,34 +70,59 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "[Publish] .Net SDK",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/Server/Tool/Publish/bin/Debug/net8.0/Publish.dll",
+                "-host",            "3.36.49.115",
+                "-username",        "ubuntu",
+                "-pem",             "${workspaceFolder}/env/GameServer2.pem",
+                "-srcdir",          "${workspaceFolder}/Server/Tool/Publish/",
+                "-destdir",         "Test1",
+                "-process",         "install_sdk"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn" :[
+                "[Build] Tool/Publish"
+            ]
+        },
+        {
             "label": "[Publish] GameServer",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "${workspaceFolder}/Server/Tool/Publish/bin/Debug/net8.0/Publish.dll",
-                "-host",            "54.180.163.183",
+                "-host",            "3.36.49.115",
                 "-username",        "ubuntu",
-                "-pem",             "${workspaceFolder}/Server/aws/ec2/MyInst6.pem",
-                "-srcdir",          "${workspaceFolder}/Server/Tool/Publish/",
-                "-destdir",         "Test1",
+                "-pem",             "${workspaceFolder}/env/GameServer2.pem",
+                "-srcdir",          "${config:publish.gameserver.path}",
+                "-destdir",         "GameServer",
                 "-process",         "ftp"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn" :[
+                "[Release] GameServer",
+                "[Build] Tool/Publish",
+            ]
         },
         {
-            "label": "[Publish] .Net SDK",
+            "label": "[Publish] DediServer",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "${workspaceFolder}/Tool/Publish/bin/Debug/net8.0/Publish.dll",
-                "-host",            "54.180.163.183",
+                "${workspaceFolder}/Server/Tool/Publish/bin/Debug/net8.0/Publish.dll",
+                "-host",            "3.36.49.115",
                 "-username",        "ubuntu",
-                "-pem",             "${workspaceFolder}/Server/aws/ec2/MyInst6.pem",
-                "-srcdir",          "${workspaceFolder}/Server/Tool/Publish/",
-                "-destdir",         "Test1",
-                "-process",         "install_sdk"
+                "-pem",             "${workspaceFolder}/env/GameServer2.pem",
+                "-srcdir",          "${config:publish.dediserver.path}",
+                "-destdir",         "DediServer",
+                "-process",         "ftp"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn" :[
+                "[Build] Tool/Publish"
+            ]
         },
         {
             "label": "[Generate] Proto Files",

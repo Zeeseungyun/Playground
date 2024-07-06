@@ -1,6 +1,7 @@
 using MySqlX.XDevAPI.Common;
 using Zee.Net;
 
+Console.WriteLine("game server started.");
 Zee.Net.Server server = new(port: 20500);
 server.Start();
 
@@ -14,7 +15,6 @@ while(true)
         return;
 
         default:
-            
         break;
     }
 }

@@ -22,23 +22,6 @@
 
 void SZeeUILobbyLogin::Construct( const FArguments& InArgs )
 {
-	static int BodyRadius = 10.0;
-	
-	static FSlateBrush RoundedSlateBrush = FSlateRoundedBoxBrush(
-		FLinearColor(0.03125f, 0.03125f, 0.03125f, 1.0f), 
-		FVector4(BodyRadius, BodyRadius,BodyRadius, BodyRadius)
-	);
-	
-	static FSlateBrush SlateBrush_IDPW = FSlateRoundedBoxBrush(
-		FLinearColor(1, 0, 0, 1), 
-		FVector4(20, 20, 20, 20)
-	);
-
-	static FSlateBrush SlateBrush_IDPW2 = FSlateRoundedBoxBrush(
-		FLinearColor(0, 0, 0, 1), 
-		FVector4(20, 20, 20, 20)
-	);
-
 	const FZeeUISlateStyle_Login& LoginMenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Login>("Lobby/Login");
 	const FZeeUISlateStyle_Common& CommonMenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Common>("Common/Common");
 

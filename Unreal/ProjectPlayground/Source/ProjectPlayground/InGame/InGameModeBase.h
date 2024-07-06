@@ -22,10 +22,11 @@ public:
 	virtual void Logout(AController* Exiting) override;
 
 private:
+	friend class FInGameRequestHandler_Dedicate;
 	TSharedPtr<class FInGameRequestHandler_Dedicate> RequestHandler_Dedicate;
+	friend class FInGameRequestHandler_UserCharacter;
 	TSharedPtr<class FInGameRequestHandler_UserCharacter> RequestHandler_UserCharacter;
 
-public:
 	struct FPassport {
 		FZeeNetDataCharacter Character;
 		FString UserIp;

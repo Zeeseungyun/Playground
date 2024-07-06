@@ -34,7 +34,7 @@ struct FZeeNetDataVector
 	~FZeeNetDataVector() = default;
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataVector> { static constexpr int32 Point = 0x9001; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataVector> { static constexpr int32 Point = 0x8001; static constexpr bool bIsData = true; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetDataRotator 
@@ -65,7 +65,7 @@ struct FZeeNetDataRotator
 	~FZeeNetDataRotator() = default;
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataRotator> { static constexpr int32 Point = 0x9002; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataRotator> { static constexpr int32 Point = 0x8002; static constexpr bool bIsData = true; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetDataPosition 
@@ -85,5 +85,5 @@ struct FZeeNetDataPosition
 	FZeeNetDataRotator Rot; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataPosition> { static constexpr int32 Point = 0x9003; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataPosition> { static constexpr int32 Point = 0x8003; static constexpr bool bIsData = true; }; 
 

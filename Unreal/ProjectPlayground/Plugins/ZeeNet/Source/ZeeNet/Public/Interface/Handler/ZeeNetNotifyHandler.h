@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 
-struct IZeeNetNotifyHandler
+struct ZEENET_API IZeeNetNotifyHandler
 {
 public:
 	virtual ~IZeeNetNotifyHandler() = default;

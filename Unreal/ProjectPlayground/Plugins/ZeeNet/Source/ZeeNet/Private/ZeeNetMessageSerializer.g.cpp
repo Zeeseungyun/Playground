@@ -6,8 +6,6 @@
 
 #include "ZeeNet/Public/Messages/Authentication.h" 
 #include "ZeeNet/Private/Convert/Authentication.h" 
-#include "ZeeNet/Public/Messages/Chat.h" 
-#include "ZeeNet/Private/Convert/Chat.h" 
 #include "ZeeNet/Public/Messages/Collection.h" 
 #include "ZeeNet/Private/Convert/Collection.h" 
 #include "ZeeNet/Public/Messages/Dedicate.h" 
@@ -24,12 +22,6 @@ void FZeeNetPacketSerializerMap::BuildPacketSerializer()
 
 	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetAuthenticationLogout>::Point, 
 		MakeShared<FZeeNetPacketSerializer<FZeeNetAuthenticationLogout>>()); 
-
-	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetChatSpeak1>::Point, 
-		MakeShared<FZeeNetPacketSerializer<FZeeNetChatSpeak1>>()); 
-
-	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetChatSpeak>::Point, 
-		MakeShared<FZeeNetPacketSerializer<FZeeNetChatSpeak>>()); 
 
 	DefaultSerializers.Add(TZeeNetPacketTraits<FZeeNetCollectionCollect>::Point, 
 		MakeShared<FZeeNetPacketSerializer<FZeeNetCollectionCollect>>()); 

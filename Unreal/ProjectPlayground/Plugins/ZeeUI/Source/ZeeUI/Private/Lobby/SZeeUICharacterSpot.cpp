@@ -18,7 +18,7 @@
 
 void SZeeUICharacterSpot::Construct( const FArguments& InArgs )
 {
-	const FZeeUISlateStyle_Login& MenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Login>("Lobby/Login");
+	const FZeeUISlateStyle_Login& Style = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Login>("Lobby/Login");
 	
 	ChildSlot
 	[
@@ -28,7 +28,7 @@ void SZeeUICharacterSpot::Construct( const FArguments& InArgs )
 		.VAlign(VAlign_Center)
 		[
 			SNew(SButton)
-			.ButtonStyle(&MenuStyle.LoginButtonStyle)
+			.ButtonStyle(&Style.LoginButtonStyle)
 			.HAlign(HAlign_Fill)
 			.VAlign(VAlign_Fill)
 			.OnClicked(InArgs._OnClicked)
@@ -44,7 +44,7 @@ void SZeeUICharacterSpot::Construct( const FArguments& InArgs )
 					.VAlign(VAlign_Center)
 					[
 						SAssignNew(TB_CharacterName, STextBlock)
-						.TextStyle(&MenuStyle.LoginButtonTextStyle)
+						.TextStyle(&Style.LoginButtonTextStyle)
 						.Visibility(EVisibility::Collapsed)
 					]
 					+ SVerticalBox::Slot()
@@ -52,7 +52,7 @@ void SZeeUICharacterSpot::Construct( const FArguments& InArgs )
 					.VAlign(VAlign_Center)
 					[
 						SAssignNew(TB_ButtonText, STextBlock)
-						.TextStyle(&MenuStyle.LoginButtonTextStyle)
+						.TextStyle(&Style.LoginButtonTextStyle)
 					]
 				]
 			]
@@ -81,22 +81,3 @@ void SZeeUICharacterSpot::SetCharacterName(const FString& InCharacterName)
 		TB_ButtonText->SetText(LOCTEXT("Create Character", "Create Character"));
 	}
 }
-
-//void SZeeUICharacterSpot::SetButtonStatus(EButtonStatus NewStatus)
-//{
-//	ButtonStatus = NewStatus;
-//	switch (ButtonStatus)
-//	{
-//	case Select:
-//		Text = LOCTEXT("Select Character", "Select Character");
-//		TB_CharacterName->SetVisibility(EVisibility::Collapsed);
-//		break;
-//	case Create:
-//		Text = LOCTEXT("Create Character", "Create Character");
-//		TB_CharacterName->SetVisibility(EVisibility::Collapsed);
-//		break;
-//	default:
-//		break;
-//	}
-//
-//}

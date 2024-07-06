@@ -1,4 +1,5 @@
 using Google.Protobuf;
+using Zee.Database;
 
 namespace Zee.Net
 {
@@ -20,10 +21,10 @@ namespace Zee.Net
                 return;
             }
 
-            p.Message = Zee.Database.Account.Login(p.Message.Account.Id, p.Message.Account.Password);
+            p.Message = this.Login(p.Message.Account.Id, p.Message.Account.Password);
             if(p.Message.RC == Proto.Authentication.ReturnCode.RcSuccess)
             {
-                p.Message.CollectionIds.AddRange(Zee.Database.Collection.Get(p.Message.Account.UID));
+                p.Message.CollectionIds.AddRange(this.GetCollection(p.Message.Account.UID));
                 Account = p.Message.Account;
                 Logger.LogInformation($"[{Account.Id} logged in.]");
             }

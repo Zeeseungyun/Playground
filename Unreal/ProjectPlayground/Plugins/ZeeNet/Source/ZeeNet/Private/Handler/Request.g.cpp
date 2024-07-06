@@ -13,12 +13,6 @@ extern EZeeNetRequestHandlerResponse ConsumeRequestMessage_Authentication(
 	, TSharedPtr<struct FZeeNetPacketSerializerBase> Packet
 	, FZeeNetRequestHandlerArray& RequestHandlers
 ); 
-extern FZeeNetRequestHandlerArray* FindRequestHandler_Chat(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers); 
-extern EZeeNetRequestHandlerResponse ConsumeRequestMessage_Chat(
-	TSharedPtr<IZeeNetResponser> Responser
-	, TSharedPtr<struct FZeeNetPacketSerializerBase> Packet
-	, FZeeNetRequestHandlerArray& RequestHandlers
-); 
 extern FZeeNetRequestHandlerArray* FindRequestHandler_Collection(int32 Point, TMap<FString, FZeeNetRequestHandlerArray>& RequestHandlers); 
 extern EZeeNetRequestHandlerResponse ConsumeRequestMessage_Collection(
 	TSharedPtr<IZeeNetResponser> Responser
@@ -39,19 +33,13 @@ extern EZeeNetRequestHandlerResponse ConsumeRequestMessage_UserCharacter(
 ); 
 
 EZeeNetRequestHandlerResponse FZeeNetClient::ConsumeRequestMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { 
-	CheckRequestHandlers(); 
+	ValidateRequestHandlers(); 
 	FZeeNetRequestHandlerArray* Found = nullptr; 
 	TSharedPtr<IZeeNetResponser> Responser = StaticCastSharedPtr<IZeeNetResponser>(AsShared().ToSharedPtr()); 
 
 	Found = FindRequestHandler_Authentication(Packet->GetHeader().Point, RequestHandlers); 
 	if (Found) { 
 		if (Found->Num() > 0) return ConsumeRequestMessage_Authentication(Responser, Packet, *Found); 
-		return EZeeNetRequestHandlerResponse::NoResponse; 
-	}
-
-	Found = FindRequestHandler_Chat(Packet->GetHeader().Point, RequestHandlers); 
-	if (Found) { 
-		if (Found->Num() > 0) return ConsumeRequestMessage_Chat(Responser, Packet, *Found); 
 		return EZeeNetRequestHandlerResponse::NoResponse; 
 	}
 
@@ -78,7 +66,6 @@ EZeeNetRequestHandlerResponse FZeeNetClient::ConsumeRequestMessage(TSharedPtr<st
 
 void FZeeNetClient::BuildValidRequestHandlerNames() {
 	ValidRequestHandlerNames.Add(TEXT("Request_Authentication")); 
-	ValidRequestHandlerNames.Add(TEXT("Request_Chat")); 
 	ValidRequestHandlerNames.Add(TEXT("Request_Collection")); 
 	ValidRequestHandlerNames.Add(TEXT("Request_Dedicate")); 
 	ValidRequestHandlerNames.Add(TEXT("Request_UserCharacter")); 

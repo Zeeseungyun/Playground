@@ -14,14 +14,12 @@ class PROJECTPLAYGROUND_API ALobbyCharacterSpot
 
 public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 	virtual void BeginPlay() override;
 
-protected:
+private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UWidgetComponent> WidgetComponent;
 
-private:
 	TWeakObjectPtr<class ALobbyCharacter> LobbyCharacterPtr;
 	TSharedPtr<class SZeeUICharacterSpot> CharacterSpotWidget;
 

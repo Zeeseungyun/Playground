@@ -27,7 +27,7 @@ struct FZeeNetCollectionCollect
 	int32 Id = static_cast<int32>(0); 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetCollectionCollect> { static constexpr int32 Point = 0x3001; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetCollectionCollect> { static constexpr int32 Point = 0x2001; static constexpr bool bIsData = false; }; 
 
 USTRUCT(BlueprintType) 
 struct FZeeNetCollectionGet 
@@ -38,5 +38,5 @@ struct FZeeNetCollectionGet
 	TArray<int32> Ids; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetCollectionGet> { static constexpr int32 Point = 0x3002; static constexpr bool bIsData = false; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetCollectionGet> { static constexpr int32 Point = 0x2002; static constexpr bool bIsData = false; }; 
 

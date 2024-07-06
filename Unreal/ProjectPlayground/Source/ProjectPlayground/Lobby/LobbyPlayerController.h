@@ -1,14 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
-
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "LobbyPlayerController.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class PROJECTPLAYGROUND_API ALobbyPlayerController : public APlayerController
 {
@@ -16,23 +10,19 @@ class PROJECTPLAYGROUND_API ALobbyPlayerController : public APlayerController
 public:
 	virtual void BeginPlay() override;
 
+private:
 	void ShowLoginWidget(bool bVisible);
 	void ShowCreateCharacterWidget(bool bVisible, int32 Slot);
-
-private:
 	FReply OnLoginClicked();
 	void OnConnected(const FString& InMessage);
 	void OnCharacterSpotButtonClicked(int32 Slot);
 	void OnCreateCharacterConfirm(const FString& InCharacterName, int32 Slot);
-	void SettingCharacters(const TArray<struct FZeeNetDataCharacter>& Characters);
+	void SetCharacters(const TArray<struct FZeeNetDataCharacter>& Characters);
 
 private:
 	TSharedPtr<class SZeeUILobbyLogin> LoginWidget;
 	TArray<TWeakObjectPtr<class ALobbyCharacterSpot>> LobbyCharacterSpots;
 	FDelegateHandle DelConnected;
 
-	void ResponseLogin(const struct FZeeNetAuthenticationLogin& InRes);
-
-private:
 	TSharedPtr<class SZeeUICreateCharacter> CreateCharacterWidget;
 };

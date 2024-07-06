@@ -21,5 +21,5 @@ struct FZeeNetDataDedicateServer
 	FString MapName; 
 
 }; 
-template<> struct TZeeNetPacketTraits<FZeeNetDataDedicateServer> { static constexpr int32 Point = 0xA001; static constexpr bool bIsData = true; }; 
+template<> struct TZeeNetPacketTraits<FZeeNetDataDedicateServer> { static constexpr int32 Point = 0x9001; static constexpr bool bIsData = true; }; 
 

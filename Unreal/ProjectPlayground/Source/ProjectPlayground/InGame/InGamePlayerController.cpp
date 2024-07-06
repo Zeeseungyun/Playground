@@ -10,6 +10,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "Kismet/GameplayStatics.h"
+#include "Blueprint/UserWidget.h"
 
 #include "ProjectPlayground/Network/ZeeNetworkClientSubsystem.h"
 #include "ZeeNet/Public/Messages/Dedicate.h"
@@ -21,6 +22,7 @@
 
 AInGamePlayerController::AInGamePlayerController()
 {
+	TouchInputWidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Script/UMGEditor.WidgetBlueprint'/ZeeUI/Common/WBP_TouchInput.WBP_TouchInput_C'"));
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
 	CachedDestination = FVector::ZeroVector;
@@ -58,6 +60,12 @@ void AInGamePlayerController::BeginPlay()
 				]
 			]
 		);
+
+		TouchInputWidgetInst = CreateWidget<UUserWidget>(this, TouchInputWidgetClass);
+		if (::IsValid(TouchInputWidgetInst))
+		{
+			TouchInputWidgetInst->AddToViewport();
+		}
 	}
 }
 
@@ -67,7 +75,11 @@ void AInGamePlayerController::EndPlay(EEndPlayReason::Type InReason)
 	{
 		if (SelectCharacterWidget.IsValid())
 		{
-			GetWorld()->GetGameViewport()->RemoveViewportWidgetContent(SelectCharacterWidget.ToSharedRef());
+			UGameViewportClient* GameViewportClient = GetWorld()->GetGameViewport();
+			if (::IsValid(GameViewportClient))
+			{
+				GameViewportClient->RemoveViewportWidgetContent(SelectCharacterWidget.ToSharedRef());
+			}
 		}
 	}
 	Super::EndPlay(InReason);

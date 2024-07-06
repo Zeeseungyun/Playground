@@ -1,7 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
-
 #include "CoreMinimal.h"
 #include "Templates/SubclassOf.h"
 #include "GameFramework/PlayerController.h"
@@ -10,7 +7,6 @@
 #include "InGamePlayerController.generated.h"
 
 
-/** Forward declaration to improve compiling times */
 class UNiagaraSystem;
 class UInputMappingContext;
 class UInputAction;
@@ -28,22 +24,22 @@ public:
 
 	/** FX Class that we will spawn when clicking */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-	UNiagaraSystem* FXCursor;
+	TObjectPtr<UNiagaraSystem> FXCursor;
 
 	/** MappingContext */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputMappingContext* DefaultMappingContext;
+	TObjectPtr<UInputMappingContext> DefaultMappingContext;
 
 	/** Jump Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* SetDestinationClickAction;
+	TObjectPtr<UInputAction> SetDestinationClickAction;
 
 	/** Jump Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* SetDestinationTouchAction;
+	TObjectPtr<UInputAction> SetDestinationTouchAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* SetMoveAction;
+	TObjectPtr<UInputAction> SetMoveAction;
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -78,4 +74,6 @@ public:
 
 private:
 	TSharedPtr<class SWidget> SelectCharacterWidget;
+	UPROPERTY()	TSubclassOf<class UUserWidget> TouchInputWidgetClass;
+	UPROPERTY(transient) TObjectPtr<class UUserWidget> TouchInputWidgetInst;
 };

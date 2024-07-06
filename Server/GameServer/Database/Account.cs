@@ -1,22 +1,17 @@
 using MySql.Data.MySqlClient;
+using Zee.Net;
 
 namespace Zee.Database
 {
     public static class Account
     {
-        private static Zee.Proto.Data.Account? createAccount(string id, string pw)
+        private static Zee.Proto.Data.Account? createAccount(this ClientHandler Handler, string id, string pw)
         {
-            Common.ConnectIfNot();
             Zee.Proto.Data.Account? ret = null;
-            if(Common.connection == null)
-            {
-                return ret;
-            }
-
-            using var transaction = Common.connection.BeginTransaction();
+            using var transaction = Handler.DbConnection!.BeginTransaction();
             try
             {
-                using (var cmd = new MySqlCommand("INSERT INTO account (uid, id, pw) VALUES (@uid, @id, @pw);", Common.connection!))
+                using (var cmd = new MySqlCommand("INSERT INTO account (uid, id, pw) VALUES (@uid, @id, @pw);", Handler.DbConnection!))
                 {
                     Int64 uid = Common.CreateUID;
                     cmd.Parameters.AddWithValue("id", id);
@@ -42,13 +37,13 @@ namespace Zee.Database
             return ret;
         } 
 
-        public static Zee.Proto.Data.Account? CreateAccount(string id, string pw)
+        public static Zee.Proto.Data.Account? CreateAccount(this ClientHandler Handler, string id, string pw)
         {
             Zee.Proto.Data.Account? ret = null;
             //5번만 반복해서 만들어봄.
             for(int i = 0 ; i != 5; ++i)
             {
-                ret = createAccount(id, pw);
+                ret = Handler.createAccount(id, pw);
                 if(ret != null)
                 {
                     return ret;
@@ -58,14 +53,13 @@ namespace Zee.Database
             return ret;//maybe failed.
         }
 
-        public static Zee.Proto.Authentication.Login Login(string id, string pw)
+        public static Zee.Proto.Authentication.Login Login(this ClientHandler Handler, string id, string pw)
         {
-            Common.ConnectIfNot();
             Zee.Proto.Authentication.Login ret = new();
             ret.RC = Proto.Authentication.ReturnCode.RcFailedUnknown;
             Int64 uid = 0;
             {
-                using (var cmd = new MySqlCommand("SELECT * FROM account WHERE id = @id;", Common.connection))
+                using (var cmd = new MySqlCommand("SELECT * FROM account WHERE id = @id;", Handler.DbConnection))
                 {
                     cmd.Parameters.AddWithValue("id", id);
                     var reader = cmd.ExecuteReader();
@@ -90,15 +84,15 @@ namespace Zee.Database
                     }
                 }
             }
-            
+
             if(uid != 0)
             {
-                var characterGet = Character.Get(uid);
+                var characterGet = Handler.GetCharacter(uid);
                 ret.Characters.AddRange(characterGet.Characters);
             }
             else
             {
-                var newAccount = CreateAccount(id, pw);
+                var newAccount = Handler.CreateAccount(id, pw);
                 if(newAccount != null)
                 {
                     ret.RC = Proto.Authentication.ReturnCode.RcSuccess;

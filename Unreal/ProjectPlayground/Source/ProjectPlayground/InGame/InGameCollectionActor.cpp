@@ -37,6 +37,7 @@ AInGameCollectionActor::AInGameCollectionActor(const FObjectInitializer& ObjectI
 	SphereComponent->bNavigationRelevant = false;
 	SphereComponent->SetCanEverAffectNavigation(false);
 	SphereComponent->SetCollisionProfileName(TEXT("OverlapOnlyPawn"));
+
 	OnActorBeginOverlap.AddDynamic(this, &AInGameCollectionActor::BeginOverlap);
 	OnActorEndOverlap.AddDynamic(this, &AInGameCollectionActor::EndOverlap);
 }

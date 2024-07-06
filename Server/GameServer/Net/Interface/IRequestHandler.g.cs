@@ -10,8 +10,6 @@ namespace Zee.Net.Message
     {
 		void OnRequest(IResponser r, Packet<Zee.Proto.Authentication.Login> p) { Logger.LogWarning("not impl packet: Zee.Proto.Authentication.Login."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Authentication.Logout> p) { Logger.LogWarning("not impl packet: Zee.Proto.Authentication.Logout."); r.Response(p); }
-		void OnRequest(IResponser r, Packet<Zee.Proto.Chat.Speak> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak."); r.Response(p); }
-		void OnRequest(IResponser r, Packet<Zee.Proto.Chat.Speak1> p) { Logger.LogWarning("not impl packet: Zee.Proto.Chat.Speak1."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Collection.Collect> p) { Logger.LogWarning("not impl packet: Zee.Proto.Collection.Collect."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Collection.Get> p) { Logger.LogWarning("not impl packet: Zee.Proto.Collection.Get."); r.Response(p); }
 		void OnRequest(IResponser r, Packet<Zee.Proto.Dedicate.Login> p) { Logger.LogWarning("not impl packet: Zee.Proto.Dedicate.Login."); r.Response(p); }
@@ -27,16 +25,14 @@ namespace Zee.Net.Message
             {
 				case 0x1001: h.OnRequest(r, p as Packet<Zee.Proto.Authentication.Login>); return;
 				case 0x1002: h.OnRequest(r, p as Packet<Zee.Proto.Authentication.Logout>); return;
-				case 0x2002: h.OnRequest(r, p as Packet<Zee.Proto.Chat.Speak>); return;
-				case 0x2001: h.OnRequest(r, p as Packet<Zee.Proto.Chat.Speak1>); return;
-				case 0x3001: h.OnRequest(r, p as Packet<Zee.Proto.Collection.Collect>); return;
-				case 0x3002: h.OnRequest(r, p as Packet<Zee.Proto.Collection.Get>); return;
-				case 0x4001: h.OnRequest(r, p as Packet<Zee.Proto.Dedicate.Login>); return;
-				case 0x4002: h.OnRequest(r, p as Packet<Zee.Proto.Dedicate.Move>); return;
-				case 0x4003: h.OnRequest(r, p as Packet<Zee.Proto.Dedicate.Leave>); return;
-				case 0x6001: h.OnRequest(r, p as Packet<Zee.Proto.UserCharacter.Create>); return;
-				case 0x6002: h.OnRequest(r, p as Packet<Zee.Proto.UserCharacter.Get>); return;
-				case 0x6003: h.OnRequest(r, p as Packet<Zee.Proto.UserCharacter.Select>); return;
+				case 0x2001: h.OnRequest(r, p as Packet<Zee.Proto.Collection.Collect>); return;
+				case 0x2002: h.OnRequest(r, p as Packet<Zee.Proto.Collection.Get>); return;
+				case 0x3001: h.OnRequest(r, p as Packet<Zee.Proto.Dedicate.Login>); return;
+				case 0x3002: h.OnRequest(r, p as Packet<Zee.Proto.Dedicate.Move>); return;
+				case 0x3003: h.OnRequest(r, p as Packet<Zee.Proto.Dedicate.Leave>); return;
+				case 0x5001: h.OnRequest(r, p as Packet<Zee.Proto.UserCharacter.Create>); return;
+				case 0x5002: h.OnRequest(r, p as Packet<Zee.Proto.UserCharacter.Get>); return;
+				case 0x5003: h.OnRequest(r, p as Packet<Zee.Proto.UserCharacter.Select>); return;
               
                 default: throw new Exception("invalid message point");
             }

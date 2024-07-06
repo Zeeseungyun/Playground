@@ -9,4 +9,7 @@
         "thread": "cpp",
         "xlocale": "cpp"
     },
+    "publish.gameserver.path" :"${workspaceFolder}/Output/Release/GameServer/",
+    "publish.dediserver.path" :"${workspaceFolder}/Unreal/ProjectPlayground/Output/LinuxServer/",
+    
 }

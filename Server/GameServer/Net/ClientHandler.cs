@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Google.Protobuf;
+using MySql.Data.MySqlClient;
 using Zee.Net.Message;
 
 namespace Zee.Net
@@ -11,6 +12,8 @@ namespace Zee.Net
         , Message.INotifyHandler
         , Message.IRequestHandler
     {
+        static private readonly string connectionString = "server=zee-database-inst-1.czog0kiey03w.ap-northeast-2.rds.amazonaws.com;database=zee_database_1;uid=admin;password=dnfltkdl12";
+        public MySqlConnection? DbConnection;
         private readonly Server server;
         public Zee.Proto.Data.Account Account = new();
         public Zee.Proto.Data.DedicateServer DedicateServer = new();
@@ -42,6 +45,8 @@ namespace Zee.Net
 
         override protected void ReceiveMessages()
         {
+            DbConnection = new(connectionString);
+            DbConnection.Open();
             var stream = client!.GetStream();
             while (client.Connected)
             {
@@ -52,6 +57,8 @@ namespace Zee.Net
                 }
                 ProcessPacket(packet);
             }
+
+            DbConnection.Close();
             ReceiveMessagesFinished();
         }
 

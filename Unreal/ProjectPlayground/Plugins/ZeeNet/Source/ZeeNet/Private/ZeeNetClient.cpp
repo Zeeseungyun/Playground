@@ -6,6 +6,7 @@
 #include "Algo/BinarySearch.h"
 #include "Misc/CoreDelegates.h"
 #include "Misc/App.h"
+#include "Misc/ScopeExit.h"
 
 #include "ZeeNet/Public/Messages/Packet.h"
 #include "ZeeNet/Private/ZeeNetMessageSerializerDef.h"
@@ -136,7 +137,14 @@ bool FZeeNetClient::Init()
 
 uint32 FZeeNetClient::Run()
 {
-	Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateUniqueSocket(NAME_Stream, *ClientName);
+	FString TempClientName = ClientName;
+	UE_LOG(LogZeeNet, Warning, TEXT("worker thread function begin[%s]."), *TempClientName);
+	ON_SCOPE_EXIT
+	{
+		UE_LOG(LogZeeNet, Warning, TEXT("worker thread function end[%s]."), *TempClientName);
+	};
+
+	Socket = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateUniqueSocket(NAME_Stream, *TempClientName);
 
 	if (!BeginFrameDelegate.IsValid())
 	{
@@ -156,6 +164,7 @@ uint32 FZeeNetClient::Run()
 	}
 	else
 	{
+		UE_LOG(LogTemp, Warning, TEXT("ZeeLog, Last Socket Error[%s]"), ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->GetSocketError());
 		if (BeginFrameDelegate.IsValid())
 		{
 			FCoreDelegates::OnBeginFrame.Remove(BeginFrameDelegate);
@@ -190,7 +199,6 @@ uint32 FZeeNetClient::Run()
 		ExecuteDisconnectedEvent();
 	}
 
-	UE_LOG(LogZeeNet, Warning, TEXT("Run end."));
 	return 0;
 }
 
@@ -201,7 +209,6 @@ void FZeeNetClient::Stop()
 
 void FZeeNetClient::Exit()
 {
-	UE_LOG(LogZeeNet, Warning, TEXT("Exit called."));
 	bIsThreadDone = true;
 }
 
@@ -209,7 +216,7 @@ void FZeeNetClient::Exit()
 
 bool FZeeNetClient::RegisterNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandler>& NewHandler)
 {
-	CheckNotifyHandlers();
+	ValidateNotifyHandlers();
 
 	if (!NewHandler.IsValid())
 	{
@@ -293,7 +300,7 @@ bool FZeeNetClient::IsInNotifyHandler(const TSharedPtr<struct IZeeNetNotifyHandl
 
 TSet<FString> FZeeNetClient::ValidNotifyHandlerNames;
 
-void FZeeNetClient::CheckNotifyHandlers()
+void FZeeNetClient::ValidateNotifyHandlers()
 {
 	for (auto& Elem : NotifyHandlers)
 	{
@@ -319,7 +326,7 @@ static bool RequestHandlersPredicate(const TWeakPtr<struct IZeeNetRequestHandler
 
 bool FZeeNetClient::RegisterRequestHandler(const TSharedPtr<struct IZeeNetRequestHandler>& NewHandler)
 {
-	CheckRequestHandlers();
+	ValidateRequestHandlers();
 
 	if (!NewHandler.IsValid())
 	{
@@ -489,9 +496,6 @@ void FZeeNetClient::ConsumeMessages()
 
 			case EZeeNetRequestHandlerResponse::ResponsePending:
 			{
-				// FScopeLock Lock(&MtxRequestPendingPackets);
-				// 아직 락을 걸 이유가 없음.
-
 				RequestPendingPackets.Add({ FDateTime::Now().GetTicks(), Packet});
 			}
 			break;
@@ -511,7 +515,7 @@ void FZeeNetClient::ConsumeMessages()
 
 TSet<FString> FZeeNetClient::ValidRequestHandlerNames;
 
-void FZeeNetClient::CheckRequestHandlers()
+void FZeeNetClient::ValidateRequestHandlers()
 {
 	for (auto& Elem : RequestHandlers)
 	{

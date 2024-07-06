@@ -9,17 +9,17 @@
 
 namespace Zee::Net::Message::Convert 
 { 
-	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Vector> { static constexpr int32 Point = 0x9001; }; 
+	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Vector> { static constexpr int32 Point = 0x8001; }; 
 	template<> struct TZeeNetMapping_PointToProto<TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Vector>::Point> { using Type = Zee::Proto::Data::Vector; }; 
 	FORCEINLINE void FromTo(const Zee::Proto::Data::Vector& InFrom, FZeeNetDataVector& OutTo);
 	FORCEINLINE void FromTo(const FZeeNetDataVector& InFrom, Zee::Proto::Data::Vector& OutTo);
 
-	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Rotator> { static constexpr int32 Point = 0x9002; }; 
+	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Rotator> { static constexpr int32 Point = 0x8002; }; 
 	template<> struct TZeeNetMapping_PointToProto<TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Rotator>::Point> { using Type = Zee::Proto::Data::Rotator; }; 
 	FORCEINLINE void FromTo(const Zee::Proto::Data::Rotator& InFrom, FZeeNetDataRotator& OutTo);
 	FORCEINLINE void FromTo(const FZeeNetDataRotator& InFrom, Zee::Proto::Data::Rotator& OutTo);
 
-	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Position> { static constexpr int32 Point = 0x9003; }; 
+	template<> struct TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Position> { static constexpr int32 Point = 0x8003; }; 
 	template<> struct TZeeNetMapping_PointToProto<TZeeNetMapping_ProtoToPoint<Zee::Proto::Data::Position>::Point> { using Type = Zee::Proto::Data::Position; }; 
 	FORCEINLINE void FromTo(const Zee::Proto::Data::Position& InFrom, FZeeNetDataPosition& OutTo);
 	FORCEINLINE void FromTo(const FZeeNetDataPosition& InFrom, Zee::Proto::Data::Position& OutTo);

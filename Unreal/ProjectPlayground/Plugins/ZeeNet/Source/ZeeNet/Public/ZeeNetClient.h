@@ -186,7 +186,7 @@ private:
 	TMap<FString, TArray<TWeakPtr<struct IZeeNetNotifyHandler>>> NotifyHandlers;
 	static TSet<FString> ValidNotifyHandlerNames;
 
-	void CheckNotifyHandlers();
+	void ValidateNotifyHandlers();
 	//implemented in Private/Handler/Notify.g.cpp
 	bool ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet);
 	//implemented in Private/Handler/Notify.g.cpp
@@ -219,9 +219,8 @@ private:
 	static TSet<FString> ValidRequestHandlerNames;
 	float RequestTimeoutSec = 10.0f;
 
-	void CheckRequestHandlers();
+	void ValidateRequestHandlers();
 
-	//TODO:: 누가 소비했는지 반환하도록 해야함.
 	//implemented in Private/Handler/Request.g.cpp
 	EZeeNetRequestHandlerResponse ConsumeRequestMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet);
 	//implemented in Private/Handler/Request.g.cpp

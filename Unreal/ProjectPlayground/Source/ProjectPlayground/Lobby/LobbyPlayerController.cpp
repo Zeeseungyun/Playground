@@ -46,12 +46,12 @@ void ALobbyPlayerController::BeginPlay()
 		LobbyCharacterSpots[i]->OnWidgetButtonClicked.AddUObject(this, &ALobbyPlayerController::OnCharacterSpotButtonClicked, i + 1);
 	}
 
-	UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
 	bool bShowLoginWidget = true;
+	UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
 	if (::IsValid(NetworkClientSubsystem))
 	{
-		bShowLoginWidget &= NetworkClientSubsystem->UserId == 0;
-		SettingCharacters(NetworkClientSubsystem->Characters);
+		bShowLoginWidget = NetworkClientSubsystem->UserId == 0;
+		SetCharacters(NetworkClientSubsystem->Characters);
 	}
 
 	ShowLoginWidget(bShowLoginWidget);
@@ -109,15 +109,21 @@ void ALobbyPlayerController::ShowCreateCharacterWidget(bool bVisible, int32 Slot
 
 FReply ALobbyPlayerController::OnLoginClicked()
 {
-	UZeeNetworkClientSubsystem* NetworkSubsystem = UZeeNetworkClientSubsystem::Get(this);
-	if (!NetworkSubsystem->GetClient()->IsConnected())
+	UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
+	if (!::IsValid(NetworkClientSubsystem))
+	{	
+		SZeeUIPopup::Show(TEXT("NetworkClientSubsystem is invalid."), GetWorld()->GetGameViewport());
+		return FReply::Handled();
+	}
+
+	if (!NetworkClientSubsystem->GetClient()->IsConnected())
 	{
-		if (!DelConnected.IsValid()) [[unlikely]]
+		if (!DelConnected.IsValid())
 		{
-			DelConnected = NetworkSubsystem->GetClient()->OnConnected().AddUObject(this, &ALobbyPlayerController::OnConnected);
+			DelConnected = NetworkClientSubsystem->GetClient()->OnConnected().AddUObject(this, &ALobbyPlayerController::OnConnected);
 		}
 
-		NetworkSubsystem->ConnectToGameServer();
+		NetworkClientSubsystem->ConnectToGameServer();
 	}
 	else
 	{
@@ -137,21 +143,37 @@ void ALobbyPlayerController::OnConnected(const FString& InMessage)
 
 	if (InMessage.Len() == 0)
 	{
-		if (DelConnected.IsValid()) [[likely]]
+		if (DelConnected.IsValid())
 		{
-				NetworkClientSubsystem->GetClient()->OnConnected().Remove(DelConnected);
+			NetworkClientSubsystem->GetClient()->OnConnected().Remove(DelConnected);
 			DelConnected.Reset();
 		}
 
-		FZeeNetAuthenticationLogin Msg;
-		Msg.Account.Id = LoginWidget->GetUserID();
-		Msg.Account.Password = LoginWidget->GetUserPW();
+		FZeeNetAuthenticationLogin Req;
+		Req.Account.Id = LoginWidget->GetUserID();
+		Req.Account.Password = LoginWidget->GetUserPW();
 
-		NetworkClientSubsystem->GetClient()->Request<FZeeNetAuthenticationLogin>(Msg, this, &ALobbyPlayerController::ResponseLogin);
+		NetworkClientSubsystem->GetClient()->Request<FZeeNetAuthenticationLogin>(Req, this, [this](const FZeeNetAuthenticationLogin& InRes)
+			{
+				if (ZeeNetIsSuccess(InRes.RC))
+				{
+					UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
+					NetworkClientSubsystem->UserId = InRes.Account.UID;
+					NetworkClientSubsystem->Characters = InRes.Characters;
+					NetworkClientSubsystem->CollectionIds = InRes.CollectionIds;
+					SetCharacters(NetworkClientSubsystem->Characters);
+					ShowLoginWidget(false);
+				}
+				else
+				{
+					SZeeUIPopup::Show(ZeeEnumToString(InRes.RC), GetWorld()->GetGameViewport());
+				}
+			}
+		);
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("connect failed. [%s]"), *InMessage);
+		SZeeUIPopup::Show(InMessage, GetWorld()->GetGameViewport());
 	}
 }
 
@@ -179,6 +201,10 @@ void ALobbyPlayerController::OnCharacterSpotButtonClicked(int32 Slot)
 					const FString Options = FString::Printf(TEXT("Id=%lld"), NetworkClientSubsystem->UserId);
 					UGameplayStatics::OpenLevel(this, *FString::Printf(TEXT("%s:%d"), *InRes.ToServer.Ip, InRes.ToServer.Port), true, Options);
 				}
+				else
+				{
+					SZeeUIPopup::Show(ZeeEnumToString(InRes.RC), GetWorld()->GetGameViewport());
+				}
 			}
 		);
 	}
@@ -198,12 +224,6 @@ void ALobbyPlayerController::OnCreateCharacterConfirm(const FString& InCharacter
 
 	NetworkClientSubsystem->GetClient()->Request<FZeeNetUserCharacterCreate>(Req, this, [this, NetworkClientSubsystem](const FZeeNetUserCharacterCreate& InRes)
 		{
-			UGameViewportClient* ViewportClient = GetWorld()->GetGameViewport();
-			if (!::IsValid(ViewportClient))
-			{
-				return;
-			}
-
 			if (ZeeNetIsSuccess(InRes.RC))
 			{
 				LobbyCharacterSpots[InRes.Character.Slot - 1]->SetCharacterData(InRes.Character);
@@ -212,56 +232,33 @@ void ALobbyPlayerController::OnCreateCharacterConfirm(const FString& InCharacter
 			}
 			else
 			{
-				ViewportClient->AddViewportWidgetContent(
-					SNew(SZeeUIPopup)
-					.ViewportClient(ViewportClient)
-					.Message(ZeeEnumToString(InRes.RC))
-				);
+				SZeeUIPopup::Show(ZeeEnumToString(InRes.RC), GetWorld()->GetGameViewport());
 			}
 		}
 	);
 }
 
-void ALobbyPlayerController::SettingCharacters(const TArray<struct FZeeNetDataCharacter>& Characters)
+void ALobbyPlayerController::SetCharacters(const TArray<struct FZeeNetDataCharacter>& Characters)
 {
 	static auto FindCharacterDataBySlot = [](const TArray<FZeeNetDataCharacter>& Datas, int32 Slot) -> const FZeeNetDataCharacter*
+	{
+		for (const auto& Elem : Datas)
 		{
-			for (const auto& Elem : Datas)
+			if (Elem.Slot == Slot)
 			{
-				if (Elem.Slot == Slot)
-				{
-					return &Elem;
-				}
+				return &Elem;
 			}
+		}
 
-			return nullptr;
-		};
+		return nullptr;
+	};
 
-
-	const int32 Num = 3; //LobbyCharacterSpots.Num();
-	for (int32 i = 0; i != Num; ++i)
+	for (int32 i = 0; i != LobbyCharacterSpots.Num(); ++i)
 	{
-		if (ensure(LobbyCharacterSpots[i].IsValid())) [[likely]]
-			{
-				const FZeeNetDataCharacter* FoundData = FindCharacterDataBySlot(Characters, i + 1);
-				LobbyCharacterSpots[i]->SetCharacterData(FoundData ? *FoundData : FZeeNetDataCharacter{});
-			}
-	}
-}
-
-void ALobbyPlayerController::ResponseLogin(const FZeeNetAuthenticationLogin& InRes)
-{
-	if (ZeeNetIsSuccess(InRes.RC))
-	{
-		UZeeNetworkClientSubsystem* NetworkClientSubsystem = UZeeNetworkClientSubsystem::Get(this);
-		NetworkClientSubsystem->UserId = InRes.Account.UID;
-		NetworkClientSubsystem->Characters = InRes.Characters;
-		NetworkClientSubsystem->CollectionIds = InRes.CollectionIds;
-		SettingCharacters(NetworkClientSubsystem->Characters);
-		ShowLoginWidget(false);
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Login failed. [%s]"), *ZeeEnumToString(InRes.RC));
+		if (LobbyCharacterSpots[i].IsValid()) 
+		{
+			const FZeeNetDataCharacter* FoundData = FindCharacterDataBySlot(Characters, i + 1);
+			LobbyCharacterSpots[i]->SetCharacterData(FoundData ? *FoundData : FZeeNetDataCharacter{});
+		}
 	}
 }

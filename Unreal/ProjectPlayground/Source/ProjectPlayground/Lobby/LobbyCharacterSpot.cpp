@@ -12,12 +12,7 @@ ALobbyCharacterSpot::ALobbyCharacterSpot(const FObjectInitializer& ObjectInitial
 	WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
 	WidgetComponent->SetDrawSize(FVector2D(400.f, 200.f));
 	Update();
-}
-
-void ALobbyCharacterSpot::Tick(float DeltaTime) //override
-{
-	Super::Tick(DeltaTime);
-	
+	PrimaryActorTick.bCanEverTick = false;
 }
 
 void ALobbyCharacterSpot::BeginPlay()
@@ -50,7 +45,10 @@ void ALobbyCharacterSpot::Update()
 void ALobbyCharacterSpot::SetCharacterData(const FZeeNetDataCharacter& InData)
 {
 	CharacterData = InData;
-	CharacterSpotWidget->SetCharacterName(CharacterData.Name);
+	if (CharacterSpotWidget.IsValid())
+	{
+		CharacterSpotWidget->SetCharacterName(CharacterData.Name);
+	}
 	Update();
 }
 

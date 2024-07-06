@@ -16,11 +16,10 @@ private:
 
 	FReply OnCollect();
 
-protected:
+private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Appearance, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UWidgetComponent> WidgetComponent;
 
-private:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = Collection, meta = (AllowPrivateAccess = "true"))
 	int32 CollectionId = -1;
 };

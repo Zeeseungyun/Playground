@@ -18,6 +18,8 @@ public:
 
 	[[nodiscard]] EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetDedicateMove>& InPacket) final
 	{
+		UE_LOG(LogTemp, Log, TEXT("Dedicate Move "));
+
 		if (!Owner.IsValid())
 		{
 			return EZeeNetRequestHandlerResponse::NoResponse;
@@ -32,6 +34,7 @@ public:
 		Passport.MapName = Msg.ToServer.MapName;
 
 		Owner->Passports.Add(FString::Printf(TEXT("%s%lld"), *Msg.UserIp, Msg.Character.User), Passport);
+		UE_LOG(LogTemp, Log, TEXT("Dedicate Move [%s%lld]"), *Msg.UserIp, Msg.Character.User);
 
 		//copy header.
 		FZeeNetPacket<FZeeNetDedicateMove> ResPacket = InPacket;
@@ -51,6 +54,8 @@ public:
 
 	[[nodiscard]] EZeeNetRequestHandlerResponse OnRequest(const TSharedPtr<IZeeNetResponser>& InResponser, const FZeeNetPacket<FZeeNetUserCharacterSelect>& InPacket) final 
 	{
+		UE_LOG(LogTemp, Log, TEXT("UserCharacter Select "));
+
 		if (!Owner.IsValid())
 		{
 			return EZeeNetRequestHandlerResponse::NoResponse;
@@ -66,6 +71,7 @@ public:
 		Passport.MapName = Msg.Position.MapName;
 
 		Owner->Passports.Add(FString::Printf(TEXT("%s%lld"), *Msg.UserIp, Msg.Character.User), Passport);
+		UE_LOG(LogTemp, Log, TEXT("UserCharacter Select [%s%lld]"), *Msg.UserIp, Msg.Character.User);
 
 		//copy header.
 		FZeeNetPacket<FZeeNetUserCharacterSelect> ResPacket = InPacket;
@@ -118,6 +124,7 @@ void AInGameModeBase::BeginPlay()
 		const FTransform Transform = Iter->GetMoveTownTransform();
 		MoveTownDestPos = Transform.GetLocation();
 		MoveTownDestRot = FRotator(Transform.GetRotation());
+		break;
 	}
 }
 

@@ -50,7 +50,18 @@ void UZeeNetworkClientSubsystem::Connect(const FString& InEndPoint)
 void UZeeNetworkClientSubsystem::ConnectToGameServer()
 {
 	//TODO:: ini로부터 읽어들이도록 하거나 client와 server를 분리 할 필요가 있음.
-	Connect(TEXT("127.0.0.1:20500"));
+#if UE_BUILD_SHIPPING
+	Connect(GameServerEndPointShipping);
+#elif UE_BUILD_DEVELOPMENT
+	if (GIsEditor)
+	{
+		Connect(GameServerEndPointDevelopment);
+	}
+	else
+	{
+		Connect(GameServerEndPointPIE);
+	}
+#endif
 }
 
 void UZeeNetworkClientSubsystem::OnConnected(const FString& InMessage)

@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 
 #include "ProjectPlayground/Network/ZeeNetworkClientSubsystem.h"
+#include "ZeeUI/Public/Common/Alarm/SZeeUIPopup.h"
 #include "ZeeNet/Public/Messages/Dedicate.h"
 
 AInGameMoveTown::AInGameMoveTown(const FObjectInitializer& ObjectInitializer)
@@ -40,16 +41,15 @@ void AInGameMoveTown::BeginOverlap(AActor* InOverlappedActor, AActor* InOtherAct
 	{
 		return;
 	}
-	
-	UE_LOG(LogTemp, Log, TEXT("ZeeLog, MoveTown Overlap"));
-	
+
 	FZeeNetDedicateMove Req;
 	Req.ToServer.MapName = MoveTownMapName;
 	Req.Character.UID = NetworkClientSubsystem->CharacterId;
-	NetworkClientSubsystem->GetClient()->Request<FZeeNetDedicateMove>(Req, this, [NetworkClientSubsystem](const FZeeNetDedicateMove& InRes)
+	NetworkClientSubsystem->GetClient()->Request<FZeeNetDedicateMove>(Req, this, [this, NetworkClientSubsystem](const FZeeNetDedicateMove& InRes)
 		{
 			if (ZeeNetIsSuccess(InRes.RC))
 			{
+				SZeeUIPopup::Show(FString::Printf(TEXT("Move to '%s' town."), *MoveTownMapName), GetWorld()->GetGameViewport());
 				const FString Options = FString::Printf(TEXT("Id=%lld"), NetworkClientSubsystem->UserId);
 				UGameplayStatics::OpenLevel(NetworkClientSubsystem, *FString::Printf(TEXT("%s:%d"), *InRes.ToServer.Ip, InRes.ToServer.Port), true, Options);
 			}

@@ -11,5 +11,6 @@ public class ProjectPlaygroundClientTarget : TargetRules
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_4;
 		ExtraModuleNames.Add("ProjectPlayground");
-	}
+        bUseLoggingInShipping = true;
+    }
 }

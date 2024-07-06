@@ -11,13 +11,14 @@ class PROJECTPLAYGROUND_API AInGameMoveTown
 public:
 	AInGameMoveTown(const FObjectInitializer& ObjectInitializer);
 
+private:
 	UFUNCTION()	void BeginOverlap(AActor* InOverlappedActor, AActor* InOtherActor);
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = MoveTown, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class USphereComponent> SpawnPositionComponent;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = MoveTown, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditInstanceOnly, Category = MoveTown)
 	FString MoveTownMapName;
 
 public:

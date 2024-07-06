@@ -8,8 +8,6 @@
 
 extern FZeeNetNotifyHandlerArray* FindNotifyHandler_Authentication(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers); 
 extern bool ConsumeNotifyMessage_Authentication(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers); 
-extern FZeeNetNotifyHandlerArray* FindNotifyHandler_Chat(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers); 
-extern bool ConsumeNotifyMessage_Chat(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers); 
 extern FZeeNetNotifyHandlerArray* FindNotifyHandler_Collection(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers); 
 extern bool ConsumeNotifyMessage_Collection(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers); 
 extern FZeeNetNotifyHandlerArray* FindNotifyHandler_Dedicate(int32 Point, TMap<FString, FZeeNetNotifyHandlerArray>& NotifyHandlers); 
@@ -18,14 +16,11 @@ extern FZeeNetNotifyHandlerArray* FindNotifyHandler_UserCharacter(int32 Point, T
 extern bool ConsumeNotifyMessage_UserCharacter(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet, FZeeNetNotifyHandlerArray& NotifyHandlers); 
 
 bool FZeeNetClient::ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializerBase> Packet) { 
-	CheckNotifyHandlers(); 
+	ValidateNotifyHandlers(); 
 	FZeeNetNotifyHandlerArray* Found = nullptr; 
 
 	Found = FindNotifyHandler_Authentication(Packet->GetHeader().Point, NotifyHandlers); 
 	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Authentication(Packet, *Found); return false; } 
-
-	Found = FindNotifyHandler_Chat(Packet->GetHeader().Point, NotifyHandlers); 
-	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Chat(Packet, *Found); return false; } 
 
 	Found = FindNotifyHandler_Collection(Packet->GetHeader().Point, NotifyHandlers); 
 	if (Found) { if(Found->Num() > 0) ConsumeNotifyMessage_Collection(Packet, *Found); return false; } 
@@ -41,7 +36,6 @@ bool FZeeNetClient::ConsumeNotifyMessage(TSharedPtr<struct FZeeNetPacketSerializ
 
 void FZeeNetClient::BuildValidNotifyHandlerNames() {
 	ValidNotifyHandlerNames.Add(TEXT("Notify_Authentication")); 
-	ValidNotifyHandlerNames.Add(TEXT("Notify_Chat")); 
 	ValidNotifyHandlerNames.Add(TEXT("Notify_Collection")); 
 	ValidNotifyHandlerNames.Add(TEXT("Notify_Dedicate")); 
 	ValidNotifyHandlerNames.Add(TEXT("Notify_UserCharacter")); 

@@ -15,9 +15,9 @@
 
 void SZeeUIPopup::Construct(const FArguments& InArgs)
 {
-	const FZeeUISlateStyle_Common& MenuStyle = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Common>("Common/Common");
+	const FZeeUISlateStyle_Common& Style = FZeeUISlateStyles::Get().GetWidgetStyle<FZeeUISlateStyle_Common>("Common/Common");
 	
-	ViewportClient = InArgs._ViewportClient.Get();
+	ViewportClient = InArgs._ViewportClient;
 	ChildSlot
 	[
 		SNew(SOverlay)
@@ -38,7 +38,7 @@ void SZeeUIPopup::Construct(const FArguments& InArgs)
 			.HAlign(HAlign_Center)
 			.VAlign(VAlign_Center)
 			.Padding(20)
-			.BorderImage(&MenuStyle.CommonBorderBrush)
+			.BorderImage(&Style.CommonBorderBrush)
 			[
 				SNew(SGridPanel)
 				.FillColumn(0, 1.0f)
@@ -52,7 +52,7 @@ void SZeeUIPopup::Construct(const FArguments& InArgs)
 				[
 					SNew(STextBlock)
 					.Text(FText::FromString(InArgs._Message.Get()))
-					.TextStyle(&MenuStyle.CommonTextStyle)
+					.TextStyle(&Style.CommonTextStyle)
 				]
 				+ SGridPanel::Slot(0, 2)
 				.HAlign(HAlign_Center)
@@ -60,7 +60,7 @@ void SZeeUIPopup::Construct(const FArguments& InArgs)
 				.Padding(20)
 				[
 					SNew(SButton)
-					.ButtonStyle(&MenuStyle.CommonButtonStyle)
+					.ButtonStyle(&Style.CommonButtonStyle)
 					.OnClicked(this, &SZeeUIPopup::HandleClicked)
 					.HAlign(HAlign_Fill)
 					.VAlign(VAlign_Fill)
@@ -72,7 +72,7 @@ void SZeeUIPopup::Construct(const FArguments& InArgs)
 						[
 							SNew(STextBlock)
 							.Text(LOCTEXT("Confirm", "Confirm"))
-							.TextStyle(&MenuStyle.CommonTextStyle)
+							.TextStyle(&Style.CommonTextStyle)
 						]
 					]
 				]
@@ -89,4 +89,12 @@ FReply SZeeUIPopup::HandleClicked()
 	}
 
 	return FReply::Handled();
+}
+
+void SZeeUIPopup::Show(const FString& InMessage, class UGameViewportClient* GameViewportClient)
+{
+	GameViewportClient->AddViewportWidgetContent(SNew(SZeeUIPopup)
+		.Message(InMessage)
+		.ViewportClient(GameViewportClient)
+	);
 }

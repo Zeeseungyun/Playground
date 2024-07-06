@@ -13,7 +13,7 @@ public:
 		: _ViewportClient(nullptr)
 		, _Message(TEXT(""))
 	{ }
-		SLATE_ATTRIBUTE(class UGameViewportClient*, ViewportClient)
+		SLATE_ARGUMENT(class UGameViewportClient*, ViewportClient)
 		SLATE_ATTRIBUTE(FString, Message)
 	SLATE_END_ARGS()
 
@@ -25,4 +25,7 @@ private:
 
 private:
 	TWeakObjectPtr<class UGameViewportClient> ViewportClient;
+
+public:
+	static void Show(const FString& InMessage, class UGameViewportClient* ViewportClient);
 };
