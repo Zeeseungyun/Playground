@@ -87,7 +87,9 @@
 ### Module
 
 - **GameServer**
-  - TCP
+  - Logger
+    - using Microsoft.Extensions.Logging
+  - TCP Client
   - Protocol
   - Messages
   - Serialize / Deserialize
@@ -101,8 +103,6 @@
     - using MySql
 
 - **Tool**
-  - Common
-    - CommandLineArguments
   - Publish
     - scp
     - ssh
