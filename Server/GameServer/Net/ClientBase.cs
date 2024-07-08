@@ -42,12 +42,12 @@ namespace Zee.Net
         }
         public override void Stop()
         {
-            if(client!.Connected)
+            if(client != null && client.Connected)
             {
                 client.Close();
                 client = null;
+                HandleDisconnected(this, this);
             }
-            HandleDisconnected(this, this);
             Logger.LogInformation($"[{Name}] disconnected.");
         }
         virtual protected void ReceiveMessagesFinished()

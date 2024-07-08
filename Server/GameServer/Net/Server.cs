@@ -8,6 +8,7 @@ namespace Zee.Net
         private readonly TcpListener tcpListener;
         private readonly int port;
         private readonly List<ClientHandler> clients = new List<ClientHandler>();
+        public event EventHandler? OnListen;
         public Server(int port)
         {
             this.port = port;
@@ -36,7 +37,8 @@ namespace Zee.Net
         }
         override public void Stop()
         {
-            foreach(var client in clients)
+            var tempClient = clients.ToArray();
+            foreach(var client in tempClient)
             {
                 client.Stop();
             }
@@ -47,6 +49,7 @@ namespace Zee.Net
             try
             {
                 tcpListener.Start();
+                OnListen?.Invoke(this, EventArgs.Empty);
                 while (true)
                 {
                     var tcpClient = tcpListener.AcceptTcpClient();
