@@ -76,6 +76,10 @@
 
 - Slate를 통한 UI 조작
 
+## Game Play
+
+![Game Play](https://www.youtube.com/watch?v=xZHd4GEGomE)
+
 ## Game Flow Chart
 
 ![Game Flow Chart](blob/main/flowchart.png)
