@@ -78,7 +78,7 @@
 
 ## Game Play
 
-[![Video Label](blob/main/youtube_snapshot.png)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
+[![Video Label](blob/main/youtube_snapshot.PNG)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
 
 ## Game Flow Chart
 
