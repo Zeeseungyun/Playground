@@ -76,7 +76,7 @@
 
 - Slate를 통한 UI 조작
 
-## Game Play (Youtube link)
+## Game Play [(Youtube link)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
 
 [![Video Label](blob/main/youtube_snapshot.PNG)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
 
