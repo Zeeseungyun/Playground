@@ -1,13 +1,3 @@
-bucket list
-1. 언리얼에서 cmake로 thirdparty lib만들어보기.
-2. 언리얼로 게임 서버 프레임워크 작성하기.
--> web host.
--> tcp host.
--> tcp client.
--> db query.. etc.
-c++ to c++
-linux, win32 지원.
-
 ssh permission denied.
 pem키 bad permission문제.
 https://superuser.com/questions/1296024/windows-ssh-permissions-for-private-key-are-too-open
