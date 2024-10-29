@@ -6,6 +6,24 @@
 
 - 해당 포트폴리오는 Carrieverse 프로젝트를 진행하면서 다양한 업무들을 수행했던 경험을 되짚어보는 데 중점을 두고 있습니다. 그리고 서버 연동 작업과 Unreal Slate UI 개발을 통해 클라이언트-서버 통신과 UI 기술을 피력하고자 합니다.
 
+## Objectives
+
+- 데디 서버와 게임 서버, 게임 서버와 클라이언트와 통신
+  - 직렬화는 Google.Protobuf를 이용
+  - 게임 서버와 데디 서버는 AWS의 EC2를 이용
+  - DB는 AWS의 RDS를 이용
+
+- 클라이언트는 서버와 통신을 수행하는 동작을 구현
+  - 로그인 / 로그아웃
+  - 컬렉션 수집
+  - 데디 이동
+  - 데이터 저장 (DB)
+    - 계정 정보
+    - 캐릭터 위치, 이름
+    - 컬렉션
+
+- Slate를 통한 UI 조작
+
 ## Platforms
 
 ![Windows](https://img.icons8.com/color/48/000000/windows-10.png) ![Ubuntu](https://img.icons8.com/color/48/000000/ubuntu--v1.png) ![Android](https://img.icons8.com/color/48/000000/android-os.png)
@@ -28,24 +46,6 @@
 
 - C/C++
 - C# 
-
-## Objectives
-
-- 데디 서버와 게임 서버, 게임 서버와 클라이언트와 통신
-  - 직렬화는 Google.Protobuf를 이용
-  - 게임 서버와 데디 서버는 AWS의 EC2를 이용
-  - DB는 AWS의 RDS를 이용
-
-- 클라이언트는 서버와 통신을 수행하는 동작을 구현
-  - 로그인 / 로그아웃
-  - 컬렉션 수집
-  - 데디 이동
-  - 데이터 저장 (DB)
-    - 계정 정보
-    - 캐릭터 위치, 이름
-    - 컬렉션
-
-- Slate를 통한 UI 조작
 
 ## Game Play [(Youtube link)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
 
