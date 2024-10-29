@@ -24,6 +24,10 @@
 
 - Slate를 통한 UI 조작
 
+## Game Play [(Youtube link)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
+
+[![Video Label](blob/main/youtube_snapshot.PNG)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
+
 ## Platforms
 
 ![Windows](https://img.icons8.com/color/48/000000/windows-10.png) ![Ubuntu](https://img.icons8.com/color/48/000000/ubuntu--v1.png) ![Android](https://img.icons8.com/color/48/000000/android-os.png)
@@ -46,10 +50,6 @@
 
 - C/C++
 - C# 
-
-## Game Play [(Youtube link)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
-
-[![Video Label](blob/main/youtube_snapshot.PNG)](https://youtu.be/xZHd4GEGomE?si=zIwAqYSZASCPSKnk)
 
 ## Game Flow Chart
 
