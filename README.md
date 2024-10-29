@@ -2,35 +2,6 @@
 
 ![Unreal Engine](https://img.icons8.com/color/48/000000/unreal-engine.png) ![C++](https://img.icons8.com/color/48/000000/c-plus-plus-logo.png) ![C#](https://img.icons8.com/color/48/000000/c-sharp-logo.png) ![Visual Studio](https://img.icons8.com/color/48/000000/visual-studio.png) ![MySQL](https://img.icons8.com/color/48/000000/mysql-logo.png)
 
-## Career
-
-### Mantisco (2020.01 ~ 2023.06)
-
-#### 프로젝트: Carrieverse (2021.12 ~ 2023.06)
-
-- 게임 서버 통신
-- 서버 패킷 작성
-- DB 수정
-- 빌드 배포
-- 빌드 자동화 및 Slack연동 (Jenkins)
-- UI 기반 작업
-- 리소스 관리
-- 게임 컨텐츠 개발
-  - 하우징
-
-#### 프로젝트: Hunter's Arena (2020.01 ~ 2021.12)
-
-- 게임 컨텐츠 개발
-  - Steam, PS4, PS5 도전 과제
-  - 키 가이드 
-  - 전투 특성
-  - 랭크
-
-- 유지 보수 및 기타
-  - 게임 매칭 시스템 리팩토링 및 구현
-  - 프로필
-  - 컬렉션
-
 ## Motivation
 
 - 해당 포트폴리오는 Carrieverse 프로젝트를 진행하면서 다양한 업무들을 수행했던 경험을 되짚어보는 데 중점을 두고 있습니다. 그리고 서버 연동 작업과 Unreal Slate UI 개발을 통해 클라이언트-서버 통신과 UI 기술을 피력하고자 합니다.
