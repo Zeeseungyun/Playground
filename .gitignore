@@ -131,10 +131,3 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 study/ProfessionalCMake_18th_Edition_GettingStarted.pdf
-
-# =========================
-# Unreal 
-# =========================
-Intermediate/
-Binaries/
-Saved/
