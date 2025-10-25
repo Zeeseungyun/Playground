@@ -12,7 +12,7 @@ namespace Zee.Net
         , Message.INotifyHandler
         , Message.IRequestHandler
     {
-        static private readonly string connectionString = "server=zee-database-inst-1.czog0kiey03w.ap-northeast-2.rds.amazonaws.com;database=zee_database_1;uid=admin;password=dnfltkdl12";
+        static private readonly string connectionString = "";
         public MySqlConnection? DbConnection;
         private readonly Server server;
         public Zee.Proto.Data.Account Account = new();
